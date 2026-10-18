@@ -368,7 +368,10 @@ function assetUrl(path) {
   const direct = validExternalUrl(path);
   if (direct) return direct;
   if (path.startsWith('/') || path.startsWith('..') || path.includes('\\')) return '';
-  const root = validExternalUrl(CONTENT?.site?.assetsBaseUrl);
+  const baseSetting = CONTENT?.site?.assetsBaseUrl;
+  const root = baseSetting === './'
+    ? new URL('./', document.baseURI).href
+    : validExternalUrl(baseSetting);
   if (!root) return '';
   try {
     const base = new URL(root.endsWith('/') ? root : root + '/');

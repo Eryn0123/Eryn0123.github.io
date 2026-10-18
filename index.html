@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6fd">
+  <meta name="description" content="Live2D 리거 에린(Eryn)의 공식 포트폴리오. 쇼케이스, 리깅 샘플, 커미션 가격과 문의 안내를 확인하세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Eryn — Live2D Rigging Portfolio">
+  <meta property="og:description" content="Live2D Rigging · Selected Works · Commission Information">
+  <meta name="twitter:card" content="summary">
+  <title>Eryn — Live2D Rigging Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22lavender%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20stop-color%3D%22%239e90e0%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237666bf%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2217%22%20fill%3D%22url(%23lavender)%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M20%2017h25v8H29v5h14v8H29v5h16v8H20z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M47%2011l2.3%205.7L55%2019l-5.7%202.3L47%2027l-2.3-5.7L39%2019l5.7-2.3z%22%20fill%3D%22%23e9e1ff%22%2F%3E%0A%3C%2Fsvg%3E%0A" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+@font-face{font-family:Paperlogy;src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Paperlogy;src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+:root{
+  --page:#faf9ff;--surface:#fff;--soft:#f1f0fb;--lavender:#e8e5fb;--purple:#8576ce;--purple-dark:#6756a9;
+  --ink:#332e55;--muted:#807994;--line:#e5e0f4;--shadow:0 16px 48px rgba(78,65,128,.075);
+  --ease:cubic-bezier(.22,1,.36,1);--max:1180px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{margin:0;background:var(--page);font-family:Paperlogy,'Noto Sans KR',sans-serif;color:var(--ink);line-height:1.65;overflow-x:hidden}
+button,input,a{font:inherit}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgba(133,118,206,.55);outline-offset:4px}
+::selection{background:#d6d1f6;color:#30264f}
+.container{width:min(calc(100% - 80px),var(--max));margin-inline:auto;position:relative}
+[hidden]{display:none!important}
+.skip-link{position:fixed;top:-90px;left:14px;z-index:999;background:white;padding:12px 16px;border-radius:10px}
+.skip-link:focus{top:12px}
+.ambient{position:absolute;z-index:-1;pointer-events:none;filter:blur(18px);opacity:.8}
+.ambient-one{top:60px;right:-170px;width:580px;height:650px;background:radial-gradient(circle,#e9e6fb 0,rgba(233,230,251,0) 70%)}
+.ambient-two{top:730px;left:-210px;width:560px;height:530px;background:radial-gradient(circle,#ebedfd 0,rgba(235,237,253,0) 72%)}
+
+/* Quiet navigation: keeps its own visual identity across long sections. */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(250,249,255,.83);border-bottom:1px solid rgba(219,213,237,.75);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:80px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:Outfit, sans-serif;font-size:31px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.brand-glyph{display:grid;place-items:center;width:30px;height:30px;border-radius:11px;background:linear-gradient(135deg,#f1edff,#e1ddfa);color:var(--purple);font-size:19px;letter-spacing:0}
+.brand-dot,.footer-brand span{color:var(--purple)}
+.nav-links{display:flex;align-items:center;gap:32px;margin-left:auto}
+.nav-links a{font-family:Outfit,Paperlogy,sans-serif;font-size:13px;font-weight:600;color:#6d6687;transition:color .2s}
+.nav-links a:hover,.nav-links a.is-active{color:var(--purple-dark)}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:48px;border:1px solid transparent;border-radius:999px;padding:12px 23px;font-size:12px;font-weight:700;letter-spacing:.05px;white-space:nowrap;transition:transform .28s var(--ease),box-shadow .3s,border-color .2s,background .2s}
+.button:hover{transform:translateY(-3px)}
+.button-primary{background:linear-gradient(115deg,#9587df,#8071c7);box-shadow:0 11px 24px rgba(131,113,204,.20);color:white}
+.button-primary:hover{box-shadow:0 15px 31px rgba(131,113,204,.30)}
+.button-outline{border-color:#d8d0ef;background:rgba(255,255,255,.75);color:var(--purple-dark)}
+.button-outline:hover{border-color:#aaa0e1;box-shadow:0 9px 18px rgba(117,99,180,.08)}
+.button-nav{min-height:41px;padding:9px 20px;font-family:Outfit,Paperlogy,sans-serif}
+.menu-toggle{display:none;background:transparent;border:0;width:40px;height:40px;padding:9px;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.menu-toggle span{display:block;width:22px;height:2px;background:#6d638f;border-radius:2px}
+
+/* Hero */
+.hero-section{min-height:685px;padding-top:96px;padding-bottom:90px;display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);align-items:center;gap:65px}
+.hero-copy{position:relative;z-index:2;padding-bottom:25px}
+.eyebrow{display:flex;align-items:center;gap:12px;font:700 11px/1.4 Outfit,Paperlogy,sans-serif;color:var(--purple);letter-spacing:2.7px}
+.eyebrow-line{width:26px;height:1px;background:var(--purple);flex-shrink:0}
+.hero-name-wrap{margin-top:30px}
+.hero-korean{color:var(--purple-dark);font-size:16px;margin:0 0 4px;font-weight:700;letter-spacing:-.3px}
+.hero-name-wrap h1{font:700 clamp(90px,10vw,155px)/.95 Outfit,sans-serif;letter-spacing:-9px;margin:0 0 26px;color:#3e365c}
+.title-period{color:#aa9be9}
+.hero-intro{max-width:455px;font-size:15px;color:#69637c;line-height:2;word-break:keep-all;margin:0;white-space:pre-line}
+.hero-status{display:inline-flex;align-items:center;gap:9px;margin-top:26px;color:var(--purple-dark);font:700 10.5px Outfit,Paperlogy,sans-serif;letter-spacing:1.2px;background:#f0eefa;border:1px solid #e3ddf7;padding:10px 14px;border-radius:99px}
+.status-dot{width:7px;height:7px;display:inline-block;flex-shrink:0;border-radius:50%;background:#92c3aa;box-shadow:0 0 0 4px rgba(146,195,170,.16)}
+.hero-status.closed .status-dot{background:#c9adc2;box-shadow:0 0 0 4px rgba(201,173,194,.15)}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:33px}
+.hero-tag{font:600 10.5px Outfit,Paperlogy,sans-serif;color:#817899;padding:7px 10px;border-radius:7px;border:1px solid #e6e1f2;background:rgba(255,255,255,.63)}
+.hero-media-wrap{position:relative;min-width:0;padding:25px 20px 35px 28px}
+.hero-orbit{position:absolute;inset:1% -3% 0 6%;background:radial-gradient(ellipse at 50% 50%,#eeeafa 0,#eeeafa 35%,transparent 70%);border-radius:45% 55% 44% 56%;transform:rotate(-11deg);z-index:-1}
+.hero-media-card{padding:15px;border-radius:26px;background:rgba(255,255,255,.91);border:1px solid rgba(223,217,246,.9);box-shadow:0 27px 72px rgba(103,84,164,.16);transform:rotate(1.2deg);transition:transform .5s var(--ease),box-shadow .4s}
+.hero-media-card:hover{transform:rotate(0) translateY(-3px);box-shadow:0 30px 78px rgba(103,84,164,.19)}
+.media-card-heading,.media-card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#9b92af;font:700 9px/1.5 Outfit,sans-serif;letter-spacing:1.5px;padding:4px 6px 13px}
+.mini-star{color:#aa99eb;font-size:14px;margin-right:5px}
+.hero-video-frame{aspect-ratio:1/1;min-height:285px;position:relative;border-radius:17px;overflow:hidden;background:linear-gradient(135deg,#e6e0f8,#c9c6e9)}
+.hero-video-frame video{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;opacity:0;transition:opacity .6s ease}
+.hero-video-frame video.ready{opacity:1}
+.video-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;color:#8c7ac4;font:700 10px Outfit,sans-serif;letter-spacing:2px}
+.loading-symbol{font-size:50px;line-height:1;animation:slowFloat 4s ease-in-out infinite}
+.media-card-foot{padding:14px 6px 4px}
+.tiny-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#91cbb0;vertical-align:middle;margin-right:7px}
+.hero-float-label{position:absolute;bottom:0;right:-19px;display:flex;align-items:center;gap:10px;border:1px solid #e0d7f2;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 9px 27px rgba(90,75,145,.12);padding:14px 19px;color:#8273b3;font:600 11px/1.45 Outfit,sans-serif;transform:rotate(-4deg)}
+.label-stars{font-size:23px;color:#aa99e5}
+.scroll-cue{position:absolute;left:0;bottom:35px;display:flex;align-items:center;gap:10px;font:700 10px Outfit,sans-serif;letter-spacing:2px;color:#afa6c5}
+.scroll-cue-line{width:31px;height:1px;background:#bfb4dc}
+.specialty-strip{position:relative;background:#f4f2fc;border-block:1px solid #eae5f5}
+.specialty-inner{min-height:88px;display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;color:#8a80ab;font:700 11px Outfit,sans-serif;letter-spacing:1.6px}
+.specialty-inner i{font-size:12px;font-style:normal;color:#c5bcec}
+
+/* Sections */
+.section{padding-block:110px}
+.section-soft{background:linear-gradient(180deg,#f5f3fc,#f8f7fe);border-block:1px solid #eeebf8}
+.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:34px}
+.section-index,.small-kicker{display:inline-block;font:700 10px Outfit,sans-serif;letter-spacing:2px;color:var(--purple)}
+.section-heading h2{margin:15px 0 8px;font:600 clamp(39px,4.6vw,62px)/1.09 Outfit,sans-serif;letter-spacing:-2.7px}
+.section-heading h2 em,.contact-panel h2 em{font-style:normal;font-weight:400;color:#9d8cda}
+.heading-star{font-size:28px;color:#c1b4ec;vertical-align:top;margin-left:12px}
+.section-heading p{margin:12px 0 0;color:var(--muted);font-size:13px;line-height:1.8;word-break:keep-all}
+.section-side-link{flex-shrink:0;margin-bottom:8px;font-size:12px;color:var(--purple-dark);font-weight:700;border-bottom:1px solid #bcafe7;padding-bottom:5px;transition:color .2s}
+.section-side-link:hover{color:#443879}
+.works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}
+.work-card{min-width:0;display:block;border-radius:18px;background:#fff;overflow:hidden;border:1px solid #ebe6f6;box-shadow:var(--shadow);transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
+.work-card:hover{transform:translateY(-4px);border-color:#c9bdeb;box-shadow:0 20px 46px rgba(89,69,152,.12)}
+.work-cover{aspect-ratio:16/10;position:relative;background:#e7e3f5;overflow:hidden}
+.work-cover img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.work-card:hover .work-cover img{transform:scale(1.035)}
+.work-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(43,35,74,.2),transparent 50%);pointer-events:none}
+.work-play{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:54px;height:54px;border-radius:50%;color:#7764bf;font-size:18px;background:rgba(255,255,255,.91);box-shadow:0 6px 24px rgba(43,31,96,.12);transition:transform .3s var(--ease)}
+.work-card:hover .work-play{transform:translate(-50%,-50%) scale(1.09)}
+.work-info{padding:20px 20px 19px}
+.work-topline{display:flex;align-items:center;justify-content:space-between;font:700 9px Outfit,sans-serif;letter-spacing:1.3px;color:#a69abd;margin-bottom:7px}
+.work-title{font-size:16px;font-weight:700;line-height:1.4;margin:0;word-break:keep-all}
+.work-credit{margin:7px 0 0;color:var(--muted);font:500 11px Outfit,Paperlogy,sans-serif}
+.placeholder-card{padding:55px 30px;text-align:center;border-radius:18px;background:#f0edfa;border:1px dashed #cec6ec;color:#8f85aa;font-size:13px;grid-column:1/-1}
+
+/* Sample library: only the selected category loads its media. */
+.sample-tab-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px}
+.sample-tab{appearance:none;border:1px solid #ded8ed;border-radius:100px;padding:11px 20px;background:rgba(255,255,255,.7);color:#77708d;font-size:12px;font-weight:700;transition:background .25s,border-color .25s,transform .25s,color .25s}
+.sample-tab:hover{border-color:#b3a7e6;transform:translateY(-2px)}
+.sample-tab[aria-selected="true"]{color:#fff;background:#8b7bd0;border-color:#8b7bd0;box-shadow:0 9px 21px rgba(123,104,196,.18)}
+.sample-category-intro{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;color:#877d9e;font-size:12px}
+.sample-count{font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a79bc7}
+.sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.sample-card{min-width:0;background:#fff;border-radius:18px;padding:11px;border:1px solid #e5e0f3;box-shadow:0 8px 24px rgba(78,65,128,.06);transition:transform .3s var(--ease),border-color .2s,box-shadow .3s}
+.sample-card:hover{transform:translateY(-3px);border-color:#c4b9e9;box-shadow:0 14px 35px rgba(78,65,128,.09)}
+.sample-video-wrap{aspect-ratio:16/10;overflow:hidden;position:relative;border-radius:11px;background:linear-gradient(145deg,#f1eefb,#dcd8f2)}
+.sample-video-wrap video{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;opacity:0;transition:opacity .4s}
+.sample-video-wrap video.ready{opacity:1}
+.sample-video-placeholder{position:absolute;inset:0;display:grid;place-items:center;z-index:0;font-size:35px;color:#b6a9e7}
+.sample-label{display:flex;align-items:center;justify-content:space-between;padding:11px 7px 3px;gap:10px;color:#6e6585;font-size:12px;font-weight:700}
+.sample-label span:last-child{color:#aa9dc7;font:700 9px Outfit,sans-serif;letter-spacing:1.2px}
+.sample-panel{min-height:230px}
+.sample-grid.switch-enter .sample-card{animation:sampleEnter .56s var(--ease) backwards}
+.sample-grid.switch-enter .sample-card:nth-child(2){animation-delay:.07s}
+.sample-grid.switch-enter .sample-card:nth-child(3){animation-delay:.12s}
+.sample-grid.switch-enter .sample-card:nth-child(4){animation-delay:.17s}
+.sample-grid.switch-enter .sample-card:nth-child(n+5){animation-delay:.20s}
+
+/* Pricing cards and compact, optional details. */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.price-card{position:relative;overflow:hidden;padding:28px 25px 24px;border-radius:19px;background:#fff;border:1px solid #e8e2f5;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
+.price-card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(85,67,145,.10);border-color:#c8beea}
+.price-card.featured{border-color:#bdb0ec;background:linear-gradient(150deg,#fff,#f7f5ff)}
+.price-card.featured::before{content:'';height:3px;position:absolute;inset:0 0 auto;background:linear-gradient(90deg,#d5caf4,#9684d7,#d8d8fb)}
+.price-card-type{display:flex;align-items:center;justify-content:space-between;color:#9b8fc2;font:700 10px Outfit,sans-serif;letter-spacing:1.65px}
+.price-card-type .price-mark{font-size:18px;color:#b1a3e0;line-height:1}
+.price-card h3{font:700 23px Outfit,Paperlogy,sans-serif;letter-spacing:-.5px;margin:17px 0 6px}
+.price-card p{font-size:12px;line-height:1.85;color:#8c84a2;white-space:pre-line;margin:0;word-break:keep-all}
+.price-value{display:flex;align-items:baseline;gap:6px;margin:29px 0 20px;font:700 35px Outfit,Paperlogy,sans-serif;letter-spacing:-1.3px;color:#483b77}
+.price-value small{font-size:12px;color:#9d93b3;font-weight:500;letter-spacing:0}
+.price-divider{height:1px;background:#eeeaf5;margin-bottom:16px}
+.price-detail{margin-top:auto}
+.price-detail summary{display:flex;list-style:none;align-items:center;justify-content:space-between;color:#7565b8;font-size:12px;font-weight:700;cursor:pointer;padding:9px 1px}
+.price-detail summary::-webkit-details-marker{display:none}
+.price-detail summary::after{content:'+';font:500 20px Outfit,sans-serif;transition:transform .25s}
+.price-detail[open] summary::after{transform:rotate(45deg)}
+.price-detail-content{padding:12px 0 3px;border-top:1px solid #eeeaf5;animation:detailsIn .3s ease}
+.price-detail-group{margin-bottom:15px}
+.price-detail-group strong{display:block;color:#6d609c;font-size:11px;margin-bottom:6px}
+.price-detail-group ul{list-style:none;padding:0;margin:0;display:grid;gap:5px}
+.price-detail-group li{font-size:11px;color:#7d758f;line-height:1.65;padding-left:12px;position:relative}
+.price-detail-group li::before{content:'·';position:absolute;left:1px;color:#a798db}
+.price-notice{margin:17px 1px 0;color:#9289a6;font-size:11px;line-height:1.8}
+.addons-wrap{margin-top:45px;border:1px solid #e8e3f5;border-radius:21px;background:linear-gradient(150deg,rgba(250,248,255,.94),#fff);padding:29px 30px 25px}
+.addons-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.addons-heading h3{font:700 25px Outfit,sans-serif;letter-spacing:-.8px;margin:5px 0 3px}
+.addons-heading p{font-size:12px;color:#9389a6;margin:0}
+.addons-deco{font-size:43px;line-height:1;color:#d6cdf1}
+.addons-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.addon-group{background:#fff;border:1px solid #ebe5f5;border-radius:13px;overflow:hidden;transition:border-color .25s}
+.addon-group:hover,.addon-group[open]{border-color:#cfc4ec}
+.addon-group summary{cursor:pointer;padding:15px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;font-weight:700;list-style:none}
+.addon-group summary::-webkit-details-marker{display:none}
+.addon-group summary::after{content:'+';color:#9f90d0;font:500 18px Outfit;transition:transform .25s}
+.addon-group[open] summary::after{transform:rotate(45deg)}
+.addon-group-list{padding:0 16px 13px;animation:detailsIn .28s ease}
+.addon-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid #f3f0f8;color:#817891;font-size:11px}
+.addon-row b{flex-shrink:0;font:700 12px Outfit,Paperlogy,sans-serif;color:#7463ad}
+
+/* Work process and terms */
+.process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:25px}
+.process-card{border-radius:17px;background:#fff;border:1px solid #e7e2f3;padding:24px 22px;min-height:169px;position:relative;box-shadow:0 8px 24px rgba(74,62,124,.04);transition:transform .28s var(--ease),border-color .28s}
+.process-card:hover{transform:translateY(-3px);border-color:#cfc3ee}
+.process-index{font:700 28px Outfit,sans-serif;color:#c5b8ee;letter-spacing:-1px}
+.process-card h3{font-size:14px;margin:12px 0 6px}
+.process-card p{font-size:11px;line-height:1.8;color:#91869e;margin:0;white-space:pre-line;word-break:keep-all}
+.notice-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.notice-card{background:rgba(255,255,255,.75);border:1px solid #e8e2f2;border-radius:17px;padding:23px 25px}
+.notice-card h3{font-size:13px;margin:0 0 11px;color:#6f60a6}
+.notice-card ul{padding:0;margin:0;display:grid;gap:9px;list-style:none}
+.notice-card li{color:#83798e;font-size:11.5px;line-height:1.75;padding-left:13px;position:relative;word-break:keep-all}
+.notice-card li::before{content:'✧';position:absolute;left:0;color:#ad9cdf}
+
+/* Strong, singular inquiry CTA without an unconfigured fake destination. */
+.contact-section{padding:95px 0 110px}
+.contact-panel{position:relative;overflow:hidden;border-radius:28px;padding:76px 42px 67px;text-align:center;border:1px solid #dcd5f3;background:radial-gradient(ellipse at 85% 5%,rgba(226,221,252,.8),transparent 45%),radial-gradient(ellipse at 12% 90%,rgba(229,236,253,.9),transparent 47%),linear-gradient(145deg,#f6f2ff,#f7f8ff);box-shadow:0 16px 52px rgba(77,61,125,.08)}
+.contact-panel .section-index{color:#8e7ec8}
+.contact-panel h2{font:600 clamp(44px,5.4vw,78px)/1.1 Outfit,sans-serif;letter-spacing:-3.8px;margin:17px 0 22px}
+.contact-korean{font-size:14px;line-height:2;color:#7a708d;margin:0 auto 28px;word-break:keep-all}
+.button-contact{min-height:53px;padding:14px 30px;background:#8271c9;color:#fff;box-shadow:0 14px 26px rgba(116,99,183,.19)}
+.button-contact:hover{box-shadow:0 18px 30px rgba(116,99,183,.24)}
+.form-pending{display:inline-flex;align-items:center;gap:9px;color:#8378a7;font-size:12px;border:1px solid #dcd6ee;background:rgba(255,255,255,.8);padding:13px 21px;border-radius:999px}
+.form-pending span{color:#b1a1e1}
+.contact-note{font-size:11px;color:#9a90aa;line-height:1.8;margin:17px 0 24px}
+.contact-mini-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.contact-mini-links a{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:8px;border:1px solid #e1daf0;background:rgba(255,255,255,.54);font:600 11px Outfit,Paperlogy,sans-serif;color:#806fae;transition:transform .2s,border-color .2s}
+.contact-mini-links a:hover{transform:translateY(-2px);border-color:#b9a8e8}
+.contact-star{position:absolute;color:#c7b9ef;pointer-events:none}
+.contact-star-one{left:12%;top:23%;font-size:34px;transform:rotate(15deg)}
+.contact-star-two{right:11%;bottom:21%;font-size:54px;transform:rotate(-15deg)}
+.footer{background:#f8f7fd;border-top:1px solid #eae6f3;padding:35px 0 42px}
+.footer-inner{display:flex;align-items:center;gap:35px;flex-wrap:wrap}
+.footer-brand{font:800 29px Outfit,sans-serif;letter-spacing:-1px}
+.footer-inner p{font:500 11px Outfit,sans-serif;color:#a69bb6;margin:0}
+.footer-socials{display:flex;gap:17px;margin-left:auto;flex-wrap:wrap}
+.footer-socials a{font:700 11px Outfit,Paperlogy,sans-serif;color:#746a8e;transition:color .2s}
+.footer-socials a:hover{color:var(--purple-dark)}
+.footer-copyright{font:500 10px Outfit,sans-serif;color:#afa5bf;letter-spacing:.7px}
+.noscript-notice{text-align:center;padding:30px;color:#8f829f}
+
+/* Reveal effects stay light: opacity + a little lift, never hover blur. */
+.reveal{opacity:0;transform:translate3d(0,18px,0);filter:blur(4px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+.reveal.is-visible{opacity:1;transform:translateZ(0);filter:blur(0)}
+.hero-media-wrap.reveal{transition-delay:.13s}
+.works-grid .reveal:nth-child(2),.pricing-grid .reveal:nth-child(2),.process-grid .reveal:nth-child(2){transition-delay:.075s}
+.works-grid .reveal:nth-child(3),.pricing-grid .reveal:nth-child(3),.process-grid .reveal:nth-child(3){transition-delay:.15s}
+.process-grid .reveal:nth-child(4){transition-delay:.21s}
+@keyframes sampleEnter{from{opacity:0;transform:translate3d(0,14px,0);filter:blur(5px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
+@keyframes slowFloat{50%{transform:translateY(-7px)}}
+@keyframes detailsIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1100px){.hero-section{gap:35px}.nav-links{gap:18px}.pricing-grid{gap:12px}.price-card{padding:25px 20px}}
+@media(max-width:940px){.container{width:min(calc(100% - 48px),var(--max))}.hero-section{grid-template-columns:1fr 1fr;gap:18px;min-height:600px;padding-top:65px}.hero-name-wrap h1{font-size:clamp(85px,11vw,128px)}.hero-media-wrap{padding:12px 5px 27px 12px}.hero-float-label{right:-8px}.works-grid{gap:12px}.work-info{padding:18px 15px}.price-card h3{font-size:19px}.price-value{font-size:30px}.process-card{padding:20px 18px}.specialty-inner{gap:22px}}
+@media(max-width:760px){.site-header .button-nav{display:none}.nav{min-height:65px}.menu-toggle{display:flex}.nav-links{position:absolute;display:none;top:calc(100% + 1px);left:-24px;right:-24px;background:rgba(250,249,255,.98);border:1px solid #e8e2f4;border-top:0;border-radius:0 0 15px 15px;padding:14px 23px;box-shadow:0 18px 30px rgba(65,53,113,.09);flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:12px 3px;font-size:14px}.hero-section{grid-template-columns:1fr;gap:20px;padding-top:60px;min-height:auto;padding-bottom:75px}.hero-copy{padding:0}.hero-name-wrap h1{font-size:clamp(100px,21vw,150px)}.hero-media-wrap{width:min(100%,550px);margin:15px auto 5px;padding:12px 16px 27px}.hero-float-label{right:2px}.scroll-cue{bottom:14px}.specialty-inner{padding-block:18px;gap:12px 22px;min-height:78px}.section{padding-block:80px}.works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pricing-grid{grid-template-columns:1fr}.price-card{padding:27px 26px}.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-section{padding-block:75px}.footer-inner{justify-content:space-between}.footer-socials{margin-left:0}}
+@media(max-width:580px){.container{width:min(calc(100% - 36px),var(--max))}.nav-links{left:-18px;right:-18px}.hero-section{padding-top:42px}.eyebrow{font-size:9px;letter-spacing:2px}.hero-korean{font-size:14px}.hero-name-wrap{margin-top:22px}.hero-name-wrap h1{font-size:96px;letter-spacing:-6px;margin-bottom:20px}.hero-intro{font-size:13px}.hero-buttons{margin-top:22px}.hero-buttons .button{flex:1;padding-inline:15px;font-size:11px}.hero-tags{margin-top:22px}.hero-media-wrap{margin-top:3px}.hero-media-card{padding:10px;border-radius:18px}.hero-video-frame{min-height:0;border-radius:12px}.hero-float-label{right:0;padding:9px 11px;font-size:9px}.section-heading{display:block;margin-bottom:25px}.section-heading h2{font-size:39px;letter-spacing:-1.8px}.section-side-link{display:inline-block;margin-top:15px}.heading-star{font-size:22px;margin-left:7px}.works-grid,.sample-grid,.notice-grid,.addons-grid{grid-template-columns:1fr}.work-cover{aspect-ratio:16/9}.sample-tab-row{gap:8px}.sample-tab{font-size:11px;padding:10px 13px}.sample-category-intro{display:block}.sample-count{display:block;margin-top:6px}.process-grid{gap:11px}.process-card{min-height:158px}.addons-wrap{padding:24px 18px}.addons-heading h3{font-size:23px}.contact-panel{padding:60px 22px 53px;border-radius:20px}.contact-panel h2{font-size:46px;letter-spacing:-2.7px}.contact-star-one{left:7%;top:13%;font-size:23px}.contact-star-two{right:7%;bottom:13%;font-size:34px}.contact-korean{font-size:12px}.footer-inner{display:block}.footer-socials{margin-top:21px;margin-bottom:20px}.footer-copyright{display:block}.specialty-inner span{font-size:9px}.specialty-inner i:nth-of-type(2){display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.process-card,.sample-tab,.work-cover img,.work-play{transition:none!important;transform:none!important}.sample-grid.switch-enter .sample-card,.loading-symbol{animation:none!important}}
+
+  </style>
+
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="주 메뉴">
+      <a href="#home" class="brand" aria-label="에린 홈페이지 첫 화면">
+        <span class="brand-glyph" aria-hidden="true">✦</span>
+        <span>eryn<span class="brand-dot">.</span></span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#works">Portfolio</a>
+        <a href="#samples">Rigging Samples</a>
+        <a href="#pricing">Commission</a>
+        <a href="#about">About</a>
+      </div>
+      <a class="button button-primary button-nav" href="#contact">Contact <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="nav-links" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero-section container" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="eyebrow-line"></span> <span id="hero-eyebrow">LIVE2D RIGGING PORTFOLIO</span></div>
+        <div class="hero-name-wrap"><p class="hero-korean" id="hero-korean">Live2D 리거 에린</p><h1 id="hero-title">Eryn<span class="title-period">.</span></h1></div>
+        <p class="hero-intro" id="hero-intro">캐릭터의 매력을 자연스럽고 사랑스러운 움직임으로 표현하는 Live2D 리거 에린입니다.</p>
+        <div class="hero-status" id="hero-status"><span class="status-dot" aria-hidden="true"></span><span id="status-text">COMMISSIONS OPEN</span></div>
+        <div class="hero-buttons"><a class="button button-primary" href="#works">작업물 감상하기 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#contact">커미션 문의 <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-tags" id="hero-tags" aria-label="작업 분야"></div>
+      </div>
+      <div class="hero-media-wrap reveal">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="hero-media-card">
+          <div class="media-card-heading"><span><span class="mini-star">✦</span> FEATURED MOTION</span><span>LIVE2D / 01</span></div>
+          <div class="hero-video-frame">
+            <div class="video-loading" id="hero-loading"><span class="loading-symbol">✧</span><span>LOADING SHOWREEL</span></div>
+            <video id="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="대표 Live2D 리깅 영상"></video>
+          </div>
+          <div class="media-card-foot"><span><span class="tiny-dot"></span> LIVE MOTION PREVIEW</span><span id="hero-video-caption">free movement sample</span></div>
+        </div>
+        <div class="hero-float-label" aria-hidden="true"><span class="label-stars">✳</span><span>Crafted with<br>care & motion</span></div>
+      </div>
+      <a href="#works" class="scroll-cue"><span class="scroll-cue-line"></span> SCROLL TO EXPLORE</a>
+    </section>
+
+    <div class="specialty-strip" aria-label="작업 분야"><div class="container specialty-inner"><span>LIVE2D CUBISM</span><i aria-hidden="true">✳</i><span>VTUBE STUDIO</span><i aria-hidden="true">✳</i><span>PHYSICS & EXPRESSIONS</span><i aria-hidden="true">✳</i><span>CHARACTER MOTION</span></div></div>
+
+    <section class="section container" id="works" aria-labelledby="works-heading">
+      <div class="section-heading reveal"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading">Selected <em>Works</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer">YouTube에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+      <div id="works-grid" class="works-grid"><div class="placeholder-card">쇼케이스를 불러오는 중...</div></div>
+    </section>
+
+    <section class="section section-soft" id="samples" aria-labelledby="samples-heading">
+      <div class="container">
+        <div class="section-heading reveal"><div><span class="section-index">02 / MOTION LIBRARY</span><h2 id="samples-heading">Rigging <em>Samples</em><span class="heading-star" aria-hidden="true">✧</span></h2><p>원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.</p></div></div>
+        <div class="sample-tab-row reveal" id="sample-tabs" role="tablist" aria-label="리깅 샘플 카테고리"></div>
+        <div id="sample-panel" class="sample-panel" role="tabpanel" aria-live="polite"><div class="placeholder-card">샘플을 준비하고 있어요...</div></div>
+      </div>
+    </section>
+
+    <section class="section container" id="pricing" aria-labelledby="pricing-heading">
+      <div class="section-heading reveal"><div><span class="section-index">03 / COMMISSION</span><h2 id="pricing-heading">Rigging <em>Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact">의뢰 상담하기 <span aria-hidden="true">↗</span></a></div>
+      <div class="pricing-grid" id="pricing-grid"></div>
+      <p class="price-notice reveal" id="price-notice"></p>
+      <div class="addons-wrap reveal">
+        <div class="addons-heading"><div><span class="small-kicker">CUSTOMIZE YOUR MODEL</span><h3>Additional Options</h3><p>추가 기능은 필요한 것만 선택할 수 있어요.</p></div><span class="addons-deco" aria-hidden="true">✳</span></div>
+        <div class="addons-grid" id="addons-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-heading reveal"><div><span class="section-index">04 / INFORMATION</span><h2 id="about-heading">How We <em>Work</em><span class="heading-star" aria-hidden="true">✧</span></h2><p>첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
+        <div class="process-grid" id="process-grid"></div>
+        <div class="notice-grid" id="notice-grid"></div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-panel reveal"><div class="contact-star contact-star-one" aria-hidden="true">✦</div><div class="contact-star contact-star-two" aria-hidden="true">✧</div>
+          <span class="section-index">05 / CONTACT</span>
+          <h2 id="contact-heading">Let's make it <em>move.</em></h2>
+          <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요?<br>작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
+          <a class="button button-contact" id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden>Google Form으로 문의하기 <span aria-hidden="true">↗</span></a>
+          <div class="form-pending" id="form-pending"><span aria-hidden="true">✳</span> Google Form 링크 연결 대기 중</div>
+          <p class="contact-note" id="contact-note">문의 접수 후 내용을 확인하여 개별적으로 안내드립니다.</p>
+          <div class="contact-mini-links" id="contact-socials"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><div><a href="#home" class="footer-brand">eryn<span>.</span></a><p>Live2D Rigging &amp; Character Motion</p></div><div id="footer-socials" class="footer-socials"></div><span class="footer-copyright">© <span id="current-year">2026</span> ERYN. All rights reserved.</span></div></footer>
+  <noscript><p class="noscript-notice">이 홈페이지의 콘텐츠를 보려면 JavaScript를 활성화해 주세요.</p></noscript>
+  <script>
+'use strict';
+
+/* Eryn's standalone portfolio. All editable text, prices and media live in content.json. */
+let CONTENT = null;
+let activeMediaObserver = null;
+let currentSampleVideos = [];
+
+const $ = id => document.getElementById(id);
+const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const won = amount => `${Number(amount || 0).toLocaleString('ko-KR')}원`;
+const asArray = value => Array.isArray(value) ? value : [];
+
+function validExternalUrl(value) {
+  if (typeof value !== 'string' || !value.trim()) return '';
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' ? url.href : '';
+  } catch { return ''; }
+}
+
+function assetUrl(path) {
+  if (typeof path !== 'string' || !path.trim()) return '';
+  const direct = validExternalUrl(path);
+  if (direct) return direct;
+  if (path.startsWith('/') || path.startsWith('..') || path.includes('\\')) return '';
+  const root = validExternalUrl(CONTENT?.site?.assetsBaseUrl);
+  if (!root) return '';
+  try {
+    const base = new URL(root.endsWith('/') ? root : root + '/');
+    const url = new URL(path, base);
+    return url.origin === base.origin && url.pathname.startsWith(base.pathname) ? url.href : '';
+  } catch { return ''; }
+}
+
+function getYoutubeId(value) {
+  const url = validExternalUrl(value);
+  if (!url) return '';
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, '');
+    let id = '';
+    if (host === 'youtu.be') id = parsed.pathname.split('/')[1];
+    if (host === 'youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com') {
+      id = parsed.pathname.startsWith('/embed/') || parsed.pathname.startsWith('/shorts/')
+        ? parsed.pathname.split('/')[2] : parsed.searchParams.get('v');
+    }
+    return /^[\w-]{11}$/.test(id || '') ? id : '';
+  } catch { return ''; }
+}
+
+function renderHero() {
+  const hero = CONTENT.hero || {};
+  $('hero-eyebrow').textContent = hero.eyebrow || 'LIVE2D RIGGING PORTFOLIO';
+  $('hero-title').innerHTML = `${escapeHtml(hero.name || 'Eryn')}<span class="title-period">.</span>`;
+  $('hero-korean').textContent = hero.korean || 'Live2D 리거 에린';
+  $('hero-intro').textContent = hero.intro || '';
+  $('status-text').textContent = hero.status?.label || '';
+  $('hero-status').classList.toggle('closed', hero.status?.open === false);
+  $('hero-status').hidden = !hero.status?.label;
+  $('hero-video-caption').textContent = hero.videoCaption || 'live motion sample';
+  $('hero-tags').innerHTML = asArray(hero.tags).map(tag => `<span class="hero-tag">${escapeHtml(tag)}</span>`).join('');
+
+  const player = $('hero-video');
+  const loading = $('hero-loading');
+  const videoUrl = assetUrl(hero.video);
+  if (!videoUrl) {
+    loading.innerHTML = '<span class="loading-symbol">✧</span><span>REPRESENTATIVE VIDEO NOT SET</span>';
+    return;
+  }
+  player.setAttribute('aria-label', hero.videoCaption || 'Live2D 대표 리깅 영상');
+  player.addEventListener('loadeddata', () => { player.classList.add('ready'); loading.hidden = true; }, {once:true});
+  player.addEventListener('error', () => { loading.hidden = false; loading.textContent = '영상을 불러올 수 없습니다. 영상 경로를 확인해 주세요.'; });
+  player.src = videoUrl;
+  player.play().catch(() => { /* Browser autoplay policy can prevent playback. */ });
+}
+
+function renderWorks() {
+  const portfolio = CONTENT.portfolio || {};
+  $('works-description').textContent = portfolio.description || '';
+  const works = asArray(portfolio.works).map((work, index) => {
+    const id = getYoutubeId(work.youtubeUrl);
+    if (!id) return '';
+    const watchUrl = `https://www.youtube.com/watch?v=${id}`;
+    const thumbnail = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+    return `<a class="work-card reveal" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(work.title)} 쇼케이스 YouTube에서 보기">
+      <div class="work-cover"><img src="${thumbnail}" alt="${escapeHtml(work.title)} 쇼케이스 썸네일" loading="lazy" decoding="async"><span class="work-play" aria-hidden="true">▶</span></div>
+      <div class="work-info"><div class="work-topline"><span>LIVE2D SHOWCASE</span><span>${String(index + 1).padStart(2, '0')} ↗</span></div>
+        <h3 class="work-title">${escapeHtml(work.title)}</h3>
+        <p class="work-credit">ILLUST · ${escapeHtml(work.illustrator || '—')} <span aria-hidden="true"> / </span> RIG · ${escapeHtml(work.rigging || 'Eryn')}</p>
+      </div></a>`;
+  }).filter(Boolean);
+  $('works-grid').innerHTML = works.length ? works.join('') : '<div class="placeholder-card">등록된 쇼케이스가 없습니다.</div>';
+}
+
+function stopSampleVideos() {
+  if (activeMediaObserver) activeMediaObserver.disconnect();
+  activeMediaObserver = null;
+  currentSampleVideos.forEach(video => {
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+  });
+  currentSampleVideos = [];
+}
+
+function observeSampleVideos() {
+  const videos = currentSampleVideos;
+  if (!('IntersectionObserver' in window)) {
+    videos.forEach(video => { video.src = video.dataset.src; video.load(); video.play().catch(() => {}); });
+    return;
+  }
+  activeMediaObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting && document.visibilityState !== 'hidden') {
+        if (!video.dataset.loaded) {
+          video.dataset.loaded = 'true';
+          video.src = video.dataset.src;
+          video.load();
+        }
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, {rootMargin:'100px 0px',threshold:.12});
+  videos.forEach(video => activeMediaObserver.observe(video));
+}
+
+function selectSampleCategory(categoryId) {
+  const categories = asArray(CONTENT.samples?.categories);
+  const category = categories.find(item => item.id === categoryId);
+  if (!category) return;
+  stopSampleVideos();
+  const videos = asArray(category.videos);
+  document.querySelectorAll('.sample-tab').forEach(button => {
+    const selected = button.dataset.category === categoryId;
+    button.setAttribute('aria-selected', String(selected));
+    button.tabIndex = selected ? 0 : -1;
+  });
+  const mediaCards = videos.map((video, i) => {
+    const src = assetUrl(video.src);
+    if (!src) return '';
+    return `<article class="sample-card"><div class="sample-video-wrap"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
+      <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(video.title || category.label)} 리깅 샘플"></video></div>
+      <div class="sample-label"><span>${escapeHtml(video.title || `${category.label} ${i + 1}`)}</span><span>MOTION / ${String(i + 1).padStart(2, '0')}</span></div></article>`;
+  }).filter(Boolean);
+  $('sample-panel').innerHTML = `<div class="sample-category-intro"><span>${escapeHtml(category.description || '')}</span><span class="sample-count">${mediaCards.length} SAMPLES</span></div><div class="sample-grid switch-enter">${mediaCards.join('') || '<div class="placeholder-card">등록된 샘플이 없습니다.</div>'}</div>`;
+  currentSampleVideos = [...$('sample-panel').querySelectorAll('video')];
+  currentSampleVideos.forEach(video => {
+    const frame = video.closest('.sample-video-wrap');
+    video.addEventListener('loadeddata', () => { video.classList.add('ready'); }, {once:true});
+    video.addEventListener('error', () => {
+      const symbol = frame.querySelector('.sample-video-placeholder');
+      if (symbol) symbol.textContent = '영상 로드 실패';
+    });
+  });
+  observeSampleVideos();
+}
+
+function renderSamples() {
+  const categories = asArray(CONTENT.samples?.categories).filter(category => asArray(category.videos).length);
+  $('sample-tabs').innerHTML = categories.map((category, i) => `<button type="button" class="sample-tab" role="tab" data-category="${escapeHtml(category.id)}" aria-controls="sample-panel" aria-selected="${i === 0}" tabindex="${i === 0 ? '0' : '-1'}">${escapeHtml(category.label)}</button>`).join('');
+  $('sample-tabs').querySelectorAll('.sample-tab').forEach(button => button.addEventListener('click', () => selectSampleCategory(button.dataset.category)));
+  $('sample-tabs').addEventListener('keydown', event => {
+    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const buttons = [...$('sample-tabs').querySelectorAll('.sample-tab')];
+    if (!buttons.length) return;
+    const current = buttons.findIndex(button => button.getAttribute('aria-selected') === 'true');
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1
+      : (current + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+    buttons[next].focus(); buttons[next].click();
+  });
+  if (categories.length) selectSampleCategory(categories[0].id);
+  else $('sample-panel').innerHTML = '<div class="placeholder-card">등록된 리깅 샘플이 없습니다.</div>';
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') currentSampleVideos.forEach(video => video.pause());
+    else currentSampleVideos.forEach(video => {
+      // On return, resume visible videos only (avoid starting every tab's videos).
+      if (video.dataset.loaded && video.getBoundingClientRect().top < innerHeight && video.getBoundingClientRect().bottom > 0)
+        video.play().catch(() => {});
+    });
+  });
+}
+
+function renderPricing() {
+  const pricing = CONTENT.pricing || {};
+  $('pricing-description').textContent = pricing.description || '';
+  $('price-notice').textContent = pricing.notice || '';
+  $('pricing-grid').innerHTML = asArray(pricing.plans).map((plan, i) => `
+    <article class="price-card reveal${plan.featured ? ' featured' : ''}">
+      <div class="price-card-type"><span>${escapeHtml(plan.english || `RIGGING / ${i + 1}`)}</span><span class="price-mark" aria-hidden="true">✧</span></div>
+      <h3>${escapeHtml(plan.name)}</h3><p>${escapeHtml(plan.description || '')}</p>
+      <div class="price-value">${escapeHtml(Number(plan.price || 0).toLocaleString('ko-KR'))}<small>KRW</small></div>
+      <div class="price-divider"></div>
+      <details class="price-detail"><summary>기본 포함 옵션 보기</summary><div class="price-detail-content">
+        ${asArray(plan.categories).map(category => `<div class="price-detail-group"><strong>${escapeHtml(category.title)}</strong><ul>${asArray(category.items).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`).join('')}
+      </div></details>
+    </article>`).join('');
+  $('addons-grid').innerHTML = asArray(pricing.addons).map(group => `<details class="addon-group">
+    <summary>${escapeHtml(group.title)}</summary><div class="addon-group-list">${asArray(group.items).map(item => `<div class="addon-row"><span>${escapeHtml(item.name)}</span><b>+ ${won(item.price)}</b></div>`).join('')}</div>
+  </details>`).join('');
+}
+
+function renderInformation() {
+  const info = CONTENT.information || {};
+  $('process-grid').innerHTML = asArray(info.process).map(item => `<article class="process-card reveal"><span class="process-index">${escapeHtml(item.step)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`).join('');
+  $('notice-grid').innerHTML = asArray(info.notices).map(item => `<article class="notice-card reveal"><h3>${escapeHtml(item.title)}</h3><ul>${asArray(item.items).map(text => `<li>${escapeHtml(text)}</li>`).join('')}</ul></article>`).join('');
+}
+
+function renderContact() {
+  const contact = CONTENT.contact || {};
+  $('contact-description').textContent = contact.description || '';
+  $('contact-note').textContent = contact.note || '';
+  const url = validExternalUrl(contact.googleFormUrl);
+  const isForm = url && (new URL(url).hostname === 'forms.gle' || (new URL(url).hostname === 'docs.google.com' && new URL(url).pathname.startsWith('/forms/')));
+  if (isForm) {
+    $('google-form-button').href = url;
+    $('google-form-button').hidden = false;
+    $('form-pending').hidden = true;
+  } else {
+    $('google-form-button').hidden = true;
+    $('form-pending').hidden = false;
+  }
+
+  const socials = asArray(CONTENT.socials?.links).filter(item => item.enabled !== false && validExternalUrl(item.url));
+  $('contact-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)} <span aria-hidden="true">↗</span></a>`).join('');
+  $('footer-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`).join('');
+  const youtube = socials.find(item => /^youtube/i.test(item.label));
+  if (youtube) $('youtube-all-link').href = validExternalUrl(youtube.url);
+}
+
+function initNavigation() {
+  const menu = $('menu-toggle');
+  const links = $('nav-links');
+  menu.addEventListener('click', () => {
+    const opened = links.classList.toggle('open');
+    menu.setAttribute('aria-expanded', String(opened));
+    menu.setAttribute('aria-label', opened ? '메뉴 닫기' : '메뉴 열기');
+  });
+  links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-label', '메뉴 열기');
+  }));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && links.classList.contains('open')) {
+      links.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.focus();
+    }
+  });
+}
+
+function initReveals() {
+  const elements = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    elements.forEach(element => element.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    });
+  }, {threshold:.08,rootMargin:'0px 0px -25px 0px'});
+  elements.forEach(element => observer.observe(element));
+}
+
+async function loadContent() {
+  document.documentElement.classList.add('js');
+  $('current-year').textContent = String(new Date().getFullYear());
+  initNavigation();
+  try {
+    const response = await fetch('content.json', {cache:'no-cache'});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    CONTENT = await response.json();
+    if (!CONTENT || typeof CONTENT !== 'object') throw new Error('Invalid content.json');
+    document.title = CONTENT.site?.title || document.title;
+    renderHero(); renderWorks(); renderSamples(); renderPricing(); renderInformation(); renderContact();
+  } catch (error) {
+    console.error('Failed to load the portfolio content:', error);
+    $('works-grid').innerHTML = '<div class="placeholder-card">content.json을 불러오지 못했습니다. GitHub Pages 또는 로컬 웹 서버에서 열어주세요.</div>';
+    $('sample-panel').innerHTML = '<div class="placeholder-card">샘플 정보를 불러오지 못했습니다.</div>';
+    $('form-pending').textContent = '문의 링크 정보가 아직 로딩되지 않았습니다.';
+  }
+  initReveals();
+}
+
+loadContent();
+
+  </script>
+</body>
+</html>

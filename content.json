@@ -1,0 +1,183 @@
+{
+  "site": {
+    "_설명": "assetsBaseUrl: 기존 아트머그용 GitHub 저장소의 이미지·영상 폴더 주소. 새 홈페이지에는 대용량 영상들을 다시 업로드하지 않아도 됩니다. 기존 저장소의 경로를 변경한다면 이 값도 수정하세요.",
+    "assetsBaseUrl": "https://eryn0123.github.io/erynLive2D.github.io/",
+    "title": "Eryn — Live2D Rigging Portfolio"
+  },
+  "hero": {
+    "_설명": "첫 화면: name은 큰 이름, intro는 자기소개, video는 대표 MP4 주소 또는 기존 저장소 기준 경로입니다. status.open=false이면 상태 점 색상이 달라집니다.",
+    "eyebrow": "LIVE2D RIGGING PORTFOLIO",
+    "name": "Eryn",
+    "korean": "Live2D 리거 에린",
+    "intro": "안녕하세요! Live2D 리거 에린 Eryn입니다.\n캐릭터의 개성을 살려 자연스럽고 사랑스러운 움직임을 만들고 있어요.",
+    "video": "images/free_move/fm1.mp4",
+    "videoCaption": "Free movement sample",
+    "status": {
+      "open": true,
+      "label": "11월 ~ 12월 리깅 커미션 예약 접수 중"
+    },
+    "tags": ["Live2D Cubism", "VTube Studio", "VBridger"]
+  },
+  "portfolio": {
+    "_설명": "선택한 대표 쇼케이스입니다. 영상 링크는 YouTube 영상 또는 embed 링크 모두 가능하며 썸네일은 자동으로 불러옵니다. works 배열 순서를 바꾸면 카드 순서도 바뀝니다.",
+    "description": "캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.",
+    "works": [
+      {
+        "title": "Mint Cat Girl",
+        "illustrator": "Nae",
+        "rigging": "Eryn",
+        "youtubeUrl": "https://www.youtube.com/embed/bGxJeHw--hA"
+      },
+      {
+        "title": "요루네 마논",
+        "illustrator": "AKIRA",
+        "rigging": "Eryn",
+        "youtubeUrl": "https://www.youtube.com/embed/Ln7dOj8KfHk"
+      },
+      {
+        "title": "Velvet Rose Vampire",
+        "illustrator": "RioBH",
+        "rigging": "Eryn",
+        "youtubeUrl": "https://www.youtube.com/embed/34oHfdYHCvk"
+      }
+    ]
+  },
+  "samples": {
+    "_설명": "카테고리를 선택했을 때만 해당 영상이 로딩됩니다. label은 탭 이름, description은 소개글, videos 배열 안의 src를 수정하면 영상이 바뀝니다. 영상은 화면 밖으로 나가면 일시 정지합니다.",
+    "categories": [
+      {
+        "id": "free",
+        "label": "자유 움직임",
+        "description": "전체적인 움직임과 캐릭터의 자연스러운 반응을 볼 수 있어요.",
+        "videos": [
+          {"src": "images/free_move/fm1.mp4", "title": "자유 움직임 01"},
+          {"src": "images/free_move/fm2.mp4", "title": "자유 움직임 02"},
+          {"src": "images/free_move/fm3.mp4", "title": "자유 움직임 03"},
+          {"src": "images/free_move/fm4.mp4", "title": "자유 움직임 04"},
+          {"src": "images/free_move/fm5.mp4", "title": "자유 움직임 05"},
+          {"src": "images/free_move/fm6.mp4", "title": "자유 움직임 06"}
+        ]
+      },
+      {
+        "id": "face",
+        "label": "얼굴 표정",
+        "description": "iOS 페이셜 및 VBridger를 활용한 섬세한 얼굴 움직임입니다.",
+        "videos": [
+          {"src": "images/face_detail/fd1.mp4", "title": "얼굴 표정 01"},
+          {"src": "images/face_detail/fd2.mp4", "title": "얼굴 표정 02"},
+          {"src": "images/face_detail/fd3.mp4", "title": "얼굴 표정 03"}
+        ]
+      },
+      {
+        "id": "phys",
+        "label": "물리 디테일",
+        "description": "의상과 액세서리의 자연스러운 물리 움직임을 확인할 수 있어요.",
+        "videos": [
+          {"src": "images/clothes_detail/cd1.mp4", "title": "가디건 & 치마"},
+          {"src": "images/clothes_detail/cd2.mp4", "title": "의상 액세서리"},
+          {"src": "images/clothes_detail/cd3.mp4", "title": "리본 & 치마"}
+        ]
+      },
+      {
+        "id": "bodyxyz",
+        "label": "XYZ 움직임",
+        "description": "X, Y, Z축 방향에 따른 움직임 샘플입니다.",
+        "videos": [
+          {"src": "images/body_xyz/X_1.mp4", "title": "X 움직임"},
+          {"src": "images/body_xyz/Y_1.mp4", "title": "Y 움직임"},
+          {"src": "images/body_xyz/Z_1.mp4", "title": "Z 움직임"}
+        ]
+      },
+      {
+        "id": "chibi",
+        "label": "치비(SD) 변환",
+        "description": "작업한 치비 변환 기능을 확인할 수 있어요.",
+        "videos": [
+          {"src": "images/chibi/ch1.mp4", "title": "치비 변환"}
+        ]
+      }
+    ]
+  },
+  "pricing": {
+    "_설명": "아트머그와 별도로 운영하는 개인 홈페이지의 가격입니다. price는 원 단위 숫자. 지금은 이벤트 할인 없이 기본 정가만 표시됩니다. categories 안 title과 items는 각 리깅별로 자유롭게 수정할 수 있습니다.",
+    "description": "리깅 유형별 기본 가격과 제공 기능을 안내드립니다.",
+    "notice": "표시된 금액은 기본 작업 기준입니다. 최종 견적은 PSD 파츠 상태, 작업 난이도 및 추가 옵션에 따라 달라질 수 있습니다.",
+    "plans": [
+      {
+        "id": "fullbody",
+        "name": "LD 전신 리깅",
+        "english": "FULL BODY",
+        "price": 850000,
+        "featured": true,
+        "description": "캐릭터 전신의 자연스럽고 풍부한 움직임을 구현합니다.",
+        "categories": [
+          {"title": "얼굴 / 표정", "items": ["눈 깜박임 + 동공 물리 연산", "눈동자 XY 움직임", "눈썹 상하/각도/변형", "입 모양 12점", "얼굴 감정 표현 3가지"]},
+          {"title": "움직임 / 물리", "items": ["머리 XYZ 움직임 및 물리 연산", "몸 XYZ 움직임 및 물리 연산", "머리카락 물리 연산", "의상/악세서리 물리 연산"]},
+          {"title": "기본 기능", "items": ["기본 호흡", "기본 의상/악세서리 ON&OFF 기능"]}
+        ]
+      },
+      {
+        "id": "halfbody",
+        "name": "LD 반신 리깅",
+        "english": "HALF BODY",
+        "price": 450000,
+        "featured": false,
+        "description": "상반신 표현에 집중하여 섬세한 표정과 움직임을 구현합니다.",
+        "categories": [
+          {"title": "얼굴 / 표정", "items": ["눈 깜박임 + 동공 물리 연산", "눈동자 XY 움직임", "눈썹 상하/각도/변형", "입 모양 12점", "얼굴 감정 표현 3가지"]},
+          {"title": "움직임 / 물리", "items": ["머리 XYZ 움직임 및 물리 연산", "몸 XYZ 움직임 및 물리 연산", "머리카락 물리 연산", "의상/악세서리 물리 연산"]},
+          {"title": "기본 기능", "items": ["기본 호흡", "기본 의상/악세서리 ON&OFF 기능"]}
+        ]
+      },
+      {
+        "id": "sdbody",
+        "name": "SD 전신 리깅",
+        "english": "SD FULL BODY",
+        "price": 150000,
+        "featured": false,
+        "description": "통통 튀고 말랑한 SD 캐릭터의 귀여운 움직임을 구현합니다.",
+        "categories": [
+          {"title": "얼굴 / 표정", "items": ["눈 깜박임 + 동공 물리 연산", "눈동자 XY 움직임", "눈썹 상하/각도/변형", "입 모양 9점", "얼굴 감정 표현 3가지"]},
+          {"title": "움직임 / 물리", "items": ["머리 XYZ 움직임 및 물리 연산", "몸 XYZ 움직임 및 물리 연산", "머리카락 물리 연산", "의상/악세서리 물리 연산"]}
+        ]
+      }
+    ],
+    "addons": [
+      {"title": "헤어 / 의상", "items": [{"name": "헤어 [단순] 추가", "price": 80000}, {"name": "헤어 [복잡] 추가", "price": 120000}, {"name": "의상 [단순] 추가", "price": 120000}, {"name": "의상 [복잡] 추가", "price": 160000}]},
+      {"title": "표정 / 자세", "items": [{"name": "표정 [단순] 추가", "price": 10000}, {"name": "표정 [애니메이션] 추가", "price": 15000}, {"name": "가치코이 (앞으로 내밀기)", "price": 40000}, {"name": "치비 변환 (SD 변환)", "price": 150000}]},
+      {"title": "iOS 페이셜", "items": [{"name": "볼빵빵", "price": 10000}, {"name": "혀 메롱", "price": 10000}, {"name": "입 X", "price": 10000}, {"name": "VBridger", "price": 60000}]},
+      {"title": "파츠 추가", "items": [{"name": "팔 [단순] 파츠", "price": 20000}, {"name": "팔 [복잡] 파츠", "price": 50000}, {"name": "소품 (인형, 가방 등)", "price": 50000}]},
+      {"title": "동물 파츠", "items": [{"name": "동물 귀 + 꼬리", "price": 50000}, {"name": "날개", "price": 50000}]},
+      {"title": "기타", "items": [{"name": "추가 수정 횟수", "price": 10000}, {"name": "작업 60일 이후 공개", "price": 50000}]}
+    ]
+  },
+  "information": {
+    "_설명": "작업 과정 4단계와 사전 확인사항입니다. 구글폼 연결 전후 모두 안내되는 내용이니 실제 작업 정책과 일치하는지 확인하세요.",
+    "process": [
+      {"step": "01", "title": "문의 및 상담", "description": "신청 내용과 PSD 파츠 상태를 확인하고 작업 범위를 상담합니다."},
+      {"step": "02", "title": "견적 및 예약", "description": "최종 견적과 작업 일정을 안내한 뒤 결제 및 예약을 진행합니다."},
+      {"step": "03", "title": "리깅 및 컨펌", "description": "얼굴·머리·몸 리깅을 진행하고 중간 확인과 수정 사항을 반영합니다."},
+      {"step": "04", "title": "완성 및 전달", "description": "VTube Studio에서 사용할 수 있는 모델 파일을 전달하고 세팅을 안내합니다."}
+    ],
+    "notices": [
+      {"title": "의뢰 전 확인", "items": ["작업 전 PSD 파츠 상태와 원하는 옵션을 먼저 확인합니다.", "최종 금액과 일정은 자료를 확인한 후 개별 안내드립니다.", "작업 예약 확정은 상담 및 결제 절차를 마친 뒤 이루어집니다."]},
+      {"title": "파일 및 작업 안내", "items": ["완성된 모델은 VTube Studio 실행용 파일 형태로 전달됩니다.", "편집 가능한 .cmo3 원본 파일은 포함되지 않습니다.", "완료된 작업은 포트폴리오 및 작업 샘플로 공개될 수 있습니다."]}
+    ]
+  },
+  "contact": {
+    "_설명": "중요! googleFormUrl에 실제 구글폼 응답자 링크(https://docs.google.com/forms/... 또는 https://forms.gle/...)를 넣으면 문의 버튼이 자동으로 활성화됩니다. 빈칸일 때는 안내 문구만 표시합니다.",
+    "googleFormUrl": "",
+    "description": "함께 만들고 싶은 캐릭터가 있나요?\n작업 의뢰와 궁금한 점을 편하게 보내주세요.",
+    "note": "신청 내용 검토 후 기재해주신 연락처로 개별 안내드립니다. 신청서 제출만으로 예약이 확정되지는 않습니다."
+  },
+  "socials": {
+    "_설명": "외부 링크 목록입니다. 사이트 하단과 문의 영역에 표시됩니다. enabled=false를 넣으면 숨겨집니다.",
+    "links": [
+      {"label": "X / Twitter", "url": "https://x.com/Eryn0123", "enabled": true},
+      {"label": "YouTube", "url": "https://www.youtube.com/@Eryn_live2D", "enabled": true},
+      {"label": "VGen", "url": "https://vgen.co/Eryn0123", "enabled": true},
+      {"label": "ArtMug", "url": "https://artmug.kr/index.php?channel=view&uid=51881", "enabled": true},
+      {"label": "BOOTH", "url": "https://eryn.booth.pm/", "enabled": true}
+    ]
+  }
+}

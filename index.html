@@ -104,6 +104,33 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .site-panel{min-height:calc(100vh - 185px)}
 html.js .site-panel:not(.is-active){display:none!important}
 html.js .site-panel.is-active{animation:pageEnter .52s var(--ease) both}
+/* On desktop, HOME fits the available viewport while other pages scroll naturally.
+   If text or the viewport becomes too small, content can still grow and scroll. */
+@media(min-width:761px) and (min-height:680px){
+  body.home-active{min-height:100svh;display:flex;flex-direction:column}
+  body.home-active .ambient-one{top:7svh;height:68svh}
+  body.home-active .ambient-two{top:auto;bottom:0;height:45svh}
+  body.home-active .site-header,body.home-active .footer{flex-shrink:0}
+  body.home-active main{flex:1;display:flex;flex-direction:column}
+  body.home-active .site-panel[data-page="home"]{flex:1;min-height:0;display:flex;flex-direction:column}
+  body.home-active .hero-section{flex:1;min-height:max-content;padding-top:18px;padding-bottom:20px;gap:clamp(18px,3vw,50px)}
+  body.home-active .hero-copy{padding-bottom:0}
+  body.home-active .hero-media-wrap{width:min(100%,55svh,560px);padding:10px 9px 22px;justify-self:center}
+  body.home-active .hero-video-frame{min-height:0}
+  body.home-active .scroll-cue{display:none}
+  body.home-active .specialty-inner{min-height:43px;gap:18px}
+  body.home-active .footer{padding:11px 0 13px}
+  body.home-active .footer-inner p{display:none}
+}
+@media(min-width:761px) and (min-height:680px) and (max-height:800px){
+  body.home-active .hero-name-wrap{margin-top:18px}
+  body.home-active .hero-name-wrap h1{font-size:clamp(84px,9vw,130px);margin-bottom:17px}
+  body.home-active .hero-intro{font-size:13px;line-height:1.8}
+  body.home-active .hero-status{margin-top:16px}
+  body.home-active .hero-buttons{margin-top:17px}
+  body.home-active .hero-tags{margin-top:18px}
+  body.home-active .hero-media-wrap{width:min(100%,52svh,480px)}
+}
 .portfolio-switch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:49px auto 0;padding:6px;width:max-content;max-width:calc(100% - 36px);border:1px solid #e4ddf4;background:#f0edfa;border-radius:999px}
 .portfolio-switch button{border:0;background:transparent;color:#817599;font:700 12px Outfit,Paperlogy,sans-serif;letter-spacing:.35px;border-radius:999px;padding:12px 25px;transition:background .24s,color .24s,box-shadow .24s}
 .portfolio-switch button:hover{color:#544487}
@@ -302,7 +329,7 @@ html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
+<body class="home-active">
   <a class="skip-link" href="#main">본문 바로가기</a>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
@@ -787,6 +814,7 @@ function setPortfolioView(view) {
 function showRoute(target) {
   const route = ROUTES[target] || ROUTES.home;
   activePage = route.page;
+  document.body.classList.toggle('home-active', activePage === 'home');
   if (route.view) setPortfolioView(route.view);
 
   document.querySelectorAll('.site-panel').forEach(panel => {

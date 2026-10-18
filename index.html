@@ -175,20 +175,40 @@ html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
 .sample-category-intro{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;color:#877d9e;font-size:12px}
 .sample-count{font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a79bc7}
 .sample-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
-.sample-card{min-width:0;width:100%;background:#fff;border-radius:18px;padding:11px;border:1px solid #e5e0f3;box-shadow:0 8px 24px rgba(78,65,128,.06);transition:transform .3s var(--ease),border-color .2s,box-shadow .3s}
+.sample-card{min-width:0;width:100%;background:#fff;border-radius:18px;padding:11px;border:1px solid #e5e0f3;box-shadow:0 8px 24px rgba(78,65,128,.06);cursor:zoom-in;transition:transform .3s var(--ease),border-color .2s,box-shadow .3s}
 .sample-card:hover{transform:translateY(-3px);border-color:#c4b9e9;box-shadow:0 14px 35px rgba(78,65,128,.09)}
 .sample-video-wrap{aspect-ratio:var(--sample-ratio,16/10);overflow:hidden;position:relative;border-radius:11px;background:linear-gradient(145deg,#f1eefb,#dcd8f2);transition:aspect-ratio .45s var(--ease)}
 .sample-video-wrap video{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;opacity:0;transition:opacity .4s}
 .sample-video-wrap video.ready{opacity:1}
 .sample-video-placeholder{position:absolute;inset:0;display:grid;place-items:center;z-index:0;font-size:35px;color:#b6a9e7}
+.sample-video-open{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:flex-end;padding:13px;border:0;background:transparent;cursor:zoom-in}
+.sample-video-open-icon{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(221,214,243,.9);border-radius:11px;background:rgba(255,255,255,.93);box-shadow:0 5px 15px rgba(71,56,124,.10);color:#7868b3;font-size:20px;line-height:1;transition:transform .28s var(--ease),background .28s,box-shadow .28s}
+.sample-video-open:hover .sample-video-open-icon,.sample-video-open:focus-visible .sample-video-open-icon{transform:scale(1.1);background:#fff;box-shadow:0 9px 23px rgba(71,56,124,.19)}
 .sample-label{display:flex;align-items:center;justify-content:space-between;padding:11px 7px 3px;gap:10px;color:#6e6585;font-size:12px;font-weight:700}
 .sample-label span:last-child{color:#aa9dc7;font:700 9px Outfit,sans-serif;letter-spacing:1.2px}
 .sample-panel{min-height:230px}
-.sample-grid.switch-enter .sample-card{animation:sampleEnter .56s var(--ease) backwards}
-.sample-grid.switch-enter .sample-card:nth-child(2){animation-delay:.07s}
-.sample-grid.switch-enter .sample-card:nth-child(3){animation-delay:.12s}
-.sample-grid.switch-enter .sample-card:nth-child(4){animation-delay:.17s}
-.sample-grid.switch-enter .sample-card:nth-child(n+5){animation-delay:.20s}
+.sample-grid.switch-enter .sample-card{animation:sampleEnter .82s cubic-bezier(.18,.72,.22,1) both}
+.sample-grid.switch-enter .sample-card:nth-child(2){animation-delay:.09s}
+.sample-grid.switch-enter .sample-card:nth-child(3){animation-delay:.18s}
+.sample-grid.switch-enter .sample-card:nth-child(4){animation-delay:.23s}
+.sample-grid.switch-enter .sample-card:nth-child(n+5){animation-delay:.28s}
+
+/* One media player is loaded only while a sample is enlarged. */
+body.sample-lightbox-open{overflow:hidden}
+.sample-lightbox{width:min(1040px,calc(100vw - 38px));max-width:none;max-height:calc(100dvh - 38px);padding:21px;border:1px solid #e4ddf4;border-radius:23px;background:#fcfbff;color:var(--ink);box-shadow:0 35px 120px rgba(29,21,62,.27);overflow:hidden}
+.sample-lightbox[open]{display:flex;flex-direction:column;gap:15px;animation:lightboxEnter .38s var(--ease) both}
+.sample-lightbox::backdrop{background:rgba(28,22,49,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:lightboxBackdrop .3s ease both}
+.sample-lightbox-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-shrink:0}
+.sample-lightbox-kicker{margin:0 0 4px;color:#9887cb;font:700 10px Outfit,sans-serif;letter-spacing:1.5px}
+.sample-lightbox-title{margin:0;font-size:17px;line-height:1.35;font-weight:700}
+.sample-lightbox-close{flex-shrink:0;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:1px solid #e0d9f0;background:#f4f1fc;color:#695aa5;font-size:26px;line-height:1;transition:background .2s,transform .2s}
+.sample-lightbox-close:hover{background:#e8e2f9;transform:rotate(90deg)}
+.sample-lightbox-media{position:relative;display:flex;align-items:center;justify-content:center;min-height:0;overflow:hidden;border-radius:14px;background:linear-gradient(135deg,#efecfa,#e2ddf3)}
+.sample-lightbox-video{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 180px);object-fit:contain;border-radius:12px;opacity:0;transition:opacity .34s ease}
+.sample-lightbox-video.ready{opacity:1}
+.sample-lightbox-loading{position:absolute;inset:0;display:grid;place-items:center;color:#9485bf;font-size:12px;font-weight:700;pointer-events:none}
+.sample-lightbox-loading[hidden]{display:none}
+.sample-lightbox-hint{margin:0;text-align:center;color:#9c92b2;font-size:11px;flex-shrink:0}
 
 /* Premade model sales: calm gallery cards with matching carousel controls. */
 .sale-models-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
@@ -315,7 +335,9 @@ html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
 .works-grid .reveal:nth-child(2),.pricing-grid .reveal:nth-child(2),.process-grid .reveal:nth-child(2){transition-delay:.075s}
 .works-grid .reveal:nth-child(3),.pricing-grid .reveal:nth-child(3),.process-grid .reveal:nth-child(3){transition-delay:.15s}
 .process-grid .reveal:nth-child(4){transition-delay:.21s}
-@keyframes sampleEnter{from{opacity:0;transform:translate3d(0,14px,0);filter:blur(5px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
+@keyframes sampleEnter{0%{opacity:0;transform:translate3d(0,18px,0);filter:blur(5px)}62%{opacity:.8;filter:blur(1px)}100%{opacity:1;transform:translateZ(0);filter:blur(0)}}
+@keyframes lightboxEnter{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes lightboxBackdrop{from{opacity:0}to{opacity:1}}
 @keyframes slowFloat{50%{transform:translateY(-7px)}}
 @keyframes detailsIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pageEnter{from{opacity:0;transform:translate3d(0,13px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
@@ -326,8 +348,8 @@ html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
 @media(max-width:580px){.container{width:min(calc(100% - 36px),var(--max))}.nav-links{left:-18px;right:-18px}.hero-section{padding-top:42px}.eyebrow{font-size:9px;letter-spacing:2px}.hero-korean{font-size:14px}.hero-name-wrap{margin-top:22px}.hero-name-wrap h1{font-size:96px;letter-spacing:-6px;margin-bottom:20px}.hero-intro{font-size:13px}.hero-buttons{margin-top:22px}.hero-buttons .button{flex:1;padding-inline:15px;font-size:11px}.hero-tags{margin-top:22px}.hero-media-wrap{margin-top:3px}.hero-media-card{padding:10px;border-radius:18px}.hero-video-frame{min-height:0;border-radius:12px}.hero-float-label{right:0;padding:9px 11px;font-size:9px}.section-heading{display:block;margin-bottom:25px}.section-heading h2{font-size:39px;letter-spacing:-1.8px}.section-side-link{display:inline-block;margin-top:15px}.heading-star{font-size:22px;margin-left:7px}.works-grid,.sample-grid,.notice-grid,.addons-grid{grid-template-columns:1fr}.work-cover{aspect-ratio:16/9}.sample-tab-row{gap:8px}.sample-tab{font-size:11px;padding:10px 13px}.sample-category-intro{display:block}.sample-count{display:block;margin-top:6px}.process-grid{gap:11px}.process-card{min-height:158px}.addons-wrap{padding:24px 18px}.addons-heading h3{font-size:23px}.contact-panel{padding:60px 22px 53px;border-radius:20px}.contact-panel h2{font-size:46px;letter-spacing:-2.7px}.contact-star-one{left:7%;top:13%;font-size:23px}.contact-star-two{right:7%;bottom:13%;font-size:34px}.contact-korean{font-size:12px}.footer-inner{display:block}.footer-socials{margin-top:21px;margin-bottom:20px}.footer-copyright{display:block}.specialty-inner span{font-size:9px}.specialty-inner i:nth-of-type(2){display:none}}
 @media(max-width:760px){.mobile-contact-link{display:block}.nav-links a.is-active::after{bottom:5px;right:auto;width:30px}.portfolio-switch{margin-top:27px}.portfolio-switch button{padding:11px 19px;font-size:11px}.portfolio-view.section{padding-top:40px}}
 @media(max-width:960px){.sample-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:580px){.sample-grid{grid-template-columns:minmax(0,1fr)}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.process-card,.sample-tab,.work-cover img,.work-play{transition:none!important;transform:none!important}.sample-grid.switch-enter .sample-card,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
+@media(max-width:580px){.sample-grid{grid-template-columns:minmax(0,1fr)}.sample-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:10px}.sample-lightbox-video{max-height:calc(100dvh - 140px)}.sample-lightbox-title{font-size:14px}.sample-lightbox-hint{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
 
   </style>
   <script>document.documentElement.classList.add('js');</script>
@@ -452,6 +474,17 @@ html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
   </main>
 
   <footer class="footer"><div class="container footer-inner"><div><a href="#home" class="footer-brand">eryn<span>.</span></a><p>Live2D Rigging &amp; Character Motion</p></div><div id="footer-socials" class="footer-socials"></div><span class="footer-copyright">© <span id="current-year">2026</span> ERYN. All rights reserved.</span></div></footer>
+  <dialog class="sample-lightbox" id="sample-lightbox" aria-labelledby="sample-lightbox-title" aria-describedby="sample-lightbox-hint">
+    <div class="sample-lightbox-top">
+      <div><p class="sample-lightbox-kicker">ERYN · LIVE2D MOTION</p><h3 class="sample-lightbox-title" id="sample-lightbox-title">리깅 샘플</h3></div>
+      <button type="button" class="sample-lightbox-close" id="sample-lightbox-close" aria-label="확대 영상 닫기" autofocus>×</button>
+    </div>
+    <div class="sample-lightbox-media">
+      <span class="sample-lightbox-loading" id="sample-lightbox-loading" role="status">영상을 불러오는 중...</span>
+      <video id="sample-lightbox-video" class="sample-lightbox-video" controls playsinline muted loop preload="none" aria-label="확대된 리깅 샘플 영상"></video>
+    </div>
+    <p class="sample-lightbox-hint" id="sample-lightbox-hint">ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.</p>
+  </dialog>
   <noscript><p class="noscript-notice">이 홈페이지의 콘텐츠를 보려면 JavaScript를 활성화해 주세요.</p></noscript>
   <script>
 'use strict';
@@ -461,6 +494,7 @@ let CONTENT = null;
 let activeMediaObserver = null;
 let currentSampleVideos = [];
 const sampleRatioCache = new Map();
+let lastSampleTrigger = null;
 let activePage = 'home';
 let activePortfolioView = 'works';
 
@@ -567,6 +601,68 @@ function stopSampleVideos() {
   currentSampleVideos = [];
 }
 
+function openSampleLightbox(trigger) {
+  const sampleVideo = trigger.closest('.sample-video-wrap')?.querySelector('video');
+  const dialog = $('sample-lightbox');
+  const player = $('sample-lightbox-video');
+  if (!sampleVideo?.dataset.src || typeof dialog.showModal !== 'function') return;
+
+  lastSampleTrigger = trigger;
+  $('sample-lightbox-title').textContent = trigger.dataset.title || '리깅 샘플';
+  const loading = $('sample-lightbox-loading');
+  loading.textContent = '영상을 불러오는 중...';
+  loading.hidden = false;
+  player.classList.remove('ready');
+
+  // Keep the motion continuous when the same sample is opened larger.
+  const resumeAt = sampleVideo.currentTime || 0;
+  player.onloadedmetadata = () => {
+    if (resumeAt > 0 && (!Number.isFinite(player.duration) || resumeAt < player.duration)) {
+      try { player.currentTime = resumeAt; } catch (_) { /* Seeking may not be supported yet. */ }
+    }
+  };
+  player.onloadeddata = () => {
+    player.classList.add('ready');
+    loading.hidden = true;
+  };
+  player.onerror = () => {
+    loading.textContent = '영상을 불러올 수 없어요. 파일 경로를 확인해 주세요.';
+    loading.hidden = false;
+  };
+
+  dialog.showModal();
+  document.body.classList.add('sample-lightbox-open');
+  currentSampleVideos.forEach(video => video.pause());
+  player.src = sampleVideo.dataset.src;
+  player.load();
+  player.play().catch(() => { /* Visitors can press play in video controls. */ });
+}
+
+function initSampleLightbox() {
+  const dialog = $('sample-lightbox');
+  const player = $('sample-lightbox-video');
+  $('sample-lightbox-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    const bounds = dialog.getBoundingClientRect();
+    if (event.target === dialog &&
+        (event.clientX < bounds.left || event.clientX > bounds.right ||
+         event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
+  });
+  dialog.addEventListener('close', () => {
+    player.pause();
+    player.onloadedmetadata = null;
+    player.onloadeddata = null;
+    player.onerror = null;
+    player.removeAttribute('src');
+    player.load();
+    player.classList.remove('ready');
+    document.body.classList.remove('sample-lightbox-open');
+    syncMediaPlayback();
+    if (lastSampleTrigger?.isConnected) lastSampleTrigger.focus({preventScroll:true});
+    lastSampleTrigger = null;
+  });
+}
+
 function fitSampleVideoToCard(video, ratio) {
   if (!Number.isFinite(ratio) || ratio <= 0) return;
   const frame = video.closest('.sample-video-wrap');
@@ -585,7 +681,7 @@ function observeSampleVideos() {
   activeMediaObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const video = entry.target;
-      if (entry.isIntersecting && document.visibilityState !== 'hidden') {
+      if (entry.isIntersecting && document.visibilityState !== 'hidden' && !$('sample-lightbox').open) {
         if (!video.dataset.loaded) {
           video.dataset.loaded = 'true';
           video.src = video.dataset.src;
@@ -614,11 +710,19 @@ function selectSampleCategory(categoryId) {
   const mediaCards = videos.map((video, i) => {
     const src = assetUrl(video.src);
     if (!src) return '';
+    const title = video.title || `${category.label} ${i + 1}`;
     return `<article class="sample-card"><div class="sample-video-wrap"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
-      <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(video.title || category.label)} 리깅 샘플"></video></div>
-      <div class="sample-label"><span>${escapeHtml(video.title || `${category.label} ${i + 1}`)}</span><span>MOTION / ${String(i + 1).padStart(2, '0')}</span></div></article>`;
+      <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(title)} 리깅 샘플"></video>
+      <button type="button" class="sample-video-open" data-title="${escapeHtml(title)}" aria-label="${escapeHtml(title)} 영상 확대 보기"><span class="sample-video-open-icon" aria-hidden="true">⤢</span></button></div>
+      <div class="sample-label"><span>${escapeHtml(title)}</span><span>MOTION / ${String(i + 1).padStart(2, '0')}</span></div></article>`;
   }).filter(Boolean);
   $('sample-panel').innerHTML = `<div class="sample-category-intro"><span>${escapeHtml(category.description || '')}</span><span class="sample-count">${mediaCards.length} SAMPLE${mediaCards.length === 1 ? '' : 'S'}</span></div><div class="sample-grid switch-enter">${mediaCards.join('') || '<div class="placeholder-card">등록된 샘플이 없습니다.</div>'}</div>`;
+  $('sample-panel').querySelectorAll('.sample-video-open').forEach(button => {
+    button.addEventListener('click', () => openSampleLightbox(button));
+    button.closest('.sample-card').addEventListener('click', event => {
+      if (!event.target.closest('.sample-video-open')) button.click();
+    });
+  });
   currentSampleVideos = [...$('sample-panel').querySelectorAll('video')];
   currentSampleVideos.forEach(video => {
     const frame = video.closest('.sample-video-wrap');
@@ -655,7 +759,7 @@ function renderSamples() {
   else $('sample-panel').innerHTML = '<div class="placeholder-card">등록된 리깅 샘플이 없습니다.</div>';
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') currentSampleVideos.forEach(video => video.pause());
-    else currentSampleVideos.forEach(video => {
+    else if (!$('sample-lightbox').open) currentSampleVideos.forEach(video => {
       // On return, resume visible videos only (avoid starting every tab's videos).
       if (video.dataset.loaded && video.getBoundingClientRect().top < innerHeight && video.getBoundingClientRect().bottom > 0)
         video.play().catch(() => {});
@@ -798,7 +902,7 @@ const ROUTES = {
 };
 
 function syncMediaPlayback() {
-  const shouldPlay = document.visibilityState !== 'hidden';
+  const shouldPlay = document.visibilityState !== 'hidden' && !$('sample-lightbox').open;
   const hero = $('hero-video');
   if (activePage === 'home' && hero.dataset.src && !hero.getAttribute('src')) hero.src = hero.dataset.src;
   if (activePage === 'home' && shouldPlay && hero.getAttribute('src'))
@@ -808,9 +912,14 @@ function syncMediaPlayback() {
   currentSampleVideos.forEach(video => {
     const rect = video.getBoundingClientRect();
     const inView = rect.bottom > 0 && rect.top < window.innerHeight;
-    if (activePage === 'portfolio' && activePortfolioView === 'samples' && shouldPlay && inView && video.dataset.loaded)
+    if (activePage === 'portfolio' && activePortfolioView === 'samples' && shouldPlay && inView) {
+      if (!video.dataset.loaded) {
+        video.dataset.loaded = 'true';
+        video.src = video.dataset.src;
+        video.load();
+      }
       video.play().catch(() => {});
-    else video.pause();
+    } else video.pause();
   });
 }
 
@@ -926,6 +1035,7 @@ function initReveals() {
 async function loadContent() {
   document.documentElement.classList.add('js');
   $('current-year').textContent = String(new Date().getFullYear());
+  initSampleLightbox();
   initNavigation();
   try {
     const response = await fetch('content.json', {cache:'no-cache'});

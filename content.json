@@ -1,11 +1,11 @@
 {
   "site": {
-    "_설명": "assetsBaseUrl: 영상 파일을 불러오는 기본 주소입니다. ./ 는 이 개인 홈페이지와 같은 GitHub 저장소의 최상위 폴더를 뜻합니다. images 폴더를 index.html 옆에 업로드하고, 각 영상의 src 경로를 그대로 유지하세요.",
+    "_설명": "assetsBaseUrl: 리깅 영상과 판매 모델 이미지를 불러오는 기본 주소입니다. ./ 는 이 개인 홈페이지와 같은 GitHub 저장소의 최상위 폴더를 뜻합니다. images 폴더를 index.html 옆에 업로드하고 src 경로를 그대로 유지하세요.",
     "assetsBaseUrl": "./",
     "title": "Eryn — Live2D Rigging Portfolio"
   },
   "hero": {
-    "_설명": "첫 화면: name은 큰 이름, intro는 자기소개, video는 대표 MP4 주소 또는 기존 저장소 기준 경로입니다. status.open=false이면 상태 점 색상이 달라집니다.",
+    "_설명": "첫 화면: name은 큰 이름, intro는 자기소개, video는 대표 MP4 주소 또는 개인 홈페이지 images 폴더 기준 경로입니다. status.open=false이면 상태 점 색상이 달라집니다.",
     "eyebrow": "LIVE2D RIGGING PORTFOLIO",
     "name": "Eryn",
     "korean": "Live2D 리거 에린",
@@ -94,6 +94,62 @@
         "description": "작업한 치비 변환 기능을 확인할 수 있어요.",
         "videos": [
           {"src": "images/chibi/ch1.mp4", "title": "치비 변환"}
+        ]
+      }
+    ]
+  },
+  "saleModels": {
+    "_설명": "개인 홈페이지의 Premade Models 판매 모델 소개입니다. enabled=false로 숨길 수 있습니다. items의 가격은 원 단위 숫자이며 sold=true이면 판매 완료로 표시됩니다. images는 images/sale_models 폴더의 이미지 경로와 설명입니다. 구매·문의 링크는 actionUrl에서 수정하세요. (현재 가격은 기존 아트머그 JSON 기준이므로 업로드 전 실제 판매가를 확인하세요.)",
+    "enabled": true,
+    "description": "일러스트와 Live2D 리깅이 완성된 1인 한정 프리메이드 모델입니다. 이미지와 기능을 살펴보세요.",
+    "items": [
+      {
+        "id": "mint-cat-girl",
+        "title": "Mint Cat Girl",
+        "subtitle": "민트 고양이 소녀 Live2D 모델",
+        "status": "판매 중",
+        "badge": "1인 한정 판매",
+        "sold": false,
+        "price": 1800000,
+        "priceNote": "일러스트 + 리깅 SET",
+        "illustrator": "Nae",
+        "rigging": "Eryn",
+        "features": ["VBridger 트래킹 대응", "표정 5종 + 눈 표정 3종", "의상 ON / OFF + 손 교체", "꼬리 기능 + 치비 변환"],
+        "showcaseUrl": "https://youtu.be/bGxJeHw--hA",
+        "actionLabel": "DM으로 구매 문의",
+        "actionUrl": "https://x.com/Eryn0123",
+        "images": [
+          {"src": "images/sale_models/mint_cat_girl/01_cover.png", "alt": "Mint Cat Girl 대표 이미지", "caption": "대표 이미지"},
+          {"src": "images/sale_models/mint_cat_girl/02_expression_preview.png", "alt": "Mint Cat Girl 표정 미리보기", "caption": "표정 미리보기"},
+          {"src": "images/sale_models/mint_cat_girl/03_expression_set_a.png", "alt": "Mint Cat Girl 감정 표정 모음 1", "caption": "감정 표정 01"},
+          {"src": "images/sale_models/mint_cat_girl/04_expression_set_b.png", "alt": "Mint Cat Girl 감정 표정 모음 2", "caption": "감정 표정 02"},
+          {"src": "images/sale_models/mint_cat_girl/05_toggle.png", "alt": "Mint Cat Girl 의상과 손 교체", "caption": "의상 & 손 교체"},
+          {"src": "images/sale_models/mint_cat_girl/06_tail.png", "alt": "Mint Cat Girl 꼬리 움직임", "caption": "꼬리 기능"},
+          {"src": "images/sale_models/mint_cat_girl/07_chibi.png", "alt": "Mint Cat Girl 치비 변환", "caption": "치비 변환"}
+        ]
+      },
+      {
+        "id": "velvet-rose-vampire",
+        "title": "Velvet Rose Vampire",
+        "subtitle": "뱀파이어 귀족 콘셉트 Live2D 모델",
+        "status": "판매 중",
+        "badge": "1인 한정 판매",
+        "sold": false,
+        "price": 2500000,
+        "priceNote": "일러스트 + 리깅 SET",
+        "illustrator": "RioBH",
+        "rigging": "Eryn",
+        "features": ["VBridger 트래킹 대응", "표정 4종 + 추가 얼굴 파츠", "헤어스타일 2종 + 추가 팔 파츠", "몸 앞으로 내밀기"],
+        "showcaseUrl": "https://youtu.be/34oHfdYHCvk",
+        "actionLabel": "BOOTH에서 판매 정보 보기",
+        "actionUrl": "https://eryn.booth.pm/items/8641805",
+        "images": [
+          {"src": "images/sale_models/velvet_rose_vampire/01_cover.png", "alt": "Velvet Rose Vampire 대표 이미지", "caption": "대표 이미지"},
+          {"src": "images/sale_models/velvet_rose_vampire/02_expression_preview.png", "alt": "Velvet Rose Vampire 표정 미리보기", "caption": "표정 미리보기"},
+          {"src": "images/sale_models/velvet_rose_vampire/03_expression_set_a.png", "alt": "Velvet Rose Vampire 감정 표정 모음 1", "caption": "감정 표정 01"},
+          {"src": "images/sale_models/velvet_rose_vampire/04_expression_set_b.png", "alt": "Velvet Rose Vampire 감정 표정 모음 2", "caption": "감정 표정 02"},
+          {"src": "images/sale_models/velvet_rose_vampire/05_hairstyle_toggle.png", "alt": "Velvet Rose Vampire 헤어스타일 변경", "caption": "헤어스타일 변경"},
+          {"src": "images/sale_models/velvet_rose_vampire/06_leanout_extra_arm.png", "alt": "Velvet Rose Vampire 몸 앞으로 내밀기와 추가 팔 파츠", "caption": "몸 앞으로 내밀기 · 팔 파츠"}
         ]
       }
     ]

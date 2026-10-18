@@ -143,6 +143,42 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .sample-grid.switch-enter .sample-card:nth-child(4){animation-delay:.17s}
 .sample-grid.switch-enter .sample-card:nth-child(n+5){animation-delay:.20s}
 
+/* Premade model sales: calm gallery cards with matching carousel controls. */
+.sale-models-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
+.sale-model-card{min-width:0;display:flex;flex-direction:column;background:#fff;border:1px solid #e7e1f4;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.sale-model-card:hover{transform:translateY(-3px);border-color:#c4b6e9;box-shadow:0 21px 49px rgba(91,72,157,.11)}
+.sale-model-media{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
+.sale-model-image{width:100%;height:100%;display:block;object-fit:contain}
+.sale-model-image-fallback{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:10px;text-align:center;color:#9e91bd;font-size:12px;background:linear-gradient(135deg,#f1eefb,#e6e1f5)}
+.sale-model-image-fallback[hidden],.sale-model-image[hidden]{display:none}
+.sale-model-image-fallback span{font-size:31px}
+.sale-model-status{position:absolute;left:16px;top:16px;background:rgba(255,255,255,.94);border:1px solid #e4dcf3;border-radius:100px;padding:9px 13px;color:#7766b3;font-size:10px;font-weight:700;box-shadow:0 5px 20px rgba(73,59,133,.07)}
+.sale-model-status.sold{color:#837c92;background:rgba(255,255,255,.95)}
+.sale-model-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;font:700 20px Outfit,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+.sale-model-nav:hover{background:#fff;transform:translateY(-50%) scale(1.07)}
+.sale-model-prev{left:14px}.sale-model-next{right:14px}
+.sale-model-gallery-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 19px;background:#f9f8fd;border-bottom:1px solid #f0edf8;color:#9186aa;font-size:10px}
+.sale-model-gallery-meta .sale-model-count{white-space:nowrap;font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a094bf}
+.sale-model-content{padding:23px 26px 25px;display:flex;flex-direction:column;flex:1}
+.sale-model-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#a89ac8;font:700 10px Outfit,sans-serif;letter-spacing:1.15px}
+.sale-model-content h3{margin:12px 0 6px;font:700 clamp(21px,2.2vw,26px)/1.25 Outfit,Paperlogy,sans-serif;letter-spacing:-.65px}
+.sale-model-description{color:#8e859f;font-size:12px;line-height:1.8;margin:0;word-break:keep-all}
+.sale-model-credits{font:600 10px Outfit,Paperlogy,sans-serif;color:#a498bc;margin:13px 0 17px}
+.sale-model-credits span{color:#cdc4dc;margin:0 6px}
+.sale-model-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0 0 22px;padding:0;list-style:none}
+.sale-model-features li{min-width:0;border:1px solid #ede8f7;border-radius:10px;background:#faf9ff;padding:10px 12px;color:#746b87;font-size:11px;line-height:1.65;word-break:keep-all}
+.sale-model-features li:before{content:'✧';color:#a292d5;margin-right:6px}
+.sale-model-footer{margin-top:auto;padding-top:17px;border-top:1px solid #eeeaf7}
+.sale-model-price{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.sale-model-price-label{color:#a097b1;font-size:10px;line-height:1.6}
+.sale-model-price strong{font:700 22px Outfit,Paperlogy,sans-serif;color:#54447e;white-space:nowrap}
+.sale-model-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sale-model-actions .button{flex:1;min-width:0;justify-content:center;text-align:center;font-size:11px;padding-inline:12px}
+.sale-model-sold-label{display:block;padding:13px 15px;border:1px solid #e8e3ef;border-radius:10px;background:#f7f5fb;color:#978da7;text-align:center;font-size:12px;font-weight:700}
+@media(max-width:760px){.sale-models-grid{grid-template-columns:1fr}.sale-model-media{aspect-ratio:16/9}}
+@media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price strong{font-size:20px}.sale-model-nav{width:32px;height:32px}}
+@media(prefers-reduced-motion:reduce){.sale-model-card,.sale-model-nav{transition:none!important}.sale-model-card:hover{transform:none}.sale-model-nav:hover{transform:translateY(-50%)}}
+
 /* Pricing cards and compact, optional details. */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .price-card{position:relative;overflow:hidden;padding:28px 25px 24px;border-radius:19px;background:#fff;border:1px solid #e8e2f5;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
@@ -259,6 +295,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
       <div class="nav-links" id="nav-links">
         <a href="#works">Portfolio</a>
         <a href="#samples">Rigging Samples</a>
+        <a href="#sale-models">Premade Models</a>
         <a href="#pricing">Commission</a>
         <a href="#about">About</a>
       </div>
@@ -307,8 +344,13 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
       </div>
     </section>
 
+    <section class="section container" id="sale-models" aria-labelledby="sale-models-heading">
+      <div class="section-heading reveal"><div><span class="section-index">03 / PREMADE MODELS</span><h2 id="sale-models-heading">Premade <em>Models</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="sale-models-description">완성된 Live2D 판매 모델을 소개합니다.</p></div></div>
+      <div class="sale-models-grid" id="sale-models-grid"><div class="placeholder-card">판매 모델 정보를 불러오는 중...</div></div>
+    </section>
+
     <section class="section container" id="pricing" aria-labelledby="pricing-heading">
-      <div class="section-heading reveal"><div><span class="section-index">03 / COMMISSION</span><h2 id="pricing-heading">Rigging <em>Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact">의뢰 상담하기 <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading reveal"><div><span class="section-index">04 / COMMISSION</span><h2 id="pricing-heading">Rigging <em>Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact">의뢰 상담하기 <span aria-hidden="true">↗</span></a></div>
       <div class="pricing-grid" id="pricing-grid"></div>
       <p class="price-notice reveal" id="price-notice"></p>
       <div class="addons-wrap reveal">
@@ -319,7 +361,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 
     <section class="section section-soft" id="about" aria-labelledby="about-heading">
       <div class="container">
-        <div class="section-heading reveal"><div><span class="section-index">04 / INFORMATION</span><h2 id="about-heading">How We <em>Work</em><span class="heading-star" aria-hidden="true">✧</span></h2><p>첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
+        <div class="section-heading reveal"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading">How We <em>Work</em><span class="heading-star" aria-hidden="true">✧</span></h2><p>첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
         <div class="process-grid" id="process-grid"></div>
         <div class="notice-grid" id="notice-grid"></div>
       </div>
@@ -328,7 +370,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
     <section class="contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact-panel reveal"><div class="contact-star contact-star-one" aria-hidden="true">✦</div><div class="contact-star contact-star-two" aria-hidden="true">✧</div>
-          <span class="section-index">05 / CONTACT</span>
+          <span class="section-index">06 / CONTACT</span>
           <h2 id="contact-heading">Let's make it <em>move.</em></h2>
           <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요?<br>작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
           <a class="button button-contact" id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden>Google Form으로 문의하기 <span aria-hidden="true">↗</span></a>
@@ -532,6 +574,82 @@ function renderSamples() {
   });
 }
 
+function renderSaleModels() {
+  const sale = CONTENT.saleModels || {};
+  const section = $('sale-models');
+  const models = asArray(sale.items);
+  if (sale.enabled === false || !models.length) {
+    section.hidden = true;
+    return;
+  }
+  section.hidden = false;
+  $('sale-models-description').textContent = sale.description || '';
+
+  $('sale-models-grid').innerHTML = models.map((model, index) => {
+    const images = asArray(model.images).filter(item => assetUrl(item.src));
+    const cover = images[0];
+    const status = model.sold ? 'SOLD OUT' : (model.status || '판매 중');
+    const videoUrl = validExternalUrl(model.showcaseUrl);
+    const actionUrl = validExternalUrl(model.actionUrl);
+    const price = Number(model.price) > 0 ? won(model.price) : '가격 문의';
+    const imageHtml = cover
+      ? `<img class="sale-model-image" src="${escapeHtml(assetUrl(cover.src))}" alt="${escapeHtml(cover.alt || model.title)}" loading="lazy" decoding="async">`
+      : '';
+    const features = asArray(model.features).slice(0, 6)
+      .map(feature => `<li>${escapeHtml(feature)}</li>`).join('');
+    const actions = model.sold
+      ? '<span class="sale-model-sold-label">판매 완료된 모델입니다</span>'
+      : `<div class="sale-model-actions">${actionUrl
+          ? `<a class="button button-primary" href="${escapeHtml(actionUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(model.actionLabel || '구매 문의')} ↗</a>`
+          : '<a class="button button-primary" href="#contact">판매 문의 ↗</a>'}
+          ${videoUrl ? `<a class="button button-outline" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer">쇼케이스 보기 ↗</a>` : ''}
+        </div>`;
+
+    return `<article class="sale-model-card reveal" data-model-index="${index}">
+      <div class="sale-model-media">
+        ${imageHtml}
+        <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>이미지를 준비하고 있어요</div>
+        <span class="sale-model-status${model.sold ? ' sold' : ''}">${escapeHtml(status)} · ${escapeHtml(model.badge || 'PREMADE')}</span>
+        ${images.length > 1 ? `<button type="button" class="sale-model-nav sale-model-prev" aria-label="${escapeHtml(model.title)} 이전 이미지">‹</button><button type="button" class="sale-model-nav sale-model-next" aria-label="${escapeHtml(model.title)} 다음 이미지">›</button>` : ''}
+      </div>
+      <div class="sale-model-gallery-meta"><span class="sale-model-caption">${escapeHtml(cover?.caption || 'MODEL GALLERY')}</span><span class="sale-model-count">${images.length ? `01 / ${String(images.length).padStart(2, '0')}` : '00 / 00'}</span></div>
+      <div class="sale-model-content">
+        <div class="sale-model-kicker"><span>ONE OF ONE · LIVE2D</span><span>✧</span></div>
+        <h3>${escapeHtml(model.title)}</h3>
+        <p class="sale-model-description">${escapeHtml(model.subtitle || '')}</p>
+        <p class="sale-model-credits">ILLUST · ${escapeHtml(model.illustrator || '—')} <span>/</span> RIG · ${escapeHtml(model.rigging || 'Eryn')}</p>
+        ${features ? `<ul class="sale-model-features">${features}</ul>` : ''}
+        <div class="sale-model-footer"><div class="sale-model-price"><span class="sale-model-price-label">${escapeHtml(model.priceNote || '판매 가격')}</span><strong>${escapeHtml(price)}</strong></div>${actions}</div>
+      </div>
+    </article>`;
+  }).join('');
+
+  $('sale-models-grid').querySelectorAll('.sale-model-card').forEach(card => {
+    const model = models[Number(card.dataset.modelIndex)];
+    const images = asArray(model.images).filter(item => assetUrl(item.src));
+    const photo = card.querySelector('.sale-model-image');
+    const fallback = card.querySelector('.sale-model-image-fallback');
+    if (!photo || !images.length) return;
+    let current = 0;
+    photo.addEventListener('error', () => {
+      photo.hidden = true;
+      fallback.hidden = false;
+    });
+    const change = direction => {
+      current = (current + direction + images.length) % images.length;
+      const item = images[current];
+      fallback.hidden = true;
+      photo.hidden = false;
+      photo.alt = item.alt || model.title;
+      photo.src = assetUrl(item.src);
+      card.querySelector('.sale-model-caption').textContent = item.caption || 'MODEL GALLERY';
+      card.querySelector('.sale-model-count').textContent = `${String(current + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
+    };
+    card.querySelector('.sale-model-prev')?.addEventListener('click', () => change(-1));
+    card.querySelector('.sale-model-next')?.addEventListener('click', () => change(1));
+  });
+}
+
 function renderPricing() {
   const pricing = CONTENT.pricing || {};
   $('pricing-description').textContent = pricing.description || '';
@@ -622,7 +740,7 @@ async function loadContent() {
     CONTENT = await response.json();
     if (!CONTENT || typeof CONTENT !== 'object') throw new Error('Invalid content.json');
     document.title = CONTENT.site?.title || document.title;
-    renderHero(); renderWorks(); renderSamples(); renderPricing(); renderInformation(); renderContact();
+    renderHero(); renderWorks(); renderSamples(); renderSaleModels(); renderPricing(); renderInformation(); renderContact();
   } catch (error) {
     console.error('Failed to load the portfolio content:', error);
     $('works-grid').innerHTML = '<div class="placeholder-card">content.json을 불러오지 못했습니다. GitHub Pages 또는 로컬 웹 서버에서 열어주세요.</div>';

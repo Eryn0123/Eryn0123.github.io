@@ -37,9 +37,10 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .skip-link{position:fixed;top:-90px;left:14px;z-index:999;background:white;padding:12px 16px;border-radius:10px}
 .skip-link:focus{top:12px}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.ambient{position:fixed;z-index:-1;pointer-events:none;filter:blur(18px);opacity:.8}
-.ambient-one{top:7svh;right:-170px;width:580px;height:68svh;background:radial-gradient(circle,#e9e6fb 0,rgba(233,230,251,0) 70%)}
-.ambient-two{bottom:0;left:-210px;width:560px;height:45svh;background:radial-gradient(circle,#ebedfd 0,rgba(235,237,253,0) 72%)}
+/* Airy aurora: softly animated background light, never particles over text/cards. */
+.ambient{position:fixed;z-index:-1;pointer-events:none;opacity:.82;transform:translate3d(0,0,0);will-change:transform}
+.ambient-one{top:-14svh;right:-21vw;width:min(85vw,1100px);height:105svh;background:radial-gradient(ellipse at 52% 45%,rgba(205,193,248,.66) 0%,rgba(226,218,251,.32) 40%,rgba(248,247,255,0) 73%);animation:auroraDriftOne 34s ease-in-out infinite alternate}
+.ambient-two{bottom:-27svh;left:-24vw;width:min(90vw,1050px);height:108svh;background:radial-gradient(ellipse at 48% 52%,rgba(192,217,250,.53) 0%,rgba(227,213,248,.28) 42%,rgba(248,247,255,0) 74%);animation:auroraDriftTwo 40s ease-in-out infinite alternate}
 
 /* Persistent navigation for the page-switching portfolio. */
 .site-header{position:sticky;top:0;z-index:50;background:rgba(250,249,255,.83);border-bottom:1px solid rgba(219,213,237,.75);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
@@ -108,8 +109,8 @@ html.js .site-panel.is-active{animation:pageEnter .52s var(--ease) both}
    If text or the viewport becomes too small, content can still grow and scroll. */
 @media(min-width:761px) and (min-height:680px){
   body.home-active{min-height:100svh;display:flex;flex-direction:column}
-  body.home-active .ambient-one{top:7svh;height:68svh}
-  body.home-active .ambient-two{top:auto;bottom:0;height:45svh}
+  body.home-active .ambient-one{top:-14svh;height:105svh}
+  body.home-active .ambient-two{top:auto;bottom:-27svh;height:108svh}
   body.home-active .site-header,body.home-active .footer{flex-shrink:0}
   body.home-active main{flex:1;display:flex;flex-direction:column}
   body.home-active .site-panel[data-page="home"]{flex:1;min-height:0;display:flex;flex-direction:column}
@@ -344,13 +345,15 @@ body.sample-lightbox-open{overflow:hidden}
 .contact-star-one{left:12%;top:23%;font-size:34px;transform:rotate(15deg)}
 .contact-star-two{right:11%;bottom:21%;font-size:54px;transform:rotate(-15deg)}
 .footer{background:#f8f7fd;border-top:1px solid #eae6f3;padding:20px 0 24px}
-.footer-inner{display:flex;align-items:center;gap:35px;flex-wrap:wrap}
+.footer-inner{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .footer-brand{font:800 29px Outfit,sans-serif;letter-spacing:-1px}
 .footer-inner p{font:500 11px Outfit,sans-serif;color:#a69bb6;margin:0}
-.footer-socials{display:flex;gap:17px;margin-left:auto;flex-wrap:wrap}
-.footer-socials a{font:700 11px Outfit,Paperlogy,sans-serif;color:#746a8e;transition:color .2s}
-.footer-socials a:hover{color:var(--purple-dark)}
-.footer-copyright{font:500 10px Outfit,sans-serif;color:#afa5bf;letter-spacing:.7px}
+.footer-socials{display:flex;gap:7px;margin-left:auto;flex-wrap:wrap;align-items:center}
+.footer-socials a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:7px 11px;border:1px solid #e3ddef;border-radius:10px;background:rgba(255,255,255,.79);color:#75668f;font:700 10.5px Outfit,Paperlogy,sans-serif;white-space:nowrap;transition:background .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s,color .25s}
+.footer-link-arrow{color:#a897cf;font-size:11px;line-height:1;transition:transform .25s var(--ease)}
+.footer-socials a:hover{background:#f0ebfc;border-color:#c5b8e7;color:#5b4a94;transform:translateY(-2px);box-shadow:0 6px 15px rgba(111,93,165,.08)}
+.footer-socials a:hover .footer-link-arrow{transform:translate(1px,-1px)}
+.footer-copyright{font:500 9.5px Outfit,sans-serif;color:#afa5bf;letter-spacing:.3px;white-space:nowrap}
 .noscript-notice{text-align:center;padding:30px;color:#8f829f}
 
 /* Reveal effects stay light: opacity + a little lift, never hover blur. */
@@ -369,6 +372,8 @@ body.sample-lightbox-open{overflow:hidden}
 @keyframes pricePanelIn{from{opacity:0;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes addonCategoryEnter{from{opacity:0;transform:translateY(7px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes pageEnter{from{opacity:0;transform:translate3d(0,13px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
+@keyframes auroraDriftOne{0%{transform:translate3d(0,0,0) rotate(-5deg) scale(1)}100%{transform:translate3d(-8vw,7svh,0) rotate(6deg) scale(1.12)}}
+@keyframes auroraDriftTwo{0%{transform:translate3d(-3vw,2svh,0) rotate(4deg) scale(1.08)}100%{transform:translate3d(9vw,-8svh,0) rotate(-8deg) scale(.97)}}
 
 @media(max-width:1100px){.hero-section{gap:35px}.nav-links{gap:18px}.pricing-grid{gap:12px}.price-card{padding:25px 20px}}
 @media(max-width:940px){.container{width:min(calc(100% - 48px),var(--max))}.hero-section{grid-template-columns:1fr 1fr;gap:18px;min-height:600px;padding-top:65px}.hero-name-wrap h1{font-size:clamp(85px,11vw,128px)}.hero-media-wrap{padding:12px 5px 27px 12px}.hero-float-label{right:-8px}.works-grid{gap:12px}.work-info{padding:18px 15px}.price-card h3{font-size:19px}.price-value{font-size:30px}.process-card{padding:20px 18px}}
@@ -381,7 +386,7 @@ body.sample-lightbox-open{overflow:hidden}
 @media(max-width:580px){.price-card{min-height:260px}.price-included-panel{padding:21px 16px 19px}.price-included-list{grid-template-columns:1fr}.price-included-heading h3{font-size:15px}}
 @media(max-width:760px){.addons-layout{grid-template-columns:1fr}.addons-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.addon-tab{min-height:52px}}
 @media(max-width:580px){.addons-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.addon-tab{min-height:48px;padding:12px 13px;font-size:11px}.addons-panel{padding:19px 16px 16px}.addon-row{font-size:11px}.addon-row b{font-size:11px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.price-action,.price-action-icon,.addon-tab,.addon-tab-arrow,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.price-included-panel,.price-included-list,.addon-detail-list,.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ambient{animation:none!important;will-change:auto;transform:none!important}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.price-action,.price-action-icon,.addon-tab,.addon-tab-arrow,.footer-socials a,.footer-link-arrow,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.price-included-panel,.price-included-list,.addon-detail-list,.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
 
   </style>
   <script>document.documentElement.classList.add('js');</script>
@@ -1040,7 +1045,7 @@ function renderContact() {
 
   const socials = asArray(CONTENT.socials?.links).filter(item => item.enabled !== false && validExternalUrl(item.url));
   $('contact-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)} <span aria-hidden="true">↗</span></a>`).join('');
-  $('footer-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`).join('');
+  $('footer-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}<span class="footer-link-arrow" aria-hidden="true">↗</span></a>`).join('');
   const youtube = socials.find(item => /^youtube/i.test(item.label));
   if (youtube) $('youtube-all-link').href = validExternalUrl(youtube.url);
 }

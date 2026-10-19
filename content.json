@@ -5,10 +5,10 @@
     "title": "Eryn — Live2D Rigging Portfolio"
   },
   "hero": {
-    "_설명": "첫 화면: name은 큰 이름, intro는 자기소개, video는 대표 MP4 주소 또는 images 폴더 기준 경로입니다. videoCaption은 대표 영상 아래 왼쪽 문구, floatLabel은 오른쪽 아래 작은 카드의 문구입니다. floatLabel에 줄바꿈(\\n)을 넣으면 두 줄로 표시됩니다. status.label은 접수 문구, event.label은 클릭되지 않는 할인 안내입니다.",
+    "_설명": "첫 화면: name은 큰 이름, subtitle은 이름 위의 영어 고정 문구, intro는 언어에 따라 변하는 자기소개입니다. video는 대표 MP4 주소/경로입니다. videoCaption(영상 아래 문구)과 floatLabel(작은 카드 문구)은 영어 고정이며, floatLabel에 줄바꿈(\\n)을 넣으면 두 줄로 표시됩니다. status.label은 접수 문구, event.label은 언어별로 변경되는 할인 안내입니다.",
     "eyebrow": "LIVE2D RIGGING PORTFOLIO",
     "name": "Eryn",
-    "korean": "Live2D 리거 에린",
+    "subtitle": "Live2D Rigger Eryn",
     "intro": "안녕하세요! Live2D 리거 에린 Eryn입니다.\n캐릭터의 개성을 살려 자연스럽고 사랑스러운 움직임을 만들고 있어요.",
     "video": "images/free_move/fm1.mp4",
     "videoCaption": "Free movement sample",
@@ -238,13 +238,10 @@
     ]
   },
   "translations": {
-    "_설명": "언어별 문구 수정 공간입니다. 원본 한국어는 위의 hero, portfolio, samples, saleModels, pricing, information, contact에서 수정하세요. en은 영어, ja는 일본어입니다. 이 아래에는 번역할 문구만 적어두었으며 영상 주소·이미지·가격·링크는 위 원본 설정을 그대로 사용합니다. 배열(works, categories, videos, items 등)은 위 원본과 같은 순서로 번역하세요. 원본에 새 항목을 넣으면 이곳에 같은 위치의 번역도 추가해 주세요. 번역이 비어 있다면 한국어 원문이 표시됩니다.",
+    "_설명": "세부 설명 번역을 수정하는 곳입니다. 원본 한국어는 위 섹션에서, 영어는 en에서, 일본어는 ja에서 수정하세요. 메뉴/큰 제목/주요 버튼과 샘플 탭명·리깅 상품명·추가 옵션 카테고리명은 영어 고정입니다. 영상 주소·가격·링크는 원본 값을 공유합니다. 배열(categories, videos, items 등)은 원본과 같은 순서를 지켜주세요. 미번역 문구는 원본 한국어가 표시됩니다.",
     "en": {
       "hero": {
-        "korean": "Live2D Rigger Eryn",
         "intro": "Hello! I'm Eryn, a Live2D rigger.\nI bring out each character's personality through soft, natural, expressive motion.",
-        "videoCaption": "Free movement sample",
-        "floatLabel": "Every detail\ncomes alive.",
         "event": {"label": "ArtMug · ₩100,000 off LD full-body rigging"}
       },
       "portfolio": {
@@ -348,10 +345,7 @@
     },
     "ja": {
       "hero": {
-        "korean": "Live2Dモデラー エリン",
         "intro": "はじめまして！Live2DモデラーのEryn（エリン）です。\nキャラクターの個性を大切に、自然で愛らしい動きを制作しています。",
-        "videoCaption": "自然な動きのサンプル",
-        "floatLabel": "細部まで\nいきいきと。",
         "event": {"label": "ArtMug · LD全身リギング10万ウォン割引中"}
       },
       "portfolio": {
@@ -360,20 +354,20 @@
       },
       "samples": {
         "categories": [
-          {"label": "自然な動き", "description": "全体の動きやキャラクターの自然な反応をご覧いただけます。", "videos": [
+          {"description": "全体の動きやキャラクターの自然な反応をご覧いただけます。", "videos": [
             {"title": "自然な動き 01"}, {"title": "自然な動き 02"}, {"title": "自然な動き 03"},
             {"title": "自然な動き 04"}, {"title": "自然な動き 05"}, {"title": "自然な動き 06"}
           ]},
-          {"label": "顔の表情", "description": "iOSトラッキングとVBridgerを活用した繊細な表情表現です。", "videos": [
+          {"description": "iOSトラッキングとVBridgerを活用した繊細な表情表現です。", "videos": [
             {"title": "顔の表情 01"}, {"title": "顔の表情 02"}, {"title": "顔の表情 03"}
           ]},
-          {"label": "物理演算", "description": "衣装やアクセサリーの自然な揺れを確認できます。", "videos": [
+          {"description": "衣装やアクセサリーの自然な揺れを確認できます。", "videos": [
             {"title": "カーディガン＆スカート"}, {"title": "衣装アクセサリー"}, {"title": "リボン＆スカート"}
           ]},
-          {"label": "XYZの動き", "description": "X・Y・Z軸方向の動きのサンプルです。", "videos": [
+          {"description": "X・Y・Z軸方向の動きのサンプルです。", "videos": [
             {"title": "X軸の動き"}, {"title": "Y軸の動き"}, {"title": "Z軸の動き"}
           ]},
-          {"label": "ちび(SD)変身", "description": "制作したちびキャラへの変身機能をご覧いただけます。", "videos": [{"title": "ちびキャラ変身"}]}
+          {"description": "制作したちびキャラへの変身機能をご覧いただけます。", "videos": [{"title": "ちびキャラ変身"}]}
         ]
       },
       "saleModels": {
@@ -412,28 +406,28 @@
         "description": "リギングの種類ごとの基本料金・標準仕様・追加オプションをご案内します。",
         "notice": "表示価格は基本料金です。PSDのパーツ分けや制作難易度、追加オプションによって最終お見積もりは変動します。",
         "plans": [
-          {"name": "LD全身リギング", "description": "キャラクター全身の自然で豊かな動きを制作します。", "categories": [
+          {"description": "キャラクター全身の自然で豊かな動きを制作します。", "categories": [
             {"title": "顔・表情", "items": ["まばたき＋瞳の物理演算", "瞳のXY移動", "眉の上下・角度・変形", "口の形12点", "基本表情3種"]},
             {"title": "動き・物理演算", "items": ["頭のXYZ移動と物理演算", "体のXYZ移動と物理演算", "髪の物理演算", "衣装・アクセサリーの物理演算"]},
             {"title": "基本機能", "items": ["基本の呼吸", "基本衣装・アクセサリーのON/OFF切り替え"]}
           ]},
-          {"name": "LD半身リギング", "description": "上半身の細やかな表情や動きを中心に制作します。", "categories": [
+          {"description": "上半身の細やかな表情や動きを中心に制作します。", "categories": [
             {"title": "顔・表情", "items": ["まばたき＋瞳の物理演算", "瞳のXY移動", "眉の上下・角度・変形", "口の形12点", "基本表情3種"]},
             {"title": "動き・物理演算", "items": ["頭のXYZ移動と物理演算", "体のXYZ移動と物理演算", "髪の物理演算", "衣装・アクセサリーの物理演算"]},
             {"title": "基本機能", "items": ["基本の呼吸", "基本衣装・アクセサリーのON/OFF切り替え"]}
           ]},
-          {"name": "SD全身リギング", "description": "ちびキャラらしい、もちもちでかわいい動きを制作します。", "categories": [
+          {"description": "ちびキャラらしい、もちもちでかわいい動きを制作します。", "categories": [
             {"title": "顔・表情", "items": ["まばたき＋瞳の物理演算", "瞳のXY移動", "眉の上下・角度・変形", "口の形9点", "基本表情3種"]},
             {"title": "動き・物理演算", "items": ["頭のXYZ移動と物理演算", "体のXYZ移動と物理演算", "髪の物理演算", "衣装・アクセサリーの物理演算"]}
           ]}
         ],
         "addons": [
-          {"title": "髪・衣装", "items": [{"name": "追加ヘア［シンプル］"}, {"name": "追加ヘア［複雑］"}, {"name": "追加衣装［シンプル］"}, {"name": "追加衣装［複雑］"}]},
-          {"title": "表情・ポーズ", "items": [{"name": "追加表情［シンプル］"}, {"name": "アニメーション表情"}, {"name": "前に乗り出す動き（ガチ恋）"}, {"name": "ちびキャラ（SD）変身"}]},
-          {"title": "iOSフェイシャル", "items": [{"name": "頬ふくらませ"}, {"name": "舌出し"}, {"name": "口X"}, {"name": "VBridger"}]},
-          {"title": "追加パーツ", "items": [{"name": "腕パーツ［シンプル］"}, {"name": "腕パーツ［複雑］"}, {"name": "小物（ぬいぐるみ・バッグなど）"}]},
-          {"title": "動物パーツ", "items": [{"name": "動物の耳＋しっぽ"}, {"name": "翼"}]},
-          {"title": "その他", "items": [{"name": "追加修正回数"}, {"name": "完成から60日後に公開"}]}
+          {"items": [{"name": "追加ヘア［シンプル］"}, {"name": "追加ヘア［複雑］"}, {"name": "追加衣装［シンプル］"}, {"name": "追加衣装［複雑］"}]},
+          {"items": [{"name": "追加表情［シンプル］"}, {"name": "アニメーション表情"}, {"name": "前に乗り出す動き（ガチ恋）"}, {"name": "ちびキャラ（SD）変身"}]},
+          {"items": [{"name": "頬ふくらませ"}, {"name": "舌出し"}, {"name": "口X"}, {"name": "VBridger"}]},
+          {"items": [{"name": "腕パーツ［シンプル］"}, {"name": "腕パーツ［複雑］"}, {"name": "小物（ぬいぐるみ・バッグなど）"}]},
+          {"items": [{"name": "動物の耳＋しっぽ"}, {"name": "翼"}]},
+          {"items": [{"name": "追加修正回数"}, {"name": "完成から60日後に公開"}]}
         ]
       },
       "information": {

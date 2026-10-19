@@ -7,7 +7,7 @@
   <meta name="description" content="Live2D 리거 에린(Eryn)의 공식 포트폴리오. 쇼케이스, 리깅 샘플, 커미션 가격과 문의 안내를 확인하세요.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Eryn — Live2D Rigging Portfolio">
-  <meta property="og:description" content="Live2D Rigging · Selected Works · Commission Information">
+  <meta property="og:description" content="Live2D Rigging · Showcase · Commission Information">
   <meta name="twitter:card" content="summary">
   <title>Eryn — Live2D Rigging Portfolio</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22lavender%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20stop-color%3D%22%239e90e0%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237666bf%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2217%22%20fill%3D%22url(%23lavender)%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M20%2017h25v8H29v5h14v8H29v5h16v8H20z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M47%2011l2.3%205.7L55%2019l-5.7%202.3L47%2027l-2.3-5.7L39%2019l5.7-2.3z%22%20fill%3D%22%23e9e1ff%22%2F%3E%0A%3C%2Fsvg%3E%0A" type="image/svg+xml">
@@ -261,6 +261,32 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
 .sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
 .sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
+/* Give the premade gallery one complete desktop viewport, including its selector.
+   Compact the whitespace first; keep natural scrolling on narrow or short screens. */
+@media(min-width:941px) and (min-height:760px){
+  body.sale-active{height:100svh}
+  body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
+  body.sale-active main{flex:1 1 auto;min-height:0}
+  body.sale-active .site-panel[data-page="sale-models"]{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  body.sale-active #sale-models{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-block:clamp(14px,2.6svh,26px) clamp(10px,1.8svh,18px)}
+  body.sale-active #sale-models .section-heading{flex-shrink:0;margin-bottom:clamp(8px,1.4svh,16px)}
+  body.sale-active #sale-models .section-heading h2{font-size:clamp(38px,4.8svh,52px);margin:9px 0 4px}
+  body.sale-active #sale-models .section-heading p{margin-top:6px;font-size:12px}
+  body.sale-active .sale-models-grid{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  body.sale-active .sale-model-card.is-current{flex:1 1 auto;min-height:0}
+  body.sale-active .sale-model-visual{min-height:0}
+  body.sale-active .sale-model-content{padding:clamp(17px,2.5svh,27px) clamp(22px,2.5vw,32px)}
+  body.sale-active .sale-model-content h3{margin:8px 0 5px}
+  body.sale-active .sale-model-description{line-height:1.65}
+  body.sale-active .sale-model-credits{margin:9px 0 12px}
+  body.sale-active .sale-model-features{gap:7px;margin-bottom:12px}
+  body.sale-active .sale-model-features li{padding:8px 10px;line-height:1.5}
+  body.sale-active .sale-model-footer{padding-top:11px}
+  body.sale-active .sale-model-price{margin-bottom:9px}
+  body.sale-active .sale-model-actions .button{min-height:42px;padding-block:10px}
+  body.sale-active .sale-model-picker{flex-shrink:0;margin-top:clamp(8px,1.2svh,12px)}
+  body.sale-active .sale-model-pick{min-height:38px;padding:7px 16px}
+}
 @media(max-width:940px){.sale-model-card{grid-template-columns:1fr}.sale-model-visual{min-height:0}.sale-model-media{aspect-ratio:16/10;flex:auto}}
 @media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price strong{font-size:20px}.sale-model-nav{width:32px;height:32px}}
 @media(max-width:580px){.sale-model-media{aspect-ratio:1/1}.sale-model-picker{gap:8px}.sale-model-pick{padding:9px 14px;font-size:10px;gap:7px}}
@@ -470,7 +496,7 @@ body.sample-lightbox-open{overflow:hidden}
         <button type="button" role="tab" id="portfolio-tab-samples" data-view="samples" aria-controls="samples" aria-selected="false" data-i18n="riggingSamples">RIGGING SAMPLES</button>
       </div>
     <section class="section container portfolio-view is-active" id="works" role="tabpanel" aria-labelledby="portfolio-tab-works works-heading">
-      <div class="section-heading reveal"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading"><span data-i18n="selected">Selected</span> <em data-i18n="works">Works</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer"><span data-i18n="moreYoutube">YouTube에서 더 보기</span> <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading reveal"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading">SHOW<em>CASE</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer"><span data-i18n="moreYoutube">YouTube에서 더 보기</span> <span aria-hidden="true">↗</span></a></div>
       <div id="works-grid" class="works-grid"><div class="placeholder-card">쇼케이스를 불러오는 중...</div></div>
     </section>
 
@@ -519,7 +545,7 @@ body.sample-lightbox-open{overflow:hidden}
       <div class="container">
         <div class="contact-panel reveal"><div class="contact-star contact-star-one" aria-hidden="true">✦</div><div class="contact-star contact-star-two" aria-hidden="true">✧</div>
           <span class="section-index">06 / CONTACT</span>
-          <h2 id="contact-heading"><span data-i18n="letsMake">Let's make it</span> <em data-i18n="move">move.</em></h2>
+          <h2 id="contact-heading"><span data-i18n="letsMake">Live2D Rigger</span> <em data-i18n="move">Eryn</em></h2>
           <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요?<br>작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
           <a class="button button-contact" id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="googleInquiry">Google Form으로 문의하기</span> <span aria-hidden="true">↗</span></a>
           <div class="form-pending" id="form-pending"><span aria-hidden="true">✳</span><span data-i18n="formPending">Google Form 링크 연결 대기 중</span></div>
@@ -575,7 +601,7 @@ const UI_TEXT = {
     rigging:'리깅',samples:'샘플',samplesDescription:'원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.',
     premade:'판매',models:'모델',price:'가격',commissionConsult:'의뢰 상담하기',additionalOptions:'추가 옵션',addonsDescription:'추가 기능은 필요한 것만 선택할 수 있어요.',
     howWe:'작업',work:'과정',guideDescription:'첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.',
-    letsMake:'캐릭터에',move:'움직임을.',googleInquiry:'Google Form으로 문의하기',formPending:'Google Form 링크 연결 대기 중',
+    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Google Form으로 문의하기',formPending:'Google Form 링크 연결 대기 중',
     portfolioType:'포트폴리오 종류',sampleCategory:'리깅 샘플 카테고리',selectModel:'판매 모델 선택',addonCategory:'추가 옵션 카테고리',
     closeVideo:'확대 영상 닫기',enlargedVideo:'확대된 리깅 샘플 영상',videoLoading:'영상을 불러오는 중...',lightboxHint:'ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.',
     watchShowcase:'쇼케이스 YouTube에서 보기',thumbnail:'쇼케이스 썸네일',sampleItem:'리깅 샘플',expandVideo:'영상 확대 보기',
@@ -596,7 +622,7 @@ const UI_TEXT = {
     rigging:'Rigging',samples:'Samples',samplesDescription:'Select a category to explore the details of each movement.',
     premade:'Premade',models:'Models',price:'Price',commissionConsult:'Discuss a commission',additionalOptions:'Additional Options',addonsDescription:'Choose only the extras your model needs.',
     howWe:'How We',work:'Work',guideDescription:'Our process, from your first inquiry to final delivery.',
-    letsMake:"Let's make it",move:'move.',googleInquiry:'Inquire via Google Form',formPending:'Google Form link coming soon',
+    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Inquire via Google Form',formPending:'Google Form link coming soon',
     portfolioType:'Portfolio sections',sampleCategory:'Rigging sample categories',selectModel:'Select a premade model',addonCategory:'Additional option categories',
     closeVideo:'Close enlarged video',enlargedVideo:'Enlarged rigging sample video',videoLoading:'Loading video...',lightboxHint:'Press ESC or close to return.',
     watchShowcase:'Watch showcase on YouTube',thumbnail:'showcase thumbnail',sampleItem:'rigging sample',expandVideo:'Enlarge video',
@@ -617,7 +643,7 @@ const UI_TEXT = {
     rigging:'リギング',samples:'サンプル',samplesDescription:'カテゴリーを選んで、動きの細部をご覧ください。',
     premade:'販売',models:'モデル',price:'料金',commissionConsult:'ご依頼の相談',additionalOptions:'追加オプション',addonsDescription:'必要な機能だけを追加できます。',
     howWe:'制作',work:'の流れ',guideDescription:'お問い合わせから納品までの制作の流れをご案内します。',
-    letsMake:'キャラクターに',move:'命を吹き込もう。',googleInquiry:'Googleフォームで問い合わせ',formPending:'Googleフォームの準備中です',
+    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Googleフォームで問い合わせ',formPending:'Googleフォームの準備中です',
     portfolioType:'ポートフォリオの種類',sampleCategory:'リギングサンプルのカテゴリー',selectModel:'販売モデルの選択',addonCategory:'追加オプションのカテゴリー',
     closeVideo:'拡大動画を閉じる',enlargedVideo:'拡大したリギングサンプル動画',videoLoading:'動画を読み込み中...',lightboxHint:'ESCキーまたは閉じるボタンで戻れます。',
     watchShowcase:'YouTubeでショーケースを見る',thumbnail:'ショーケースのサムネイル',sampleItem:'リギングサンプル',expandVideo:'動画を拡大',
@@ -1259,6 +1285,7 @@ function showRoute(target) {
   const route = ROUTES[target] || ROUTES.home;
   activePage = route.page;
   document.body.classList.toggle('home-active', activePage === 'home');
+  document.body.classList.toggle('sale-active', activePage === 'sale-models');
   if (route.view) setPortfolioView(route.view);
 
   document.querySelectorAll('.site-panel').forEach(panel => {

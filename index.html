@@ -94,9 +94,11 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .hero-video-frame video.ready{opacity:1}
 .video-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;color:#8c7ac4;font:700 10px Outfit,sans-serif;letter-spacing:2px}
 .loading-symbol{font-size:50px;line-height:1;animation:slowFloat 4s ease-in-out infinite}
-.media-card-foot{padding:14px 6px 4px}
-.tiny-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#91cbb0;vertical-align:middle;margin-right:7px}
+.media-card-foot{justify-content:flex-start;padding:14px 6px 4px}
+.media-card-foot-label{display:inline-flex;align-items:center;gap:7px;min-height:15px;max-width:calc(100% - 140px);overflow-wrap:anywhere}
+.tiny-dot{display:inline-block;width:5px;height:5px;flex-shrink:0;border-radius:50%;background:#91cbb0;vertical-align:middle}
 .hero-float-label{position:absolute;bottom:0;right:-19px;display:flex;align-items:center;gap:10px;border:1px solid #e0d7f2;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 9px 27px rgba(90,75,145,.12);padding:14px 19px;color:#8273b3;font:600 11px/1.45 Outfit,sans-serif;transform:rotate(-4deg)}
+.hero-float-label-text{white-space:pre-line}
 .label-stars{font-size:23px;color:#aa99e5}
 .scroll-cue{position:absolute;left:0;bottom:35px;display:flex;align-items:center;gap:10px;font:700 10px Outfit,sans-serif;letter-spacing:2px;color:#afa6c5}
 .scroll-cue-line{width:31px;height:1px;background:#bfb4dc}
@@ -432,14 +434,14 @@ body.sample-lightbox-open{overflow:hidden}
       <div class="hero-media-wrap reveal">
         <div class="hero-orbit" aria-hidden="true"></div>
         <div class="hero-media-card">
-          <div class="media-card-heading"><span><span class="mini-star">✦</span> FEATURED MOTION</span><span>LIVE2D / 01</span></div>
+          <div class="media-card-heading"><span><span class="mini-star">✦</span> LIVE MOTION PREVIEW</span><span>LIVE2D / 01</span></div>
           <div class="hero-video-frame">
             <div class="video-loading" id="hero-loading"><span class="loading-symbol">✧</span><span>LOADING SHOWREEL</span></div>
             <video id="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="대표 Live2D 리깅 영상"></video>
           </div>
-          <div class="media-card-foot"><span><span class="tiny-dot"></span> LIVE MOTION PREVIEW</span><span id="hero-video-caption">free movement sample</span></div>
+          <div class="media-card-foot"><span class="media-card-foot-label"><span class="tiny-dot" aria-hidden="true"></span><span id="hero-video-caption">Free movement sample</span></span></div>
         </div>
-        <div class="hero-float-label" aria-hidden="true"><span class="label-stars">✳</span><span>Crafted with<br>care & motion</span></div>
+        <div class="hero-float-label" aria-hidden="true"><span class="label-stars">✳</span><span class="hero-float-label-text" id="hero-float-label-text">Every detail<br>comes alive.</span></div>
       </div>
       <a href="#portfolio" class="scroll-cue"><span class="scroll-cue-line"></span> EXPLORE PORTFOLIO ↗</a>
     </section>
@@ -599,6 +601,7 @@ function renderHero() {
     $('hero-event-text').textContent = hero.event.label;
   }
   $('hero-video-caption').textContent = hero.videoCaption || 'live motion sample';
+  $('hero-float-label-text').textContent = hero.floatLabel || 'Every detail\ncomes alive.';
 
   const player = $('hero-video');
   const loading = $('hero-loading');

@@ -5,13 +5,14 @@
     "title": "Eryn — Live2D Rigging Portfolio"
   },
   "hero": {
-    "_설명": "첫 화면: name은 큰 이름, intro는 자기소개, video는 대표 MP4 주소 또는 images 폴더 기준 경로입니다. status.label은 커미션 접수 상태 문구, status.open=false이면 상태 점 색상이 달라집니다. event.label은 클릭되지 않는 할인 안내 문구이며 event.enabled=false로 숨길 수 있습니다.",
+    "_설명": "첫 화면: name은 큰 이름, intro는 자기소개, video는 대표 MP4 주소 또는 images 폴더 기준 경로입니다. videoCaption은 대표 영상 아래 왼쪽 문구, floatLabel은 오른쪽 아래 작은 카드의 문구입니다. floatLabel에 줄바꿈(\\n)을 넣으면 두 줄로 표시됩니다. status.label은 접수 문구, event.label은 클릭되지 않는 할인 안내입니다.",
     "eyebrow": "LIVE2D RIGGING PORTFOLIO",
     "name": "Eryn",
     "korean": "Live2D 리거 에린",
     "intro": "안녕하세요! Live2D 리거 에린 Eryn입니다.\n캐릭터의 개성을 살려 자연스럽고 사랑스러운 움직임을 만들고 있어요.",
     "video": "images/free_move/fm1.mp4",
     "videoCaption": "Free movement sample",
+    "floatLabel": "Every detail\ncomes alive.",
     "status": {
       "open": true,
       "label": "COMMISSION OPEN"

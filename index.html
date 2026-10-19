@@ -257,30 +257,39 @@ body.sample-lightbox-open{overflow:hidden}
 @media(max-width:580px){.sale-model-media{aspect-ratio:1/1}.sale-model-picker{gap:8px}.sale-model-pick{padding:9px 14px;font-size:10px;gap:7px}}
 @media(prefers-reduced-motion:reduce){.sale-model-card.is-current{animation:none!important}.sale-model-nav,.sale-model-pick{transition:none!important}.sale-model-nav:hover{transform:translateY(-50%)}}
 
-/* Pricing cards and compact, optional details. */
+/* Uniform pricing cards; a shared detail panel prevents stretched, empty columns. */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.price-card{position:relative;overflow:hidden;padding:28px 25px 24px;border-radius:19px;background:#fff;border:1px solid #e8e2f5;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
+.price-card{position:relative;min-width:0;min-height:282px;padding:26px 25px 21px;border-radius:19px;background:#fff;border:1px solid #e8e2f5;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
 .price-card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(85,67,145,.10);border-color:#c8beea}
-.price-card.featured{border-color:#bdb0ec;background:linear-gradient(150deg,#fff,#f7f5ff)}
-.price-card.featured::before{content:'';height:3px;position:absolute;inset:0 0 auto;background:linear-gradient(90deg,#d5caf4,#9684d7,#d8d8fb)}
+.price-card.is-selected{border-color:#a998d8;box-shadow:0 15px 38px rgba(85,67,145,.10)}
 .price-card-type{display:flex;align-items:center;justify-content:space-between;color:#9b8fc2;font:700 10px Outfit,sans-serif;letter-spacing:1.65px}
 .price-card-type .price-mark{font-size:18px;color:#b1a3e0;line-height:1}
-.price-card h3{font:700 23px Outfit,Paperlogy,sans-serif;letter-spacing:-.5px;margin:17px 0 6px}
-.price-card p{font-size:12px;line-height:1.85;color:#8c84a2;white-space:pre-line;margin:0;word-break:keep-all}
-.price-value{display:flex;align-items:baseline;gap:6px;margin:29px 0 20px;font:700 35px Outfit,Paperlogy,sans-serif;letter-spacing:-1.3px;color:#483b77}
+.price-card h3{font:700 23px Outfit,Paperlogy,sans-serif;letter-spacing:-.5px;margin:17px 0 8px}
+.price-card p{font-size:12px;line-height:1.8;color:#8c84a2;white-space:pre-line;margin:0;word-break:keep-all}
+.price-value{display:flex;align-items:baseline;gap:6px;margin:26px 0 21px;font:700 35px Outfit,Paperlogy,sans-serif;letter-spacing:-1.3px;color:#483b77}
 .price-value small{font-size:12px;color:#9d93b3;font-weight:500;letter-spacing:0}
-.price-divider{height:1px;background:#eeeaf5;margin-bottom:16px}
-.price-detail{margin-top:auto}
-.price-detail summary{display:flex;list-style:none;align-items:center;justify-content:space-between;color:#7565b8;font-size:12px;font-weight:700;cursor:pointer;padding:9px 1px}
-.price-detail summary::-webkit-details-marker{display:none}
-.price-detail summary::after{content:'+';font:500 20px Outfit,sans-serif;transition:transform .25s}
-.price-detail[open] summary::after{transform:rotate(45deg)}
-.price-detail-content{padding:12px 0 3px;border-top:1px solid #eeeaf5;animation:detailsIn .3s ease}
-.price-detail-group{margin-bottom:15px}
-.price-detail-group strong{display:block;color:#6d609c;font-size:11px;margin-bottom:6px}
-.price-detail-group ul{list-style:none;padding:0;margin:0;display:grid;gap:5px}
-.price-detail-group li{font-size:11px;color:#7d758f;line-height:1.65;padding-left:12px;position:relative}
-.price-detail-group li::before{content:'·';position:absolute;left:1px;color:#a798db}
+.price-action{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:43px;margin-top:auto;padding:11px 14px;border:1px solid #e6e0f3;border-radius:10px;background:#faf9fe;color:#7160a8;font:700 12px Paperlogy,sans-serif;text-align:left;cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.price-action:hover,.price-action:focus-visible{background:#f3effd;border-color:#c8bde7;color:#554285}
+.price-action:focus-visible,.price-close:focus-visible{outline:2px solid #9786d5;outline-offset:3px}
+.price-action-icon{display:inline-grid;place-items:center;width:20px;height:20px;font:600 17px Outfit,sans-serif;line-height:1;transition:transform .3s var(--ease)}
+.price-action:hover .price-action-icon{transform:translateX(3px)}
+.price-action[aria-expanded="true"]{background:#f1edfc;border-color:#c8bde7;color:#554285}
+.price-action[aria-expanded="true"] .price-action-icon{transform:rotate(45deg)}
+.price-included-panel{margin-top:15px;padding:24px 26px 27px;background:linear-gradient(145deg,#fbfaff,#f7f5fc);border:1px solid #e4def2;border-radius:18px;scroll-margin-top:90px;animation:pricePanelIn .48s var(--ease) both}
+.price-included-panel[hidden]{display:none!important}
+.price-included-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:19px}
+.price-included-heading span{display:block;margin-bottom:5px;color:#a396c8;font:700 10px Outfit,sans-serif;letter-spacing:1.6px}
+.price-included-heading h3{margin:0;font:700 18px Paperlogy,sans-serif;letter-spacing:-.4px;color:#534579}
+.price-close{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:33px;padding:6px 12px;border:1px solid #e5dff0;border-radius:9px;background:#fff;color:#817395;font:700 11px Paperlogy,sans-serif;cursor:pointer;transition:border-color .25s,color .25s}
+.price-close:hover{border-color:#c6b9e5;color:#5c4b90}
+.price-included-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;animation:pricePanelIn .42s var(--ease) both}
+.price-included-group{min-width:0;padding:18px 18px 16px;border:1px solid #ebe6f5;border-radius:12px;background:#fff}
+.price-included-group h4{display:flex;align-items:center;gap:7px;margin:0 0 13px;color:#67558f;font-size:12px;font-weight:700}
+.price-included-group h4::before{content:'✦';font-size:9px;color:#ac9bd8}
+.price-included-group ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.price-included-group li{position:relative;padding-left:13px;font-size:11px;line-height:1.65;color:#776e88;word-break:keep-all}
+.price-included-group li::before{content:'';position:absolute;left:0;top:.72em;width:4px;height:4px;border-radius:50%;background:#b7a8db}
+.price-included-empty{margin:0;color:#817791;font-size:12px}
 .price-notice{margin:17px 1px 0;color:#9289a6;font-size:11px;line-height:1.8}
 .addons-wrap{margin-top:45px;border:1px solid #e8e3f5;border-radius:21px;background:linear-gradient(150deg,rgba(250,248,255,.94),#fff);padding:29px 30px 25px}
 .addons-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
@@ -352,6 +361,7 @@ body.sample-lightbox-open{overflow:hidden}
 @keyframes saleModelEnter{from{opacity:0;transform:translate3d(0,12px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
 @keyframes slowFloat{50%{transform:translateY(-7px)}}
 @keyframes detailsIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pricePanelIn{from{opacity:0;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes pageEnter{from{opacity:0;transform:translate3d(0,13px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
 
 @media(max-width:1100px){.hero-section{gap:35px}.nav-links{gap:18px}.pricing-grid{gap:12px}.price-card{padding:25px 20px}}
@@ -361,7 +371,9 @@ body.sample-lightbox-open{overflow:hidden}
 @media(max-width:760px){.mobile-contact-link{display:block}.nav-links a.is-active::after{bottom:5px;right:auto;width:30px}.portfolio-switch{margin-top:27px}.portfolio-switch button{padding:11px 19px;font-size:11px}.portfolio-view.section{padding-top:40px}}
 @media(max-width:960px){.sample-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){.sample-grid{grid-template-columns:minmax(0,1fr)}.sample-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:10px}.sample-lightbox-video{max-height:calc(100dvh - 140px)}.sample-lightbox-title{font-size:14px}.sample-lightbox-hint{font-size:10px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
+@media(max-width:940px){.price-included-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.price-card{min-height:260px}.price-included-panel{padding:21px 16px 19px}.price-included-list{grid-template-columns:1fr}.price-included-heading h3{font-size:15px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.price-action,.price-action-icon,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.price-included-panel,.price-included-list,.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
 
   </style>
   <script>document.documentElement.classList.add('js');</script>
@@ -451,6 +463,7 @@ body.sample-lightbox-open{overflow:hidden}
     <section class="section container" id="pricing" aria-labelledby="pricing-heading">
       <div class="section-heading reveal"><div><span class="section-index">04 / COMMISSION</span><h2 id="pricing-heading">Rigging <em>Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact">의뢰 상담하기 <span aria-hidden="true">↗</span></a></div>
       <div class="pricing-grid" id="pricing-grid"></div>
+      <section class="price-included-panel" id="price-included-panel" aria-live="polite" hidden></section>
       <p class="price-notice reveal" id="price-notice"></p>
       <div class="addons-wrap reveal">
         <div class="addons-heading"><div><span class="small-kicker">CUSTOMIZE YOUR MODEL</span><h3>Additional Options</h3><p>추가 기능은 필요한 것만 선택할 수 있어요.</p></div><span class="addons-deco" aria-hidden="true">✳</span></div>
@@ -899,18 +912,61 @@ function renderSaleModels() {
 
 function renderPricing() {
   const pricing = CONTENT.pricing || {};
+  const plans = asArray(pricing.plans);
   $('pricing-description').textContent = pricing.description || '';
   $('price-notice').textContent = pricing.notice || '';
-  $('pricing-grid').innerHTML = asArray(pricing.plans).map((plan, i) => `
-    <article class="price-card reveal${plan.featured ? ' featured' : ''}">
+  const grid = $('pricing-grid');
+  const panel = $('price-included-panel');
+  panel.hidden = true;
+  panel.replaceChildren();
+  delete panel.dataset.activeIndex;
+  grid.innerHTML = plans.map((plan, i) => `
+    <article class="price-card reveal">
       <div class="price-card-type"><span>${escapeHtml(plan.english || `RIGGING / ${i + 1}`)}</span><span class="price-mark" aria-hidden="true">✧</span></div>
       <h3>${escapeHtml(plan.name)}</h3><p>${escapeHtml(plan.description || '')}</p>
       <div class="price-value">${escapeHtml(Number(plan.price || 0).toLocaleString('ko-KR'))}<small>KRW</small></div>
-      <div class="price-divider"></div>
-      <details class="price-detail"><summary>기본 포함 옵션 보기</summary><div class="price-detail-content">
-        ${asArray(plan.categories).map(category => `<div class="price-detail-group"><strong>${escapeHtml(category.title)}</strong><ul>${asArray(category.items).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`).join('')}
-      </div></details>
+      <button class="price-action" type="button" data-plan-index="${i}" aria-expanded="false" aria-controls="price-included-panel"><span>기본 포함 옵션 확인</span><span class="price-action-icon" aria-hidden="true">+</span></button>
     </article>`).join('');
+  const triggers = [...grid.querySelectorAll('.price-action')];
+  const closePanel = (restoreFocus = false) => {
+    const activeIndex = Number(panel.dataset.activeIndex);
+    panel.hidden = true;
+    panel.replaceChildren();
+    delete panel.dataset.activeIndex;
+    triggers.forEach((trigger) => {
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.querySelector('span').textContent = '기본 포함 옵션 확인';
+      trigger.closest('.price-card').classList.remove('is-selected');
+    });
+    if (restoreFocus && triggers[activeIndex]) triggers[activeIndex].focus();
+  };
+  triggers.forEach((trigger, index) => trigger.addEventListener('click', () => {
+    if (panel.dataset.activeIndex === String(index) && !panel.hidden) {
+      closePanel();
+      return;
+    }
+    const plan = plans[index];
+    const categories = asArray(plan.categories);
+    panel.innerHTML = `<div class="price-included-heading">
+      <div><span>WHAT'S INCLUDED</span><h3 id="price-included-heading">${escapeHtml(plan.name)} · 기본 포함 옵션</h3></div>
+      <button type="button" class="price-close" aria-label="기본 포함 옵션 닫기">닫기 <span aria-hidden="true">×</span></button>
+    </div><div class="price-included-list">
+      ${categories.length ? categories.map(category => `<section class="price-included-group"><h4>${escapeHtml(category.title)}</h4><ul>${asArray(category.items).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></section>`).join('') : '<p class="price-included-empty">기본 옵션 정보가 준비 중입니다.</p>'}
+    </div>`;
+    panel.setAttribute('aria-labelledby', 'price-included-heading');
+    panel.dataset.activeIndex = String(index);
+    panel.hidden = false;
+    triggers.forEach((button, i) => {
+      const selected = i === index;
+      button.setAttribute('aria-expanded', String(selected));
+      button.querySelector('span').textContent = selected ? '기본 포함 옵션 닫기' : '기본 포함 옵션 확인';
+      button.closest('.price-card').classList.toggle('is-selected', selected);
+    });
+    panel.querySelector('.price-close').addEventListener('click', () => closePanel(true));
+    if (window.matchMedia('(max-width:760px)').matches) {
+      requestAnimationFrame(() => panel.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}));
+    }
+  }));
   $('addons-grid').innerHTML = asArray(pricing.addons).map(group => `<details class="addon-group">
     <summary>${escapeHtml(group.title)}</summary><div class="addon-group-list">${asArray(group.items).map(item => `<div class="addon-row"><span>${escapeHtml(item.name)}</span><b>+ ${won(item.price)}</b></div>`).join('')}</div>
   </details>`).join('');

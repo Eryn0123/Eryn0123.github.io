@@ -7,7 +7,7 @@
   <meta name="description" content="Live2D 리거 에린(Eryn)의 공식 포트폴리오. 쇼케이스, 리깅 샘플, 커미션 가격과 문의 안내를 확인하세요.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Eryn — Live2D Rigging Portfolio">
-  <meta property="og:description" content="Live2D Rigging · Showcase · Commission Information">
+  <meta property="og:description" content="Live2D Rigging · Selected Works · Commission Information">
   <meta name="twitter:card" content="summary">
   <title>Eryn — Live2D Rigging Portfolio</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22lavender%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20stop-color%3D%22%239e90e0%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237666bf%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2217%22%20fill%3D%22url(%23lavender)%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M20%2017h25v8H29v5h14v8H29v5h16v8H20z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M47%2011l2.3%205.7L55%2019l-5.7%202.3L47%2027l-2.3-5.7L39%2019l5.7-2.3z%22%20fill%3D%22%23e9e1ff%22%2F%3E%0A%3C%2Fsvg%3E%0A" type="image/svg+xml">
@@ -26,10 +26,6 @@
 html{scroll-behavior:smooth;scroll-padding-top:104px}
 html.js{scroll-behavior:auto}
 body{margin:0;min-height:100svh;display:flex;flex-direction:column;background:var(--page);font-family:Paperlogy,'Noto Sans KR',sans-serif;color:var(--ink);line-height:1.65;overflow-x:hidden}
-/* Stop accidental text highlighting and image dragging; functional controls stay usable. */
-body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,[contenteditable="true"]{-webkit-user-select:text;user-select:text}
-img,video{-webkit-user-drag:none;user-drag:none}
 main{flex:1 0 auto;display:flex;flex-direction:column}
 button,input,a{font:inherit}
 a{color:inherit;text-decoration:none}
@@ -41,10 +37,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .skip-link{position:fixed;top:-90px;left:14px;z-index:999;background:white;padding:12px 16px;border-radius:10px}
 .skip-link:focus{top:12px}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-/* Airy aurora: softly animated background light, never particles over text/cards. */
-.ambient{position:fixed;z-index:-1;pointer-events:none;opacity:.82;transform:translate3d(0,0,0);will-change:transform}
-.ambient-one{top:-14svh;right:-21vw;width:min(85vw,1100px);height:105svh;background:radial-gradient(ellipse at 52% 45%,rgba(205,193,248,.66) 0%,rgba(226,218,251,.32) 40%,rgba(248,247,255,0) 73%);animation:auroraDriftOne 34s ease-in-out infinite alternate}
-.ambient-two{bottom:-27svh;left:-24vw;width:min(90vw,1050px);height:108svh;background:radial-gradient(ellipse at 48% 52%,rgba(192,217,250,.53) 0%,rgba(227,213,248,.28) 42%,rgba(248,247,255,0) 74%);animation:auroraDriftTwo 40s ease-in-out infinite alternate}
+.ambient{position:fixed;z-index:-1;pointer-events:none;filter:blur(18px);opacity:.8}
+.ambient-one{top:7svh;right:-170px;width:580px;height:68svh;background:radial-gradient(circle,#e9e6fb 0,rgba(233,230,251,0) 70%)}
+.ambient-two{bottom:0;left:-210px;width:560px;height:45svh;background:radial-gradient(circle,#ebedfd 0,rgba(235,237,253,0) 72%)}
 
 /* Persistent navigation for the page-switching portfolio. */
 .site-header{position:sticky;top:0;z-index:50;background:rgba(250,249,255,.83);border-bottom:1px solid rgba(219,213,237,.75);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
@@ -66,18 +61,11 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .button-outline{border-color:#d8d0ef;background:rgba(255,255,255,.75);color:var(--purple-dark)}
 .button-outline:hover{border-color:#aaa0e1;box-shadow:0 9px 18px rgba(117,99,180,.08)}
 .button-nav{min-height:41px;padding:9px 20px;font-family:Outfit,Paperlogy,sans-serif}
-.language-switch{display:inline-flex;align-items:center;gap:2px;padding:4px;border:1px solid #e3ddf5;background:rgba(255,255,255,.76);border-radius:999px;flex-shrink:0}
-.language-switch button{padding:6px 9px;border:0;border-radius:999px;background:transparent;color:#9386ad;font:700 10px/1.4 Outfit,Paperlogy,sans-serif;transition:background .24s,color .24s,box-shadow .24s}
-.language-switch button:hover{color:#6555a2;background:#f3effe}
-.language-switch button[aria-pressed="true"]{background:#8e7cd5;color:#fff;box-shadow:0 3px 8px rgba(115,97,184,.15)}
 .menu-toggle{display:none;background:transparent;border:0;width:40px;height:40px;padding:9px;flex-direction:column;align-items:center;justify-content:center;gap:5px}
 .menu-toggle span{display:block;width:22px;height:2px;background:#6d638f;border-radius:2px}
 
 /* Hero */
 .hero-section{min-height:685px;padding-top:96px;padding-bottom:90px;display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);align-items:center;gap:65px}
-.hero-sparkles{position:absolute;inset:0 -25px;z-index:0;pointer-events:none;overflow:visible}
-.hero-sparkle{position:absolute;display:block;color:#fff;line-height:1;opacity:.3;text-shadow:0 0 2px rgba(139,116,208,.95),0 0 10px rgba(157,136,224,.72),0 0 24px rgba(162,145,231,.4);animation:heroStarTwinkle 6.5s ease-in-out infinite;will-change:opacity,transform}
-.hero-sparkle:nth-child(1){left:0;top:18%;font-size:25px;animation-delay:-1.3s}
 .hero-copy{position:relative;z-index:2;padding-bottom:25px}
 .eyebrow{display:flex;align-items:center;gap:12px;font:700 11px/1.4 Outfit,Paperlogy,sans-serif;color:var(--purple);letter-spacing:2.7px}
 .eyebrow-line{width:26px;height:1px;background:var(--purple);flex-shrink:0}
@@ -86,14 +74,12 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .hero-name-wrap h1{font:700 clamp(90px,10vw,155px)/.95 Outfit,sans-serif;letter-spacing:-9px;margin:0 0 26px;color:#3e365c}
 .title-period{color:#aa9be9}
 .hero-intro{max-width:455px;font-size:15px;color:#69637c;line-height:2;word-break:keep-all;margin:0;white-space:pre-line}
-.hero-highlights{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:26px}
-.hero-status{display:inline-flex;align-items:center;gap:9px;color:var(--purple-dark);font:700 10.5px Outfit,Paperlogy,sans-serif;letter-spacing:1.1px;background:#f0eefa;border:1px solid #e3ddf7;padding:10px 14px;border-radius:99px}
-.hero-status[hidden],.hero-event[hidden]{display:none!important}
+.hero-status{display:inline-flex;align-items:center;gap:9px;margin-top:26px;color:var(--purple-dark);font:700 10.5px Outfit,Paperlogy,sans-serif;letter-spacing:1.2px;background:#f0eefa;border:1px solid #e3ddf7;padding:10px 14px;border-radius:99px}
 .status-dot{width:7px;height:7px;display:inline-block;flex-shrink:0;border-radius:50%;background:#92c3aa;box-shadow:0 0 0 4px rgba(146,195,170,.16)}
 .hero-status.closed .status-dot{background:#c9adc2;box-shadow:0 0 0 4px rgba(201,173,194,.15)}
-.hero-event{display:inline-flex;align-items:center;gap:7px;padding:10px 13px;border:1px solid #e9d9f4;border-radius:99px;background:#faf2ff;color:#8666a4;font:700 10.5px Outfit,Paperlogy,sans-serif;letter-spacing:.1px}
-.hero-event-icon{color:#ab83ce;font-size:12px;line-height:1}
 .hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:33px}
+.hero-tag{font:600 10.5px Outfit,Paperlogy,sans-serif;color:#817899;padding:7px 10px;border-radius:7px;border:1px solid #e6e1f2;background:rgba(255,255,255,.63)}
 .hero-media-wrap{position:relative;min-width:0;padding:25px 20px 35px 28px}
 .hero-orbit{position:absolute;inset:1% -3% 0 6%;background:radial-gradient(ellipse at 50% 50%,#eeeafa 0,#eeeafa 35%,transparent 70%);border-radius:45% 55% 44% 56%;transform:rotate(-11deg);z-index:-1}
 .hero-media-card{padding:15px;border-radius:26px;background:rgba(255,255,255,.91);border:1px solid rgba(223,217,246,.9);box-shadow:0 27px 72px rgba(103,84,164,.16);transform:rotate(1.2deg);transition:transform .5s var(--ease),box-shadow .4s}
@@ -105,14 +91,15 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .hero-video-frame video.ready{opacity:1}
 .video-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;color:#8c7ac4;font:700 10px Outfit,sans-serif;letter-spacing:2px}
 .loading-symbol{font-size:50px;line-height:1;animation:slowFloat 4s ease-in-out infinite}
-.media-card-foot{justify-content:flex-start;padding:14px 6px 4px}
-.media-card-foot-label{display:inline-flex;align-items:center;gap:7px;min-height:15px;max-width:calc(100% - 140px);overflow-wrap:anywhere}
-.tiny-dot{display:inline-block;width:5px;height:5px;flex-shrink:0;border-radius:50%;background:#91cbb0;vertical-align:middle}
+.media-card-foot{padding:14px 6px 4px}
+.tiny-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#91cbb0;vertical-align:middle;margin-right:7px}
 .hero-float-label{position:absolute;bottom:0;right:-19px;display:flex;align-items:center;gap:10px;border:1px solid #e0d7f2;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 9px 27px rgba(90,75,145,.12);padding:14px 19px;color:#8273b3;font:600 11px/1.45 Outfit,sans-serif;transform:rotate(-4deg)}
-.hero-float-label-text{white-space:pre-line}
 .label-stars{font-size:23px;color:#aa99e5}
 .scroll-cue{position:absolute;left:0;bottom:35px;display:flex;align-items:center;gap:10px;font:700 10px Outfit,sans-serif;letter-spacing:2px;color:#afa6c5}
 .scroll-cue-line{width:31px;height:1px;background:#bfb4dc}
+.specialty-strip{position:relative;background:#f4f2fc;border-block:1px solid #eae5f5}
+.specialty-inner{min-height:88px;display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;color:#8a80ab;font:700 11px Outfit,sans-serif;letter-spacing:1.6px}
+.specialty-inner i{font-size:12px;font-style:normal;color:#c5bcec}
 
 /* Each top-level category has its own view; visitors only scroll within it. */
 .site-panel{flex:1 0 auto;min-height:0}
@@ -122,8 +109,8 @@ html.js .site-panel.is-active{animation:pageEnter .52s var(--ease) both}
    If text or the viewport becomes too small, content can still grow and scroll. */
 @media(min-width:761px) and (min-height:680px){
   body.home-active{min-height:100svh;display:flex;flex-direction:column}
-  body.home-active .ambient-one{top:-14svh;height:105svh}
-  body.home-active .ambient-two{top:auto;bottom:-27svh;height:108svh}
+  body.home-active .ambient-one{top:7svh;height:68svh}
+  body.home-active .ambient-two{top:auto;bottom:0;height:45svh}
   body.home-active .site-header,body.home-active .footer{flex-shrink:0}
   body.home-active main{flex:1;display:flex;flex-direction:column}
   body.home-active .site-panel[data-page="home"]{flex:1;min-height:0;display:flex;flex-direction:column}
@@ -132,13 +119,17 @@ html.js .site-panel.is-active{animation:pageEnter .52s var(--ease) both}
   body.home-active .hero-media-wrap{width:min(100%,55svh,560px);padding:10px 9px 22px;justify-self:center}
   body.home-active .hero-video-frame{min-height:0}
   body.home-active .scroll-cue{display:none}
+  body.home-active .specialty-inner{min-height:43px;gap:18px}
+  body.home-active .footer{padding:11px 0 13px}
+  body.home-active .footer-inner p{display:none}
 }
 @media(min-width:761px) and (min-height:680px) and (max-height:800px){
   body.home-active .hero-name-wrap{margin-top:18px}
   body.home-active .hero-name-wrap h1{font-size:clamp(84px,9vw,130px);margin-bottom:17px}
   body.home-active .hero-intro{font-size:13px;line-height:1.8}
-  body.home-active .hero-highlights{margin-top:16px}
+  body.home-active .hero-status{margin-top:16px}
   body.home-active .hero-buttons{margin-top:17px}
+  body.home-active .hero-tags{margin-top:18px}
   body.home-active .hero-media-wrap{width:min(100%,52svh,480px)}
 }
 .portfolio-switch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:34px auto 0;padding:6px;width:max-content;max-width:calc(100% - 36px);border:1px solid #e4ddf4;background:#f0edfa;border-radius:999px}
@@ -149,8 +140,6 @@ html.js .portfolio-view:not(.is-active){display:none!important}
 html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
 .portfolio-view.section{padding-top:36px}
 .portfolio-view .section-heading{margin-bottom:30px}
-/* Keep SHOWCASE and RIGGING SAMPLES on the same seamless page background. */
-#samples.section-soft{background:transparent;border:0}
 
 /* Sections */
 .section{padding-block:clamp(55px,7.8svh,92px)}
@@ -221,31 +210,25 @@ body.sample-lightbox-open{overflow:hidden}
 .sample-lightbox-loading[hidden]{display:none}
 .sample-lightbox-hint{margin:0;text-align:center;color:#9c92b2;font-size:11px;flex-shrink:0}
 
-/* Premade model sales: preserve a generous portrait display, with slightly narrower width. */
-.site-panel[data-page="sale-models"] .section{padding-top:clamp(28px,4.8svh,55px)}
-.site-panel[data-page="sale-models"] .section-heading{width:min(100%,1050px);margin-inline:auto;margin-bottom:20px}
-.sale-models-grid{display:block;width:min(100%,1050px);margin-inline:auto}
-.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
-.sale-model-card.is-current{display:grid;animation:saleModelEnter .68s var(--ease) both}
-.sale-model-visual{min-width:0;min-height:478px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
-.sale-model-media{position:relative;flex:1;min-height:0;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
-.sale-model-image{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:contain}
+/* Premade model sales: calm gallery cards with matching carousel controls. */
+.sale-models-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
+.sale-model-card{min-width:0;display:flex;flex-direction:column;background:#fff;border:1px solid #e7e1f4;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.sale-model-card:hover{transform:translateY(-3px);border-color:#c4b6e9;box-shadow:0 21px 49px rgba(91,72,157,.11)}
+.sale-model-media{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
+.sale-model-image{width:100%;height:100%;display:block;object-fit:contain}
 .sale-model-image-fallback{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:10px;text-align:center;color:#9e91bd;font-size:12px;background:linear-gradient(135deg,#f1eefb,#e6e1f5)}
 .sale-model-image-fallback[hidden],.sale-model-image[hidden]{display:none}
 .sale-model-image-fallback span{font-size:31px}
-.sale-model-status{position:absolute;z-index:2;left:16px;top:16px;background:rgba(255,255,255,.94);border:1px solid #e4dcf3;border-radius:100px;padding:9px 13px;color:#7766b3;font-size:10px;font-weight:700;box-shadow:0 5px 20px rgba(73,59,133,.07)}
+.sale-model-status{position:absolute;left:16px;top:16px;background:rgba(255,255,255,.94);border:1px solid #e4dcf3;border-radius:100px;padding:9px 13px;color:#7766b3;font-size:10px;font-weight:700;box-shadow:0 5px 20px rgba(73,59,133,.07)}
 .sale-model-status.sold{color:#837c92;background:rgba(255,255,255,.95)}
-.sale-model-nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:36px;height:36px;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;font:700 20px Outfit,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+.sale-model-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;font:700 20px Outfit,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
 .sale-model-nav:hover{background:#fff;transform:translateY(-50%) scale(1.07)}
 .sale-model-prev{left:14px}.sale-model-next{right:14px}
-.sale-model-expand{position:absolute;z-index:1;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;border:0;background:transparent;cursor:zoom-in}
-.sale-model-expand-icon{display:grid;place-items:center;width:37px;height:37px;border:1px solid rgba(221,214,243,.9);border-radius:11px;background:rgba(255,255,255,.95);box-shadow:0 5px 15px rgba(71,56,124,.12);color:#7868b3;font-size:21px;line-height:1;transition:transform .25s var(--ease),box-shadow .25s}
-.sale-model-expand:hover .sale-model-expand-icon,.sale-model-expand:focus-visible .sale-model-expand-icon{transform:scale(1.09);box-shadow:0 9px 22px rgba(71,56,124,.19)}
 .sale-model-gallery-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 19px;background:#f9f8fd;border-bottom:1px solid #f0edf8;color:#9186aa;font-size:10px}
 .sale-model-gallery-meta .sale-model-count{white-space:nowrap;font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a094bf}
-.sale-model-content{min-width:0;padding:30px 32px;display:flex;flex-direction:column}
+.sale-model-content{padding:23px 26px 25px;display:flex;flex-direction:column;flex:1}
 .sale-model-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#a89ac8;font:700 10px Outfit,sans-serif;letter-spacing:1.15px}
-.sale-model-content h3{margin:12px 0 6px;font:700 clamp(24px,2.6vw,33px)/1.25 Outfit,Paperlogy,sans-serif;letter-spacing:-.85px}
+.sale-model-content h3{margin:12px 0 6px;font:700 clamp(21px,2.2vw,26px)/1.25 Outfit,Paperlogy,sans-serif;letter-spacing:-.65px}
 .sale-model-description{color:#8e859f;font-size:12px;line-height:1.8;margin:0;word-break:keep-all}
 .sale-model-credits{font:600 10px Outfit,Paperlogy,sans-serif;color:#a498bc;margin:13px 0 17px}
 .sale-model-credits span{color:#cdc4dc;margin:0 6px}
@@ -253,131 +236,56 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-features li{min-width:0;border:1px solid #ede8f7;border-radius:10px;background:#faf9ff;padding:10px 12px;color:#746b87;font-size:11px;line-height:1.65;word-break:keep-all}
 .sale-model-features li:before{content:'✧';color:#a292d5;margin-right:6px}
 .sale-model-footer{margin-top:auto;padding-top:17px;border-top:1px solid #eeeaf7}
-.sale-model-price-breakdown{margin:0 0 12px;padding:0}
-.sale-model-price-line,.sale-model-price-total{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.sale-model-price-line{padding:3px 0;color:#938ba4;font-size:10.5px}
-.sale-model-price-line dt,.sale-model-price-total dt{font-weight:500}
-.sale-model-price-line dd{margin:0;color:#756989;font:600 11px Outfit,Paperlogy,sans-serif;white-space:nowrap}
-.sale-model-price-total{border-top:1px solid #eeeaf7;margin-top:6px;padding-top:9px}
-.sale-model-price-total dt{color:#7566a5;font-size:11px;font-weight:700}
-.sale-model-price-total dd{margin:0;color:#54447e;font:700 21px Outfit,Paperlogy,sans-serif;white-space:nowrap}
+.sale-model-price{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.sale-model-price-label{color:#a097b1;font-size:10px;line-height:1.6}
+.sale-model-price strong{font:700 22px Outfit,Paperlogy,sans-serif;color:#54447e;white-space:nowrap}
 .sale-model-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .sale-model-actions .button{flex:1;min-width:0;justify-content:center;text-align:center;font-size:11px;padding-inline:12px}
 .sale-model-sold-label{display:block;padding:13px 15px;border:1px solid #e8e3ef;border-radius:10px;background:#f7f5fb;color:#978da7;text-align:center;font-size:12px;font-weight:700}
-.sale-model-picker{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:19px auto 0}
-.sale-model-pick{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:42px;padding:9px 19px;border:1px solid #ded8ed;border-radius:999px;background:rgba(255,255,255,.84);color:#79718e;font:700 11px Outfit,Paperlogy,sans-serif;transition:background .27s,border-color .27s,box-shadow .27s,transform .27s,color .27s}
-.sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
-.sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
-.sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
-/* A 50/50 gallery sits comfortably above its model picker and the footer. */
-@media(min-width:941px) and (min-height:760px){
-  body.sale-active{height:100svh}
-  body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
-  body.sale-active main{flex:1 1 auto;min-height:0}
-  body.sale-active .site-panel[data-page="sale-models"]{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
-  body.sale-active #sale-models{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-block:clamp(14px,2.6svh,26px) clamp(10px,1.8svh,18px)}
-  body.sale-active #sale-models .section-heading{flex-shrink:0;margin-bottom:clamp(8px,1.4svh,16px)}
-  body.sale-active #sale-models .section-heading h2{font-size:clamp(38px,4.8svh,52px);margin:9px 0 4px}
-  body.sale-active #sale-models .section-heading p{margin-top:6px;font-size:12px}
-  body.sale-active .sale-models-grid{flex:0 0 auto;min-height:0;height:clamp(445px,57svh,550px);display:flex;flex-direction:column}
-  body.sale-active .sale-model-card.is-current{flex:1 1 auto;min-height:0}
-  body.sale-active .sale-model-visual{min-height:0}
-  body.sale-active .sale-model-content{padding:clamp(17px,2.5svh,27px) clamp(22px,2.5vw,32px)}
-  body.sale-active .sale-model-content h3{margin:8px 0 5px}
-  body.sale-active .sale-model-description{line-height:1.65}
-  body.sale-active .sale-model-credits{margin:9px 0 12px}
-  body.sale-active .sale-model-features{gap:7px;margin-bottom:12px}
-  body.sale-active .sale-model-features li{padding:8px 10px;line-height:1.5}
-  body.sale-active .sale-model-footer{padding-top:11px}
-  body.sale-active .sale-model-actions .button{min-height:42px;padding-block:10px}
-  body.sale-active .sale-model-picker{flex-shrink:0;margin-top:clamp(8px,1.2svh,12px)}
-  body.sale-active .sale-model-pick{min-height:38px;padding:7px 16px}
-}
-/* Enlarged premade image: one image at a time, no cropping or duplicate downloads. */
-body.sale-image-lightbox-open{overflow:hidden}
-.sale-image-lightbox{width:min(1010px,calc(100vw - 36px));max-width:none;max-height:calc(100dvh - 32px);padding:18px;border:1px solid #e4ddf4;border-radius:23px;background:#fcfbff;color:var(--ink);box-shadow:0 35px 120px rgba(29,21,62,.27);overflow:hidden}
-.sale-image-lightbox[open]{display:flex;flex-direction:column;gap:12px;animation:lightboxEnter .38s var(--ease) both}
-.sale-image-lightbox::backdrop{background:rgba(28,22,49,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:lightboxBackdrop .3s ease both}
-.sale-image-lightbox-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-shrink:0}
-.sale-image-lightbox-kicker{margin:0 0 3px;color:#9887cb;font:700 10px Outfit,sans-serif;letter-spacing:1.5px}
-.sale-image-lightbox-title{font:700 18px/1.3 Outfit,Paperlogy,sans-serif;margin:0}
-.sale-image-lightbox-close{flex-shrink:0;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:1px solid #e0d9f0;background:#f4f1fc;color:#695aa5;font-size:26px;line-height:1;transition:background .2s,transform .2s}
-.sale-image-lightbox-close:hover{background:#e8e2f9;transform:rotate(90deg)}
-.sale-image-lightbox-media{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:14px;background:linear-gradient(135deg,#efecfa,#e2ddf3)}
-.sale-image-lightbox-image{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 190px);object-fit:contain;opacity:0;transition:opacity .24s ease}
-.sale-image-lightbox-image.ready{opacity:1}
-.sale-image-lightbox-loading{position:absolute;inset:0;display:grid;place-items:center;color:#9485bf;font-size:12px;font-weight:700;pointer-events:none}
-.sale-image-lightbox-loading[hidden]{display:none}
-.sale-image-lightbox-nav{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:41px;height:41px;border:1px solid #ded7ef;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.94);color:#7865b3;font:700 24px Outfit,sans-serif;box-shadow:0 7px 20px rgba(49,34,94,.10);transition:background .2s,box-shadow .2s}
-.sale-image-lightbox-nav:hover{background:#fff;box-shadow:0 9px 25px rgba(49,34,94,.19)}
-.sale-image-lightbox-nav[hidden]{display:none}
-.sale-image-lightbox-prev{left:15px}.sale-image-lightbox-next{right:15px}
-.sale-image-lightbox-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#857998;font-size:11px}
-.sale-image-lightbox-count{font:700 11px Outfit,sans-serif;letter-spacing:1px;color:#9789ba;white-space:nowrap}
-.sale-image-lightbox-hint{text-align:center;color:#a195b5;font-size:10px;margin:0}
-@media(max-width:940px){.sale-model-card{grid-template-columns:1fr}.sale-model-visual{min-height:0}.sale-model-media{aspect-ratio:16/10;flex:auto}}
-@media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price-total dd{font-size:20px}.sale-model-nav{width:32px;height:32px}}
-@media(max-width:580px){.sale-model-media{aspect-ratio:1/1}.sale-model-picker{gap:8px}.sale-model-pick{padding:9px 14px;font-size:10px;gap:7px}}
-@media(max-width:580px){.sale-image-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:9px}.sale-image-lightbox-image{max-height:calc(100dvh - 165px)}.sale-image-lightbox-nav{width:34px;height:34px;font-size:20px}.sale-image-lightbox-prev{left:6px}.sale-image-lightbox-next{right:6px}}
-@media(prefers-reduced-motion:reduce){.sale-model-card.is-current,.sale-image-lightbox[open],.sale-image-lightbox::backdrop{animation:none!important}.sale-model-nav,.sale-model-pick,.sale-model-expand-icon,.sale-image-lightbox-image,.sale-image-lightbox-nav{transition:none!important}.sale-model-nav:hover{transform:translateY(-50%)}}
+@media(max-width:760px){.sale-models-grid{grid-template-columns:1fr}.sale-model-media{aspect-ratio:16/9}}
+@media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price strong{font-size:20px}.sale-model-nav{width:32px;height:32px}}
+@media(prefers-reduced-motion:reduce){.sale-model-card,.sale-model-nav{transition:none!important}.sale-model-card:hover{transform:none}.sale-model-nav:hover{transform:translateY(-50%)}}
 
-/* Uniform pricing cards; a shared detail panel prevents stretched, empty columns. */
+/* Pricing cards and compact, optional details. */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.price-card{position:relative;min-width:0;min-height:282px;padding:26px 25px 21px;border-radius:19px;background:#fff;border:1px solid #e8e2f5;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
+.price-card{position:relative;overflow:hidden;padding:28px 25px 24px;border-radius:19px;background:#fff;border:1px solid #e8e2f5;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .28s var(--ease),box-shadow .28s,border-color .28s}
 .price-card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(85,67,145,.10);border-color:#c8beea}
-.price-card.is-selected{border-color:#a998d8;box-shadow:0 15px 38px rgba(85,67,145,.10)}
+.price-card.featured{border-color:#bdb0ec;background:linear-gradient(150deg,#fff,#f7f5ff)}
+.price-card.featured::before{content:'';height:3px;position:absolute;inset:0 0 auto;background:linear-gradient(90deg,#d5caf4,#9684d7,#d8d8fb)}
 .price-card-type{display:flex;align-items:center;justify-content:space-between;color:#9b8fc2;font:700 10px Outfit,sans-serif;letter-spacing:1.65px}
 .price-card-type .price-mark{font-size:18px;color:#b1a3e0;line-height:1}
-.price-card h3{font:700 23px Outfit,Paperlogy,sans-serif;letter-spacing:-.5px;margin:17px 0 8px}
-.price-card p{font-size:12px;line-height:1.8;color:#8c84a2;white-space:pre-line;margin:0;word-break:keep-all}
-.price-value{display:flex;align-items:baseline;gap:6px;margin:26px 0 21px;font:700 35px Outfit,Paperlogy,sans-serif;letter-spacing:-1.3px;color:#483b77}
+.price-card h3{font:700 23px Outfit,Paperlogy,sans-serif;letter-spacing:-.5px;margin:17px 0 6px}
+.price-card p{font-size:12px;line-height:1.85;color:#8c84a2;white-space:pre-line;margin:0;word-break:keep-all}
+.price-value{display:flex;align-items:baseline;gap:6px;margin:29px 0 20px;font:700 35px Outfit,Paperlogy,sans-serif;letter-spacing:-1.3px;color:#483b77}
 .price-value small{font-size:12px;color:#9d93b3;font-weight:500;letter-spacing:0}
-.price-action{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:43px;margin-top:auto;padding:11px 14px;border:1px solid #e6e0f3;border-radius:10px;background:#faf9fe;color:#7160a8;font:700 12px Paperlogy,sans-serif;text-align:left;cursor:pointer;transition:background .25s,border-color .25s,color .25s}
-.price-action:hover,.price-action:focus-visible{background:#f3effd;border-color:#c8bde7;color:#554285}
-.price-action:focus-visible,.price-close:focus-visible{outline:2px solid #9786d5;outline-offset:3px}
-.price-action-icon{display:inline-grid;place-items:center;width:20px;height:20px;font:600 17px Outfit,sans-serif;line-height:1;transition:transform .3s var(--ease)}
-.price-action:hover .price-action-icon{transform:translateX(3px)}
-.price-action[aria-expanded="true"]{background:#f1edfc;border-color:#c8bde7;color:#554285}
-.price-action[aria-expanded="true"] .price-action-icon{transform:rotate(45deg)}
-.price-included-panel{margin-top:15px;padding:24px 26px 27px;background:linear-gradient(145deg,#fbfaff,#f7f5fc);border:1px solid #e4def2;border-radius:18px;scroll-margin-top:90px;animation:pricePanelIn .48s var(--ease) both}
-.price-included-panel[hidden]{display:none!important}
-.price-included-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:19px}
-.price-included-heading span{display:block;margin-bottom:5px;color:#a396c8;font:700 10px Outfit,sans-serif;letter-spacing:1.6px}
-.price-included-heading h3{margin:0;font:700 18px Paperlogy,sans-serif;letter-spacing:-.4px;color:#534579}
-.price-close{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:33px;padding:6px 12px;border:1px solid #e5dff0;border-radius:9px;background:#fff;color:#817395;font:700 11px Paperlogy,sans-serif;cursor:pointer;transition:border-color .25s,color .25s}
-.price-close:hover{border-color:#c6b9e5;color:#5c4b90}
-.price-included-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;animation:pricePanelIn .42s var(--ease) both}
-.price-included-group{min-width:0;padding:18px 18px 16px;border:1px solid #ebe6f5;border-radius:12px;background:#fff}
-.price-included-group h4{display:flex;align-items:center;gap:7px;margin:0 0 13px;color:#67558f;font-size:12px;font-weight:700}
-.price-included-group h4::before{content:'✦';font-size:9px;color:#ac9bd8}
-.price-included-group ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.price-included-group li{position:relative;padding-left:13px;font-size:11px;line-height:1.65;color:#776e88;word-break:keep-all}
-.price-included-group li::before{content:'';position:absolute;left:0;top:.72em;width:4px;height:4px;border-radius:50%;background:#b7a8db}
-.price-included-empty{margin:0;color:#817791;font-size:12px}
+.price-divider{height:1px;background:#eeeaf5;margin-bottom:16px}
+.price-detail{margin-top:auto}
+.price-detail summary{display:flex;list-style:none;align-items:center;justify-content:space-between;color:#7565b8;font-size:12px;font-weight:700;cursor:pointer;padding:9px 1px}
+.price-detail summary::-webkit-details-marker{display:none}
+.price-detail summary::after{content:'+';font:500 20px Outfit,sans-serif;transition:transform .25s}
+.price-detail[open] summary::after{transform:rotate(45deg)}
+.price-detail-content{padding:12px 0 3px;border-top:1px solid #eeeaf5;animation:detailsIn .3s ease}
+.price-detail-group{margin-bottom:15px}
+.price-detail-group strong{display:block;color:#6d609c;font-size:11px;margin-bottom:6px}
+.price-detail-group ul{list-style:none;padding:0;margin:0;display:grid;gap:5px}
+.price-detail-group li{font-size:11px;color:#7d758f;line-height:1.65;padding-left:12px;position:relative}
+.price-detail-group li::before{content:'·';position:absolute;left:1px;color:#a798db}
 .price-notice{margin:17px 1px 0;color:#9289a6;font-size:11px;line-height:1.8}
 .addons-wrap{margin-top:45px;border:1px solid #e8e3f5;border-radius:21px;background:linear-gradient(150deg,rgba(250,248,255,.94),#fff);padding:29px 30px 25px}
 .addons-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
 .addons-heading h3{font:700 25px Outfit,sans-serif;letter-spacing:-.8px;margin:5px 0 3px}
 .addons-heading p{font-size:12px;color:#9389a6;margin:0}
 .addons-deco{font-size:43px;line-height:1;color:#d6cdf1}
-.addons-layout{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);align-items:start;gap:15px}
-.addons-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;align-content:start}
-.addon-tab{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;min-height:58px;padding:15px 15px;border:1px solid #e8e2f2;border-radius:12px;background:#fff;color:#746b88;text-align:left;font:700 12px Paperlogy,sans-serif;cursor:pointer;transition:transform .28s var(--ease),border-color .28s,background .28s,color .28s,box-shadow .28s}
-.addon-tab-arrow{color:#b8aad9;font:600 18px Outfit,sans-serif;transition:transform .28s var(--ease)}
-.addon-tab:hover{transform:translateY(-2px);border-color:#cfc2ee;color:#64518f}
-.addon-tab:hover .addon-tab-arrow{transform:translateX(3px)}
-.addon-tab[aria-selected="true"]{border-color:#b9a9e2;background:#f2eefb;color:#5f4e94;box-shadow:0 7px 17px rgba(103,79,166,.06)}
-.addon-tab[aria-selected="true"] .addon-tab-arrow{color:#8b76cb}
-.addon-tab:focus-visible{outline:2px solid #9786d5;outline-offset:3px}
-.addons-panel{min-width:0;min-height:192px;padding:21px 23px 17px;border:1px solid #e7e0f3;border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(78,66,125,.025)}
-.addons-panel-heading{margin:0 0 13px}
-.addons-panel-heading span{display:block;color:#ac9ccf;font:700 9px Outfit,sans-serif;letter-spacing:1.55px;margin-bottom:7px}
-.addons-panel-heading h4{margin:0;font:700 17px Paperlogy,sans-serif;color:#584877}
-.addon-detail-list{animation:addonCategoryEnter .42s var(--ease) both}
-.addon-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 1px;border-bottom:1px solid #f1eef7;color:#7b728c;font-size:12px;line-height:1.6;word-break:keep-all}
-.addon-row:first-child{border-top:1px solid #f1eef7}
-.addon-row b{flex-shrink:0;font:700 12px Outfit,Paperlogy,sans-serif;color:#7562ac;white-space:nowrap}
-.addons-panel-note{margin:14px 0 0;color:#a299b0;font-size:10px;line-height:1.6}
+.addons-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.addon-group{background:#fff;border:1px solid #ebe5f5;border-radius:13px;overflow:hidden;transition:border-color .25s}
+.addon-group:hover,.addon-group[open]{border-color:#cfc4ec}
+.addon-group summary{cursor:pointer;padding:15px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;font-weight:700;list-style:none}
+.addon-group summary::-webkit-details-marker{display:none}
+.addon-group summary::after{content:'+';color:#9f90d0;font:500 18px Outfit;transition:transform .25s}
+.addon-group[open] summary::after{transform:rotate(45deg)}
+.addon-group-list{padding:0 16px 13px;animation:detailsIn .28s ease}
+.addon-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid #f3f0f8;color:#817891;font-size:11px}
+.addon-row b{flex-shrink:0;font:700 12px Outfit,Paperlogy,sans-serif;color:#7463ad}
 
 /* Work process and terms */
 .process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:25px}
@@ -393,63 +301,31 @@ body.sale-image-lightbox-open{overflow:hidden}
 .notice-card li{color:#83798e;font-size:11.5px;line-height:1.75;padding-left:13px;position:relative;word-break:keep-all}
 .notice-card li::before{content:'✧';position:absolute;left:0;color:#ad9cdf}
 
-/* A calm two-column contact desk: explanation on the left, inquiry form on the right. */
-.contact-section{padding:clamp(24px,3.7svh,52px) 0}
-.contact-panel{position:relative;display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);align-items:center;gap:clamp(25px,4.5vw,64px);width:min(100%,1120px);margin-inline:auto;overflow:hidden;border-radius:28px;padding:clamp(28px,4vw,54px);text-align:left;border:1px solid #dcd5f3;background:radial-gradient(ellipse at 85% 5%,rgba(226,221,252,.8),transparent 45%),radial-gradient(ellipse at 12% 90%,rgba(229,236,253,.9),transparent 47%),linear-gradient(145deg,#f6f2ff,#f7f8ff);box-shadow:0 16px 52px rgba(77,61,125,.08)}
-.contact-intro{position:relative;z-index:1;min-width:0}
+/* Strong, singular inquiry CTA without an unconfigured fake destination. */
+.contact-section{padding:clamp(45px,7svh,76px) 0}
+.contact-panel{position:relative;overflow:hidden;border-radius:28px;padding:76px 42px 67px;text-align:center;border:1px solid #dcd5f3;background:radial-gradient(ellipse at 85% 5%,rgba(226,221,252,.8),transparent 45%),radial-gradient(ellipse at 12% 90%,rgba(229,236,253,.9),transparent 47%),linear-gradient(145deg,#f6f2ff,#f7f8ff);box-shadow:0 16px 52px rgba(77,61,125,.08)}
 .contact-panel .section-index{color:#8e7ec8}
-.contact-panel h2{font:600 clamp(43px,4.9vw,68px)/1.1 Outfit,sans-serif;letter-spacing:-3px;margin:14px 0 19px}
-.contact-korean{font-size:13px;line-height:1.95;color:#7a708d;margin:0 0 18px;white-space:pre-line;word-break:keep-all}
+.contact-panel h2{font:600 clamp(44px,5.4vw,78px)/1.1 Outfit,sans-serif;letter-spacing:-3.8px;margin:17px 0 22px}
+.contact-korean{font-size:14px;line-height:2;color:#7a708d;margin:0 auto 28px;word-break:keep-all}
 .button-contact{min-height:53px;padding:14px 30px;background:#8271c9;color:#fff;box-shadow:0 14px 26px rgba(116,99,183,.19)}
 .button-contact:hover{box-shadow:0 18px 30px rgba(116,99,183,.24)}
 .form-pending{display:inline-flex;align-items:center;gap:9px;color:#8378a7;font-size:12px;border:1px solid #dcd6ee;background:rgba(255,255,255,.8);padding:13px 21px;border-radius:999px}
 .form-pending span{color:#b1a1e1}
-.contact-note{font-size:11px;color:#9a90aa;line-height:1.85;margin:15px 0 27px;word-break:keep-all}
-.contact-mini-links{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:9px}
+.contact-note{font-size:11px;color:#9a90aa;line-height:1.8;margin:17px 0 24px}
+.contact-mini-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
 .contact-mini-links a{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:8px;border:1px solid #e1daf0;background:rgba(255,255,255,.54);font:600 11px Outfit,Paperlogy,sans-serif;color:#806fae;transition:transform .2s,border-color .2s}
 .contact-mini-links a:hover{transform:translateY(-2px);border-color:#b9a8e8}
 .contact-star{position:absolute;color:#c7b9ef;pointer-events:none}
-.contact-star-one{left:7%;top:12%;font-size:25px;transform:rotate(15deg)}
-.contact-star-two{right:4%;bottom:5%;font-size:40px;transform:rotate(-15deg)}
-.contact-form-card{position:relative;z-index:1;min-width:0;border:1px solid rgba(220,212,242,.95);border-radius:23px;background:rgba(255,255,255,.91);padding:clamp(21px,2.6vw,32px);box-shadow:0 16px 40px rgba(88,73,143,.075)}
-.contact-form-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:17px}
-.contact-form-heading span{font:700 10px Outfit,sans-serif;letter-spacing:1.3px;color:#9c8dcc}
-.contact-form-heading h3{font:700 20px/1.3 Outfit,Paperlogy,sans-serif;margin:4px 0 0;letter-spacing:-.4px}
-.contact-form-symbol{font-size:25px;color:#b9abe7}
-.contact-form{display:grid;gap:13px}
-.contact-field{display:grid;gap:6px;min-width:0}
-.contact-field label,.contact-field-label{font-size:11px;font-weight:700;color:#655884}
-.contact-field input,.contact-field select,.contact-field textarea{width:100%;border:1px solid #e2dcf1;border-radius:11px;background:#fcfbff;padding:11px 13px;color:#484060;font:400 12px/1.5 Paperlogy,sans-serif;transition:border-color .2s,box-shadow .2s,background .2s;outline:none}
-.contact-field input:hover,.contact-field select:hover,.contact-field textarea:hover{border-color:#c6baed}
-.contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{border-color:#a595dd;box-shadow:0 0 0 3px rgba(154,137,214,.15);background:white}
-.contact-field input::placeholder,.contact-field textarea::placeholder{color:#b4abc4}
-.contact-field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%239b8cbf' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:33px}
-.contact-field textarea{min-height:104px;resize:vertical;max-height:260px}
-.contact-field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.contact-consent{display:flex;align-items:flex-start;gap:9px;font-size:10px;line-height:1.65;color:#817791;cursor:pointer;word-break:keep-all}
-.contact-consent input{width:15px;height:15px;accent-color:#8978ce;margin:1px 0 0;flex-shrink:0}
-.contact-submit{width:100%;min-height:46px;border:0;border-radius:11px;background:linear-gradient(110deg,#9482d9,#7968c2);color:#fff;font-size:12px;font-weight:700;box-shadow:0 9px 19px rgba(123,107,190,.17);transition:transform .22s var(--ease),box-shadow .22s,opacity .22s}
-.contact-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 24px rgba(123,107,190,.25)}
-.contact-submit:disabled{opacity:.58;cursor:not-allowed;box-shadow:none}
-.contact-form-status{font-size:11px;line-height:1.7;padding:9px 12px;border:1px solid #e8e2f1;border-radius:10px;background:#f8f6fd;color:#85769f;margin:0;word-break:keep-all}
-.contact-form-status[data-state="success"]{border-color:#c9e4d6;background:#f2fbf6;color:#487b62}
-.contact-form-status[data-state="error"]{border-color:#f0d3d4;background:#fff7f7;color:#a05c62}
-.contact-form-status[data-state="pending"]{border-color:#ddd5f3;color:#7661ad}
-.contact-form-alternative{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;color:#8a7da6;font-size:10.5px}
-.contact-form-alternative a{font-weight:700;color:#7967bc;text-decoration:underline;text-decoration-color:#c8bce6;text-underline-offset:3px}
-.contact-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
-.contact-submit-frame{display:none;width:0;height:0;border:0}
-@media(max-width:840px){.contact-panel{grid-template-columns:1fr;gap:28px}.contact-intro{max-width:630px}.contact-panel h2{font-size:clamp(45px,8vw,64px)}.contact-note{margin-bottom:15px}}
-@media(max-width:480px){.contact-panel{padding:26px 17px}.contact-form-card{padding:19px 14px;border-radius:16px}.contact-field-row{grid-template-columns:1fr}.contact-field textarea{min-height:120px}}
-.footer{background:#f8f7fd;border-top:1px solid #eae6f3;padding:11px 0 13px}
-.footer-inner{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.contact-star-one{left:12%;top:23%;font-size:34px;transform:rotate(15deg)}
+.contact-star-two{right:11%;bottom:21%;font-size:54px;transform:rotate(-15deg)}
+.footer{background:#f8f7fd;border-top:1px solid #eae6f3;padding:20px 0 24px}
+.footer-inner{display:flex;align-items:center;gap:35px;flex-wrap:wrap}
 .footer-brand{font:800 29px Outfit,sans-serif;letter-spacing:-1px}
-.footer-socials{display:flex;gap:7px;margin-left:auto;flex-wrap:wrap;align-items:center}
-.footer-socials a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:7px 11px;border:1px solid #e3ddef;border-radius:10px;background:rgba(255,255,255,.79);color:#75668f;font:700 10.5px Outfit,Paperlogy,sans-serif;white-space:nowrap;transition:background .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s,color .25s}
-.footer-link-arrow{color:#a897cf;font-size:11px;line-height:1;transition:transform .25s var(--ease)}
-.footer-socials a:hover{background:#f0ebfc;border-color:#c5b8e7;color:#5b4a94;transform:translateY(-2px);box-shadow:0 6px 15px rgba(111,93,165,.08)}
-.footer-socials a:hover .footer-link-arrow{transform:translate(1px,-1px)}
-.footer-copyright{font:500 9.5px Outfit,sans-serif;color:#afa5bf;letter-spacing:.3px;white-space:nowrap}
+.footer-inner p{font:500 11px Outfit,sans-serif;color:#a69bb6;margin:0}
+.footer-socials{display:flex;gap:17px;margin-left:auto;flex-wrap:wrap}
+.footer-socials a{font:700 11px Outfit,Paperlogy,sans-serif;color:#746a8e;transition:color .2s}
+.footer-socials a:hover{color:var(--purple-dark)}
+.footer-copyright{font:500 10px Outfit,sans-serif;color:#afa5bf;letter-spacing:.7px}
 .noscript-notice{text-align:center;padding:30px;color:#8f829f}
 
 /* Reveal effects stay light: opacity + a little lift, never hover blur. */
@@ -462,60 +338,42 @@ body.sale-image-lightbox-open{overflow:hidden}
 @keyframes sampleEnter{0%{opacity:0;transform:translate3d(0,18px,0);filter:blur(5px)}62%{opacity:.8;filter:blur(1px)}100%{opacity:1;transform:translateZ(0);filter:blur(0)}}
 @keyframes lightboxEnter{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes lightboxBackdrop{from{opacity:0}to{opacity:1}}
-@keyframes saleModelEnter{from{opacity:0;transform:translate3d(0,12px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
 @keyframes slowFloat{50%{transform:translateY(-7px)}}
 @keyframes detailsIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pricePanelIn{from{opacity:0;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-@keyframes addonCategoryEnter{from{opacity:0;transform:translateY(7px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes pageEnter{from{opacity:0;transform:translate3d(0,13px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
-@keyframes auroraDriftOne{0%{transform:translate3d(0,0,0) rotate(-5deg) scale(1)}100%{transform:translate3d(-8vw,7svh,0) rotate(6deg) scale(1.12)}}
-@keyframes auroraDriftTwo{0%{transform:translate3d(-3vw,2svh,0) rotate(4deg) scale(1.08)}100%{transform:translate3d(9vw,-8svh,0) rotate(-8deg) scale(.97)}}
-@keyframes heroStarTwinkle{0%,100%{opacity:.24;transform:scale(.72) rotate(-7deg)}48%{opacity:.98;transform:scale(1.13) rotate(7deg)}68%{opacity:.7;transform:scale(.96)}}
 
-@media(max-width:1100px){.hero-section{gap:35px}.nav{gap:14px}.nav-links{gap:15px}.nav-links a{font-size:12px}.button-nav{padding-inline:13px}.language-switch button{padding-inline:7px}.pricing-grid{gap:12px}.price-card{padding:25px 20px}}
-@media(max-width:940px){.container{width:min(calc(100% - 48px),var(--max))}.hero-section{grid-template-columns:1fr 1fr;gap:18px;min-height:600px;padding-top:65px}.hero-name-wrap h1{font-size:clamp(85px,11vw,128px)}.hero-media-wrap{padding:12px 5px 27px 12px}.hero-float-label{right:-8px}.works-grid{gap:12px}.work-info{padding:18px 15px}.price-card h3{font-size:19px}.price-value{font-size:30px}.process-card{padding:20px 18px}}
-@media(max-width:760px){.site-header .button-nav{display:none}.nav{min-height:65px}.language-switch{margin-left:auto}.menu-toggle{display:flex}.nav-links{position:absolute;display:none;top:calc(100% + 1px);left:-24px;right:-24px;background:rgba(250,249,255,.98);border:1px solid #e8e2f4;border-top:0;border-radius:0 0 15px 15px;padding:14px 23px;box-shadow:0 18px 30px rgba(65,53,113,.09);flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:12px 3px;font-size:14px}.hero-section{grid-template-columns:1fr;gap:20px;padding-top:60px;min-height:auto;padding-bottom:75px}.hero-copy{padding:0}.hero-name-wrap h1{font-size:clamp(100px,21vw,150px)}.hero-media-wrap{width:min(100%,550px);margin:15px auto 5px;padding:12px 16px 27px}.hero-float-label{right:2px}.scroll-cue{bottom:14px}.section{padding-block:80px}.works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pricing-grid{grid-template-columns:1fr}.price-card{padding:27px 26px}.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-section{padding-block:75px}.footer-inner{justify-content:space-between}.footer-socials{margin-left:0}}
-@media(max-width:580px){.container{width:min(calc(100% - 36px),var(--max))}.nav-links{left:-18px;right:-18px}.hero-section{padding-top:42px}.eyebrow{font-size:9px;letter-spacing:2px}.hero-korean{font-size:14px}.hero-name-wrap{margin-top:22px}.hero-name-wrap h1{font-size:96px;letter-spacing:-6px;margin-bottom:20px}.hero-intro{font-size:13px}.hero-buttons{margin-top:22px}.hero-buttons .button{flex:1;padding-inline:15px;font-size:11px}.hero-highlights{gap:7px}.hero-status,.hero-event{font-size:10px;padding:9px 11px}.hero-media-wrap{margin-top:3px}.hero-media-card{padding:10px;border-radius:18px}.hero-video-frame{min-height:0;border-radius:12px}.hero-float-label{right:0;padding:9px 11px;font-size:9px}.section-heading{display:block;margin-bottom:25px}.section-heading h2{font-size:39px;letter-spacing:-1.8px}.section-side-link{display:inline-block;margin-top:15px}.heading-star{font-size:22px;margin-left:7px}.works-grid,.sample-grid,.notice-grid{grid-template-columns:1fr}.work-cover{aspect-ratio:16/9}.sample-tab-row{gap:8px}.sample-tab{font-size:11px;padding:10px 13px}.sample-category-intro{display:block}.sample-count{display:block;margin-top:6px}.process-grid{gap:11px}.process-card{min-height:158px}.addons-wrap{padding:24px 18px}.addons-heading h3{font-size:23px}.contact-panel{padding:60px 22px 53px;border-radius:20px}.contact-panel h2{font-size:46px;letter-spacing:-2.7px}.contact-star-one{left:7%;top:13%;font-size:23px}.contact-star-two{right:7%;bottom:13%;font-size:34px}.contact-korean{font-size:12px}.footer-inner{display:block}.footer-socials{margin-top:21px;margin-bottom:20px}.footer-copyright{display:block}}
-@media(max-width:580px){.hero-sparkles{inset:0 -8px}.hero-sparkle:nth-child(1){top:9%;font-size:18px}}
+@media(max-width:1100px){.hero-section{gap:35px}.nav-links{gap:18px}.pricing-grid{gap:12px}.price-card{padding:25px 20px}}
+@media(max-width:940px){.container{width:min(calc(100% - 48px),var(--max))}.hero-section{grid-template-columns:1fr 1fr;gap:18px;min-height:600px;padding-top:65px}.hero-name-wrap h1{font-size:clamp(85px,11vw,128px)}.hero-media-wrap{padding:12px 5px 27px 12px}.hero-float-label{right:-8px}.works-grid{gap:12px}.work-info{padding:18px 15px}.price-card h3{font-size:19px}.price-value{font-size:30px}.process-card{padding:20px 18px}.specialty-inner{gap:22px}}
+@media(max-width:760px){.site-header .button-nav{display:none}.nav{min-height:65px}.menu-toggle{display:flex}.nav-links{position:absolute;display:none;top:calc(100% + 1px);left:-24px;right:-24px;background:rgba(250,249,255,.98);border:1px solid #e8e2f4;border-top:0;border-radius:0 0 15px 15px;padding:14px 23px;box-shadow:0 18px 30px rgba(65,53,113,.09);flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:12px 3px;font-size:14px}.hero-section{grid-template-columns:1fr;gap:20px;padding-top:60px;min-height:auto;padding-bottom:75px}.hero-copy{padding:0}.hero-name-wrap h1{font-size:clamp(100px,21vw,150px)}.hero-media-wrap{width:min(100%,550px);margin:15px auto 5px;padding:12px 16px 27px}.hero-float-label{right:2px}.scroll-cue{bottom:14px}.specialty-inner{padding-block:18px;gap:12px 22px;min-height:78px}.section{padding-block:80px}.works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pricing-grid{grid-template-columns:1fr}.price-card{padding:27px 26px}.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-section{padding-block:75px}.footer-inner{justify-content:space-between}.footer-socials{margin-left:0}}
+@media(max-width:580px){.container{width:min(calc(100% - 36px),var(--max))}.nav-links{left:-18px;right:-18px}.hero-section{padding-top:42px}.eyebrow{font-size:9px;letter-spacing:2px}.hero-korean{font-size:14px}.hero-name-wrap{margin-top:22px}.hero-name-wrap h1{font-size:96px;letter-spacing:-6px;margin-bottom:20px}.hero-intro{font-size:13px}.hero-buttons{margin-top:22px}.hero-buttons .button{flex:1;padding-inline:15px;font-size:11px}.hero-tags{margin-top:22px}.hero-media-wrap{margin-top:3px}.hero-media-card{padding:10px;border-radius:18px}.hero-video-frame{min-height:0;border-radius:12px}.hero-float-label{right:0;padding:9px 11px;font-size:9px}.section-heading{display:block;margin-bottom:25px}.section-heading h2{font-size:39px;letter-spacing:-1.8px}.section-side-link{display:inline-block;margin-top:15px}.heading-star{font-size:22px;margin-left:7px}.works-grid,.sample-grid,.notice-grid,.addons-grid{grid-template-columns:1fr}.work-cover{aspect-ratio:16/9}.sample-tab-row{gap:8px}.sample-tab{font-size:11px;padding:10px 13px}.sample-category-intro{display:block}.sample-count{display:block;margin-top:6px}.process-grid{gap:11px}.process-card{min-height:158px}.addons-wrap{padding:24px 18px}.addons-heading h3{font-size:23px}.contact-panel{padding:60px 22px 53px;border-radius:20px}.contact-panel h2{font-size:46px;letter-spacing:-2.7px}.contact-star-one{left:7%;top:13%;font-size:23px}.contact-star-two{right:7%;bottom:13%;font-size:34px}.contact-korean{font-size:12px}.footer-inner{display:block}.footer-socials{margin-top:21px;margin-bottom:20px}.footer-copyright{display:block}.specialty-inner span{font-size:9px}.specialty-inner i:nth-of-type(2){display:none}}
 @media(max-width:760px){.mobile-contact-link{display:block}.nav-links a.is-active::after{bottom:5px;right:auto;width:30px}.portfolio-switch{margin-top:27px}.portfolio-switch button{padding:11px 19px;font-size:11px}.portfolio-view.section{padding-top:40px}}
 @media(max-width:960px){.sample-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){.sample-grid{grid-template-columns:minmax(0,1fr)}.sample-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:10px}.sample-lightbox-video{max-height:calc(100dvh - 140px)}.sample-lightbox-title{font-size:14px}.sample-lightbox-hint{font-size:10px}}
-@media(max-width:940px){.price-included-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:580px){.price-card{min-height:260px}.price-included-panel{padding:21px 16px 19px}.price-included-list{grid-template-columns:1fr}.price-included-heading h3{font-size:15px}}
-@media(max-width:760px){.addons-layout{grid-template-columns:1fr}.addons-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.addon-tab{min-height:52px}}
-@media(max-width:580px){.addons-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.addon-tab{min-height:48px;padding:12px 13px;font-size:11px}.addons-panel{padding:19px 16px 16px}.addon-row{font-size:11px}.addon-row b{font-size:11px}}
-@media(max-width:760px){.contact-section{padding-block:34px}.contact-panel{gap:24px}.contact-korean{margin-bottom:12px}}
-@media(max-width:580px){.contact-panel{padding:25px 19px;border-radius:20px}.contact-panel h2{font-size:clamp(42px,10vw,54px);letter-spacing:-2.4px;margin:12px 0 13px}.contact-korean{font-size:12px}.contact-star-one{left:5%;top:5%;font-size:18px}.contact-star-two{right:5%;bottom:4%;font-size:27px}.contact-form-card{padding:20px 16px}.contact-field-row{grid-template-columns:1fr}.contact-field textarea{min-height:120px}.contact-mini-links{justify-content:flex-start}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ambient,.hero-sparkle{animation:none!important;will-change:auto}.ambient{transform:none!important}.hero-sparkle{opacity:.72}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.price-action,.price-action-icon,.addon-tab,.addon-tab-arrow,.footer-socials a,.footer-link-arrow,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.price-included-panel,.price-included-list,.addon-detail-list,.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
 
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="home-active">
-  <a class="skip-link" href="#main" data-i18n="skip">본문 바로가기</a>
+  <a class="skip-link" href="#main">본문 바로가기</a>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
 
   <header class="site-header">
-    <nav class="nav container" aria-label="주 메뉴" data-i18n-aria="mainNav">
-      <a href="#home" class="brand" aria-label="에린 홈페이지 첫 화면" data-i18n-aria="homeBrand">
+    <nav class="nav container" aria-label="주 메뉴">
+      <a href="#home" class="brand" aria-label="에린 홈페이지 첫 화면">
         <span class="brand-glyph" aria-hidden="true">✦</span>
-        <span>Eryn<span class="brand-dot">.</span></span>
+        <span>eryn<span class="brand-dot">.</span></span>
       </a>
       <div class="nav-links" id="nav-links">
-        <a href="#home" data-i18n="navHome">Home</a>
-        <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-        <a href="#sale-models" data-i18n="navModels">Premade Models</a>
-        <a href="#pricing" data-i18n="navCommission">Commission</a>
-        <a href="#about" data-i18n="navGuide">Guide</a>
-        <a href="#contact" class="mobile-contact-link" data-i18n="navContact">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#sale-models">Premade Models</a>
+        <a href="#pricing">Commission</a>
+        <a href="#about">Guide</a>
+        <a href="#contact" class="mobile-contact-link">Contact</a>
       </div>
-      <div class="language-switch" role="group" aria-label="언어 선택" data-i18n-aria="languageSelect">
-        <button type="button" data-lang="ko" lang="ko" aria-pressed="true" aria-label="한국어">KO</button>
-        <button type="button" data-lang="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
-        <button type="button" data-lang="ja" lang="ja" aria-pressed="false" aria-label="日本語">JP</button>
-      </div>
-      <a class="button button-primary button-nav" href="#contact"><span data-i18n="navContact">Contact</span> <span aria-hidden="true">↗</span></a>
+      <a class="button button-primary button-nav" href="#contact">Contact <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="nav-links" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
   </header>
@@ -524,48 +382,46 @@ body.sale-image-lightbox-open{overflow:hidden}
   <main id="main">
     <div class="site-panel is-active" data-page="home">
     <section class="hero-section container" id="home" aria-labelledby="hero-title">
-      <div class="hero-sparkles" aria-hidden="true"><span class="hero-sparkle">✦</span></div>
       <div class="hero-copy reveal">
         <div class="eyebrow"><span class="eyebrow-line"></span> <span id="hero-eyebrow">LIVE2D RIGGING PORTFOLIO</span></div>
         <div class="hero-name-wrap"><p class="hero-korean" id="hero-korean">Live2D 리거 에린</p><h1 id="hero-title">Eryn<span class="title-period">.</span></h1></div>
         <p class="hero-intro" id="hero-intro">캐릭터의 매력을 자연스럽고 사랑스러운 움직임으로 표현하는 Live2D 리거 에린입니다.</p>
-        <div class="hero-highlights">
-          <div class="hero-status" id="hero-status"><span class="status-dot" aria-hidden="true"></span><span id="status-text">COMMISSION OPEN</span></div>
-          <span class="hero-event" id="hero-event" hidden><span class="hero-event-icon" aria-hidden="true">✦</span><span id="hero-event-text"></span></span>
-        </div>
-        <div class="hero-buttons"><a class="button button-primary" href="#works"><span data-i18n="heroViewWork">작업물 감상하기</span> <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#contact"><span data-i18n="heroInquiry">커미션 문의</span> <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-status" id="hero-status"><span class="status-dot" aria-hidden="true"></span><span id="status-text">COMMISSIONS OPEN</span></div>
+        <div class="hero-buttons"><a class="button button-primary" href="#works">작업물 감상하기 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#contact">커미션 문의 <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-tags" id="hero-tags" aria-label="작업 분야"></div>
       </div>
       <div class="hero-media-wrap reveal">
         <div class="hero-orbit" aria-hidden="true"></div>
         <div class="hero-media-card">
-          <div class="media-card-heading"><span><span class="mini-star">✦</span> <span data-i18n="preview">LIVE MOTION PREVIEW</span></span><span>LIVE2D / 01</span></div>
+          <div class="media-card-heading"><span><span class="mini-star">✦</span> FEATURED MOTION</span><span>LIVE2D / 01</span></div>
           <div class="hero-video-frame">
-            <div class="video-loading" id="hero-loading"><span class="loading-symbol">✧</span><span data-i18n="loading">LOADING SHOWREEL</span></div>
+            <div class="video-loading" id="hero-loading"><span class="loading-symbol">✧</span><span>LOADING SHOWREEL</span></div>
             <video id="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="대표 Live2D 리깅 영상"></video>
           </div>
-          <div class="media-card-foot"><span class="media-card-foot-label"><span class="tiny-dot" aria-hidden="true"></span><span id="hero-video-caption">Free movement sample</span></span></div>
+          <div class="media-card-foot"><span><span class="tiny-dot"></span> LIVE MOTION PREVIEW</span><span id="hero-video-caption">free movement sample</span></div>
         </div>
-        <div class="hero-float-label" aria-hidden="true"><span class="label-stars">✳</span><span class="hero-float-label-text" id="hero-float-label-text">Every detail<br>comes alive.</span></div>
+        <div class="hero-float-label" aria-hidden="true"><span class="label-stars">✳</span><span>Crafted with<br>care & motion</span></div>
       </div>
-      <a href="#portfolio" class="scroll-cue"><span class="scroll-cue-line"></span><span data-i18n="explore">EXPLORE PORTFOLIO</span> ↗</a>
+      <a href="#portfolio" class="scroll-cue"><span class="scroll-cue-line"></span> EXPLORE PORTFOLIO ↗</a>
     </section>
 
+    <div class="specialty-strip" aria-label="작업 분야"><div class="container specialty-inner"><span>LIVE2D CUBISM</span><i aria-hidden="true">✳</i><span>VTUBE STUDIO</span><i aria-hidden="true">✳</i><span>PHYSICS & EXPRESSIONS</span><i aria-hidden="true">✳</i><span>CHARACTER MOTION</span></div></div>
     </div>
 
     <div class="site-panel" id="portfolio" data-page="portfolio">
-      <div class="portfolio-switch" id="portfolio-switch" role="tablist" aria-label="포트폴리오 종류" data-i18n-aria="portfolioType">
-        <button type="button" role="tab" id="portfolio-tab-works" data-view="works" aria-controls="works" aria-selected="true" data-i18n="showcase">SHOWCASE</button>
-        <button type="button" role="tab" id="portfolio-tab-samples" data-view="samples" aria-controls="samples" aria-selected="false" data-i18n="riggingSamples">RIGGING SAMPLES</button>
+      <div class="portfolio-switch" id="portfolio-switch" role="tablist" aria-label="포트폴리오 종류">
+        <button type="button" role="tab" id="portfolio-tab-works" data-view="works" aria-controls="works" aria-selected="true">SHOWCASE</button>
+        <button type="button" role="tab" id="portfolio-tab-samples" data-view="samples" aria-controls="samples" aria-selected="false">RIGGING SAMPLES</button>
       </div>
     <section class="section container portfolio-view is-active" id="works" role="tabpanel" aria-labelledby="portfolio-tab-works works-heading">
-      <div class="section-heading reveal"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading">SHOW<em>CASE</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer"><span data-i18n="moreYoutube">YouTube에서 더 보기</span> <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading reveal"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading">Selected <em>Works</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer">YouTube에서 더 보기 <span aria-hidden="true">↗</span></a></div>
       <div id="works-grid" class="works-grid"><div class="placeholder-card">쇼케이스를 불러오는 중...</div></div>
     </section>
 
     <section class="section portfolio-view section-soft" id="samples" role="tabpanel" aria-labelledby="portfolio-tab-samples samples-heading">
       <div class="container">
-        <div class="section-heading reveal"><div><span class="section-index">02 / MOTION LIBRARY</span><h2 id="samples-heading"><span data-i18n="rigging">Rigging</span> <em data-i18n="samples">Samples</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="samplesDescription">원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.</p></div></div>
-        <div class="sample-tab-row reveal" id="sample-tabs" role="tablist" aria-label="리깅 샘플 카테고리" data-i18n-aria="sampleCategory"></div>
+        <div class="section-heading reveal"><div><span class="section-index">02 / MOTION LIBRARY</span><h2 id="samples-heading">Rigging <em>Samples</em><span class="heading-star" aria-hidden="true">✧</span></h2><p>원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.</p></div></div>
+        <div class="sample-tab-row reveal" id="sample-tabs" role="tablist" aria-label="리깅 샘플 카테고리"></div>
         <div id="sample-panel" class="sample-panel" role="tabpanel" aria-live="polite"><div class="placeholder-card">샘플을 준비하고 있어요...</div></div>
       </div>
     </section>
@@ -573,29 +429,27 @@ body.sale-image-lightbox-open{overflow:hidden}
 
     <div class="site-panel" data-page="sale-models">
     <section class="section container" id="sale-models" aria-labelledby="sale-models-heading">
-      <div class="section-heading reveal"><div><span class="section-index">03 / PREMADE MODELS</span><h2 id="sale-models-heading"><span data-i18n="premade">Premade</span> <em data-i18n="models">Models</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="sale-models-description">완성된 Live2D 판매 모델을 소개합니다.</p></div></div>
+      <div class="section-heading reveal"><div><span class="section-index">03 / PREMADE MODELS</span><h2 id="sale-models-heading">Premade <em>Models</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="sale-models-description">완성된 Live2D 판매 모델을 소개합니다.</p></div></div>
       <div class="sale-models-grid" id="sale-models-grid"><div class="placeholder-card">판매 모델 정보를 불러오는 중...</div></div>
-      <div class="sale-model-picker" id="sale-model-picker" role="tablist" aria-label="판매 모델 선택" data-i18n-aria="selectModel"></div>
     </section>
     </div>
 
     <div class="site-panel" data-page="pricing">
     <section class="section container" id="pricing" aria-labelledby="pricing-heading">
-      <div class="section-heading reveal"><div><span class="section-index">04 / COMMISSION</span><h2 id="pricing-heading"><span data-i18n="rigging">Rigging</span> <em data-i18n="price">Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact"><span data-i18n="commissionConsult">의뢰 상담하기</span> <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading reveal"><div><span class="section-index">04 / COMMISSION</span><h2 id="pricing-heading">Rigging <em>Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact">의뢰 상담하기 <span aria-hidden="true">↗</span></a></div>
       <div class="pricing-grid" id="pricing-grid"></div>
-      <section class="price-included-panel" id="price-included-panel" aria-live="polite" hidden></section>
       <p class="price-notice reveal" id="price-notice"></p>
       <div class="addons-wrap reveal">
-        <div class="addons-heading"><div><span class="small-kicker">CUSTOMIZE YOUR MODEL</span><h3 data-i18n="additionalOptions">Additional Options</h3><p data-i18n="addonsDescription">추가 기능은 필요한 것만 선택할 수 있어요.</p></div><span class="addons-deco" aria-hidden="true">✳</span></div>
-        <div class="addons-layout"><div class="addons-nav" id="addons-nav" role="tablist" aria-label="추가 옵션 카테고리" data-i18n-aria="addonCategory"></div><div class="addons-panel" id="addons-panel" role="tabpanel" tabindex="0" aria-live="polite"></div></div>
+        <div class="addons-heading"><div><span class="small-kicker">CUSTOMIZE YOUR MODEL</span><h3>Additional Options</h3><p>추가 기능은 필요한 것만 선택할 수 있어요.</p></div><span class="addons-deco" aria-hidden="true">✳</span></div>
+        <div class="addons-grid" id="addons-grid"></div>
       </div>
     </section>
     </div>
 
     <div class="site-panel" data-page="about">
-    <section class="section" id="about" aria-labelledby="about-heading">
+    <section class="section section-soft" id="about" aria-labelledby="about-heading">
       <div class="container">
-        <div class="section-heading reveal"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading"><span data-i18n="workHeading">Work</span> <em data-i18n="processHeading">Process</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="guideDescription">첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
+        <div class="section-heading reveal"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading">How We <em>Work</em><span class="heading-star" aria-hidden="true">✧</span></h2><p>첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
         <div class="process-grid" id="process-grid"></div>
         <div class="notice-grid" id="notice-grid"></div>
       </div>
@@ -606,226 +460,48 @@ body.sale-image-lightbox-open{overflow:hidden}
     <section class="contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact-panel reveal"><div class="contact-star contact-star-one" aria-hidden="true">✦</div><div class="contact-star contact-star-two" aria-hidden="true">✧</div>
-          <div class="contact-intro">
-            <span class="section-index">06 / CONTACT</span>
-            <h2 id="contact-heading"><span data-i18n="letsMake">Live2D Rigger</span> <em data-i18n="move">Eryn</em></h2>
-            <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요? 작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
-            <p class="contact-note" id="contact-note">문의 접수 후 내용을 확인하여 개별적으로 안내드립니다.</p>
-            <div class="contact-mini-links" id="contact-socials"></div>
-          </div>
-          <div class="contact-form-card">
-            <div class="contact-form-heading"><div><span>✦ QUICK CONTACT</span><h3 data-i18n="contactFormTitle">간단 문의</h3></div><span class="contact-form-symbol" aria-hidden="true">✧</span></div>
-            <form class="contact-form" id="contact-inquiry-form" method="POST" target="contact-submit-frame" novalidate>
-              <div class="contact-field"><label for="inquiry-type" data-i18n="contactType">문의 유형</label>
-                <select id="inquiry-type" name="inquiryType" required><option value="rigging" data-i18n="contactRigging">리깅 커미션</option><option value="premade" data-i18n="contactPremade">판매 모델 구매</option><option value="other" data-i18n="contactOther">기타 문의</option></select></div>
-              <div class="contact-field-row">
-                <div class="contact-field"><label for="inquiry-name" data-i18n="contactName">닉네임</label><input type="text" id="inquiry-name" name="name" maxlength="80" autocomplete="name" required data-i18n-placeholder="contactNameHint" placeholder="닉네임을 적어주세요"></div>
-                <div class="contact-field"><label for="inquiry-email" data-i18n="contactEmail">답변받을 이메일</label><input type="email" id="inquiry-email" name="email" maxlength="254" autocomplete="email" inputmode="email" required placeholder="name@example.com"></div>
-              </div>
-              <div class="contact-field"><label for="inquiry-message" data-i18n="contactMessage">문의 내용</label><textarea id="inquiry-message" name="message" minlength="10" maxlength="2500" required data-i18n-placeholder="contactMessageHint" placeholder="원하는 작업과 궁금한 점을 알려주세요."></textarea></div>
-              <label class="contact-consent" for="inquiry-consent"><input type="checkbox" id="inquiry-consent" name="consent" value="yes" required><span id="contact-privacy-notice">문의 답변을 위해 닉네임·이메일·문의 내용을 수집·이용하는 데 동의합니다.</span></label>
-              <div class="contact-honeypot" aria-hidden="true"><label for="inquiry-website">Website</label><input id="inquiry-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
-              <input type="hidden" name="requestId" id="contact-request-id">
-              <input type="hidden" name="language" id="contact-form-language" value="ko">
-              <button class="contact-submit" id="contact-submit" type="submit" disabled><span id="contact-submit-label" data-i18n="contactSubmit">문의 보내기</span> <span aria-hidden="true">↗</span></button>
-              <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite" data-state="info"></p>
-            </form>
-            <div class="contact-form-alternative"><span data-i18n="contactFormAlternate">상세 신청이 필요하신가요?</span><a id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="googleInquiry">Google Form으로 문의하기</span> ↗</a><span id="form-pending" data-i18n="formPending" hidden>Google Form 연결 준비 중</span></div>
-            <iframe class="contact-submit-frame" id="contact-submit-frame" name="contact-submit-frame" title="Contact form delivery" tabindex="-1" aria-hidden="true"></iframe>
-          </div>
+          <span class="section-index">06 / CONTACT</span>
+          <h2 id="contact-heading">Let's make it <em>move.</em></h2>
+          <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요?<br>작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
+          <a class="button button-contact" id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden>Google Form으로 문의하기 <span aria-hidden="true">↗</span></a>
+          <div class="form-pending" id="form-pending"><span aria-hidden="true">✳</span> Google Form 링크 연결 대기 중</div>
+          <p class="contact-note" id="contact-note">문의 접수 후 내용을 확인하여 개별적으로 안내드립니다.</p>
+          <div class="contact-mini-links" id="contact-socials"></div>
         </div>
       </div>
     </section>
     </div>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><a href="#home" class="footer-brand">Eryn<span>.</span></a><div id="footer-socials" class="footer-socials"></div><span class="footer-copyright">© <span id="current-year">2026</span> ERYN. All rights reserved.</span></div></footer>
+  <footer class="footer"><div class="container footer-inner"><div><a href="#home" class="footer-brand">eryn<span>.</span></a><p>Live2D Rigging &amp; Character Motion</p></div><div id="footer-socials" class="footer-socials"></div><span class="footer-copyright">© <span id="current-year">2026</span> ERYN. All rights reserved.</span></div></footer>
   <dialog class="sample-lightbox" id="sample-lightbox" aria-labelledby="sample-lightbox-title" aria-describedby="sample-lightbox-hint">
     <div class="sample-lightbox-top">
       <div><p class="sample-lightbox-kicker">ERYN · LIVE2D MOTION</p><h3 class="sample-lightbox-title" id="sample-lightbox-title">리깅 샘플</h3></div>
-      <button type="button" class="sample-lightbox-close" id="sample-lightbox-close" aria-label="확대 영상 닫기" data-i18n-aria="closeVideo" autofocus>×</button>
+      <button type="button" class="sample-lightbox-close" id="sample-lightbox-close" aria-label="확대 영상 닫기" autofocus>×</button>
     </div>
     <div class="sample-lightbox-media">
-      <span class="sample-lightbox-loading" id="sample-lightbox-loading" role="status" data-i18n="videoLoading">영상을 불러오는 중...</span>
-      <video id="sample-lightbox-video" class="sample-lightbox-video" controls playsinline muted loop preload="none" aria-label="확대된 리깅 샘플 영상" data-i18n-aria="enlargedVideo"></video>
+      <span class="sample-lightbox-loading" id="sample-lightbox-loading" role="status">영상을 불러오는 중...</span>
+      <video id="sample-lightbox-video" class="sample-lightbox-video" controls playsinline muted loop preload="none" aria-label="확대된 리깅 샘플 영상"></video>
     </div>
-    <p class="sample-lightbox-hint" id="sample-lightbox-hint" data-i18n="lightboxHint">ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.</p>
+    <p class="sample-lightbox-hint" id="sample-lightbox-hint">ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.</p>
   </dialog>
-  <dialog class="sale-image-lightbox" id="sale-image-lightbox" aria-labelledby="sale-image-lightbox-title" aria-describedby="sale-image-lightbox-hint">
-    <div class="sale-image-lightbox-top">
-      <div><p class="sale-image-lightbox-kicker">ERYN · PREMADE GALLERY</p><h3 class="sale-image-lightbox-title" id="sale-image-lightbox-title">판매 모델</h3></div>
-      <button type="button" class="sale-image-lightbox-close" id="sale-image-lightbox-close" aria-label="확대 이미지 닫기" data-i18n-aria="closeImage" autofocus>×</button>
-    </div>
-    <div class="sale-image-lightbox-media">
-      <span class="sale-image-lightbox-loading" id="sale-image-lightbox-loading" role="status" data-i18n="imageLoading">이미지를 불러오는 중...</span>
-      <img class="sale-image-lightbox-image" id="sale-image-lightbox-image" alt="" draggable="false">
-      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-prev" id="sale-image-lightbox-prev" aria-label="이전 이미지" data-i18n-aria="prevImage">‹</button>
-      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-next" id="sale-image-lightbox-next" aria-label="다음 이미지" data-i18n-aria="nextImage">›</button>
-    </div>
-    <div class="sale-image-lightbox-meta"><span id="sale-image-lightbox-caption"></span><span class="sale-image-lightbox-count" id="sale-image-lightbox-count"></span></div>
-    <p class="sale-image-lightbox-hint" id="sale-image-lightbox-hint" data-i18n="imageLightboxHint">좌우 방향키로 이미지를 넘기고 ESC 키로 닫을 수 있어요.</p>
-  </dialog>
-  <noscript><p class="noscript-notice">이 홈페이지의 콘텐츠를 보려면 JavaScript를 활성화해 주세요. / Please enable JavaScript to view this site. / このサイトを表示するにはJavaScriptを有効にしてください。</p></noscript>
+  <noscript><p class="noscript-notice">이 홈페이지의 콘텐츠를 보려면 JavaScript를 활성화해 주세요.</p></noscript>
   <script>
 'use strict';
 
-/* Eryn's standalone portfolio. Korean content and EN/JA overrides live in content.json. */
+/* Eryn's standalone portfolio. All editable text, prices and media live in content.json. */
 let CONTENT = null;
-let ORIGINAL_CONTENT = null;
-let activeLanguage = 'ko';
 let activeMediaObserver = null;
 let currentSampleVideos = [];
-let sampleVisibilityBound = false;
 const sampleRatioCache = new Map();
 let lastSampleTrigger = null;
-let saleImageLightboxState = null;
 let activePage = 'home';
 let activePortfolioView = 'works';
-let contactEndpoint = '';
-let contactPendingId = null;
-let contactSubmitTimer = null;
-let contactStatusKey = '';
-let contactStatusState = 'info';
-let lastSaleInquiryPrefill = '';
 
 const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-const won = amount => activeLanguage === 'ko'
-  ? `${Number(amount || 0).toLocaleString('ko-KR')}원`
-  : `₩${Number(amount || 0).toLocaleString(activeLanguage === 'ja' ? 'ja-JP' : 'en-US')}`;
+const won = amount => `${Number(amount || 0).toLocaleString('ko-KR')}원`;
 const asArray = value => Array.isArray(value) ? value : [];
-
-const UI_TEXT = {
-  ko: {
-    skip:'본문 바로가기',mainNav:'주 메뉴',homeBrand:'에린 홈페이지 첫 화면',languageSelect:'언어 선택',menuOpen:'메뉴 열기',menuClose:'메뉴 닫기',
-    navHome:'홈',navPortfolio:'포트폴리오',navModels:'판매 모델',navCommission:'커미션',navGuide:'작업 안내',navContact:'문의하기',
-    heroViewWork:'작업물 감상하기',heroInquiry:'커미션 문의',preview:'대표 움직임 미리보기',loading:'영상 불러오는 중',explore:'포트폴리오 둘러보기',
-    showcase:'쇼케이스',riggingSamples:'리깅 샘플',selected:'대표',works:'작업물',moreYoutube:'YouTube에서 더 보기',
-    rigging:'리깅',samples:'샘플',samplesDescription:'원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.',
-    premade:'판매',models:'모델',price:'가격',commissionConsult:'의뢰 상담하기',additionalOptions:'추가 옵션',addonsDescription:'추가 기능은 필요한 것만 선택할 수 있어요.',
-    workHeading:'작업',processHeading:'과정',guideDescription:'첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.',
-    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'상세 신청서 작성하기',formPending:'상세 신청서 링크 준비 중',
-    contactFormTitle:'간단 문의',contactFormAlternate:'자세한 신청이 필요하신가요?',contactType:'문의 유형',contactRigging:'리깅 커미션',contactPremade:'판매 모델 구매',contactOther:'기타 문의',
-    contactName:'닉네임',contactNameHint:'닉네임을 적어주세요',contactEmail:'답변받을 이메일',contactMessage:'문의 내용',contactMessageHint:'원하는 작업과 궁금한 점을 알려주세요. (10자 이상)',
-    contactSubmit:'문의 보내기',contactPrivacyFallback:'문의 답변을 위해 닉네임·이메일·문의 내용을 수집·이용하는 데 동의합니다.',contactSetup:'이메일 문의 기능을 연결 중입니다. 지금은 아래 상세 신청서로 문의해 주세요.',contactSending:'전송 결과 확인 중...',contactSuccess:'문의가 정상적으로 접수되었어요! 확인 후 이메일로 답변드릴게요.',contactError:'메일 전송에 실패했어요. 잠시 후 다시 시도하거나 상세 신청서를 이용해 주세요.',contactInvalid:'내용을 확인해 주세요. 이메일 주소와 문의 내용(10자 이상)이 필요해요.',contactRateLimit:'같은 이메일의 문의가 방금 접수되었어요. 잠시 뒤 다시 시도해 주세요.',contactTimeout:'전송 결과를 확인하지 못했어요. 중복 제출을 피하고 잠시 뒤 확인해 주세요.',
-    portfolioType:'포트폴리오 종류',sampleCategory:'리깅 샘플 카테고리',selectModel:'판매 모델 선택',addonCategory:'추가 옵션 카테고리',
-    closeVideo:'확대 영상 닫기',enlargedVideo:'확대된 리깅 샘플 영상',videoLoading:'영상을 불러오는 중...',lightboxHint:'ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.',
-    watchShowcase:'쇼케이스 YouTube에서 보기',thumbnail:'쇼케이스 썸네일',sampleItem:'리깅 샘플',expandVideo:'영상 확대 보기',
-    emptyShowcase:'등록된 쇼케이스가 없습니다.',emptySamples:'등록된 리깅 샘플이 없습니다.',emptyCategory:'등록된 샘플이 없습니다.',
-    sold:'판매 완료된 모델입니다',soldOut:'판매 완료',onSale:'판매 중',priceInquiry:'가격 문의',saleInquiry:'판매 문의',buyInquiry:'구매 문의',saleInquiryPrefill:'안녕하세요! {model} 모델 구매에 대해 문의드립니다.',
-    viewShowcase:'쇼케이스 보기',imageWaiting:'이미지를 준비하고 있어요',prevImage:'이전 이미지',nextImage:'다음 이미지',expandImage:'이미지 확대 보기',closeImage:'확대 이미지 닫기',imageLoading:'이미지를 불러오는 중...',imageError:'이미지를 불러올 수 없어요.',imageLightboxHint:'좌우 방향키로 이미지를 넘기고 ESC 키로 닫을 수 있어요.',salePrice:'판매 가격',illustrationPrice:'일러스트',riggingPrice:'리깅',totalPrice:'최종 금액',
-    included:'기본 포함 옵션 확인',includedClose:'기본 포함 옵션 닫기',includedHeading:'기본 포함 옵션',close:'닫기',
-    noBaseOptions:'기본 옵션 정보가 준비 중입니다.',noAddons:'등록된 추가 옵션이 없습니다.',addonNotice:'선택한 기능의 금액은 기본 리깅 가격에 추가됩니다.',
-    videoError:'영상을 불러올 수 없어요. 파일 경로를 확인해 주세요.',videoLoadFailed:'영상 로드 실패',heroVideoError:'영상을 불러올 수 없습니다. 영상 경로를 확인해 주세요.',
-    heroVideoUnset:'대표 영상이 지정되지 않았습니다',announcement:'화면',contentError:'content.json을 불러오지 못했습니다. GitHub Pages 또는 로컬 웹 서버에서 열어주세요.',
-    sampleError:'샘플 정보를 불러오지 못했습니다.',formError:'문의 링크 정보가 아직 로딩되지 않았습니다.'
-  },
-  en: {
-    skip:'Skip to content',mainNav:'Main navigation',homeBrand:'Eryn homepage',languageSelect:'Select language',menuOpen:'Open menu',menuClose:'Close menu',
-    navHome:'Home',navPortfolio:'Portfolio',navModels:'Premade Models',navCommission:'Commission',navGuide:'Guide',navContact:'Contact',
-    heroViewWork:'Explore my work',heroInquiry:'Commission inquiry',preview:'LIVE MOTION PREVIEW',loading:'LOADING SHOWREEL',explore:'EXPLORE PORTFOLIO',
-    showcase:'SHOWCASE',riggingSamples:'RIGGING SAMPLES',selected:'Selected',works:'Works',moreYoutube:'More on YouTube',
-    rigging:'Rigging',samples:'Samples',samplesDescription:'Select a category to explore the details of each movement.',
-    premade:'Premade',models:'Models',price:'Price',commissionConsult:'Discuss a commission',additionalOptions:'Additional Options',addonsDescription:'Choose only the extras your model needs.',
-    workHeading:'Work',processHeading:'Process',guideDescription:'Our process, from your first inquiry to final delivery.',
-    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Detailed request form',formPending:'Detailed form coming soon',
-    contactFormTitle:'Quick inquiry',contactFormAlternate:'Need a detailed application?',contactType:'Inquiry type',contactRigging:'Live2D rigging',contactPremade:'Premade model purchase',contactOther:'Other inquiry',
-    contactName:'Name / nickname',contactNameHint:'How should I address you?',contactEmail:'Reply email',contactMessage:'Your message',contactMessageHint:'Tell me what you need (at least 10 characters).',
-    contactSubmit:'Send inquiry',contactPrivacyFallback:'I agree to the collection of my name, email, and message to respond to my inquiry.',contactSetup:'Email inquiries are being connected. Please use the detailed request form below for now.',contactSending:'Checking delivery...',contactSuccess:'Your inquiry was received! I will reply by email after reviewing it.',contactError:'Your message could not be delivered. Please try again or use the detailed request form.',contactInvalid:'Please check your email and message (at least 10 characters).',contactRateLimit:'An inquiry from this email was just received. Please try again later.',contactTimeout:'Delivery could not be confirmed. Avoid duplicate submissions and check again later.',
-    portfolioType:'Portfolio sections',sampleCategory:'Rigging sample categories',selectModel:'Select a premade model',addonCategory:'Additional option categories',
-    closeVideo:'Close enlarged video',enlargedVideo:'Enlarged rigging sample video',videoLoading:'Loading video...',lightboxHint:'Press ESC or close to return.',
-    watchShowcase:'Watch showcase on YouTube',thumbnail:'showcase thumbnail',sampleItem:'rigging sample',expandVideo:'Enlarge video',
-    emptyShowcase:'No showcases are available yet.',emptySamples:'No rigging samples are available yet.',emptyCategory:'No samples in this category yet.',
-    sold:'This model has been sold',soldOut:'SOLD OUT',onSale:'Available',priceInquiry:'Ask for price',saleInquiry:'Purchase inquiry',buyInquiry:'Purchase inquiry',saleInquiryPrefill:'Hello! I am interested in purchasing the {model} model.',
-    viewShowcase:'Watch showcase',imageWaiting:'Images coming soon',prevImage:'Previous image',nextImage:'Next image',expandImage:'Enlarge image',closeImage:'Close enlarged image',imageLoading:'Loading image...',imageError:'Unable to load the image.',imageLightboxHint:'Use the arrow keys to change images, or press ESC to close.',salePrice:'Model price',illustrationPrice:'Illustration',riggingPrice:'Rigging',totalPrice:'Total',
-    included:'View included features',includedClose:'Hide included features',includedHeading:'Included Features',close:'Close',
-    noBaseOptions:'Included features will be updated soon.',noAddons:'No extra options listed yet.',addonNotice:'Selected extras are added to the base rigging price.',
-    videoError:'Unable to load video. Please check its file path.',videoLoadFailed:'Video unavailable',heroVideoError:'Unable to load video. Please check its file path.',
-    heroVideoUnset:'NO FEATURED VIDEO SET',announcement:'page',contentError:'Could not load content.json. Open via GitHub Pages or a local web server.',
-    sampleError:'Unable to load sample information.',formError:'Contact link information is not available yet.'
-  },
-  ja: {
-    skip:'本文へ移動',mainNav:'メインメニュー',homeBrand:'Erynホームページ',languageSelect:'言語選択',menuOpen:'メニューを開く',menuClose:'メニューを閉じる',
-    navHome:'ホーム',navPortfolio:'作品紹介',navModels:'販売モデル',navCommission:'ご依頼',navGuide:'制作案内',navContact:'お問い合わせ',
-    heroViewWork:'制作実績を見る',heroInquiry:'ご依頼・ご相談',preview:'モーションプレビュー',loading:'動画を読み込み中',explore:'作品一覧を見る',
-    showcase:'ショーケース',riggingSamples:'リギングサンプル',selected:'制作',works:'実績',moreYoutube:'YouTubeでもっと見る',
-    rigging:'リギング',samples:'サンプル',samplesDescription:'カテゴリーを選んで、動きの細部をご覧ください。',
-    premade:'販売',models:'モデル',price:'料金',commissionConsult:'ご依頼の相談',additionalOptions:'追加オプション',addonsDescription:'必要な機能だけを追加できます。',
-    workHeading:'制作',processHeading:'の流れ',guideDescription:'お問い合わせから納品までの制作の流れをご案内します。',
-    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'詳細な申し込みフォーム',formPending:'詳細フォームを準備中です',
-    contactFormTitle:'簡単お問い合わせ',contactFormAlternate:'詳しいお申し込みはこちら',contactType:'お問い合わせの種類',contactRigging:'Live2Dモデリング',contactPremade:'販売モデルの購入',contactOther:'その他',
-    contactName:'お名前・ニックネーム',contactNameHint:'お名前をご入力ください',contactEmail:'返信先メールアドレス',contactMessage:'お問い合わせ内容',contactMessageHint:'ご希望の内容をご記入ください（10文字以上）。',
-    contactSubmit:'お問い合わせを送信',contactPrivacyFallback:'返信のため、名前・メールアドレス・お問い合わせ内容の収集と利用に同意します。',contactSetup:'メールお問い合わせは準備中です。現在は下の詳細フォームをご利用ください。',contactSending:'送信結果を確認中...',contactSuccess:'お問い合わせを受け付けました！確認後、メールにて返信いたします。',contactError:'送信できませんでした。再度お試しいただくか、詳細フォームをご利用ください。',contactInvalid:'メールアドレスとお問い合わせ内容（10文字以上）をご確認ください。',contactRateLimit:'このメールアドレスからの送信を受け付けたばかりです。しばらくしてからお試しください。',contactTimeout:'送信結果を確認できませんでした。重複送信を避け、しばらくしてからご確認ください。',
-    portfolioType:'ポートフォリオの種類',sampleCategory:'リギングサンプルのカテゴリー',selectModel:'販売モデルの選択',addonCategory:'追加オプションのカテゴリー',
-    closeVideo:'拡大動画を閉じる',enlargedVideo:'拡大したリギングサンプル動画',videoLoading:'動画を読み込み中...',lightboxHint:'ESCキーまたは閉じるボタンで戻れます。',
-    watchShowcase:'YouTubeでショーケースを見る',thumbnail:'ショーケースのサムネイル',sampleItem:'リギングサンプル',expandVideo:'動画を拡大',
-    emptyShowcase:'公開中のショーケースはありません。',emptySamples:'公開中のリギングサンプルはありません。',emptyCategory:'このカテゴリーの動画はありません。',
-    sold:'このモデルは販売終了しました',soldOut:'売り切れ',onSale:'販売中',priceInquiry:'価格を問い合わせる',saleInquiry:'購入のお問い合わせ',buyInquiry:'購入のお問い合わせ',saleInquiryPrefill:'こんにちは。{model}の購入についてお問い合わせします。',
-    viewShowcase:'ショーケースを見る',imageWaiting:'画像を準備中です',prevImage:'前の画像',nextImage:'次の画像',expandImage:'画像を拡大表示',closeImage:'拡大画像を閉じる',imageLoading:'画像を読み込み中...',imageError:'画像を読み込めません。',imageLightboxHint:'左右の矢印キーで切り替え、ESCキーで閉じられます。',salePrice:'販売価格',illustrationPrice:'イラスト',riggingPrice:'モデリング',totalPrice:'合計金額',
-    included:'基本仕様を確認',includedClose:'基本仕様を閉じる',includedHeading:'基本仕様',close:'閉じる',
-    noBaseOptions:'基本仕様の情報を準備中です。',noAddons:'追加オプションはありません。',addonNotice:'追加機能の料金は基本リギング価格に加算されます。',
-    videoError:'動画を読み込めません。ファイルのパスをご確認ください。',videoLoadFailed:'動画の読み込みに失敗',heroVideoError:'動画を読み込めません。ファイルのパスをご確認ください。',
-    heroVideoUnset:'代表動画は未設定です',announcement:'ページ',contentError:'content.jsonを読み込めませんでした。GitHub Pagesまたはローカルサーバーで開いてください。',
-    sampleError:'サンプル情報を読み込めませんでした。',formError:'お問い合わせリンクを読み込み中です。'
-  }
-};
-const t = key => UI_TEXT[activeLanguage]?.[key] || UI_TEXT.ko[key] || key;
-// Only editorial headlines stay in English; navigational links and buttons follow the selected language.
-const ENGLISH_PRESENTATION_KEYS = new Set([
-  'preview','selected','works','rigging','samples','premade','models','price',
-  'additionalOptions','workHeading','processHeading','letsMake','move'
-]);
-const displayText = key => ENGLISH_PRESENTATION_KEYS.has(key) ? UI_TEXT.en[key] : t(key);
-
-const englishPlanName = (index, fallback) => ORIGINAL_CONTENT?.translations?.en?.pricing?.plans?.[index]?.name || fallback;
-
-// A translation overrides only text fields. IDs, links, media paths and prices remain in the Korean source.
-function mergeLocalized(base, translated) {
-  if (translated === undefined) return base;
-  if (Array.isArray(base)) return base.map((item, i) => mergeLocalized(item, Array.isArray(translated) ? translated[i] : undefined));
-  if (base && typeof base === 'object' && !Array.isArray(base)) {
-    const result = {...base};
-    if (translated && typeof translated === 'object' && !Array.isArray(translated))
-      Object.keys(base).forEach(key => { if (key in translated) result[key] = mergeLocalized(base[key], translated[key]); });
-    return result;
-  }
-  return translated;
-}
-
-function updateStaticLanguage() {
-  document.documentElement.lang = activeLanguage;
-  document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = displayText(node.dataset.i18n); });
-  document.querySelectorAll('[data-i18n-aria]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.i18nAria)); });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(node => { node.placeholder = t(node.dataset.i18nPlaceholder); });
-  document.querySelectorAll('.language-switch button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === activeLanguage)));
-  const menu = $('menu-toggle');
-  menu.setAttribute('aria-label', t(menu.getAttribute('aria-expanded') === 'true' ? 'menuClose' : 'menuOpen'));
-  const route = ROUTES[location.hash.slice(1)] || ROUTES.home;
-  $('page-announcer').textContent = `${t(route.labelKey)} ${t('announcement')}`;
-}
-
-function renderAllContent() {
-  if (!ORIGINAL_CONTENT) return;
-  CONTENT = mergeLocalized(ORIGINAL_CONTENT, ORIGINAL_CONTENT.translations?.[activeLanguage]);
-  renderHero(); renderWorks(); renderSamples(); renderSaleModels(); renderPricing(); renderInformation(); renderContact();
-  initReveals();
-  syncMediaPlayback();
-}
-
-function initLanguageSwitch() {
-  try {
-    const saved = localStorage.getItem('eryn-language');
-    if (['ko','en','ja'].includes(saved)) activeLanguage = saved;
-  } catch (_) { /* Language preference still works without storage. */ }
-  document.querySelectorAll('.language-switch button').forEach(button => button.addEventListener('click', () => {
-    if (activeLanguage === button.dataset.lang) return;
-    activeLanguage = button.dataset.lang;
-    try { localStorage.setItem('eryn-language', activeLanguage); } catch (_) {}
-    updateStaticLanguage();
-    renderAllContent();
-  }));
-  updateStaticLanguage();
-}
 
 function validExternalUrl(value) {
   if (typeof value !== 'string' || !value.trim()) return '';
@@ -872,32 +548,26 @@ function renderHero() {
   const hero = CONTENT.hero || {};
   $('hero-eyebrow').textContent = hero.eyebrow || 'LIVE2D RIGGING PORTFOLIO';
   $('hero-title').innerHTML = `${escapeHtml(hero.name || 'Eryn')}<span class="title-period">.</span>`;
-  $('hero-korean').textContent = ORIGINAL_CONTENT?.hero?.subtitle || ORIGINAL_CONTENT?.hero?.korean || 'Live2D Rigger Eryn';
+  $('hero-korean').textContent = hero.korean || 'Live2D 리거 에린';
   $('hero-intro').textContent = hero.intro || '';
   $('status-text').textContent = hero.status?.label || '';
   $('hero-status').classList.toggle('closed', hero.status?.open === false);
   $('hero-status').hidden = !hero.status?.label;
-  const eventBadge = $('hero-event');
-  eventBadge.hidden = hero.event?.enabled === false || !hero.event?.label;
-  if (!eventBadge.hidden) {
-    $('hero-event-text').textContent = hero.event.label;
-  }
-  $('hero-video-caption').textContent = ORIGINAL_CONTENT?.hero?.videoCaption || 'Free movement sample';
-  $('hero-float-label-text').textContent = ORIGINAL_CONTENT?.hero?.floatLabel || 'Every detail\ncomes alive.';
+  $('hero-video-caption').textContent = hero.videoCaption || 'live motion sample';
+  $('hero-tags').innerHTML = asArray(hero.tags).map(tag => `<span class="hero-tag">${escapeHtml(tag)}</span>`).join('');
 
   const player = $('hero-video');
   const loading = $('hero-loading');
   const videoUrl = assetUrl(hero.video);
   if (!videoUrl) {
-    loading.innerHTML = `<span class="loading-symbol">✧</span><span>${escapeHtml(t('heroVideoUnset'))}</span>`;
+    loading.innerHTML = '<span class="loading-symbol">✧</span><span>REPRESENTATIVE VIDEO NOT SET</span>';
     return;
   }
-  player.setAttribute('aria-label', hero.videoCaption || t('preview'));
+  player.setAttribute('aria-label', hero.videoCaption || 'Live2D 대표 리깅 영상');
   player.addEventListener('loadeddata', () => { player.classList.add('ready'); loading.hidden = true; }, {once:true});
-  player.addEventListener('error', () => { loading.hidden = false; loading.textContent = t('heroVideoError'); });
-  const previousUrl = player.dataset.src;
+  player.addEventListener('error', () => { loading.hidden = false; loading.textContent = '영상을 불러올 수 없습니다. 영상 경로를 확인해 주세요.'; });
   player.dataset.src = videoUrl;
-  if (activePage === 'home' && (previousUrl !== videoUrl || !player.getAttribute('src'))) player.src = videoUrl;
+  if (activePage === 'home') player.src = videoUrl;
   if (activePage === 'home' && document.visibilityState !== 'hidden')
     player.play().catch(() => { /* Browser autoplay policy can prevent playback. */ });
 }
@@ -910,14 +580,14 @@ function renderWorks() {
     if (!id) return '';
     const watchUrl = `https://www.youtube.com/watch?v=${id}`;
     const thumbnail = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-    return `<a class="work-card reveal" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(work.title)} · ${escapeHtml(t('watchShowcase'))}">
-      <div class="work-cover"><img src="${thumbnail}" draggable="false" alt="${escapeHtml(work.title)} ${escapeHtml(t('thumbnail'))}" loading="lazy" decoding="async"><span class="work-play" aria-hidden="true">▶</span></div>
+    return `<a class="work-card reveal" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(work.title)} 쇼케이스 YouTube에서 보기">
+      <div class="work-cover"><img src="${thumbnail}" alt="${escapeHtml(work.title)} 쇼케이스 썸네일" loading="lazy" decoding="async"><span class="work-play" aria-hidden="true">▶</span></div>
       <div class="work-info"><div class="work-topline"><span>LIVE2D SHOWCASE</span><span>${String(index + 1).padStart(2, '0')} ↗</span></div>
         <h3 class="work-title">${escapeHtml(work.title)}</h3>
         <p class="work-credit">ILLUST · ${escapeHtml(work.illustrator || '—')} <span aria-hidden="true"> / </span> RIG · ${escapeHtml(work.rigging || 'Eryn')}</p>
       </div></a>`;
   }).filter(Boolean);
-  $('works-grid').innerHTML = works.length ? works.join('') : `<div class="placeholder-card">${escapeHtml(t('emptyShowcase'))}</div>`;
+  $('works-grid').innerHTML = works.length ? works.join('') : '<div class="placeholder-card">등록된 쇼케이스가 없습니다.</div>';
 }
 
 function stopSampleVideos() {
@@ -938,9 +608,9 @@ function openSampleLightbox(trigger) {
   if (!sampleVideo?.dataset.src || typeof dialog.showModal !== 'function') return;
 
   lastSampleTrigger = trigger;
-  $('sample-lightbox-title').textContent = trigger.dataset.title || t('riggingSamples');
+  $('sample-lightbox-title').textContent = trigger.dataset.title || '리깅 샘플';
   const loading = $('sample-lightbox-loading');
-  loading.textContent = t('videoLoading');
+  loading.textContent = '영상을 불러오는 중...';
   loading.hidden = false;
   player.classList.remove('ready');
 
@@ -956,7 +626,7 @@ function openSampleLightbox(trigger) {
     loading.hidden = true;
   };
   player.onerror = () => {
-    loading.textContent = t('videoError');
+    loading.textContent = '영상을 불러올 수 없어요. 파일 경로를 확인해 주세요.';
     loading.hidden = false;
   };
 
@@ -1042,11 +712,11 @@ function selectSampleCategory(categoryId) {
     if (!src) return '';
     const title = video.title || `${category.label} ${i + 1}`;
     return `<article class="sample-card"><div class="sample-video-wrap"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
-      <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(title)} ${escapeHtml(t('sampleItem'))}"></video>
-      <button type="button" class="sample-video-open" data-title="${escapeHtml(title)}" aria-label="${escapeHtml(title)} ${escapeHtml(t('expandVideo'))}"><span class="sample-video-open-icon" aria-hidden="true">⤢</span></button></div>
+      <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(title)} 리깅 샘플"></video>
+      <button type="button" class="sample-video-open" data-title="${escapeHtml(title)}" aria-label="${escapeHtml(title)} 영상 확대 보기"><span class="sample-video-open-icon" aria-hidden="true">⤢</span></button></div>
       <div class="sample-label"><span>${escapeHtml(title)}</span><span>MOTION / ${String(i + 1).padStart(2, '0')}</span></div></article>`;
   }).filter(Boolean);
-  $('sample-panel').innerHTML = `<div class="sample-category-intro"><span>${escapeHtml(category.description || '')}</span><span class="sample-count">${mediaCards.length} SAMPLE${mediaCards.length === 1 ? '' : 'S'}</span></div><div class="sample-grid switch-enter">${mediaCards.join('') || `<div class="placeholder-card">${escapeHtml(t('emptyCategory'))}</div>`}</div>`;
+  $('sample-panel').innerHTML = `<div class="sample-category-intro"><span>${escapeHtml(category.description || '')}</span><span class="sample-count">${mediaCards.length} SAMPLE${mediaCards.length === 1 ? '' : 'S'}</span></div><div class="sample-grid switch-enter">${mediaCards.join('') || '<div class="placeholder-card">등록된 샘플이 없습니다.</div>'}</div>`;
   $('sample-panel').querySelectorAll('.sample-video-open').forEach(button => {
     button.addEventListener('click', () => openSampleLightbox(button));
     button.closest('.sample-card').addEventListener('click', event => {
@@ -1065,7 +735,7 @@ function selectSampleCategory(categoryId) {
     video.addEventListener('loadeddata', () => { video.classList.add('ready'); }, {once:true});
     video.addEventListener('error', () => {
       const symbol = frame.querySelector('.sample-video-placeholder');
-      if (symbol) symbol.textContent = t('videoLoadFailed');
+      if (symbol) symbol.textContent = '영상 로드 실패';
     });
   });
   observeSampleVideos();
@@ -1073,11 +743,9 @@ function selectSampleCategory(categoryId) {
 
 function renderSamples() {
   const categories = asArray(CONTENT.samples?.categories).filter(category => asArray(category.videos).length);
-  const preservedCategory = $('sample-tabs').querySelector('[aria-selected="true"]')?.dataset.category;
-  const selectedCategory = categories.find(category => category.id === preservedCategory)?.id || categories[0]?.id;
-  $('sample-tabs').innerHTML = categories.map(category => `<button type="button" class="sample-tab" role="tab" data-category="${escapeHtml(category.id)}" aria-controls="sample-panel" aria-selected="${category.id === selectedCategory}" tabindex="${category.id === selectedCategory ? '0' : '-1'}">${escapeHtml(category.label)}</button>`).join('');
+  $('sample-tabs').innerHTML = categories.map((category, i) => `<button type="button" class="sample-tab" role="tab" data-category="${escapeHtml(category.id)}" aria-controls="sample-panel" aria-selected="${i === 0}" tabindex="${i === 0 ? '0' : '-1'}">${escapeHtml(category.label)}</button>`).join('');
   $('sample-tabs').querySelectorAll('.sample-tab').forEach(button => button.addEventListener('click', () => selectSampleCategory(button.dataset.category)));
-  $('sample-tabs').onkeydown = event => {
+  $('sample-tabs').addEventListener('keydown', event => {
     if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
     event.preventDefault();
     const buttons = [...$('sample-tabs').querySelectorAll('.sample-tab')];
@@ -1086,10 +754,10 @@ function renderSamples() {
     const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1
       : (current + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
     buttons[next].focus(); buttons[next].click();
-  };
-  if (categories.length) selectSampleCategory(selectedCategory);
-  else $('sample-panel').innerHTML = `<div class="placeholder-card">${escapeHtml(t('emptySamples'))}</div>`;
-  if (!sampleVisibilityBound) document.addEventListener('visibilitychange', () => {
+  });
+  if (categories.length) selectSampleCategory(categories[0].id);
+  else $('sample-panel').innerHTML = '<div class="placeholder-card">등록된 리깅 샘플이 없습니다.</div>';
+  document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') currentSampleVideos.forEach(video => video.pause());
     else if (!$('sample-lightbox').open) currentSampleVideos.forEach(video => {
       // On return, resume visible videos only (avoid starting every tab's videos).
@@ -1097,81 +765,12 @@ function renderSamples() {
         video.play().catch(() => {});
     });
   });
-  sampleVisibilityBound = true;
-}
-
-function updateSaleImageLightbox() {
-  const state = saleImageLightboxState;
-  if (!state) return;
-  const image = state.images[state.index];
-  const photo = $('sale-image-lightbox-image');
-  const loading = $('sale-image-lightbox-loading');
-  photo.classList.remove('ready');
-  loading.textContent = t('imageLoading');
-  loading.hidden = false;
-  photo.onload = () => { photo.classList.add('ready'); loading.hidden = true; };
-  photo.onerror = () => { loading.textContent = t('imageError'); loading.hidden = false; };
-  photo.alt = image.alt || state.title;
-  photo.src = assetUrl(image.src);
-  $('sale-image-lightbox-title').textContent = state.title;
-  $('sale-image-lightbox-caption').textContent = image.caption || 'MODEL GALLERY';
-  $('sale-image-lightbox-count').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(state.images.length).padStart(2, '0')}`;
-  $('sale-image-lightbox-prev').hidden = state.images.length < 2;
-  $('sale-image-lightbox-next').hidden = state.images.length < 2;
-}
-
-function changeSaleImageLightbox(direction) {
-  const state = saleImageLightboxState;
-  if (!state || state.images.length < 2) return;
-  state.index = (state.index + direction + state.images.length) % state.images.length;
-  state.onChange(state.index); // Keep the card gallery in sync when the dialog closes.
-  updateSaleImageLightbox();
-}
-
-function openSaleImageLightbox(trigger, model, images, index, onChange) {
-  const dialog = $('sale-image-lightbox');
-  if (!images.length || typeof dialog.showModal !== 'function') return;
-  saleImageLightboxState = {trigger, title:model.title, images, index, onChange};
-  dialog.showModal();
-  document.body.classList.add('sale-image-lightbox-open');
-  updateSaleImageLightbox();
-}
-
-function initSaleImageLightbox() {
-  const dialog = $('sale-image-lightbox');
-  const photo = $('sale-image-lightbox-image');
-  $('sale-image-lightbox-close').addEventListener('click', () => dialog.close());
-  $('sale-image-lightbox-prev').addEventListener('click', () => changeSaleImageLightbox(-1));
-  $('sale-image-lightbox-next').addEventListener('click', () => changeSaleImageLightbox(1));
-  dialog.addEventListener('keydown', event => {
-    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-    event.preventDefault();
-    changeSaleImageLightbox(event.key === 'ArrowLeft' ? -1 : 1);
-  });
-  dialog.addEventListener('click', event => {
-    const bounds = dialog.getBoundingClientRect();
-    if (event.target === dialog &&
-        (event.clientX < bounds.left || event.clientX > bounds.right ||
-         event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
-  });
-  dialog.addEventListener('close', () => {
-    const trigger = saleImageLightboxState?.trigger;
-    photo.onload = null;
-    photo.onerror = null;
-    photo.removeAttribute('src');
-    photo.classList.remove('ready');
-    saleImageLightboxState = null;
-    document.body.classList.remove('sale-image-lightbox-open');
-    if (trigger?.isConnected) trigger.focus({preventScroll:true});
-  });
 }
 
 function renderSaleModels() {
   const sale = CONTENT.saleModels || {};
   const section = $('sale-models');
   const models = asArray(sale.items);
-  const lastModelIndex = Number($('sale-models-grid').querySelector('.sale-model-card.is-current')?.dataset.modelIndex ?? 0);
-  const preservedModel = lastModelIndex >= 0 && lastModelIndex < models.length ? lastModelIndex : 0;
   if (sale.enabled === false || !models.length) {
     section.hidden = true;
     return;
@@ -1182,50 +781,38 @@ function renderSaleModels() {
   $('sale-models-grid').innerHTML = models.map((model, index) => {
     const images = asArray(model.images).filter(item => assetUrl(item.src));
     const cover = images[0];
-    const status = model.sold ? t('soldOut') : (model.status || t('onSale'));
+    const status = model.sold ? 'SOLD OUT' : (model.status || '판매 중');
     const videoUrl = validExternalUrl(model.showcaseUrl);
-    // Only calculate a new total when both real component prices have been set.
-    // Otherwise preserve the published package price without guessing the split.
-    const componentPrice = value => value === null || value === undefined || value === '' || !Number.isFinite(Number(value)) || Number(value) < 0
-      ? null : Number(value);
-    const illustrationPrice = componentPrice(model.illustrationPrice);
-    const riggingPrice = componentPrice(model.riggingPrice);
-    const combinedPrice = illustrationPrice !== null && riggingPrice !== null ? illustrationPrice + riggingPrice : Number(model.price);
-    const price = Number.isFinite(combinedPrice) && combinedPrice > 0 ? won(combinedPrice) : t('priceInquiry');
+    const actionUrl = validExternalUrl(model.actionUrl);
+    const price = Number(model.price) > 0 ? won(model.price) : '가격 문의';
     const imageHtml = cover
-      ? `<img class="sale-model-image" draggable="false" src="${escapeHtml(assetUrl(cover.src))}" alt="${escapeHtml(cover.alt || model.title)}" loading="lazy" decoding="async">`
+      ? `<img class="sale-model-image" src="${escapeHtml(assetUrl(cover.src))}" alt="${escapeHtml(cover.alt || model.title)}" loading="lazy" decoding="async">`
       : '';
     const features = asArray(model.features).slice(0, 6)
       .map(feature => `<li>${escapeHtml(feature)}</li>`).join('');
     const actions = model.sold
-      ? `<span class="sale-model-sold-label">${escapeHtml(t('sold'))}</span>`
-      : `<div class="sale-model-actions"><a class="button button-primary" href="#contact" data-sale-inquiry="${index}">${escapeHtml(t('buyInquiry'))} ↗</a>
-          ${videoUrl ? `<a class="button button-outline" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t('viewShowcase'))} ↗</a>` : ''}
+      ? '<span class="sale-model-sold-label">판매 완료된 모델입니다</span>'
+      : `<div class="sale-model-actions">${actionUrl
+          ? `<a class="button button-primary" href="${escapeHtml(actionUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(model.actionLabel || '구매 문의')} ↗</a>`
+          : '<a class="button button-primary" href="#contact">판매 문의 ↗</a>'}
+          ${videoUrl ? `<a class="button button-outline" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer">쇼케이스 보기 ↗</a>` : ''}
         </div>`;
 
-    return `<article class="sale-model-card${index === preservedModel ? ' is-current' : ''}" data-model-index="${index}">
-      <div class="sale-model-visual"><div class="sale-model-media">
+    return `<article class="sale-model-card reveal" data-model-index="${index}">
+      <div class="sale-model-media">
         ${imageHtml}
-        <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>${escapeHtml(t('imageWaiting'))}</div>
+        <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>이미지를 준비하고 있어요</div>
         <span class="sale-model-status${model.sold ? ' sold' : ''}">${escapeHtml(status)} · ${escapeHtml(model.badge || 'PREMADE')}</span>
-        ${cover ? `<button type="button" class="sale-model-expand" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('expandImage'))}"><span class="sale-model-expand-icon" aria-hidden="true">⤢</span></button>` : ''}
-        ${images.length > 1 ? `<button type="button" class="sale-model-nav sale-model-prev" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('prevImage'))}">‹</button><button type="button" class="sale-model-nav sale-model-next" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('nextImage'))}">›</button>` : ''}
+        ${images.length > 1 ? `<button type="button" class="sale-model-nav sale-model-prev" aria-label="${escapeHtml(model.title)} 이전 이미지">‹</button><button type="button" class="sale-model-nav sale-model-next" aria-label="${escapeHtml(model.title)} 다음 이미지">›</button>` : ''}
       </div>
-      <div class="sale-model-gallery-meta"><span class="sale-model-caption">${escapeHtml(cover?.caption || 'MODEL GALLERY')}</span><span class="sale-model-count">${images.length ? `01 / ${String(images.length).padStart(2, '0')}` : '00 / 00'}</span></div></div>
+      <div class="sale-model-gallery-meta"><span class="sale-model-caption">${escapeHtml(cover?.caption || 'MODEL GALLERY')}</span><span class="sale-model-count">${images.length ? `01 / ${String(images.length).padStart(2, '0')}` : '00 / 00'}</span></div>
       <div class="sale-model-content">
         <div class="sale-model-kicker"><span>ONE OF ONE · LIVE2D</span><span>✧</span></div>
         <h3>${escapeHtml(model.title)}</h3>
         <p class="sale-model-description">${escapeHtml(model.subtitle || '')}</p>
         <p class="sale-model-credits">ILLUST · ${escapeHtml(model.illustrator || '—')} <span>/</span> RIG · ${escapeHtml(model.rigging || 'Eryn')}</p>
         ${features ? `<ul class="sale-model-features">${features}</ul>` : ''}
-        <div class="sale-model-footer">
-          <dl class="sale-model-price-breakdown">
-            <div class="sale-model-price-line"><dt>${escapeHtml(t('illustrationPrice'))}</dt><dd>${escapeHtml(illustrationPrice === null ? '—' : won(illustrationPrice))}</dd></div>
-            <div class="sale-model-price-line"><dt>${escapeHtml(t('riggingPrice'))}</dt><dd>${escapeHtml(riggingPrice === null ? '—' : won(riggingPrice))}</dd></div>
-            <div class="sale-model-price-total"><dt>${escapeHtml(t('totalPrice'))}</dt><dd>${escapeHtml(price)}</dd></div>
-          </dl>
-          ${actions}
-        </div>
+        <div class="sale-model-footer"><div class="sale-model-price"><span class="sale-model-price-label">${escapeHtml(model.priceNote || '판매 가격')}</span><strong>${escapeHtml(price)}</strong></div>${actions}</div>
       </div>
     </article>`;
   }).join('');
@@ -1241,8 +828,8 @@ function renderSaleModels() {
       photo.hidden = true;
       fallback.hidden = false;
     });
-    const setImage = index => {
-      current = (index + images.length) % images.length;
+    const change = direction => {
+      current = (current + direction + images.length) % images.length;
       const item = images[current];
       fallback.hidden = true;
       photo.hidden = false;
@@ -1251,150 +838,28 @@ function renderSaleModels() {
       card.querySelector('.sale-model-caption').textContent = item.caption || 'MODEL GALLERY';
       card.querySelector('.sale-model-count').textContent = `${String(current + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
     };
-    card.querySelector('.sale-model-prev')?.addEventListener('click', () => setImage(current - 1));
-    card.querySelector('.sale-model-next')?.addEventListener('click', () => setImage(current + 1));
-    const expand = card.querySelector('.sale-model-expand');
-    expand?.addEventListener('click', () => openSaleImageLightbox(expand, model, images, current, setImage));
+    card.querySelector('.sale-model-prev')?.addEventListener('click', () => change(-1));
+    card.querySelector('.sale-model-next')?.addEventListener('click', () => change(1));
   });
-
-  const picker = $('sale-model-picker');
-  picker.hidden = models.length < 2;
-  picker.innerHTML = models.map((model, index) =>
-    `<button type="button" class="sale-model-pick" id="sale-model-tab-${index}" role="tab" aria-controls="sale-models-grid" aria-selected="${index === preservedModel}" tabindex="${index === preservedModel ? '0' : '-1'}" data-model-index="${index}">
-      <span class="sale-model-pick-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>${escapeHtml(model.title)}</button>`
-  ).join('');
-
-  const stage = $('sale-models-grid');
-  const cards = [...stage.querySelectorAll('.sale-model-card')];
-  const tabs = [...picker.querySelectorAll('.sale-model-pick')];
-  if (models.length > 1) {
-    stage.setAttribute('role', 'tabpanel');
-    stage.setAttribute('aria-labelledby', `sale-model-tab-${preservedModel}`);
-  }
-  let selectedModel = preservedModel;
-  const activateModel = (index, scrollToModel = false) => {
-    if (!Number.isInteger(index) || index < 0 || index >= models.length || selectedModel === index) return;
-    selectedModel = index;
-    cards.forEach((card, i) => card.classList.toggle('is-current', i === index));
-    tabs.forEach((tab, i) => {
-      const selected = i === index;
-      tab.setAttribute('aria-selected', String(selected));
-      tab.tabIndex = selected ? 0 : -1;
-    });
-    stage.setAttribute('aria-labelledby', `sale-model-tab-${index}`);
-    if (scrollToModel) {
-      const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
-      const targetTop = stage.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
-      window.scrollTo({top:Math.max(0,targetTop),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
-    }
-  };
-  tabs.forEach(tab => tab.addEventListener('click', () => activateModel(Number(tab.dataset.modelIndex), true)));
-  picker.onkeydown = event => {
-    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
-    event.preventDefault();
-    const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1
-      : (selectedModel + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-    tabs[next].focus();
-    tabs[next].click();
-  };
 }
 
 function renderPricing() {
   const pricing = CONTENT.pricing || {};
-  const plans = asArray(pricing.plans);
   $('pricing-description').textContent = pricing.description || '';
   $('price-notice').textContent = pricing.notice || '';
-  const grid = $('pricing-grid');
-  const panel = $('price-included-panel');
-  const preservedPlan = panel.dataset.activeIndex;
-  panel.hidden = true;
-  panel.replaceChildren();
-  delete panel.dataset.activeIndex;
-  grid.innerHTML = plans.map((plan, i) => `
-    <article class="price-card reveal">
+  $('pricing-grid').innerHTML = asArray(pricing.plans).map((plan, i) => `
+    <article class="price-card reveal${plan.featured ? ' featured' : ''}">
       <div class="price-card-type"><span>${escapeHtml(plan.english || `RIGGING / ${i + 1}`)}</span><span class="price-mark" aria-hidden="true">✧</span></div>
-      <h3>${escapeHtml(englishPlanName(i, plan.name))}</h3><p>${escapeHtml(plan.description || '')}</p>
+      <h3>${escapeHtml(plan.name)}</h3><p>${escapeHtml(plan.description || '')}</p>
       <div class="price-value">${escapeHtml(Number(plan.price || 0).toLocaleString('ko-KR'))}<small>KRW</small></div>
-      <button class="price-action" type="button" data-plan-index="${i}" aria-expanded="false" aria-controls="price-included-panel"><span>${escapeHtml(t('included'))}</span><span class="price-action-icon" aria-hidden="true">+</span></button>
+      <div class="price-divider"></div>
+      <details class="price-detail"><summary>기본 포함 옵션 보기</summary><div class="price-detail-content">
+        ${asArray(plan.categories).map(category => `<div class="price-detail-group"><strong>${escapeHtml(category.title)}</strong><ul>${asArray(category.items).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`).join('')}
+      </div></details>
     </article>`).join('');
-  const triggers = [...grid.querySelectorAll('.price-action')];
-  const closePanel = (restoreFocus = false) => {
-    const activeIndex = Number(panel.dataset.activeIndex);
-    panel.hidden = true;
-    panel.replaceChildren();
-    delete panel.dataset.activeIndex;
-    triggers.forEach((trigger) => {
-      trigger.setAttribute('aria-expanded', 'false');
-      trigger.querySelector('span').textContent = t('included');
-      trigger.closest('.price-card').classList.remove('is-selected');
-    });
-    if (restoreFocus && triggers[activeIndex]) triggers[activeIndex].focus();
-  };
-  triggers.forEach((trigger, index) => trigger.addEventListener('click', () => {
-    if (panel.dataset.activeIndex === String(index) && !panel.hidden) {
-      closePanel();
-      return;
-    }
-    const plan = plans[index];
-    const categories = asArray(plan.categories);
-    panel.innerHTML = `<div class="price-included-heading">
-      <div><span>WHAT'S INCLUDED</span><h3 id="price-included-heading">${escapeHtml(englishPlanName(index, plan.name))} · ${escapeHtml(t('includedHeading'))}</h3></div>
-      <button type="button" class="price-close" aria-label="${escapeHtml(t('includedClose'))}">${escapeHtml(t('close'))} <span aria-hidden="true">×</span></button>
-    </div><div class="price-included-list">
-      ${categories.length ? categories.map(category => `<section class="price-included-group"><h4>${escapeHtml(category.title)}</h4><ul>${asArray(category.items).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></section>`).join('') : `<p class="price-included-empty">${escapeHtml(t('noBaseOptions'))}</p>`}
-    </div>`;
-    panel.setAttribute('aria-labelledby', 'price-included-heading');
-    panel.dataset.activeIndex = String(index);
-    panel.hidden = false;
-    triggers.forEach((button, i) => {
-      const selected = i === index;
-      button.setAttribute('aria-expanded', String(selected));
-      button.querySelector('span').textContent = selected ? t('includedClose') : t('included');
-      button.closest('.price-card').classList.toggle('is-selected', selected);
-    });
-    panel.querySelector('.price-close').addEventListener('click', () => closePanel(true));
-    if (window.matchMedia('(max-width:760px)').matches) {
-      requestAnimationFrame(() => panel.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}));
-    }
-  }));
-  renderAddons(pricing.addons);
-  if (preservedPlan !== undefined && triggers[Number(preservedPlan)]) triggers[Number(preservedPlan)].click();
-}
-
-function renderAddons(addons) {
-  const groups = asArray(addons);
-  const nav = $('addons-nav');
-  const panel = $('addons-panel');
-  const lastAddon = Number(nav.querySelector('[aria-selected="true"]')?.dataset.addonIndex ?? 0);
-  const selectedAddon = lastAddon >= 0 && lastAddon < groups.length ? lastAddon : 0;
-  nav.innerHTML = groups.map((group, i) => `<button type="button" class="addon-tab" role="tab" id="addon-tab-${i}" aria-controls="addons-panel" aria-selected="${i === selectedAddon}" tabindex="${i === selectedAddon ? 0 : -1}" data-addon-index="${i}"><span>${escapeHtml(group.title)}</span><span class="addon-tab-arrow" aria-hidden="true">→</span></button>`).join('');
-  const tabs = [...nav.querySelectorAll('.addon-tab')];
-  const activate = index => {
-    if (!Number.isInteger(index) || index < 0 || index >= groups.length) return;
-    const group = groups[index];
-    panel.setAttribute('aria-labelledby', `addon-tab-${index}`);
-    panel.innerHTML = `<div class="addons-panel-heading"><span>OPTION DETAILS</span><h4>${escapeHtml(group.title)}</h4></div>
-      <div class="addon-detail-list">${asArray(group.items).map(item => `<div class="addon-row"><span>${escapeHtml(item.name)}</span><b>+ ${won(item.price)}</b></div>`).join('') || `<p class="price-included-empty">${escapeHtml(t('noAddons'))}</p>`}</div>
-      <p class="addons-panel-note">${escapeHtml(t('addonNotice'))}</p>`;
-    tabs.forEach((tab, i) => {
-      const active = i === index;
-      tab.setAttribute('aria-selected', String(active));
-      tab.tabIndex = active ? 0 : -1;
-    });
-  };
-  if (groups.length) activate(selectedAddon);
-  else panel.innerHTML = `<p class="price-included-empty">${escapeHtml(t('noAddons'))}</p>`;
-  tabs.forEach((tab, i) => tab.addEventListener('click', () => activate(i)));
-  nav.onkeydown = event => {
-    if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(event.key) || !tabs.length) return;
-    event.preventDefault();
-    const selected = tabs.findIndex(tab => tab.getAttribute('aria-selected') === 'true');
-    const columns = window.matchMedia('(min-width:581px) and (max-width:760px)').matches ? 3 : 2;
-    const delta = ({ArrowLeft:-1,ArrowRight:1,ArrowUp:-columns,ArrowDown:columns})[event.key] || 0;
-    const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : Math.max(0, Math.min(tabs.length - 1, selected + delta));
-    activate(next);
-    tabs[next].focus();
-  };
+  $('addons-grid').innerHTML = asArray(pricing.addons).map(group => `<details class="addon-group">
+    <summary>${escapeHtml(group.title)}</summary><div class="addon-group-list">${asArray(group.items).map(item => `<div class="addon-row"><span>${escapeHtml(item.name)}</span><b>+ ${won(item.price)}</b></div>`).join('')}</div>
+  </details>`).join('');
 }
 
 function renderInformation() {
@@ -1403,76 +868,10 @@ function renderInformation() {
   $('notice-grid').innerHTML = asArray(info.notices).map(item => `<article class="notice-card reveal"><h3>${escapeHtml(item.title)}</h3><ul>${asArray(item.items).map(text => `<li>${escapeHtml(text)}</li>`).join('')}</ul></article>`).join('');
 }
 
-function setContactStatus(key, state = 'info') {
-  contactStatusKey = key;
-  contactStatusState = state;
-  const notice = $('contact-form-status');
-  notice.hidden = !key;
-  if (key) notice.textContent = t(key);
-  notice.dataset.state = state;
-}
-
-function initContactForm() {
-  const form = $('contact-inquiry-form');
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    if (contactPendingId) return;
-    if (!contactEndpoint) {
-      setContactStatus('contactSetup');
-      return;
-    }
-    if (!form.reportValidity()) return;
-    // A normal POST to an isolated iframe avoids unreliable cross-origin fetch responses.
-    // Only the Google relay's explicit, matching acknowledgement counts as success.
-    const bytes = new Uint8Array(16);
-    crypto.getRandomValues(bytes);
-    contactPendingId = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
-    $('contact-request-id').value = contactPendingId;
-    $('contact-form-language').value = activeLanguage;
-    form.action = contactEndpoint;
-    $('contact-submit').disabled = true;
-    $('contact-submit-label').textContent = t('contactSending');
-    setContactStatus('contactSending', 'pending');
-    HTMLFormElement.prototype.submit.call(form);
-    clearTimeout(contactSubmitTimer);
-    contactSubmitTimer = setTimeout(() => {
-      if (!contactPendingId) return;
-      contactPendingId = null;
-      $('contact-submit').disabled = !contactEndpoint;
-      $('contact-submit-label').textContent = t('contactSubmit');
-      setContactStatus('contactTimeout', 'error');
-    }, 25000);
-  });
-
-  window.addEventListener('message', event => {
-    // Apps Script HTML responses are served from Google's isolated content host.
-    if (!/^https:\/\/(?:[a-z0-9-]+\.)*googleusercontent\.com$/i.test(event.origin) && event.origin !== 'https://script.google.com') return;
-    const result = event.data;
-    if (!contactPendingId || !result || result.source !== 'eryn-contact' || result.requestId !== contactPendingId) return;
-    clearTimeout(contactSubmitTimer);
-    contactPendingId = null;
-    $('contact-submit').disabled = !contactEndpoint;
-    $('contact-submit-label').textContent = t('contactSubmit');
-    const keys = {sent:'contactSuccess',invalid:'contactInvalid',rate:'contactRateLimit',error:'contactError'};
-    setContactStatus(keys[result.status] || 'contactError', result.status === 'sent' ? 'success' : 'error');
-    if (result.status === 'sent') form.reset();
-  });
-}
-
 function renderContact() {
   const contact = CONTENT.contact || {};
   $('contact-description').textContent = contact.description || '';
   $('contact-note').textContent = contact.note || '';
-  $('contact-privacy-notice').textContent = contact.privacyText || t('contactPrivacyFallback');
-  const relay = validExternalUrl(contact.appsScriptUrl);
-  const relayPath = relay ? new URL(relay) : null;
-  contactEndpoint = relayPath?.hostname === 'script.google.com' && /^\/macros\/s\/[^/]+\/exec\/?$/.test(relayPath.pathname) ? relay : '';
-  $('contact-submit').disabled = !contactEndpoint || Boolean(contactPendingId);
-  $('contact-submit-label').textContent = t(contactPendingId ? 'contactSending' : 'contactSubmit');
-  if (contactPendingId) setContactStatus('contactSending', 'pending');
-  else if (!contactEndpoint) setContactStatus('contactSetup');
-  else if (contactStatusKey === 'contactSetup') setContactStatus('');
-  else setContactStatus(contactStatusKey, contactStatusState);
   const url = validExternalUrl(contact.googleFormUrl);
   const isForm = url && (new URL(url).hostname === 'forms.gle' || (new URL(url).hostname === 'docs.google.com' && new URL(url).pathname.startsWith('/forms/')));
   if (isForm) {
@@ -1486,20 +885,20 @@ function renderContact() {
 
   const socials = asArray(CONTENT.socials?.links).filter(item => item.enabled !== false && validExternalUrl(item.url));
   $('contact-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)} <span aria-hidden="true">↗</span></a>`).join('');
-  $('footer-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}<span class="footer-link-arrow" aria-hidden="true">↗</span></a>`).join('');
+  $('footer-socials').innerHTML = socials.map(item => `<a href="${escapeHtml(validExternalUrl(item.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`).join('');
   const youtube = socials.find(item => /^youtube/i.test(item.label));
   if (youtube) $('youtube-all-link').href = validExternalUrl(youtube.url);
 }
 
 const ROUTES = {
-  home: {page:'home', labelKey:'navHome'},
-  portfolio: {page:'portfolio', labelKey:'navPortfolio'},
-  works: {page:'portfolio', view:'works', labelKey:'showcase'},
-  samples: {page:'portfolio', view:'samples', labelKey:'riggingSamples'},
-  'sale-models': {page:'sale-models', labelKey:'navModels'},
-  pricing: {page:'pricing', labelKey:'navCommission'},
-  about: {page:'about', labelKey:'navGuide'},
-  contact: {page:'contact', labelKey:'navContact'}
+  home: {page:'home', label:'홈'},
+  portfolio: {page:'portfolio', label:'포트폴리오'},
+  works: {page:'portfolio', view:'works', label:'쇼케이스'},
+  samples: {page:'portfolio', view:'samples', label:'리깅 샘플'},
+  'sale-models': {page:'sale-models', label:'판매 모델'},
+  pricing: {page:'pricing', label:'커미션'},
+  about: {page:'about', label:'작업 안내'},
+  contact: {page:'contact', label:'문의하기'}
 };
 
 function syncMediaPlayback() {
@@ -1544,7 +943,6 @@ function showRoute(target) {
   const route = ROUTES[target] || ROUTES.home;
   activePage = route.page;
   document.body.classList.toggle('home-active', activePage === 'home');
-  document.body.classList.toggle('sale-active', activePage === 'sale-models');
   if (route.view) setPortfolioView(route.view);
 
   document.querySelectorAll('.site-panel').forEach(panel => {
@@ -1559,7 +957,7 @@ function showRoute(target) {
     if (selected) link.setAttribute('aria-current','page');
     else link.removeAttribute('aria-current');
   });
-  $('page-announcer').textContent = `${t(route.labelKey)} ${t('announcement')}`;
+  $('page-announcer').textContent = `${route.label} 화면`;
   window.scrollTo(0, 0);
   syncMediaPlayback();
 }
@@ -1569,40 +967,24 @@ function routeFromLocation() {
   showRoute(ROUTES[target] ? target : 'home');
 }
 
-function prepareSaleInquiry(modelIndex) {
-  const model = asArray(CONTENT?.saleModels?.items)[modelIndex];
-  if (!model) return;
-  $('inquiry-type').value = 'premade';
-  const message = $('inquiry-message');
-  const prefill = t('saleInquiryPrefill').replace('{model}', model.title || 'Live2D');
-  // Preserve anything the visitor has already written themselves.
-  if (!message.value.trim() || message.value === lastSaleInquiryPrefill) {
-    message.value = prefill;
-    lastSaleInquiryPrefill = prefill;
-  }
-}
-
 function initNavigation() {
   const menu = $('menu-toggle');
   const links = $('nav-links');
   const closeMenu = () => {
     links.classList.remove('open');
     menu.setAttribute('aria-expanded', 'false');
-    menu.setAttribute('aria-label', t('menuOpen'));
+    menu.setAttribute('aria-label', '메뉴 열기');
   };
   menu.addEventListener('click', () => {
     const opened = links.classList.toggle('open');
     menu.setAttribute('aria-expanded', String(opened));
-    menu.setAttribute('aria-label', t(opened ? 'menuClose' : 'menuOpen'));
+    menu.setAttribute('aria-label', opened ? '메뉴 닫기' : '메뉴 열기');
   });
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href^="#"]');
     if (!link) return;
     const target = link.getAttribute('href').slice(1);
     if (!ROUTES[target]) return;
-    if (target === 'contact' && /^\d+$/.test(link.dataset.saleInquiry || '')) {
-      prepareSaleInquiry(Number(link.dataset.saleInquiry));
-    }
     event.preventDefault();
     closeMenu();
     if (window.location.hash !== `#${target}`) history.pushState(null, '', `#${target}`);
@@ -1652,28 +1034,24 @@ function initReveals() {
 
 async function loadContent() {
   document.documentElement.classList.add('js');
-  document.addEventListener('dragstart', event => event.preventDefault());
   $('current-year').textContent = String(new Date().getFullYear());
   initSampleLightbox();
-  initSaleImageLightbox();
-  initContactForm();
   initNavigation();
-  initLanguageSwitch();
   try {
     const response = await fetch('content.json', {cache:'no-cache'});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    ORIGINAL_CONTENT = await response.json();
-    if (!ORIGINAL_CONTENT || typeof ORIGINAL_CONTENT !== 'object') throw new Error('Invalid content.json');
-    document.title = ORIGINAL_CONTENT.site?.title || document.title;
-    renderAllContent();
+    CONTENT = await response.json();
+    if (!CONTENT || typeof CONTENT !== 'object') throw new Error('Invalid content.json');
+    document.title = CONTENT.site?.title || document.title;
+    renderHero(); renderWorks(); renderSamples(); renderSaleModels(); renderPricing(); renderInformation(); renderContact();
+    syncMediaPlayback();
   } catch (error) {
     console.error('Failed to load the portfolio content:', error);
-    $('works-grid').innerHTML = `<div class="placeholder-card">${escapeHtml(t('contentError'))}</div>`;
-    $('sample-panel').innerHTML = `<div class="placeholder-card">${escapeHtml(t('sampleError'))}</div>`;
-    $('form-pending').textContent = t('formError');
-    $('form-pending').hidden = false;
+    $('works-grid').innerHTML = '<div class="placeholder-card">content.json을 불러오지 못했습니다. GitHub Pages 또는 로컬 웹 서버에서 열어주세요.</div>';
+    $('sample-panel').innerHTML = '<div class="placeholder-card">샘플 정보를 불러오지 못했습니다.</div>';
+    $('form-pending').textContent = '문의 링크 정보가 아직 로딩되지 않았습니다.';
   }
-  if (!ORIGINAL_CONTENT) initReveals();
+  initReveals();
 }
 
 loadContent();

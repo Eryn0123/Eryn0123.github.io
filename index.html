@@ -398,12 +398,20 @@ body.sale-image-lightbox-open{overflow:hidden}
 .process-index{font:700 28px Outfit,sans-serif;color:#c5b8ee;letter-spacing:-1px}
 .process-card h3{font-size:14px;margin:12px 0 6px}
 .process-card p{font-size:11px;line-height:1.8;color:#91869e;margin:0;white-space:pre-line;word-break:keep-all}
-.notice-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.notice-card{background:rgba(255,255,255,.75);border:1px solid #e8e2f2;border-radius:17px;padding:23px 25px}
-.notice-card h3{font-size:13px;margin:0 0 11px;color:#6f60a6}
-.notice-card ul{padding:0;margin:0;display:grid;gap:9px;list-style:none}
-.notice-card li{color:#83798e;font-size:11.5px;line-height:1.75;padding-left:13px;position:relative;word-break:keep-all}
-.notice-card li::before{content:'✧';position:absolute;left:0;color:#ad9cdf}
+.notice-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.notice-card{display:grid;grid-template-columns:minmax(160px,.3fr) minmax(0,1fr);gap:clamp(20px,4vw,50px);align-items:start;background:rgba(255,255,255,.79);border:1px solid #e8e2f2;border-radius:17px;padding:27px 30px;box-shadow:0 8px 23px rgba(74,62,124,.035);transition:border-color .26s,box-shadow .26s,transform .26s var(--ease)}
+.notice-card:hover{transform:translateY(-2px);border-color:#d4c8ed;box-shadow:0 12px 27px rgba(74,62,124,.06)}
+.notice-card-header{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:2px}
+.notice-card-number{color:#b19fdb;font:700 11px Outfit,sans-serif;letter-spacing:1.8px}
+.notice-card h3{font-size:17px;line-height:1.5;margin:0;color:#6f60a6;word-break:keep-all}
+.notice-card ul{padding:0;margin:0;display:grid;gap:0;list-style:none}
+.notice-card li{color:#83798e;font-size:12px;line-height:1.85;padding:9px 0 9px 19px;position:relative;word-break:keep-all;border-bottom:1px solid #f2eef9}
+.notice-card li:first-child{padding-top:0}
+.notice-card li:last-child{border-bottom:0;padding-bottom:0}
+.notice-card li::before{content:'✧';position:absolute;top:9px;left:0;color:#ad9cdf}
+.notice-card li:first-child::before{top:0}
+.notice-card li strong{color:#6d5d9a;font-weight:700}
+@media(max-width:760px){.notice-card{grid-template-columns:1fr;gap:14px;padding:23px 22px}.notice-card-header{flex-direction:row;align-items:center;gap:12px}.notice-card h3{font-size:15px}}
 
 /* A calm two-column contact desk: explanation on the left, inquiry form on the right. */
 .contact-section{padding:clamp(24px,3.7svh,52px) 0}
@@ -1457,7 +1465,7 @@ function renderAddons(addons) {
 function renderInformation() {
   const info = CONTENT.information || {};
   $('process-grid').innerHTML = asArray(info.process).map(item => `<article class="process-card reveal"><span class="process-index">${escapeHtml(item.step)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`).join('');
-  $('notice-grid').innerHTML = asArray(info.notices).map(item => `<article class="notice-card reveal"><h3>${escapeHtml(item.title)}</h3><ul>${asArray(item.items).map(text => `<li>${escapeHtml(text)}</li>`).join('')}</ul></article>`).join('');
+  $('notice-grid').innerHTML = asArray(info.notices).map((item, i) => `<article class="notice-card reveal"><div class="notice-card-header"><span class="notice-card-number">${String(i + 1).padStart(2, '0')}</span><h3>${escapeHtml(item.title)}</h3></div><ul>${asArray(item.items).map(text => `<li>${escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')}</li>`).join('')}</ul></article>`).join('');
 }
 
 function setContactStatus(key, state = 'info') {

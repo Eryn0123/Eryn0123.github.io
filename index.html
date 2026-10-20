@@ -191,7 +191,7 @@ html.js .portfolio-view.is-active{animation:pageEnter .46s var(--ease) both}
 .sample-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
 .sample-card{min-width:0;width:100%;background:#fff;border-radius:18px;padding:11px;border:1px solid #e5e0f3;box-shadow:0 8px 24px rgba(78,65,128,.06);cursor:zoom-in;transition:transform .3s var(--ease),border-color .2s,box-shadow .3s}
 .sample-card:hover{transform:translateY(-3px);border-color:#c4b9e9;box-shadow:0 14px 35px rgba(78,65,128,.09)}
-.sample-video-wrap{aspect-ratio:var(--sample-ratio,16/10);overflow:hidden;position:relative;border-radius:11px;background:linear-gradient(145deg,#f1eefb,#dcd8f2);transition:aspect-ratio .45s var(--ease)}
+.sample-video-wrap{aspect-ratio:var(--sample-ratio,6/5);overflow:hidden;position:relative;border-radius:11px;background:linear-gradient(145deg,#f1eefb,#dcd8f2)}
 .sample-video-wrap video{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;opacity:0;transition:opacity .4s}
 .sample-video-wrap video.ready{opacity:1}
 .sample-video-placeholder{position:absolute;inset:0;display:grid;place-items:center;z-index:0;font-size:35px;color:#b6a9e7}
@@ -570,6 +570,18 @@ body.sale-image-lightbox-open{overflow:hidden}
  .price-included-group,.addon-row{transition:none!important}
  .work-card:hover,.sample-card:hover,.price-card:hover,.process-card:hover,.notice-card:hover{transform:none!important}
 }
+
+/* Sample gallery refinement: clear card identity and a stable frame from first render. */
+.sample-card{position:relative;isolation:isolate;overflow:hidden}
+.sample-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;z-index:3;pointer-events:none;background:linear-gradient(90deg,#b5a4e9,#dacff7 54%,#bfd2ef);opacity:.8}
+.sample-video-wrap{box-shadow:inset 0 0 0 1px rgba(194,182,234,.22)}
+.sample-video-placeholder{background:radial-gradient(circle at 48% 42%,rgba(255,255,255,.38),transparent 70%)}
+.sample-label span:first-child{color:#55457d}
+.sample-label span:last-child{font-size:10px;letter-spacing:1px}
+@media (hover:hover) and (pointer:fine){
+ .sample-card:hover::before{background:linear-gradient(90deg,#9582dd,#cab9f5 52%,#a2bfed)}
+ .sample-card:hover .sample-video-open-icon{border-color:#c1b1e8;box-shadow:0 8px 20px rgba(98,72,155,.17)}
+}
 /* === End visual polish === */
 
   </style>
@@ -765,6 +777,7 @@ let currentSampleVideos = [];
 let sampleVisibilityBound = false;
 const sampleRatioCache = new Map();
 let lastSampleTrigger = null;
+let expandedSampleSource = null; // Keep this thumbnail playing while its larger player opens.
 let saleImageLightboxState = null;
 let activePage = 'home';
 let activePortfolioView = 'works';
@@ -1054,23 +1067,25 @@ function openSampleLightbox(trigger) {
   const sampleVideo = trigger.closest('.sample-video-wrap')?.querySelector('video');
   const dialog = $('sample-lightbox');
   const player = $('sample-lightbox-video');
-  if (!sampleVideo?.dataset.src || typeof dialog.showModal !== 'function') return;
+  if (!sampleVideo?.dataset.src || typeof dialog.showModal !== 'function' || dialog.open) return;
 
   lastSampleTrigger = trigger;
+  expandedSampleSource = sampleVideo;
   $('sample-lightbox-title').textContent = trigger.dataset.title || t('riggingSamples');
   const loading = $('sample-lightbox-loading');
   loading.textContent = t('videoLoading');
   loading.hidden = false;
   player.classList.remove('ready');
 
-  // Keep the motion continuous when the same sample is opened larger.
-  const resumeAt = sampleVideo.currentTime || 0;
+  // Keep the already playing thumbnail alive. The large player starts at its current
+  // position without pausing/reloading the thumbnail, so closing is seamless too.
   player.onloadedmetadata = () => {
-    if (resumeAt > 0 && (!Number.isFinite(player.duration) || resumeAt < player.duration)) {
-      try { player.currentTime = resumeAt; } catch (_) { /* Seeking may not be supported yet. */ }
+    const position = sampleVideo.currentTime || 0;
+    if (position > 0 && (!Number.isFinite(player.duration) || position < player.duration)) {
+      try { player.currentTime = position; } catch (_) { /* Seek after enough data arrives. */ }
     }
   };
-  player.onloadeddata = () => {
+  player.onplaying = () => {
     player.classList.add('ready');
     loading.hidden = true;
   };
@@ -1081,10 +1096,11 @@ function openSampleLightbox(trigger) {
 
   dialog.showModal();
   document.body.classList.add('sample-lightbox-open');
-  currentSampleVideos.forEach(video => video.pause());
+  // Other thumbnails may pause to save resources; the selected one NEVER pauses.
+  currentSampleVideos.forEach(video => { if (video !== sampleVideo) video.pause(); });
   player.src = sampleVideo.dataset.src;
   player.load();
-  player.play().catch(() => { /* Visitors can press play in video controls. */ });
+  player.play().catch(() => { /* Media controls remain available if autoplay is blocked. */ });
 }
 
 function initSampleLightbox() {
@@ -1100,25 +1116,41 @@ function initSampleLightbox() {
   dialog.addEventListener('close', () => {
     player.pause();
     player.onloadedmetadata = null;
-    player.onloadeddata = null;
+    player.onplaying = null;
     player.onerror = null;
     player.removeAttribute('src');
     player.load();
     player.classList.remove('ready');
     document.body.classList.remove('sample-lightbox-open');
+    expandedSampleSource = null;
     syncMediaPlayback();
     if (lastSampleTrigger?.isConnected) lastSampleTrigger.focus({preventScroll:true});
     lastSampleTrigger = null;
   });
 }
 
-function fitSampleVideoToCard(video, ratio) {
-  if (!Number.isFinite(ratio) || ratio <= 0) return;
-  const frame = video.closest('.sample-video-wrap');
-  if (!frame) return;
-  // Every sample fills its grid column; portrait videos keep their natural height.
-  frame.style.setProperty('--sample-ratio', String(ratio));
-  sampleRatioCache.set(video.dataset.src, ratio);
+// Pick a sensible stable frame BEFORE a video is fetched, so the card never
+// suddenly stretches from a small landscape placeholder into a tall portrait.
+// Optional: set aspectRatio: "9/16" or aspectRatio: 1.2 on any video in JSON.
+function getSampleInitialRatio(item, categoryId) {
+  const spec = item.aspectRatio;
+  let declared = Number(spec);
+  if (typeof spec === 'string' && spec.includes('/')) {
+    const [w, h] = spec.split('/').map(Number);
+    declared = w / h;
+  }
+  if (Number.isFinite(declared) && declared >= .25 && declared <= 3.5) return declared;
+  const cached = sampleRatioCache.get(assetUrl(item.src));
+  if (cached) return cached;
+  const categoryDefaults = {free:6/5, face:6/5, phys:6/5, bodyxyz:9/16, chibi:9/16};
+  return categoryDefaults[categoryId] || 6/5;
+}
+
+function rememberSampleRatio(video) {
+  if (video.videoWidth && video.videoHeight) {
+    // Metadata can refine FUTURE displays, but must not resize an already shown card.
+    sampleRatioCache.set(video.dataset.src, video.videoWidth / video.videoHeight);
+  }
 }
 
 function observeSampleVideos() {
@@ -1130,7 +1162,7 @@ function observeSampleVideos() {
   activeMediaObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const video = entry.target;
-      if (entry.isIntersecting && document.visibilityState !== 'hidden' && !$('sample-lightbox').open) {
+      if (entry.isIntersecting && document.visibilityState !== 'hidden' && (!$('sample-lightbox').open || video === expandedSampleSource)) {
         if (!video.dataset.loaded) {
           video.dataset.loaded = 'true';
           video.src = video.dataset.src;
@@ -1160,7 +1192,8 @@ function selectSampleCategory(categoryId) {
     const src = assetUrl(video.src);
     if (!src) return '';
     const title = video.title || `${category.label} ${i + 1}`;
-    return `<article class="sample-card"><div class="sample-video-wrap"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
+    const ratio = getSampleInitialRatio(video, categoryId);
+    return `<article class="sample-card"><div class="sample-video-wrap" style="--sample-ratio:${ratio}"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
       <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(title)} ${escapeHtml(t('sampleItem'))}"></video>
       <button type="button" class="sample-video-open" data-title="${escapeHtml(title)}" aria-label="${escapeHtml(title)} ${escapeHtml(t('expandVideo'))}"><span class="sample-video-open-icon" aria-hidden="true">⤢</span></button></div>
       <div class="sample-label"><span>${escapeHtml(title)}</span><span>MOTION / ${String(i + 1).padStart(2, '0')}</span></div></article>`;
@@ -1175,12 +1208,7 @@ function selectSampleCategory(categoryId) {
   currentSampleVideos = [...$('sample-panel').querySelectorAll('video')];
   currentSampleVideos.forEach(video => {
     const frame = video.closest('.sample-video-wrap');
-    const cachedRatio = sampleRatioCache.get(video.dataset.src);
-    if (cachedRatio) fitSampleVideoToCard(video, cachedRatio);
-    video.addEventListener('loadedmetadata', () => {
-      if (video.videoWidth && video.videoHeight)
-        fitSampleVideoToCard(video, video.videoWidth / video.videoHeight);
-    });
+    video.addEventListener('loadedmetadata', () => rememberSampleRatio(video));
     video.addEventListener('loadeddata', () => { video.classList.add('ready'); }, {once:true});
     video.addEventListener('error', () => {
       const symbol = frame.querySelector('.sample-video-placeholder');
@@ -1210,8 +1238,9 @@ function renderSamples() {
   else $('sample-panel').innerHTML = `<div class="placeholder-card">${escapeHtml(t('emptySamples'))}</div>`;
   if (!sampleVisibilityBound) document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') currentSampleVideos.forEach(video => video.pause());
-    else if (!$('sample-lightbox').open) currentSampleVideos.forEach(video => {
-      // On return, resume visible videos only (avoid starting every tab's videos).
+    else currentSampleVideos.forEach(video => {
+      // When enlarged, leave its thumbnail moving; keep unrelated previews idle.
+      if ($('sample-lightbox').open && video !== expandedSampleSource) return;
       if (video.dataset.loaded && video.getBoundingClientRect().top < innerHeight && video.getBoundingClientRect().bottom > 0)
         video.play().catch(() => {});
     });
@@ -1643,7 +1672,8 @@ function syncMediaPlayback() {
   currentSampleVideos.forEach(video => {
     const rect = video.getBoundingClientRect();
     const inView = rect.bottom > 0 && rect.top < window.innerHeight;
-    if (activePage === 'portfolio' && activePortfolioView === 'samples' && shouldPlay && inView) {
+    const keepActive = shouldPlay || ($('sample-lightbox').open && video === expandedSampleSource);
+    if (activePage === 'portfolio' && activePortfolioView === 'samples' && keepActive && inView) {
       if (!video.dataset.loaded) {
         video.dataset.loaded = 'true';
         video.src = video.dataset.src;

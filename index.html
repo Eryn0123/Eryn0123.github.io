@@ -584,6 +584,88 @@ body.sale-image-lightbox-open{overflow:hidden}
 }
 /* === End visual polish === */
 
+
+
+/* === Lavender Starlight / Editorial details: chapter titles, art frame, model motifs, process trail === */
+/* Chapter typography: compact index chip and underline, without oversized watermark numbers. */
+.section-heading[data-chapter]{position:relative;isolation:isolate;padding:4px 0 25px;border-bottom:1px solid rgba(198,184,232,.65)}
+.section-heading[data-chapter]::after{content:'';position:absolute;left:0;bottom:-2px;width:clamp(92px,10vw,148px);height:3px;border-radius:50px;
+  background:linear-gradient(90deg,#8d7ad4,#b3a4e9 65%,#d2dff0);box-shadow:0 2px 10px rgba(142,116,207,.12)}
+.section-heading[data-chapter] > *{position:relative;z-index:1}
+.section-heading[data-chapter] .section-index{display:inline-flex;align-items:center;gap:9px;padding:6px 12px;border-radius:100px;
+  background:linear-gradient(100deg,#f1ecfe,#faf8ff);border:1px solid #ded5f6;color:#7966bb;font-size:10px;letter-spacing:1.8px;box-shadow:0 4px 14px rgba(116,94,187,.045)}
+.section-heading[data-chapter] .section-index::before{content:'✦';font:700 10px/1 Outfit,sans-serif;color:#b09bdf}
+.section-heading[data-chapter] h2{margin-top:17px;position:relative;text-shadow:0 2px 0 rgba(255,255,255,.72)}
+.section-heading[data-chapter] h2 em{background:none;color:#9985d7;-webkit-text-fill-color:#9985d7;text-shadow:none}
+.section-heading[data-chapter] .heading-star{color:#a68cd7;text-shadow:0 0 15px rgba(171,144,230,.24)}
+/* Corner frame, tiny ribbon and signature; none of these touches the video element. */
+.hero-media-card{position:relative;isolation:isolate;border-color:rgba(196,180,232,.9);box-shadow:0 27px 72px rgba(103,84,164,.16),inset 0 1px 0 #fff}
+.hero-media-card::after{content:'✦  E R Y N   S T U D I O';position:absolute;right:24px;top:-13px;z-index:4;white-space:nowrap;
+  border:1px solid #cec1ef;border-radius:100px;background:#f6f1ff;color:#7a63b2;padding:5px 13px;font:700 9px/1.3 Outfit,sans-serif;letter-spacing:1.2px;box-shadow:0 5px 18px rgba(99,73,159,.08)}
+.hero-video-frame{outline:1px solid rgba(145,120,199,.15);outline-offset:-5px}
+.hero-frame-ornaments{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-frame-corner{position:absolute;display:block;width:28px;height:28px;border-color:rgba(244,237,255,.9);border-style:solid;
+  filter:drop-shadow(0 2px 2px rgba(71,48,129,.26));transition:width .5s var(--ease),height .5s var(--ease)}
+.hero-frame-tl{top:16px;left:16px;border-width:3px 0 0 3px;border-radius:4px 0 0 0}
+.hero-frame-tr{top:16px;right:16px;border-width:3px 3px 0 0;border-radius:0 4px 0 0}
+.hero-frame-bl{bottom:16px;left:16px;border-width:0 0 3px 3px;border-radius:0 0 0 4px}
+.hero-frame-br{bottom:16px;right:16px;border-width:0 3px 3px 0;border-radius:0 0 4px 0}
+.hero-frame-signature{position:absolute;right:25px;bottom:20px;display:flex;align-items:center;gap:6px;color:#fff;
+  font:700 9px Outfit,sans-serif;letter-spacing:1.8px;text-shadow:0 2px 6px rgba(71,48,129,.55)}
+.hero-frame-signature:first-letter{font-size:14px}
+@media(hover:hover) and (pointer:fine){.hero-media-card:hover .hero-frame-corner{width:34px;height:34px}}
+/* Dedicated model palettes, with a small original ornament instead of covering artwork. */
+.sale-model-card{--model-accent:#8a76c9;--model-soft:#f0eafd;--model-line:#d9cdf0}
+.sale-model-card.model-theme-mint{--model-accent:#5e9d8d;--model-soft:#eaf8f3;--model-line:#b9dfd2}
+.sale-model-card.model-theme-rose{--model-accent:#9e627d;--model-soft:#fbebf0;--model-line:#e2bbc9}
+.sale-model-card.is-current{border-color:var(--model-line)!important;box-shadow:0 19px 53px rgba(92,74,146,.105),0 3px 0 0 var(--model-line)}
+.sale-model-card .sale-model-visual,.sale-model-card .sale-model-media{background:linear-gradient(142deg,var(--model-soft) 0%,#f5f1fa 52%,var(--model-soft) 100%)}
+.sale-model-card .sale-model-gallery-meta{background:linear-gradient(90deg,var(--model-soft) 0%,#fff 86%);border-bottom:1px solid var(--model-line);border-top:1px solid var(--model-line)}
+.sale-model-card .sale-model-gallery-meta .sale-model-count,.sale-model-card .sale-model-kicker{color:var(--model-accent)}
+.sale-model-card .sale-model-content{position:relative;isolation:isolate}
+.sale-model-card .sale-model-content::before{content:'✧';position:absolute;right:-21px;top:-63px;color:var(--model-accent);opacity:.065;
+  font:800 250px/1 Outfit,sans-serif;z-index:-1;pointer-events:none;transform:rotate(-15deg)}
+.sale-model-card .sale-model-content > *{position:relative;z-index:1}
+.sale-model-theme-emblem{display:inline-grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border:1px solid var(--model-line);border-radius:15px;
+  background:var(--model-soft);color:var(--model-accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 5px 13px rgba(96,72,136,.065)}
+.sale-model-theme-emblem svg{width:23px;height:23px;display:block}
+.sale-model-theme-emblem > span{font-size:22px}
+.sale-model-card .sale-model-features li{background:color-mix(in srgb,var(--model-soft) 52%,white);border-color:var(--model-line)}
+.sale-model-card .sale-model-features li::before{color:var(--model-accent)}
+.sale-model-card .sale-model-price-total dt,.sale-model-card .sale-model-price-total dd{color:var(--model-accent)}
+/* A real connected timeline, following the number of steps in content.json. */
+.process-story{position:relative;margin-bottom:26px}
+.process-story .process-grid{margin-bottom:0}
+.process-timeline{display:grid;grid-template-columns:repeat(var(--process-count,4),minmax(0,1fr));gap:15px;margin:0 0 13px;
+  padding:7px 0 0;position:relative}
+.process-milestone{position:relative;display:flex;align-items:center;flex-direction:column;gap:7px;min-width:0;color:#a396bd;text-align:center}
+.process-milestone-number{display:grid;place-items:center;width:41px;height:41px;border-radius:50%;font:700 12px Outfit,sans-serif;
+  color:#826db7;background:#f1ecfd;border:2px solid #d7c9f1;box-shadow:0 0 0 5px #faf9ff,inset 0 2px 0 rgba(255,255,255,.95);
+  position:relative;z-index:1;transition:background .28s var(--ease),color .28s,border-color .28s,box-shadow .28s}
+.process-milestone:not(:last-child)::after{content:'';position:absolute;top:20px;left:calc(50% + 22px);width:calc(100% - 44px + 15px);height:2px;
+  background:linear-gradient(90deg,#b9a7e3,#d2c6ec);pointer-events:none}
+.process-milestone-label{font-size:11px;font-weight:700;line-height:1.45;color:#998bb3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.process-milestone.is-highlighted .process-milestone-number{background:linear-gradient(135deg,#9d8cdb,#7562bd);color:#fff;border-color:#9a84d5;
+  box-shadow:0 0 0 5px #faf9ff,0 6px 18px rgba(129,107,199,.23)}
+.process-milestone.is-highlighted .process-milestone-label{color:#6b57a3}
+/* Disable the older tiny between-card connectors: the rail above now carries the sequence. */
+.process-card:not(:last-child)::after{display:none!important}
+.process-card{border-top:3px solid #e0d4f4}
+@media(max-width:760px){ .process-timeline{gap:11px}.process-milestone:not(:last-child)::after{width:calc(100% - 44px + 11px)}}
+@media(max-width:580px){.section-heading[data-chapter]{padding-bottom:19px}
+ .section-heading[data-chapter] .section-index{letter-spacing:1.2px;font-size:9px;padding:6px 9px}
+ .hero-media-card::after{right:17px;top:-11px;font-size:7px;letter-spacing:.8px;padding:5px 9px}
+ .hero-frame-corner{width:20px;height:20px}.hero-frame-tl{top:11px;left:11px}.hero-frame-tr{top:11px;right:11px}
+ .hero-frame-bl{bottom:11px;left:11px}.hero-frame-br{bottom:11px;right:11px}
+ .hero-frame-signature{right:17px;bottom:14px;font-size:7px;letter-spacing:1px}
+ .sale-model-theme-emblem{width:35px;height:35px;flex-basis:35px;border-radius:11px}
+ .sale-model-theme-emblem svg{width:18px;height:18px}
+ .process-timeline{gap:7px;margin-bottom:12px}.process-milestone-number{width:34px;height:34px;font-size:10px}
+ .process-milestone:not(:last-child)::after{top:17px;left:calc(50% + 17px);width:calc(100% - 34px + 7px)}
+ .process-milestone-label{font-size:9px;line-height:1.35}}
+@media(prefers-reduced-motion:reduce){.hero-frame-corner,.process-milestone-number{transition:none!important}}
+/* === End Lavender Starlight / Editorial === */
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -636,6 +718,11 @@ body.sale-image-lightbox-open{overflow:hidden}
         <div class="hero-media-card">
           <div class="media-card-heading"><span><span class="mini-star">✦</span> <span data-i18n="preview">LIVE MOTION PREVIEW</span></span><span>LIVE2D / 01</span></div>
           <div class="hero-video-frame">
+            <div class="hero-frame-ornaments" aria-hidden="true">
+              <span class="hero-frame-corner hero-frame-tl"></span><span class="hero-frame-corner hero-frame-tr"></span>
+              <span class="hero-frame-corner hero-frame-bl"></span><span class="hero-frame-corner hero-frame-br"></span>
+              <span class="hero-frame-signature">✦ <span>ERYN / LIVE2D</span></span>
+            </div>
             <div class="video-loading" id="hero-loading"><span class="loading-symbol">✧</span><span data-i18n="loading">LOADING SHOWREEL</span></div>
             <video id="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="대표 Live2D 리깅 영상"></video>
           </div>
@@ -654,13 +741,13 @@ body.sale-image-lightbox-open{overflow:hidden}
         <button type="button" role="tab" id="portfolio-tab-samples" data-view="samples" aria-controls="samples" aria-selected="false" data-i18n="riggingSamples">RIGGING SAMPLES</button>
       </div>
     <section class="section container portfolio-view is-active" id="works" role="tabpanel" aria-labelledby="portfolio-tab-works works-heading">
-      <div class="section-heading reveal"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading">SHOW<em>CASE</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer"><span data-i18n="moreYoutube">YouTube에서 더 보기</span> <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading reveal" data-chapter="01"><div><span class="section-index">01 / PORTFOLIO</span><h2 id="works-heading">SHOW<em>CASE</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="works-description">캐릭터 하나하나의 개성을 담아 작업한 Live2D 쇼케이스입니다.</p></div><a class="section-side-link" id="youtube-all-link" href="https://www.youtube.com/@Eryn_live2D" target="_blank" rel="noopener noreferrer"><span data-i18n="moreYoutube">YouTube에서 더 보기</span> <span aria-hidden="true">↗</span></a></div>
       <div id="works-grid" class="works-grid"><div class="placeholder-card">쇼케이스를 불러오는 중...</div></div>
     </section>
 
     <section class="section portfolio-view section-soft" id="samples" role="tabpanel" aria-labelledby="portfolio-tab-samples samples-heading">
       <div class="container">
-        <div class="section-heading reveal"><div><span class="section-index">02 / MOTION LIBRARY</span><h2 id="samples-heading"><span data-i18n="rigging">Rigging</span> <em data-i18n="samples">Samples</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="samplesDescription">원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.</p></div></div>
+        <div class="section-heading reveal" data-chapter="02"><div><span class="section-index">02 / MOTION LIBRARY</span><h2 id="samples-heading"><span data-i18n="rigging">Rigging</span> <em data-i18n="samples">Samples</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="samplesDescription">원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.</p></div></div>
         <div class="sample-tab-row reveal" id="sample-tabs" role="tablist" aria-label="리깅 샘플 카테고리" data-i18n-aria="sampleCategory"></div>
         <div id="sample-panel" class="sample-panel" role="tabpanel" aria-live="polite"><div class="placeholder-card">샘플을 준비하고 있어요...</div></div>
       </div>
@@ -669,7 +756,7 @@ body.sale-image-lightbox-open{overflow:hidden}
 
     <div class="site-panel" data-page="sale-models">
     <section class="section container" id="sale-models" aria-labelledby="sale-models-heading">
-      <div class="section-heading reveal"><div><span class="section-index">03 / PREMADE MODELS</span><h2 id="sale-models-heading"><span data-i18n="premade">Premade</span> <em data-i18n="models">Models</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="sale-models-description">완성된 Live2D 판매 모델을 소개합니다.</p></div></div>
+      <div class="section-heading reveal" data-chapter="03"><div><span class="section-index">03 / PREMADE MODELS</span><h2 id="sale-models-heading"><span data-i18n="premade">Premade</span> <em data-i18n="models">Models</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="sale-models-description">완성된 Live2D 판매 모델을 소개합니다.</p></div></div>
       <div class="sale-models-grid" id="sale-models-grid"><div class="placeholder-card">판매 모델 정보를 불러오는 중...</div></div>
       <div class="sale-model-picker" id="sale-model-picker" role="tablist" aria-label="판매 모델 선택" data-i18n-aria="selectModel"></div>
     </section>
@@ -677,7 +764,7 @@ body.sale-image-lightbox-open{overflow:hidden}
 
     <div class="site-panel" data-page="pricing">
     <section class="section container" id="pricing" aria-labelledby="pricing-heading">
-      <div class="section-heading reveal"><div><span class="section-index">04 / COMMISSION</span><h2 id="pricing-heading"><span data-i18n="rigging">Rigging</span> <em data-i18n="price">Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact"><span data-i18n="commissionConsult">의뢰 상담하기</span> <span aria-hidden="true">↗</span></a></div>
+      <div class="section-heading reveal" data-chapter="04"><div><span class="section-index">04 / COMMISSION</span><h2 id="pricing-heading"><span data-i18n="rigging">Rigging</span> <em data-i18n="price">Price</em><span class="heading-star" aria-hidden="true">✧</span></h2><p id="pricing-description">리깅 종류와 기본 구성, 추가 옵션을 확인할 수 있습니다.</p></div><a class="section-side-link" href="#contact"><span data-i18n="commissionConsult">의뢰 상담하기</span> <span aria-hidden="true">↗</span></a></div>
       <div class="pricing-grid" id="pricing-grid"></div>
       <section class="price-included-panel" id="price-included-panel" aria-live="polite" hidden></section>
       <p class="price-notice reveal" id="price-notice"></p>
@@ -691,8 +778,11 @@ body.sale-image-lightbox-open{overflow:hidden}
     <div class="site-panel" data-page="about">
     <section class="section" id="about" aria-labelledby="about-heading">
       <div class="container">
-        <div class="section-heading reveal"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading"><span data-i18n="workHeading">Work</span> <em data-i18n="processHeading">Process</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="guideDescription">첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
-        <div class="process-grid" id="process-grid"></div>
+        <div class="section-heading reveal" data-chapter="05"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading"><span data-i18n="workHeading">Work</span> <em data-i18n="processHeading">Process</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="guideDescription">첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
+        <div class="process-story">
+          <div class="process-timeline" id="process-timeline" aria-hidden="true"></div>
+          <div class="process-grid" id="process-grid"></div>
+        </div>
         <div class="notice-grid" id="notice-grid"></div>
       </div>
     </section>
@@ -1330,6 +1420,13 @@ function renderSaleModels() {
   $('sale-models-grid').innerHTML = models.map((model, index) => {
     const images = asArray(model.images).filter(item => assetUrl(item.src));
     const cover = images[0];
+    // Known premade themes change decoration only, never artwork or content.
+    const modelTheme = model.id === 'mint-cat-girl' ? 'mint' : model.id === 'velvet-rose-vampire' ? 'rose' : 'lavender';
+    const modelEmblem = modelTheme === 'mint'
+      ? `<svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="21" rx="8" ry="6" fill="currentColor"/><circle cx="8" cy="12" r="3" fill="currentColor"/><circle cx="15" cy="9" r="3" fill="currentColor"/><circle cx="23" cy="11" r="3" fill="currentColor"/><circle cx="28" cy="17" r="2.5" fill="currentColor"/></svg>`
+      : modelTheme === 'rose'
+        ? `<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4 27 14 16 28 5 14zM5 14h22M11 7l-2 7 7 14 7-14-2-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`
+        : `<span aria-hidden="true">✧</span>`;
     const status = model.sold ? t('soldOut') : (model.status || t('onSale'));
     const videoUrl = validExternalUrl(model.showcaseUrl);
     // Only calculate a new total when both real component prices have been set.
@@ -1351,7 +1448,7 @@ function renderSaleModels() {
           ${videoUrl ? `<a class="button button-outline" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t('viewShowcase'))} ↗</a>` : ''}
         </div>`;
 
-    return `<article class="sale-model-card${index === preservedModel ? ' is-current' : ''}" data-model-index="${index}">
+    return `<article class="sale-model-card model-theme-${modelTheme}${index === preservedModel ? ' is-current' : ''}" data-model-index="${index}">
       <div class="sale-model-visual"><div class="sale-model-media">
         ${imageHtml}
         <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>${escapeHtml(t('imageWaiting'))}</div>
@@ -1361,7 +1458,7 @@ function renderSaleModels() {
       </div>
       <div class="sale-model-gallery-meta"><span class="sale-model-caption">${escapeHtml(cover?.caption || 'MODEL GALLERY')}</span><span class="sale-model-count">${images.length ? `01 / ${String(images.length).padStart(2, '0')}` : '00 / 00'}</span></div></div>
       <div class="sale-model-content">
-        <div class="sale-model-kicker"><span>ONE OF ONE · LIVE2D</span><span>✧</span></div>
+        <div class="sale-model-kicker"><span>ONE OF ONE · LIVE2D</span><span class="sale-model-theme-emblem">${modelEmblem}</span></div>
         <h3>${escapeHtml(model.title)}</h3>
         <p class="sale-model-description">${escapeHtml(model.subtitle || '')}</p>
         <p class="sale-model-credits">ILLUST · ${escapeHtml(model.illustrator || '—')} <span>/</span> RIG · ${escapeHtml(model.rigging || 'Eryn')}</p>
@@ -1558,7 +1655,17 @@ function renderAddons(addons) {
 
 function renderInformation() {
   const info = CONTENT.information || {};
-  $('process-grid').innerHTML = asArray(info.process).map(item => `<article class="process-card reveal"><span class="process-index">${escapeHtml(item.step)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`).join('');
+  const steps = asArray(info.process);
+  const timeline = $('process-timeline');
+  timeline.style.setProperty('--process-count', String(Math.max(1, steps.length)));
+  timeline.innerHTML = steps.map((item, index) => `<div class="process-milestone${index === 0 ? ' is-highlighted' : ''}"><span class="process-milestone-number">${escapeHtml(item.step || String(index + 1).padStart(2, '0'))}</span><span class="process-milestone-label">${escapeHtml(item.title || '')}</span></div>`).join('');
+  $('process-grid').innerHTML = steps.map(item => `<article class="process-card reveal"><span class="process-index">${escapeHtml(item.step)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`).join('');
+  const milestones = [...timeline.querySelectorAll('.process-milestone')];
+  const focusMilestone = activeIndex => milestones.forEach((milestone, index) => milestone.classList.toggle('is-highlighted', index === activeIndex));
+  $('process-grid').querySelectorAll('.process-card').forEach((card, index) => {
+    card.addEventListener('mouseenter', () => focusMilestone(index));
+    card.addEventListener('mouseleave', () => focusMilestone(0));
+  });
   $('notice-grid').innerHTML = asArray(info.notices).map((item, i) => `<article class="notice-card reveal"><div class="notice-card-header"><span class="notice-card-number">${String(i + 1).padStart(2, '0')}</span><h3>${escapeHtml(item.title)}</h3></div><ul>${asArray(item.items).map(text => `<li>${escapeHtml(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')}</li>`).join('')}</ul></article>`).join('');
 }
 

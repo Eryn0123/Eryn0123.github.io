@@ -451,16 +451,21 @@ body.sale-image-lightbox-open{overflow:hidden}
 .contact-submit{width:100%;min-height:46px;border:0;border-radius:11px;background:linear-gradient(110deg,#9482d9,#7968c2);color:#fff;font-size:12px;font-weight:700;box-shadow:0 9px 19px rgba(123,107,190,.17);transition:transform .22s var(--ease),box-shadow .22s,opacity .22s}
 .contact-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 24px rgba(123,107,190,.25)}
 .contact-submit:disabled{opacity:.58;cursor:not-allowed;box-shadow:none}
+.contact-action-row{display:flex;align-items:stretch;gap:10px}
+.contact-action-row .contact-submit,.contact-detail-button{flex:1 1 0;min-width:0;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 12px;text-align:center;line-height:1.45;word-break:keep-all}
+.contact-action-row .contact-submit{width:auto}
+.contact-detail-button{border:1px solid #cfc4ee;border-radius:11px;background:#f6f2ff;color:#6c5ab0;font:700 12px Paperlogy,sans-serif;text-decoration:none;transition:transform .22s var(--ease),background .22s,border-color .22s,box-shadow .22s}
+.contact-detail-button:hover{transform:translateY(-2px);background:#eee8ff;border-color:#b4a5e1;box-shadow:0 10px 20px rgba(123,107,190,.12)}
+.contact-detail-button:focus-visible{outline:2px solid #9482d9;outline-offset:3px}
 .contact-form-status{font-size:11px;line-height:1.7;padding:9px 12px;border:1px solid #e8e2f1;border-radius:10px;background:#f8f6fd;color:#85769f;margin:0;word-break:keep-all}
 .contact-form-status[data-state="success"]{border-color:#c9e4d6;background:#f2fbf6;color:#487b62}
 .contact-form-status[data-state="error"]{border-color:#f0d3d4;background:#fff7f7;color:#a05c62}
 .contact-form-status[data-state="pending"]{border-color:#ddd5f3;color:#7661ad}
-.contact-form-alternative{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;color:#8a7da6;font-size:10.5px}
-.contact-form-alternative a{font-weight:700;color:#7967bc;text-decoration:underline;text-decoration-color:#c8bce6;text-underline-offset:3px}
 .contact-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
 .contact-submit-frame{display:none;width:0;height:0;border:0}
 @media(max-width:840px){.contact-panel{grid-template-columns:1fr;gap:28px}.contact-intro{max-width:630px}.contact-panel h2{font-size:clamp(45px,8vw,64px)}.contact-note{margin-bottom:15px}}
 @media(max-width:480px){.contact-panel{padding:26px 17px}.contact-form-card{padding:19px 14px;border-radius:16px}.contact-field-row{grid-template-columns:1fr}.contact-field textarea{min-height:120px}}
+@media(max-width:580px){.contact-action-row{flex-direction:column}}
 .footer{background:#f8f7fd;border-top:1px solid #eae6f3;padding:11px 0 13px}
 .footer-inner{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .footer-brand{font:800 29px Outfit,sans-serif;letter-spacing:-1px}
@@ -649,10 +654,13 @@ body.sale-image-lightbox-open{overflow:hidden}
               <div class="contact-honeypot" aria-hidden="true"><label for="inquiry-website">Website</label><input id="inquiry-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
               <input type="hidden" name="requestId" id="contact-request-id">
               <input type="hidden" name="language" id="contact-form-language" value="ko">
-              <button class="contact-submit" id="contact-submit" type="submit" disabled><span id="contact-submit-label" data-i18n="contactSubmit">문의 보내기</span> <span aria-hidden="true">↗</span></button>
+              <div class="contact-action-row">
+                <button class="contact-submit" id="contact-submit" type="submit" disabled><span id="contact-submit-label" data-i18n="contactSubmit">문의 보내기</span> <span aria-hidden="true">↗</span></button>
+                <a class="contact-detail-button" id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="googleInquiry">상세 신청서 작성하기</span><span aria-hidden="true">↗</span></a>
+              </div>
+              <span class="form-pending" id="form-pending" data-i18n="formPending" hidden>상세 신청서 링크 준비 중</span>
               <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite" data-state="info"></p>
             </form>
-            <div class="contact-form-alternative"><span data-i18n="contactFormAlternate">상세 신청이 필요하신가요?</span><a id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="googleInquiry">Google Form으로 문의하기</span> ↗</a><span id="form-pending" data-i18n="formPending" hidden>Google Form 연결 준비 중</span></div>
             <iframe class="contact-submit-frame" id="contact-submit-frame" name="contact-submit-frame" title="Contact form delivery" tabindex="-1" aria-hidden="true"></iframe>
           </div>
         </div>

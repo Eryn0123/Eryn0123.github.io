@@ -118,6 +118,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .site-panel{flex:1 0 auto;min-height:0}
 html.js .site-panel:not(.is-active){display:none!important}
 html.js .site-panel.is-active{animation:pageEnter .52s var(--ease) both}
+/* A language change briefly fades the current page before showing its translation. */
+html.js .site-panel.is-active.language-leaving{animation:languageLeave .22s ease-in both}
+html.js .site-panel.is-active.language-entering{animation:languageEnter .58s var(--ease) both}
 /* On desktop, HOME fits the available viewport while other pages scroll naturally.
    If text or the viewport becomes too small, content can still grow and scroll. */
 @media(min-width:761px) and (min-height:680px){
@@ -225,7 +228,7 @@ body.sample-lightbox-open{overflow:hidden}
 .site-panel[data-page="sale-models"] .section{padding-top:clamp(28px,4.8svh,55px)}
 .site-panel[data-page="sale-models"] .section-heading{width:min(100%,1050px);margin-inline:auto;margin-bottom:20px}
 .sale-models-grid{display:block;width:min(100%,1050px);margin-inline:auto}
-.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
+.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
 .sale-model-card.is-current{display:grid;animation:saleModelEnter .68s var(--ease) both}
 .sale-model-visual{min-width:0;min-height:478px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
 .sale-model-media{position:relative;flex:1;min-height:0;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
@@ -235,8 +238,10 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-image-fallback span{font-size:31px}
 .sale-model-status{position:absolute;z-index:2;left:16px;top:16px;background:rgba(255,255,255,.94);border:1px solid #e4dcf3;border-radius:100px;padding:9px 13px;color:#7766b3;font-size:10px;font-weight:700;box-shadow:0 5px 20px rgba(73,59,133,.07)}
 .sale-model-status.sold{color:#837c92;background:rgba(255,255,255,.95)}
-.sale-model-nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:36px;height:36px;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;font:700 20px Outfit,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+.sale-model-nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:36px;height:36px;padding:0;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
 .sale-model-nav:hover{background:#fff;transform:translateY(-50%) scale(1.07)}
+.sale-model-arrow{width:9px;height:9px;display:block;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
+.sale-model-prev .sale-model-arrow{transform:rotate(-135deg)}
 .sale-model-prev{left:14px}.sale-model-next{right:14px}
 .sale-model-expand{position:absolute;z-index:1;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;border:0;background:transparent;cursor:zoom-in}
 .sale-model-expand-icon{display:grid;place-items:center;width:37px;height:37px;border:1px solid rgba(221,214,243,.9);border-radius:11px;background:rgba(255,255,255,.95);box-shadow:0 5px 15px rgba(71,56,124,.12);color:#7868b3;font-size:21px;line-height:1;transition:transform .25s var(--ease),box-shadow .25s}
@@ -269,7 +274,7 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
 .sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
 .sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
-/* A 50/50 gallery sits comfortably above its model picker and the footer. */
+/* Wider artwork remains within the same gallery height and above the model picker. */
 @media(min-width:941px) and (min-height:760px){
   body.sale-active{height:100svh}
   body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
@@ -468,6 +473,8 @@ body.sale-image-lightbox-open{overflow:hidden}
 @keyframes pricePanelIn{from{opacity:0;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes addonCategoryEnter{from{opacity:0;transform:translateY(7px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes pageEnter{from{opacity:0;transform:translate3d(0,13px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
+@keyframes languageLeave{from{opacity:1;transform:translateZ(0);filter:blur(0)}to{opacity:0;transform:translate3d(0,5px,0);filter:blur(3px)}}
+@keyframes languageEnter{0%{opacity:0;transform:translate3d(0,18px,0);filter:blur(8px)}65%{opacity:.9;filter:blur(1px)}100%{opacity:1;transform:translateZ(0);filter:blur(0)}}
 @keyframes auroraDriftOne{0%{transform:translate3d(0,0,0) rotate(-5deg) scale(1)}100%{transform:translate3d(-8vw,7svh,0) rotate(6deg) scale(1.12)}}
 @keyframes auroraDriftTwo{0%{transform:translate3d(-3vw,2svh,0) rotate(4deg) scale(1.08)}100%{transform:translate3d(9vw,-8svh,0) rotate(-8deg) scale(.97)}}
 @keyframes heroStarTwinkle{0%,100%{opacity:.24;transform:scale(.72) rotate(-7deg)}48%{opacity:.98;transform:scale(1.13) rotate(7deg)}68%{opacity:.7;transform:scale(.96)}}
@@ -687,6 +694,8 @@ let contactSubmitTimer = null;
 let contactStatusKey = '';
 let contactStatusState = 'info';
 let lastSaleInquiryPrefill = '';
+let pendingLanguage = null;
+let languageChangeToken = 0;
 
 const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -812,17 +821,47 @@ function renderAllContent() {
   syncMediaPlayback();
 }
 
+function commitLanguage(nextLanguage) {
+  activeLanguage = nextLanguage;
+  try { localStorage.setItem('eryn-language', activeLanguage); } catch (_) {}
+  updateStaticLanguage();
+  renderAllContent();
+}
+
+function finishPendingLanguageSwitch() {
+  // Never leave a page transparent if the visitor navigates during the transition.
+  const nextLanguage = pendingLanguage;
+  languageChangeToken++;
+  pendingLanguage = null;
+  document.querySelectorAll('.site-panel').forEach(panel => panel.classList.remove('language-leaving', 'language-entering'));
+  if (nextLanguage) commitLanguage(nextLanguage);
+}
+
 function initLanguageSwitch() {
   try {
     const saved = localStorage.getItem('eryn-language');
     if (['ko','en','ja'].includes(saved)) activeLanguage = saved;
   } catch (_) { /* Language preference still works without storage. */ }
   document.querySelectorAll('.language-switch button').forEach(button => button.addEventListener('click', () => {
-    if (activeLanguage === button.dataset.lang) return;
-    activeLanguage = button.dataset.lang;
-    try { localStorage.setItem('eryn-language', activeLanguage); } catch (_) {}
-    updateStaticLanguage();
-    renderAllContent();
+    const nextLanguage = button.dataset.lang;
+    if (nextLanguage === (pendingLanguage || activeLanguage)) return;
+    const panel = document.querySelector('.site-panel.is-active');
+    if (!ORIGINAL_CONTENT || !panel || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      finishPendingLanguageSwitch();
+      commitLanguage(nextLanguage);
+      return;
+    }
+    pendingLanguage = nextLanguage;
+    const token = ++languageChangeToken;
+    panel.classList.remove('language-entering');
+    panel.classList.add('language-leaving');
+    window.setTimeout(() => {
+      if (token !== languageChangeToken) return;
+      pendingLanguage = null;
+      commitLanguage(nextLanguage);
+      panel.classList.remove('language-leaving');
+      if (panel.classList.contains('is-active')) panel.classList.add('language-entering');
+    }, 220);
   }));
   updateStaticLanguage();
 }
@@ -1209,7 +1248,7 @@ function renderSaleModels() {
         <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>${escapeHtml(t('imageWaiting'))}</div>
         <span class="sale-model-status${model.sold ? ' sold' : ''}">${escapeHtml(status)} · ${escapeHtml(model.badge || 'PREMADE')}</span>
         ${cover ? `<button type="button" class="sale-model-expand" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('expandImage'))}"><span class="sale-model-expand-icon" aria-hidden="true">⤢</span></button>` : ''}
-        ${images.length > 1 ? `<button type="button" class="sale-model-nav sale-model-prev" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('prevImage'))}">‹</button><button type="button" class="sale-model-nav sale-model-next" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('nextImage'))}">›</button>` : ''}
+        ${images.length > 1 ? `<button type="button" class="sale-model-nav sale-model-prev" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('prevImage'))}"><span class="sale-model-arrow" aria-hidden="true"></span></button><button type="button" class="sale-model-nav sale-model-next" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('nextImage'))}"><span class="sale-model-arrow" aria-hidden="true"></span></button>` : ''}
       </div>
       <div class="sale-model-gallery-meta"><span class="sale-model-caption">${escapeHtml(cover?.caption || 'MODEL GALLERY')}</span><span class="sale-model-count">${images.length ? `01 / ${String(images.length).padStart(2, '0')}` : '00 / 00'}</span></div></div>
       <div class="sale-model-content">
@@ -1541,6 +1580,7 @@ function setPortfolioView(view) {
 }
 
 function showRoute(target) {
+  finishPendingLanguageSwitch();
   const route = ROUTES[target] || ROUTES.home;
   activePage = route.page;
   document.body.classList.toggle('home-active', activePage === 'home');

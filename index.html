@@ -118,9 +118,6 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .site-panel{flex:1 0 auto;min-height:0}
 html.js .site-panel:not(.is-active){display:none!important}
 html.js .site-panel.is-active{animation:pageEnter .52s var(--ease) both}
-/* Language switching fades the current view away before revealing translated content. */
-html.js .site-panel.is-active.language-leaving{animation:languageLeave .22s ease-in both}
-html.js .site-panel.is-active.language-entering{animation:languageEnter .58s var(--ease) both}
 /* On desktop, HOME fits the available viewport while other pages scroll naturally.
    If text or the viewport becomes too small, content can still grow and scroll. */
 @media(min-width:761px) and (min-height:680px){
@@ -224,11 +221,11 @@ body.sample-lightbox-open{overflow:hidden}
 .sample-lightbox-loading[hidden]{display:none}
 .sample-lightbox-hint{margin:0;text-align:center;color:#9c92b2;font-size:11px;flex-shrink:0}
 
-/* Premade model sales: a wider gallery gives the artwork visual priority without adding height. */
+/* Premade model sales: preserve a generous portrait display, with slightly narrower width. */
 .site-panel[data-page="sale-models"] .section{padding-top:clamp(28px,4.8svh,55px)}
 .site-panel[data-page="sale-models"] .section-heading{width:min(100%,1050px);margin-inline:auto;margin-bottom:20px}
 .sale-models-grid{display:block;width:min(100%,1050px);margin-inline:auto}
-.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
+.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
 .sale-model-card.is-current{display:grid;animation:saleModelEnter .68s var(--ease) both}
 .sale-model-visual{min-width:0;min-height:478px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
 .sale-model-media{position:relative;flex:1;min-height:0;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
@@ -272,7 +269,7 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
 .sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
 .sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
-/* Keep the gallery and its model picker visible in one desktop viewport. */
+/* A 50/50 gallery sits comfortably above its model picker and the footer. */
 @media(min-width:941px) and (min-height:760px){
   body.sale-active{height:100svh}
   body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
@@ -471,8 +468,6 @@ body.sale-image-lightbox-open{overflow:hidden}
 @keyframes pricePanelIn{from{opacity:0;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes addonCategoryEnter{from{opacity:0;transform:translateY(7px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes pageEnter{from{opacity:0;transform:translate3d(0,13px,0);filter:blur(3px)}to{opacity:1;transform:translateZ(0);filter:blur(0)}}
-@keyframes languageLeave{from{opacity:1;transform:translateZ(0);filter:blur(0)}to{opacity:0;transform:translate3d(0,5px,0);filter:blur(3px)}}
-@keyframes languageEnter{0%{opacity:0;transform:translate3d(0,18px,0);filter:blur(8px)}65%{opacity:.9;filter:blur(1px)}100%{opacity:1;transform:translateZ(0);filter:blur(0)}}
 @keyframes auroraDriftOne{0%{transform:translate3d(0,0,0) rotate(-5deg) scale(1)}100%{transform:translate3d(-8vw,7svh,0) rotate(6deg) scale(1.12)}}
 @keyframes auroraDriftTwo{0%{transform:translate3d(-3vw,2svh,0) rotate(4deg) scale(1.08)}100%{transform:translate3d(9vw,-8svh,0) rotate(-8deg) scale(.97)}}
 @keyframes heroStarTwinkle{0%,100%{opacity:.24;transform:scale(.72) rotate(-7deg)}48%{opacity:.98;transform:scale(1.13) rotate(7deg)}68%{opacity:.7;transform:scale(.96)}}
@@ -692,8 +687,6 @@ let contactSubmitTimer = null;
 let contactStatusKey = '';
 let contactStatusState = 'info';
 let lastSaleInquiryPrefill = '';
-let pendingLanguage = null;
-let languageChangeToken = 0;
 
 const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -819,48 +812,17 @@ function renderAllContent() {
   syncMediaPlayback();
 }
 
-function commitLanguage(nextLanguage) {
-  activeLanguage = nextLanguage;
-  try { localStorage.setItem('eryn-language', activeLanguage); } catch (_) {}
-  updateStaticLanguage();
-  renderAllContent();
-}
-
-function finishPendingLanguageSwitch() {
-  // Navigating while the current view fades should never leave it invisible.
-  const nextLanguage = pendingLanguage;
-  languageChangeToken++;
-  pendingLanguage = null;
-  document.querySelectorAll('.site-panel').forEach(panel => panel.classList.remove('language-leaving', 'language-entering'));
-  if (nextLanguage) commitLanguage(nextLanguage);
-}
-
 function initLanguageSwitch() {
   try {
     const saved = localStorage.getItem('eryn-language');
     if (['ko','en','ja'].includes(saved)) activeLanguage = saved;
   } catch (_) { /* Language preference still works without storage. */ }
   document.querySelectorAll('.language-switch button').forEach(button => button.addEventListener('click', () => {
-    const nextLanguage = button.dataset.lang;
-    if (nextLanguage === (pendingLanguage || activeLanguage)) return;
-    const panel = document.querySelector('.site-panel.is-active');
-    if (!ORIGINAL_CONTENT || !panel || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      finishPendingLanguageSwitch();
-      commitLanguage(nextLanguage);
-      return;
-    }
-
-    pendingLanguage = nextLanguage;
-    const token = ++languageChangeToken;
-    panel.classList.remove('language-entering');
-    panel.classList.add('language-leaving');
-    window.setTimeout(() => {
-      if (token !== languageChangeToken) return;
-      pendingLanguage = null;
-      commitLanguage(nextLanguage);
-      panel.classList.remove('language-leaving');
-      if (panel.classList.contains('is-active')) panel.classList.add('language-entering');
-    }, 220);
+    if (activeLanguage === button.dataset.lang) return;
+    activeLanguage = button.dataset.lang;
+    try { localStorage.setItem('eryn-language', activeLanguage); } catch (_) {}
+    updateStaticLanguage();
+    renderAllContent();
   }));
   updateStaticLanguage();
 }
@@ -1579,7 +1541,6 @@ function setPortfolioView(view) {
 }
 
 function showRoute(target) {
-  finishPendingLanguageSwitch();
   const route = ROUTES[target] || ROUTES.home;
   activePage = route.page;
   document.body.classList.toggle('home-active', activePage === 'home');

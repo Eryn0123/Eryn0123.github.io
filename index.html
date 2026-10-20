@@ -393,23 +393,54 @@ body.sale-image-lightbox-open{overflow:hidden}
 .notice-card li{color:#83798e;font-size:11.5px;line-height:1.75;padding-left:13px;position:relative;word-break:keep-all}
 .notice-card li::before{content:'✧';position:absolute;left:0;color:#ad9cdf}
 
-/* Strong, singular inquiry CTA without an unconfigured fake destination. */
-.contact-section{padding:clamp(45px,7svh,76px) 0}
-.contact-panel{position:relative;overflow:hidden;border-radius:28px;padding:76px 42px 67px;text-align:center;border:1px solid #dcd5f3;background:radial-gradient(ellipse at 85% 5%,rgba(226,221,252,.8),transparent 45%),radial-gradient(ellipse at 12% 90%,rgba(229,236,253,.9),transparent 47%),linear-gradient(145deg,#f6f2ff,#f7f8ff);box-shadow:0 16px 52px rgba(77,61,125,.08)}
+/* A calm two-column contact desk: explanation on the left, inquiry form on the right. */
+.contact-section{padding:clamp(24px,3.7svh,52px) 0}
+.contact-panel{position:relative;display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);align-items:center;gap:clamp(25px,4.5vw,64px);width:min(100%,1120px);margin-inline:auto;overflow:hidden;border-radius:28px;padding:clamp(28px,4vw,54px);text-align:left;border:1px solid #dcd5f3;background:radial-gradient(ellipse at 85% 5%,rgba(226,221,252,.8),transparent 45%),radial-gradient(ellipse at 12% 90%,rgba(229,236,253,.9),transparent 47%),linear-gradient(145deg,#f6f2ff,#f7f8ff);box-shadow:0 16px 52px rgba(77,61,125,.08)}
+.contact-intro{position:relative;z-index:1;min-width:0}
 .contact-panel .section-index{color:#8e7ec8}
-.contact-panel h2{font:600 clamp(44px,5.4vw,78px)/1.1 Outfit,sans-serif;letter-spacing:-3.8px;margin:17px 0 22px}
-.contact-korean{font-size:14px;line-height:2;color:#7a708d;margin:0 auto 28px;word-break:keep-all}
+.contact-panel h2{font:600 clamp(43px,4.9vw,68px)/1.1 Outfit,sans-serif;letter-spacing:-3px;margin:14px 0 19px}
+.contact-korean{font-size:13px;line-height:1.95;color:#7a708d;margin:0 0 18px;white-space:pre-line;word-break:keep-all}
 .button-contact{min-height:53px;padding:14px 30px;background:#8271c9;color:#fff;box-shadow:0 14px 26px rgba(116,99,183,.19)}
 .button-contact:hover{box-shadow:0 18px 30px rgba(116,99,183,.24)}
 .form-pending{display:inline-flex;align-items:center;gap:9px;color:#8378a7;font-size:12px;border:1px solid #dcd6ee;background:rgba(255,255,255,.8);padding:13px 21px;border-radius:999px}
 .form-pending span{color:#b1a1e1}
-.contact-note{font-size:11px;color:#9a90aa;line-height:1.8;margin:17px 0 24px}
-.contact-mini-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.contact-note{font-size:11px;color:#9a90aa;line-height:1.85;margin:15px 0 27px;word-break:keep-all}
+.contact-mini-links{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:9px}
 .contact-mini-links a{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:8px;border:1px solid #e1daf0;background:rgba(255,255,255,.54);font:600 11px Outfit,Paperlogy,sans-serif;color:#806fae;transition:transform .2s,border-color .2s}
 .contact-mini-links a:hover{transform:translateY(-2px);border-color:#b9a8e8}
 .contact-star{position:absolute;color:#c7b9ef;pointer-events:none}
-.contact-star-one{left:12%;top:23%;font-size:34px;transform:rotate(15deg)}
-.contact-star-two{right:11%;bottom:21%;font-size:54px;transform:rotate(-15deg)}
+.contact-star-one{left:7%;top:12%;font-size:25px;transform:rotate(15deg)}
+.contact-star-two{right:4%;bottom:5%;font-size:40px;transform:rotate(-15deg)}
+.contact-form-card{position:relative;z-index:1;min-width:0;border:1px solid rgba(220,212,242,.95);border-radius:23px;background:rgba(255,255,255,.91);padding:clamp(21px,2.6vw,32px);box-shadow:0 16px 40px rgba(88,73,143,.075)}
+.contact-form-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:17px}
+.contact-form-heading span{font:700 10px Outfit,sans-serif;letter-spacing:1.3px;color:#9c8dcc}
+.contact-form-heading h3{font:700 20px/1.3 Outfit,Paperlogy,sans-serif;margin:4px 0 0;letter-spacing:-.4px}
+.contact-form-symbol{font-size:25px;color:#b9abe7}
+.contact-form{display:grid;gap:13px}
+.contact-field{display:grid;gap:6px;min-width:0}
+.contact-field label,.contact-field-label{font-size:11px;font-weight:700;color:#655884}
+.contact-field input,.contact-field select,.contact-field textarea{width:100%;border:1px solid #e2dcf1;border-radius:11px;background:#fcfbff;padding:11px 13px;color:#484060;font:400 12px/1.5 Paperlogy,sans-serif;transition:border-color .2s,box-shadow .2s,background .2s;outline:none}
+.contact-field input:hover,.contact-field select:hover,.contact-field textarea:hover{border-color:#c6baed}
+.contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{border-color:#a595dd;box-shadow:0 0 0 3px rgba(154,137,214,.15);background:white}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:#b4abc4}
+.contact-field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%239b8cbf' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:33px}
+.contact-field textarea{min-height:104px;resize:vertical;max-height:260px}
+.contact-field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contact-consent{display:flex;align-items:flex-start;gap:9px;font-size:10px;line-height:1.65;color:#817791;cursor:pointer;word-break:keep-all}
+.contact-consent input{width:15px;height:15px;accent-color:#8978ce;margin:1px 0 0;flex-shrink:0}
+.contact-submit{width:100%;min-height:46px;border:0;border-radius:11px;background:linear-gradient(110deg,#9482d9,#7968c2);color:#fff;font-size:12px;font-weight:700;box-shadow:0 9px 19px rgba(123,107,190,.17);transition:transform .22s var(--ease),box-shadow .22s,opacity .22s}
+.contact-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 24px rgba(123,107,190,.25)}
+.contact-submit:disabled{opacity:.58;cursor:not-allowed;box-shadow:none}
+.contact-form-status{font-size:11px;line-height:1.7;padding:9px 12px;border:1px solid #e8e2f1;border-radius:10px;background:#f8f6fd;color:#85769f;margin:0;word-break:keep-all}
+.contact-form-status[data-state="success"]{border-color:#c9e4d6;background:#f2fbf6;color:#487b62}
+.contact-form-status[data-state="error"]{border-color:#f0d3d4;background:#fff7f7;color:#a05c62}
+.contact-form-status[data-state="pending"]{border-color:#ddd5f3;color:#7661ad}
+.contact-form-alternative{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;color:#8a7da6;font-size:10.5px}
+.contact-form-alternative a{font-weight:700;color:#7967bc;text-decoration:underline;text-decoration-color:#c8bce6;text-underline-offset:3px}
+.contact-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+.contact-submit-frame{display:none;width:0;height:0;border:0}
+@media(max-width:840px){.contact-panel{grid-template-columns:1fr;gap:28px}.contact-intro{max-width:630px}.contact-panel h2{font-size:clamp(45px,8vw,64px)}.contact-note{margin-bottom:15px}}
+@media(max-width:480px){.contact-panel{padding:26px 17px}.contact-form-card{padding:19px 14px;border-radius:16px}.contact-field-row{grid-template-columns:1fr}.contact-field textarea{min-height:120px}}
 .footer{background:#f8f7fd;border-top:1px solid #eae6f3;padding:11px 0 13px}
 .footer-inner{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .footer-brand{font:800 29px Outfit,sans-serif;letter-spacing:-1px}
@@ -453,6 +484,8 @@ body.sale-image-lightbox-open{overflow:hidden}
 @media(max-width:580px){.price-card{min-height:260px}.price-included-panel{padding:21px 16px 19px}.price-included-list{grid-template-columns:1fr}.price-included-heading h3{font-size:15px}}
 @media(max-width:760px){.addons-layout{grid-template-columns:1fr}.addons-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.addon-tab{min-height:52px}}
 @media(max-width:580px){.addons-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.addon-tab{min-height:48px;padding:12px 13px;font-size:11px}.addons-panel{padding:19px 16px 16px}.addon-row{font-size:11px}.addon-row b{font-size:11px}}
+@media(max-width:760px){.contact-section{padding-block:34px}.contact-panel{gap:24px}.contact-korean{margin-bottom:12px}}
+@media(max-width:580px){.contact-panel{padding:25px 19px;border-radius:20px}.contact-panel h2{font-size:clamp(42px,10vw,54px);letter-spacing:-2.4px;margin:12px 0 13px}.contact-korean{font-size:12px}.contact-star-one{left:5%;top:5%;font-size:18px}.contact-star-two{right:5%;bottom:4%;font-size:27px}.contact-form-card{padding:20px 16px}.contact-field-row{grid-template-columns:1fr}.contact-field textarea{min-height:120px}.contact-mini-links{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ambient,.hero-sparkle{animation:none!important;will-change:auto}.ambient{transform:none!important}.hero-sparkle{opacity:.72}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.price-action,.price-action-icon,.addon-tab,.addon-tab-arrow,.footer-socials a,.footer-link-arrow,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.price-included-panel,.price-included-list,.addon-detail-list,.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
 
   </style>
@@ -573,13 +606,33 @@ body.sale-image-lightbox-open{overflow:hidden}
     <section class="contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact-panel reveal"><div class="contact-star contact-star-one" aria-hidden="true">✦</div><div class="contact-star contact-star-two" aria-hidden="true">✧</div>
-          <span class="section-index">06 / CONTACT</span>
-          <h2 id="contact-heading"><span data-i18n="letsMake">Live2D Rigger</span> <em data-i18n="move">Eryn</em></h2>
-          <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요?<br>작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
-          <a class="button button-contact" id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="googleInquiry">Google Form으로 문의하기</span> <span aria-hidden="true">↗</span></a>
-          <div class="form-pending" id="form-pending"><span aria-hidden="true">✳</span><span data-i18n="formPending">Google Form 링크 연결 대기 중</span></div>
-          <p class="contact-note" id="contact-note">문의 접수 후 내용을 확인하여 개별적으로 안내드립니다.</p>
-          <div class="contact-mini-links" id="contact-socials"></div>
+          <div class="contact-intro">
+            <span class="section-index">06 / CONTACT</span>
+            <h2 id="contact-heading"><span data-i18n="letsMake">Live2D Rigger</span> <em data-i18n="move">Eryn</em></h2>
+            <p class="contact-korean" id="contact-description">함께 만들고 싶은 캐릭터가 있나요? 작업 의뢰와 궁금한 점을 편하게 보내주세요.</p>
+            <p class="contact-note" id="contact-note">문의 접수 후 내용을 확인하여 개별적으로 안내드립니다.</p>
+            <div class="contact-mini-links" id="contact-socials"></div>
+          </div>
+          <div class="contact-form-card">
+            <div class="contact-form-heading"><div><span>✦ QUICK CONTACT</span><h3 data-i18n="contactFormTitle">간단 문의</h3></div><span class="contact-form-symbol" aria-hidden="true">✧</span></div>
+            <form class="contact-form" id="contact-inquiry-form" method="POST" target="contact-submit-frame" novalidate>
+              <div class="contact-field"><label for="inquiry-type" data-i18n="contactType">문의 유형</label>
+                <select id="inquiry-type" name="inquiryType" required><option value="rigging" data-i18n="contactRigging">리깅 커미션</option><option value="premade" data-i18n="contactPremade">판매 모델 구매</option><option value="other" data-i18n="contactOther">기타 문의</option></select></div>
+              <div class="contact-field-row">
+                <div class="contact-field"><label for="inquiry-name" data-i18n="contactName">닉네임</label><input type="text" id="inquiry-name" name="name" maxlength="80" autocomplete="name" required data-i18n-placeholder="contactNameHint" placeholder="닉네임을 적어주세요"></div>
+                <div class="contact-field"><label for="inquiry-email" data-i18n="contactEmail">답변받을 이메일</label><input type="email" id="inquiry-email" name="email" maxlength="254" autocomplete="email" inputmode="email" required placeholder="name@example.com"></div>
+              </div>
+              <div class="contact-field"><label for="inquiry-message" data-i18n="contactMessage">문의 내용</label><textarea id="inquiry-message" name="message" minlength="10" maxlength="2500" required data-i18n-placeholder="contactMessageHint" placeholder="원하는 작업과 궁금한 점을 알려주세요."></textarea></div>
+              <label class="contact-consent" for="inquiry-consent"><input type="checkbox" id="inquiry-consent" name="consent" value="yes" required><span id="contact-privacy-notice">문의 답변을 위해 닉네임·이메일·문의 내용을 수집·이용하는 데 동의합니다.</span></label>
+              <div class="contact-honeypot" aria-hidden="true"><label for="inquiry-website">Website</label><input id="inquiry-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+              <input type="hidden" name="requestId" id="contact-request-id">
+              <input type="hidden" name="language" id="contact-form-language" value="ko">
+              <button class="contact-submit" id="contact-submit" type="submit" disabled><span id="contact-submit-label" data-i18n="contactSubmit">문의 보내기</span> <span aria-hidden="true">↗</span></button>
+              <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite" data-state="info"></p>
+            </form>
+            <div class="contact-form-alternative"><span data-i18n="contactFormAlternate">상세 신청이 필요하신가요?</span><a id="google-form-button" href="#contact" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="googleInquiry">Google Form으로 문의하기</span> ↗</a><span id="form-pending" data-i18n="formPending" hidden>Google Form 연결 준비 중</span></div>
+            <iframe class="contact-submit-frame" id="contact-submit-frame" name="contact-submit-frame" title="Contact form delivery" tabindex="-1" aria-hidden="true"></iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -628,6 +681,11 @@ let lastSampleTrigger = null;
 let saleImageLightboxState = null;
 let activePage = 'home';
 let activePortfolioView = 'works';
+let contactEndpoint = '';
+let contactPendingId = null;
+let contactSubmitTimer = null;
+let contactStatusKey = '';
+let contactStatusState = 'info';
 
 const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -645,7 +703,10 @@ const UI_TEXT = {
     rigging:'리깅',samples:'샘플',samplesDescription:'원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.',
     premade:'판매',models:'모델',price:'가격',commissionConsult:'의뢰 상담하기',additionalOptions:'추가 옵션',addonsDescription:'추가 기능은 필요한 것만 선택할 수 있어요.',
     workHeading:'작업',processHeading:'과정',guideDescription:'첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.',
-    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Google Form으로 문의하기',formPending:'Google Form 링크 연결 대기 중',
+    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'상세 신청서 작성하기',formPending:'상세 신청서 링크 준비 중',
+    contactFormTitle:'간단 문의',contactFormAlternate:'자세한 신청이 필요하신가요?',contactType:'문의 유형',contactRigging:'리깅 커미션',contactPremade:'판매 모델 구매',contactOther:'기타 문의',
+    contactName:'닉네임',contactNameHint:'닉네임을 적어주세요',contactEmail:'답변받을 이메일',contactMessage:'문의 내용',contactMessageHint:'원하는 작업과 궁금한 점을 알려주세요. (10자 이상)',
+    contactSubmit:'문의 보내기',contactPrivacyFallback:'문의 답변을 위해 닉네임·이메일·문의 내용을 수집·이용하는 데 동의합니다.',contactSetup:'이메일 문의 기능을 연결 중입니다. 지금은 아래 상세 신청서로 문의해 주세요.',contactSending:'전송 결과 확인 중...',contactSuccess:'문의가 정상적으로 접수되었어요! 확인 후 이메일로 답변드릴게요.',contactError:'메일 전송에 실패했어요. 잠시 후 다시 시도하거나 상세 신청서를 이용해 주세요.',contactInvalid:'내용을 확인해 주세요. 이메일 주소와 문의 내용(10자 이상)이 필요해요.',contactRateLimit:'같은 이메일의 문의가 방금 접수되었어요. 잠시 뒤 다시 시도해 주세요.',contactTimeout:'전송 결과를 확인하지 못했어요. 중복 제출을 피하고 잠시 뒤 확인해 주세요.',
     portfolioType:'포트폴리오 종류',sampleCategory:'리깅 샘플 카테고리',selectModel:'판매 모델 선택',addonCategory:'추가 옵션 카테고리',
     closeVideo:'확대 영상 닫기',enlargedVideo:'확대된 리깅 샘플 영상',videoLoading:'영상을 불러오는 중...',lightboxHint:'ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.',
     watchShowcase:'쇼케이스 YouTube에서 보기',thumbnail:'쇼케이스 썸네일',sampleItem:'리깅 샘플',expandVideo:'영상 확대 보기',
@@ -666,7 +727,10 @@ const UI_TEXT = {
     rigging:'Rigging',samples:'Samples',samplesDescription:'Select a category to explore the details of each movement.',
     premade:'Premade',models:'Models',price:'Price',commissionConsult:'Discuss a commission',additionalOptions:'Additional Options',addonsDescription:'Choose only the extras your model needs.',
     workHeading:'Work',processHeading:'Process',guideDescription:'Our process, from your first inquiry to final delivery.',
-    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Inquire via Google Form',formPending:'Google Form link coming soon',
+    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Detailed request form',formPending:'Detailed form coming soon',
+    contactFormTitle:'Quick inquiry',contactFormAlternate:'Need a detailed application?',contactType:'Inquiry type',contactRigging:'Live2D rigging',contactPremade:'Premade model purchase',contactOther:'Other inquiry',
+    contactName:'Name / nickname',contactNameHint:'How should I address you?',contactEmail:'Reply email',contactMessage:'Your message',contactMessageHint:'Tell me what you need (at least 10 characters).',
+    contactSubmit:'Send inquiry',contactPrivacyFallback:'I agree to the collection of my name, email, and message to respond to my inquiry.',contactSetup:'Email inquiries are being connected. Please use the detailed request form below for now.',contactSending:'Checking delivery...',contactSuccess:'Your inquiry was received! I will reply by email after reviewing it.',contactError:'Your message could not be delivered. Please try again or use the detailed request form.',contactInvalid:'Please check your email and message (at least 10 characters).',contactRateLimit:'An inquiry from this email was just received. Please try again later.',contactTimeout:'Delivery could not be confirmed. Avoid duplicate submissions and check again later.',
     portfolioType:'Portfolio sections',sampleCategory:'Rigging sample categories',selectModel:'Select a premade model',addonCategory:'Additional option categories',
     closeVideo:'Close enlarged video',enlargedVideo:'Enlarged rigging sample video',videoLoading:'Loading video...',lightboxHint:'Press ESC or close to return.',
     watchShowcase:'Watch showcase on YouTube',thumbnail:'showcase thumbnail',sampleItem:'rigging sample',expandVideo:'Enlarge video',
@@ -687,7 +751,10 @@ const UI_TEXT = {
     rigging:'リギング',samples:'サンプル',samplesDescription:'カテゴリーを選んで、動きの細部をご覧ください。',
     premade:'販売',models:'モデル',price:'料金',commissionConsult:'ご依頼の相談',additionalOptions:'追加オプション',addonsDescription:'必要な機能だけを追加できます。',
     workHeading:'制作',processHeading:'の流れ',guideDescription:'お問い合わせから納品までの制作の流れをご案内します。',
-    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Googleフォームで問い合わせ',formPending:'Googleフォームの準備中です',
+    letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'詳細な申し込みフォーム',formPending:'詳細フォームを準備中です',
+    contactFormTitle:'簡単お問い合わせ',contactFormAlternate:'詳しいお申し込みはこちら',contactType:'お問い合わせの種類',contactRigging:'Live2Dモデリング',contactPremade:'販売モデルの購入',contactOther:'その他',
+    contactName:'お名前・ニックネーム',contactNameHint:'お名前をご入力ください',contactEmail:'返信先メールアドレス',contactMessage:'お問い合わせ内容',contactMessageHint:'ご希望の内容をご記入ください（10文字以上）。',
+    contactSubmit:'お問い合わせを送信',contactPrivacyFallback:'返信のため、名前・メールアドレス・お問い合わせ内容の収集と利用に同意します。',contactSetup:'メールお問い合わせは準備中です。現在は下の詳細フォームをご利用ください。',contactSending:'送信結果を確認中...',contactSuccess:'お問い合わせを受け付けました！確認後、メールにて返信いたします。',contactError:'送信できませんでした。再度お試しいただくか、詳細フォームをご利用ください。',contactInvalid:'メールアドレスとお問い合わせ内容（10文字以上）をご確認ください。',contactRateLimit:'このメールアドレスからの送信を受け付けたばかりです。しばらくしてからお試しください。',contactTimeout:'送信結果を確認できませんでした。重複送信を避け、しばらくしてからご確認ください。',
     portfolioType:'ポートフォリオの種類',sampleCategory:'リギングサンプルのカテゴリー',selectModel:'販売モデルの選択',addonCategory:'追加オプションのカテゴリー',
     closeVideo:'拡大動画を閉じる',enlargedVideo:'拡大したリギングサンプル動画',videoLoading:'動画を読み込み中...',lightboxHint:'ESCキーまたは閉じるボタンで戻れます。',
     watchShowcase:'YouTubeでショーケースを見る',thumbnail:'ショーケースのサムネイル',sampleItem:'リギングサンプル',expandVideo:'動画を拡大',
@@ -728,6 +795,7 @@ function updateStaticLanguage() {
   document.documentElement.lang = activeLanguage;
   document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = displayText(node.dataset.i18n); });
   document.querySelectorAll('[data-i18n-aria]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.i18nAria)); });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(node => { node.placeholder = t(node.dataset.i18nPlaceholder); });
   document.querySelectorAll('.language-switch button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === activeLanguage)));
   const menu = $('menu-toggle');
   menu.setAttribute('aria-label', t(menu.getAttribute('aria-expanded') === 'true' ? 'menuClose' : 'menuOpen'));
@@ -1337,10 +1405,76 @@ function renderInformation() {
   $('notice-grid').innerHTML = asArray(info.notices).map(item => `<article class="notice-card reveal"><h3>${escapeHtml(item.title)}</h3><ul>${asArray(item.items).map(text => `<li>${escapeHtml(text)}</li>`).join('')}</ul></article>`).join('');
 }
 
+function setContactStatus(key, state = 'info') {
+  contactStatusKey = key;
+  contactStatusState = state;
+  const notice = $('contact-form-status');
+  notice.hidden = !key;
+  if (key) notice.textContent = t(key);
+  notice.dataset.state = state;
+}
+
+function initContactForm() {
+  const form = $('contact-inquiry-form');
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (contactPendingId) return;
+    if (!contactEndpoint) {
+      setContactStatus('contactSetup');
+      return;
+    }
+    if (!form.reportValidity()) return;
+    // A normal POST to an isolated iframe avoids unreliable cross-origin fetch responses.
+    // Only the Google relay's explicit, matching acknowledgement counts as success.
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    contactPendingId = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+    $('contact-request-id').value = contactPendingId;
+    $('contact-form-language').value = activeLanguage;
+    form.action = contactEndpoint;
+    $('contact-submit').disabled = true;
+    $('contact-submit-label').textContent = t('contactSending');
+    setContactStatus('contactSending', 'pending');
+    HTMLFormElement.prototype.submit.call(form);
+    clearTimeout(contactSubmitTimer);
+    contactSubmitTimer = setTimeout(() => {
+      if (!contactPendingId) return;
+      contactPendingId = null;
+      $('contact-submit').disabled = !contactEndpoint;
+      $('contact-submit-label').textContent = t('contactSubmit');
+      setContactStatus('contactTimeout', 'error');
+    }, 25000);
+  });
+
+  window.addEventListener('message', event => {
+    // Apps Script HTML responses are served from Google's isolated content host.
+    if (!/^https:\/\/(?:[a-z0-9-]+\.)*googleusercontent\.com$/i.test(event.origin) && event.origin !== 'https://script.google.com') return;
+    const result = event.data;
+    if (!contactPendingId || !result || result.source !== 'eryn-contact' || result.requestId !== contactPendingId) return;
+    clearTimeout(contactSubmitTimer);
+    contactPendingId = null;
+    $('contact-submit').disabled = !contactEndpoint;
+    $('contact-submit-label').textContent = t('contactSubmit');
+    const keys = {sent:'contactSuccess',invalid:'contactInvalid',rate:'contactRateLimit',error:'contactError'};
+    setContactStatus(keys[result.status] || 'contactError', result.status === 'sent' ? 'success' : 'error');
+    if (result.status === 'sent') form.reset();
+  });
+}
+
 function renderContact() {
   const contact = CONTENT.contact || {};
   $('contact-description').textContent = contact.description || '';
   $('contact-note').textContent = contact.note || '';
+  $('contact-privacy-notice').textContent = contact.privacyText || t('contactPrivacyFallback');
+  const relay = validExternalUrl(contact.appsScriptUrl);
+  const relayPath = relay ? new URL(relay) : null;
+  contactEndpoint = relayPath?.hostname === 'script.google.com' && /^\/macros\/s\/[^/]+\/exec\/?$/.test(relayPath.pathname) ? relay : '';
+  $('contact-submit').disabled = !contactEndpoint || Boolean(contactPendingId);
+  $('contact-submit-label').textContent = t(contactPendingId ? 'contactSending' : 'contactSubmit');
+  if (contactPendingId) setContactStatus('contactSending', 'pending');
+  else if (!contactEndpoint) setContactStatus('contactSetup');
+  else if (contactStatusKey === 'contactSetup') setContactStatus('');
+  else setContactStatus(contactStatusKey, contactStatusState);
   const url = validExternalUrl(contact.googleFormUrl);
   const isForm = url && (new URL(url).hostname === 'forms.gle' || (new URL(url).hostname === 'docs.google.com' && new URL(url).pathname.startsWith('/forms/')));
   if (isForm) {
@@ -1508,6 +1642,7 @@ async function loadContent() {
   $('current-year').textContent = String(new Date().getFullYear());
   initSampleLightbox();
   initSaleImageLightbox();
+  initContactForm();
   initNavigation();
   initLanguageSwitch();
   try {
@@ -1522,6 +1657,7 @@ async function loadContent() {
     $('works-grid').innerHTML = `<div class="placeholder-card">${escapeHtml(t('contentError'))}</div>`;
     $('sample-panel').innerHTML = `<div class="placeholder-card">${escapeHtml(t('sampleError'))}</div>`;
     $('form-pending').textContent = t('formError');
+    $('form-pending').hidden = false;
   }
   if (!ORIGINAL_CONTENT) initReveals();
 }

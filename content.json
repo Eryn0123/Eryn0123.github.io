@@ -19,7 +19,7 @@
     },
     "event": {
       "enabled": true,
-      "label": "ArtMug · LD 전신 10만 원 할인 중"
+      "label": "LD 전신 10만 원 할인 중"
     }
   },
   "portfolio": {
@@ -246,7 +246,7 @@
     "en": {
       "hero": {
         "intro": "Hello! I'm Eryn, a Live2D rigger.\nI bring out each character's personality through soft, natural, expressive motion.",
-        "event": {"label": "ArtMug · ₩100,000 off LD full-body rigging"}
+        "event": {"label": "₩100,000 off LD full-body rigging"}
       },
       "portfolio": {
         "description": "A collection of Live2D showcases bringing each character's unique charm to life.",
@@ -350,7 +350,7 @@
     "ja": {
       "hero": {
         "intro": "はじめまして！Live2DモデラーのEryn（エリン）です。\nキャラクターの個性を大切に、自然で愛らしい動きを制作しています。",
-        "event": {"label": "ArtMug · LD全身リギング10万ウォン割引中"}
+        "event": {"label": "LD全身リギング10万ウォン割引中"}
       },
       "portfolio": {
         "description": "一人ひとりのキャラクターの個性を活かしたLive2Dショーケースです。",

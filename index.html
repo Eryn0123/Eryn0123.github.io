@@ -221,13 +221,13 @@ body.sample-lightbox-open{overflow:hidden}
 .sample-lightbox-loading[hidden]{display:none}
 .sample-lightbox-hint{margin:0;text-align:center;color:#9c92b2;font-size:11px;flex-shrink:0}
 
-/* Premade model sales: one generous product gallery at a time. */
+/* Premade model sales: a focused, compact product gallery at a time. */
 .site-panel[data-page="sale-models"] .section{padding-top:clamp(28px,4.8svh,55px)}
-.site-panel[data-page="sale-models"] .section-heading{margin-bottom:24px}
-.sale-models-grid{display:block}
-.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
+.site-panel[data-page="sale-models"] .section-heading{width:min(100%,960px);margin-inline:auto;margin-bottom:21px}
+.sale-models-grid{display:block;width:min(100%,960px);margin-inline:auto}
+.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:21px;overflow:hidden;box-shadow:var(--shadow)}
 .sale-model-card.is-current{display:grid;animation:saleModelEnter .68s var(--ease) both}
-.sale-model-visual{min-width:0;min-height:478px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
+.sale-model-visual{min-width:0;min-height:410px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
 .sale-model-media{position:relative;flex:1;min-height:0;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
 .sale-model-image{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:contain}
 .sale-model-image-fallback{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:10px;text-align:center;color:#9e91bd;font-size:12px;background:linear-gradient(135deg,#f1eefb,#e6e1f5)}
@@ -240,19 +240,24 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-prev{left:14px}.sale-model-next{right:14px}
 .sale-model-gallery-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 19px;background:#f9f8fd;border-bottom:1px solid #f0edf8;color:#9186aa;font-size:10px}
 .sale-model-gallery-meta .sale-model-count{white-space:nowrap;font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a094bf}
-.sale-model-content{min-width:0;padding:30px 32px;display:flex;flex-direction:column}
+.sale-model-content{min-width:0;padding:23px 26px;display:flex;flex-direction:column}
 .sale-model-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#a89ac8;font:700 10px Outfit,sans-serif;letter-spacing:1.15px}
 .sale-model-content h3{margin:12px 0 6px;font:700 clamp(24px,2.6vw,33px)/1.25 Outfit,Paperlogy,sans-serif;letter-spacing:-.85px}
 .sale-model-description{color:#8e859f;font-size:12px;line-height:1.8;margin:0;word-break:keep-all}
-.sale-model-credits{font:600 10px Outfit,Paperlogy,sans-serif;color:#a498bc;margin:13px 0 17px}
+.sale-model-credits{font:600 10px Outfit,Paperlogy,sans-serif;color:#a498bc;margin:10px 0 13px}
 .sale-model-credits span{color:#cdc4dc;margin:0 6px}
-.sale-model-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0 0 22px;padding:0;list-style:none}
-.sale-model-features li{min-width:0;border:1px solid #ede8f7;border-radius:10px;background:#faf9ff;padding:10px 12px;color:#746b87;font-size:11px;line-height:1.65;word-break:keep-all}
+.sale-model-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 13px;padding:0;list-style:none}
+.sale-model-features li{min-width:0;border:1px solid #ede8f7;border-radius:10px;background:#faf9ff;padding:8px 10px;color:#746b87;font-size:11px;line-height:1.5;word-break:keep-all}
 .sale-model-features li:before{content:'✧';color:#a292d5;margin-right:6px}
-.sale-model-footer{margin-top:auto;padding-top:17px;border-top:1px solid #eeeaf7}
-.sale-model-price{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
-.sale-model-price-label{color:#a097b1;font-size:10px;line-height:1.6}
-.sale-model-price strong{font:700 22px Outfit,Paperlogy,sans-serif;color:#54447e;white-space:nowrap}
+.sale-model-footer{margin-top:auto;padding-top:11px;border-top:1px solid #eeeaf7}
+.sale-model-price-breakdown{margin:0 0 12px;padding:0}
+.sale-model-price-line,.sale-model-price-total{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sale-model-price-line{padding:3px 0;color:#938ba4;font-size:10.5px}
+.sale-model-price-line dt,.sale-model-price-total dt{font-weight:500}
+.sale-model-price-line dd{margin:0;color:#756989;font:600 11px Outfit,Paperlogy,sans-serif;white-space:nowrap}
+.sale-model-price-total{border-top:1px solid #eeeaf7;margin-top:6px;padding-top:9px}
+.sale-model-price-total dt{color:#7566a5;font-size:11px;font-weight:700}
+.sale-model-price-total dd{margin:0;color:#54447e;font:700 21px Outfit,Paperlogy,sans-serif;white-space:nowrap}
 .sale-model-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .sale-model-actions .button{flex:1;min-width:0;justify-content:center;text-align:center;font-size:11px;padding-inline:12px}
 .sale-model-sold-label{display:block;padding:13px 15px;border:1px solid #e8e3ef;border-radius:10px;background:#f7f5fb;color:#978da7;text-align:center;font-size:12px;font-weight:700}
@@ -261,34 +266,33 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
 .sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
 .sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
-/* Give the premade gallery one complete desktop viewport, including its selector.
-   Compact the whitespace first; keep natural scrolling on narrow or short screens. */
+/* Center a compact gallery in the desktop viewport without stretching it to fill
+   all available space; allow natural scrolling on narrow or short screens. */
 @media(min-width:941px) and (min-height:760px){
   body.sale-active{height:100svh}
   body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
   body.sale-active main{flex:1 1 auto;min-height:0}
   body.sale-active .site-panel[data-page="sale-models"]{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
-  body.sale-active #sale-models{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-block:clamp(14px,2.6svh,26px) clamp(10px,1.8svh,18px)}
+  body.sale-active #sale-models{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(14px,2.6svh,26px) clamp(10px,1.8svh,18px)}
   body.sale-active #sale-models .section-heading{flex-shrink:0;margin-bottom:clamp(8px,1.4svh,16px)}
   body.sale-active #sale-models .section-heading h2{font-size:clamp(38px,4.8svh,52px);margin:9px 0 4px}
   body.sale-active #sale-models .section-heading p{margin-top:6px;font-size:12px}
-  body.sale-active .sale-models-grid{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  body.sale-active .sale-models-grid{flex:none;min-height:0;height:clamp(405px,49svh,450px);display:flex;flex-direction:column}
   body.sale-active .sale-model-card.is-current{flex:1 1 auto;min-height:0}
   body.sale-active .sale-model-visual{min-height:0}
   body.sale-active .sale-model-content{padding:clamp(17px,2.5svh,27px) clamp(22px,2.5vw,32px)}
   body.sale-active .sale-model-content h3{margin:8px 0 5px}
   body.sale-active .sale-model-description{line-height:1.65}
-  body.sale-active .sale-model-credits{margin:9px 0 12px}
-  body.sale-active .sale-model-features{gap:7px;margin-bottom:12px}
-  body.sale-active .sale-model-features li{padding:8px 10px;line-height:1.5}
+  body.sale-active .sale-model-credits{margin:9px 0 11px}
+  body.sale-active .sale-model-features{gap:7px;margin-bottom:10px}
+  body.sale-active .sale-model-features li{padding:7px 9px;line-height:1.45}
   body.sale-active .sale-model-footer{padding-top:11px}
-  body.sale-active .sale-model-price{margin-bottom:9px}
   body.sale-active .sale-model-actions .button{min-height:42px;padding-block:10px}
   body.sale-active .sale-model-picker{flex-shrink:0;margin-top:clamp(8px,1.2svh,12px)}
   body.sale-active .sale-model-pick{min-height:38px;padding:7px 16px}
 }
 @media(max-width:940px){.sale-model-card{grid-template-columns:1fr}.sale-model-visual{min-height:0}.sale-model-media{aspect-ratio:16/10;flex:auto}}
-@media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price strong{font-size:20px}.sale-model-nav{width:32px;height:32px}}
+@media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price-total dd{font-size:20px}.sale-model-nav{width:32px;height:32px}}
 @media(max-width:580px){.sale-model-media{aspect-ratio:1/1}.sale-model-picker{gap:8px}.sale-model-pick{padding:9px 14px;font-size:10px;gap:7px}}
 @media(prefers-reduced-motion:reduce){.sale-model-card.is-current{animation:none!important}.sale-model-nav,.sale-model-pick{transition:none!important}.sale-model-nav:hover{transform:translateY(-50%)}}
 
@@ -531,9 +535,9 @@ body.sample-lightbox-open{overflow:hidden}
     </div>
 
     <div class="site-panel" data-page="about">
-    <section class="section section-soft" id="about" aria-labelledby="about-heading">
+    <section class="section" id="about" aria-labelledby="about-heading">
       <div class="container">
-        <div class="section-heading reveal"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading"><span data-i18n="howWe">How We</span> <em data-i18n="work">Work</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="guideDescription">첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
+        <div class="section-heading reveal"><div><span class="section-index">05 / INFORMATION</span><h2 id="about-heading"><span data-i18n="workHeading">Work</span> <em data-i18n="processHeading">Process</em><span class="heading-star" aria-hidden="true">✧</span></h2><p data-i18n="guideDescription">첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.</p></div></div>
         <div class="process-grid" id="process-grid"></div>
         <div class="notice-grid" id="notice-grid"></div>
       </div>
@@ -600,14 +604,14 @@ const UI_TEXT = {
     showcase:'쇼케이스',riggingSamples:'리깅 샘플',selected:'대표',works:'작업물',moreYoutube:'YouTube에서 더 보기',
     rigging:'리깅',samples:'샘플',samplesDescription:'원하는 카테고리를 선택해 움직임의 디테일을 살펴보세요.',
     premade:'판매',models:'모델',price:'가격',commissionConsult:'의뢰 상담하기',additionalOptions:'추가 옵션',addonsDescription:'추가 기능은 필요한 것만 선택할 수 있어요.',
-    howWe:'작업',work:'과정',guideDescription:'첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.',
+    workHeading:'작업',processHeading:'과정',guideDescription:'첫 문의부터 모델 전달까지, 함께 만들어가는 과정입니다.',
     letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Google Form으로 문의하기',formPending:'Google Form 링크 연결 대기 중',
     portfolioType:'포트폴리오 종류',sampleCategory:'리깅 샘플 카테고리',selectModel:'판매 모델 선택',addonCategory:'추가 옵션 카테고리',
     closeVideo:'확대 영상 닫기',enlargedVideo:'확대된 리깅 샘플 영상',videoLoading:'영상을 불러오는 중...',lightboxHint:'ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.',
     watchShowcase:'쇼케이스 YouTube에서 보기',thumbnail:'쇼케이스 썸네일',sampleItem:'리깅 샘플',expandVideo:'영상 확대 보기',
     emptyShowcase:'등록된 쇼케이스가 없습니다.',emptySamples:'등록된 리깅 샘플이 없습니다.',emptyCategory:'등록된 샘플이 없습니다.',
     sold:'판매 완료된 모델입니다',soldOut:'판매 완료',onSale:'판매 중',priceInquiry:'가격 문의',saleInquiry:'판매 문의',buyInquiry:'구매 문의',
-    viewShowcase:'쇼케이스 보기',imageWaiting:'이미지를 준비하고 있어요',prevImage:'이전 이미지',nextImage:'다음 이미지',salePrice:'판매 가격',
+    viewShowcase:'쇼케이스 보기',imageWaiting:'이미지를 준비하고 있어요',prevImage:'이전 이미지',nextImage:'다음 이미지',salePrice:'판매 가격',illustrationPrice:'일러스트',riggingPrice:'리깅',totalPrice:'최종 금액',
     included:'기본 포함 옵션 확인',includedClose:'기본 포함 옵션 닫기',includedHeading:'기본 포함 옵션',close:'닫기',
     noBaseOptions:'기본 옵션 정보가 준비 중입니다.',noAddons:'등록된 추가 옵션이 없습니다.',addonNotice:'선택한 기능의 금액은 기본 리깅 가격에 추가됩니다.',
     videoError:'영상을 불러올 수 없어요. 파일 경로를 확인해 주세요.',videoLoadFailed:'영상 로드 실패',heroVideoError:'영상을 불러올 수 없습니다. 영상 경로를 확인해 주세요.',
@@ -621,14 +625,14 @@ const UI_TEXT = {
     showcase:'SHOWCASE',riggingSamples:'RIGGING SAMPLES',selected:'Selected',works:'Works',moreYoutube:'More on YouTube',
     rigging:'Rigging',samples:'Samples',samplesDescription:'Select a category to explore the details of each movement.',
     premade:'Premade',models:'Models',price:'Price',commissionConsult:'Discuss a commission',additionalOptions:'Additional Options',addonsDescription:'Choose only the extras your model needs.',
-    howWe:'How We',work:'Work',guideDescription:'Our process, from your first inquiry to final delivery.',
+    workHeading:'Work',processHeading:'Process',guideDescription:'Our process, from your first inquiry to final delivery.',
     letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Inquire via Google Form',formPending:'Google Form link coming soon',
     portfolioType:'Portfolio sections',sampleCategory:'Rigging sample categories',selectModel:'Select a premade model',addonCategory:'Additional option categories',
     closeVideo:'Close enlarged video',enlargedVideo:'Enlarged rigging sample video',videoLoading:'Loading video...',lightboxHint:'Press ESC or close to return.',
     watchShowcase:'Watch showcase on YouTube',thumbnail:'showcase thumbnail',sampleItem:'rigging sample',expandVideo:'Enlarge video',
     emptyShowcase:'No showcases are available yet.',emptySamples:'No rigging samples are available yet.',emptyCategory:'No samples in this category yet.',
     sold:'This model has been sold',soldOut:'SOLD OUT',onSale:'Available',priceInquiry:'Ask for price',saleInquiry:'Purchase inquiry',buyInquiry:'Purchase inquiry',
-    viewShowcase:'Watch showcase',imageWaiting:'Images coming soon',prevImage:'Previous image',nextImage:'Next image',salePrice:'Model price',
+    viewShowcase:'Watch showcase',imageWaiting:'Images coming soon',prevImage:'Previous image',nextImage:'Next image',salePrice:'Model price',illustrationPrice:'Illustration',riggingPrice:'Rigging',totalPrice:'Total',
     included:'View included features',includedClose:'Hide included features',includedHeading:'Included Features',close:'Close',
     noBaseOptions:'Included features will be updated soon.',noAddons:'No extra options listed yet.',addonNotice:'Selected extras are added to the base rigging price.',
     videoError:'Unable to load video. Please check its file path.',videoLoadFailed:'Video unavailable',heroVideoError:'Unable to load video. Please check its file path.',
@@ -642,14 +646,14 @@ const UI_TEXT = {
     showcase:'ショーケース',riggingSamples:'リギングサンプル',selected:'制作',works:'実績',moreYoutube:'YouTubeでもっと見る',
     rigging:'リギング',samples:'サンプル',samplesDescription:'カテゴリーを選んで、動きの細部をご覧ください。',
     premade:'販売',models:'モデル',price:'料金',commissionConsult:'ご依頼の相談',additionalOptions:'追加オプション',addonsDescription:'必要な機能だけを追加できます。',
-    howWe:'制作',work:'の流れ',guideDescription:'お問い合わせから納品までの制作の流れをご案内します。',
+    workHeading:'制作',processHeading:'の流れ',guideDescription:'お問い合わせから納品までの制作の流れをご案内します。',
     letsMake:'Live2D Rigger',move:'Eryn',googleInquiry:'Googleフォームで問い合わせ',formPending:'Googleフォームの準備中です',
     portfolioType:'ポートフォリオの種類',sampleCategory:'リギングサンプルのカテゴリー',selectModel:'販売モデルの選択',addonCategory:'追加オプションのカテゴリー',
     closeVideo:'拡大動画を閉じる',enlargedVideo:'拡大したリギングサンプル動画',videoLoading:'動画を読み込み中...',lightboxHint:'ESCキーまたは閉じるボタンで戻れます。',
     watchShowcase:'YouTubeでショーケースを見る',thumbnail:'ショーケースのサムネイル',sampleItem:'リギングサンプル',expandVideo:'動画を拡大',
     emptyShowcase:'公開中のショーケースはありません。',emptySamples:'公開中のリギングサンプルはありません。',emptyCategory:'このカテゴリーの動画はありません。',
     sold:'このモデルは販売終了しました',soldOut:'売り切れ',onSale:'販売中',priceInquiry:'価格を問い合わせる',saleInquiry:'購入のお問い合わせ',buyInquiry:'購入のお問い合わせ',
-    viewShowcase:'ショーケースを見る',imageWaiting:'画像を準備中です',prevImage:'前の画像',nextImage:'次の画像',salePrice:'販売価格',
+    viewShowcase:'ショーケースを見る',imageWaiting:'画像を準備中です',prevImage:'前の画像',nextImage:'次の画像',salePrice:'販売価格',illustrationPrice:'イラスト',riggingPrice:'モデリング',totalPrice:'合計金額',
     included:'基本仕様を確認',includedClose:'基本仕様を閉じる',includedHeading:'基本仕様',close:'閉じる',
     noBaseOptions:'基本仕様の情報を準備中です。',noAddons:'追加オプションはありません。',addonNotice:'追加機能の料金は基本リギング価格に加算されます。',
     videoError:'動画を読み込めません。ファイルのパスをご確認ください。',videoLoadFailed:'動画の読み込みに失敗',heroVideoError:'動画を読み込めません。ファイルのパスをご確認ください。',
@@ -661,7 +665,7 @@ const t = key => UI_TEXT[activeLanguage]?.[key] || UI_TEXT.ko[key] || key;
 // Only editorial headlines stay in English; navigational links and buttons follow the selected language.
 const ENGLISH_PRESENTATION_KEYS = new Set([
   'preview','selected','works','rigging','samples','premade','models','price',
-  'additionalOptions','howWe','work','letsMake','move'
+  'additionalOptions','workHeading','processHeading','letsMake','move'
 ]);
 const displayText = key => ENGLISH_PRESENTATION_KEYS.has(key) ? UI_TEXT.en[key] : t(key);
 
@@ -1006,7 +1010,14 @@ function renderSaleModels() {
     const status = model.sold ? t('soldOut') : (model.status || t('onSale'));
     const videoUrl = validExternalUrl(model.showcaseUrl);
     const actionUrl = validExternalUrl(model.actionUrl);
-    const price = Number(model.price) > 0 ? won(model.price) : t('priceInquiry');
+    // Only calculate a new total when both real component prices have been set.
+    // Otherwise preserve the published package price without guessing the split.
+    const componentPrice = value => value === null || value === undefined || value === '' || !Number.isFinite(Number(value)) || Number(value) < 0
+      ? null : Number(value);
+    const illustrationPrice = componentPrice(model.illustrationPrice);
+    const riggingPrice = componentPrice(model.riggingPrice);
+    const combinedPrice = illustrationPrice !== null && riggingPrice !== null ? illustrationPrice + riggingPrice : Number(model.price);
+    const price = Number.isFinite(combinedPrice) && combinedPrice > 0 ? won(combinedPrice) : t('priceInquiry');
     const imageHtml = cover
       ? `<img class="sale-model-image" draggable="false" src="${escapeHtml(assetUrl(cover.src))}" alt="${escapeHtml(cover.alt || model.title)}" loading="lazy" decoding="async">`
       : '';
@@ -1034,7 +1045,14 @@ function renderSaleModels() {
         <p class="sale-model-description">${escapeHtml(model.subtitle || '')}</p>
         <p class="sale-model-credits">ILLUST · ${escapeHtml(model.illustrator || '—')} <span>/</span> RIG · ${escapeHtml(model.rigging || 'Eryn')}</p>
         ${features ? `<ul class="sale-model-features">${features}</ul>` : ''}
-        <div class="sale-model-footer"><div class="sale-model-price"><span class="sale-model-price-label">${escapeHtml(model.priceNote || t('salePrice'))}</span><strong>${escapeHtml(price)}</strong></div>${actions}</div>
+        <div class="sale-model-footer">
+          <dl class="sale-model-price-breakdown">
+            <div class="sale-model-price-line"><dt>${escapeHtml(t('illustrationPrice'))}</dt><dd>${escapeHtml(illustrationPrice === null ? '—' : won(illustrationPrice))}</dd></div>
+            <div class="sale-model-price-line"><dt>${escapeHtml(t('riggingPrice'))}</dt><dd>${escapeHtml(riggingPrice === null ? '—' : won(riggingPrice))}</dd></div>
+            <div class="sale-model-price-total"><dt>${escapeHtml(t('totalPrice'))}</dt><dd>${escapeHtml(price)}</dd></div>
+          </dl>
+          ${actions}
+        </div>
       </div>
     </article>`;
   }).join('');

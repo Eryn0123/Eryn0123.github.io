@@ -221,13 +221,13 @@ body.sample-lightbox-open{overflow:hidden}
 .sample-lightbox-loading[hidden]{display:none}
 .sample-lightbox-hint{margin:0;text-align:center;color:#9c92b2;font-size:11px;flex-shrink:0}
 
-/* Premade model sales: a focused, compact product gallery at a time. */
+/* Premade model sales: preserve a generous portrait display, with slightly narrower width. */
 .site-panel[data-page="sale-models"] .section{padding-top:clamp(28px,4.8svh,55px)}
-.site-panel[data-page="sale-models"] .section-heading{width:min(100%,960px);margin-inline:auto;margin-bottom:21px}
-.sale-models-grid{display:block;width:min(100%,960px);margin-inline:auto}
-.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:21px;overflow:hidden;box-shadow:var(--shadow)}
+.site-panel[data-page="sale-models"] .section-heading{width:min(100%,1080px);margin-inline:auto;margin-bottom:24px}
+.sale-models-grid{display:block;width:min(100%,1080px);margin-inline:auto}
+.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
 .sale-model-card.is-current{display:grid;animation:saleModelEnter .68s var(--ease) both}
-.sale-model-visual{min-width:0;min-height:410px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
+.sale-model-visual{min-width:0;min-height:478px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
 .sale-model-media{position:relative;flex:1;min-height:0;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
 .sale-model-image{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:contain}
 .sale-model-image-fallback{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:10px;text-align:center;color:#9e91bd;font-size:12px;background:linear-gradient(135deg,#f1eefb,#e6e1f5)}
@@ -240,16 +240,16 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-prev{left:14px}.sale-model-next{right:14px}
 .sale-model-gallery-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 19px;background:#f9f8fd;border-bottom:1px solid #f0edf8;color:#9186aa;font-size:10px}
 .sale-model-gallery-meta .sale-model-count{white-space:nowrap;font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a094bf}
-.sale-model-content{min-width:0;padding:23px 26px;display:flex;flex-direction:column}
+.sale-model-content{min-width:0;padding:30px 32px;display:flex;flex-direction:column}
 .sale-model-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#a89ac8;font:700 10px Outfit,sans-serif;letter-spacing:1.15px}
 .sale-model-content h3{margin:12px 0 6px;font:700 clamp(24px,2.6vw,33px)/1.25 Outfit,Paperlogy,sans-serif;letter-spacing:-.85px}
 .sale-model-description{color:#8e859f;font-size:12px;line-height:1.8;margin:0;word-break:keep-all}
-.sale-model-credits{font:600 10px Outfit,Paperlogy,sans-serif;color:#a498bc;margin:10px 0 13px}
+.sale-model-credits{font:600 10px Outfit,Paperlogy,sans-serif;color:#a498bc;margin:13px 0 17px}
 .sale-model-credits span{color:#cdc4dc;margin:0 6px}
-.sale-model-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 13px;padding:0;list-style:none}
-.sale-model-features li{min-width:0;border:1px solid #ede8f7;border-radius:10px;background:#faf9ff;padding:8px 10px;color:#746b87;font-size:11px;line-height:1.5;word-break:keep-all}
+.sale-model-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0 0 22px;padding:0;list-style:none}
+.sale-model-features li{min-width:0;border:1px solid #ede8f7;border-radius:10px;background:#faf9ff;padding:10px 12px;color:#746b87;font-size:11px;line-height:1.65;word-break:keep-all}
 .sale-model-features li:before{content:'✧';color:#a292d5;margin-right:6px}
-.sale-model-footer{margin-top:auto;padding-top:11px;border-top:1px solid #eeeaf7}
+.sale-model-footer{margin-top:auto;padding-top:17px;border-top:1px solid #eeeaf7}
 .sale-model-price-breakdown{margin:0 0 12px;padding:0}
 .sale-model-price-line,.sale-model-price-total{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .sale-model-price-line{padding:3px 0;color:#938ba4;font-size:10.5px}
@@ -266,26 +266,26 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
 .sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
 .sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
-/* Center a compact gallery in the desktop viewport without stretching it to fill
-   all available space; allow natural scrolling on narrow or short screens. */
+/* Let the gallery occupy the available desktop height again; only its width is narrower.
+   Small viewports keep natural scrolling so details are never clipped. */
 @media(min-width:941px) and (min-height:760px){
   body.sale-active{height:100svh}
   body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
   body.sale-active main{flex:1 1 auto;min-height:0}
   body.sale-active .site-panel[data-page="sale-models"]{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
-  body.sale-active #sale-models{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(14px,2.6svh,26px) clamp(10px,1.8svh,18px)}
+  body.sale-active #sale-models{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-block:clamp(14px,2.6svh,26px) clamp(10px,1.8svh,18px)}
   body.sale-active #sale-models .section-heading{flex-shrink:0;margin-bottom:clamp(8px,1.4svh,16px)}
   body.sale-active #sale-models .section-heading h2{font-size:clamp(38px,4.8svh,52px);margin:9px 0 4px}
   body.sale-active #sale-models .section-heading p{margin-top:6px;font-size:12px}
-  body.sale-active .sale-models-grid{flex:none;min-height:0;height:clamp(405px,49svh,450px);display:flex;flex-direction:column}
+  body.sale-active .sale-models-grid{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
   body.sale-active .sale-model-card.is-current{flex:1 1 auto;min-height:0}
   body.sale-active .sale-model-visual{min-height:0}
   body.sale-active .sale-model-content{padding:clamp(17px,2.5svh,27px) clamp(22px,2.5vw,32px)}
   body.sale-active .sale-model-content h3{margin:8px 0 5px}
   body.sale-active .sale-model-description{line-height:1.65}
-  body.sale-active .sale-model-credits{margin:9px 0 11px}
-  body.sale-active .sale-model-features{gap:7px;margin-bottom:10px}
-  body.sale-active .sale-model-features li{padding:7px 9px;line-height:1.45}
+  body.sale-active .sale-model-credits{margin:9px 0 12px}
+  body.sale-active .sale-model-features{gap:7px;margin-bottom:12px}
+  body.sale-active .sale-model-features li{padding:8px 10px;line-height:1.5}
   body.sale-active .sale-model-footer{padding-top:11px}
   body.sale-active .sale-model-actions .button{min-height:42px;padding-block:10px}
   body.sale-active .sale-model-picker{flex-shrink:0;margin-top:clamp(8px,1.2svh,12px)}

@@ -227,7 +227,7 @@
   },
   "contact": {
     "_설명": "홈페이지 내 간단 문의 기능: Google Apps Script 웹 앱을 배포한 뒤 발급받은 /exec 주소를 appsScriptUrl에 붙여넣으세요. 빈칸이면 자동 이메일 전송은 비활성화되고 기존 구글폼 링크는 그대로 작동합니다. 메일 주소는 이 JSON에 입력하지 말고 Apps Script의 스크립트 속성 NOTIFY_EMAIL로 설정하세요. 설정 순서는 GOOGLE-APPS-SCRIPT-SETUP.md 참고.",
-    "appsScriptUrl": "",
+    "appsScriptUrl": "https://script.google.com/macros/s/AKfycbwfF3D0NYI5xR_cpPZsxlodhFVT5GolGgaTX1U6j248HtwKbA2sspg7dxhs9ehfAodj/exec",
     "googleFormUrl": "https://forms.gle/yf8CaZteQ5SFhPmt5",
     "description": "함께 만들고 싶은 캐릭터가 있나요?\n작업 의뢰와 궁금한 점을 편하게 보내주세요.",
     "note": "신청 내용 검토 후 기재해주신 연락처로 개별 안내드립니다. 신청서 제출만으로 예약이 확정되지는 않습니다.",

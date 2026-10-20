@@ -100,7 +100,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .hero-media-card:hover{transform:rotate(0) translateY(-3px);box-shadow:0 30px 78px rgba(103,84,164,.19)}
 .media-card-heading,.media-card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#9b92af;font:700 9px/1.5 Outfit,sans-serif;letter-spacing:1.5px;padding:4px 6px 13px}
 .mini-star{color:#aa99eb;font-size:14px;margin-right:5px}
-.hero-video-frame{aspect-ratio:1/1;min-height:285px;position:relative;border-radius:17px;overflow:hidden;background:linear-gradient(135deg,#e6e0f8,#c9c6e9)}
+/* Match the artwork frame to the actual 1200 × 1000 hero video; avoid letterboxing. */
+.hero-video-frame{aspect-ratio:var(--hero-video-ratio,6/5);min-height:0;position:relative;border-radius:17px;overflow:hidden;background:linear-gradient(135deg,#e6e0f8,#c9c6e9)}
 .hero-video-frame video{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1;opacity:0;transition:opacity .6s ease}
 .hero-video-frame video.ready{opacity:1}
 .video-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;color:#8c7ac4;font:700 10px Outfit,sans-serif;letter-spacing:2px}
@@ -623,8 +624,6 @@ body.sale-image-lightbox-open{overflow:hidden}
 .sale-model-card .sale-model-gallery-meta{background:linear-gradient(90deg,var(--model-soft) 0%,#fff 86%);border-bottom:1px solid var(--model-line);border-top:1px solid var(--model-line)}
 .sale-model-card .sale-model-gallery-meta .sale-model-count,.sale-model-card .sale-model-kicker{color:var(--model-accent)}
 .sale-model-card .sale-model-content{position:relative;isolation:isolate}
-.sale-model-card .sale-model-content::before{content:'✧';position:absolute;right:-21px;top:-63px;color:var(--model-accent);opacity:.065;
-  font:800 250px/1 Outfit,sans-serif;z-index:-1;pointer-events:none;transform:rotate(-15deg)}
 .sale-model-card .sale-model-content > *{position:relative;z-index:1}
 .sale-model-theme-emblem{display:inline-grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border:1px solid var(--model-line);border-radius:15px;
   background:var(--model-soft);color:var(--model-accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.98),0 5px 13px rgba(96,72,136,.065)}
@@ -633,6 +632,43 @@ body.sale-image-lightbox-open{overflow:hidden}
 .sale-model-card .sale-model-features li{background:color-mix(in srgb,var(--model-soft) 52%,white);border-color:var(--model-line)}
 .sale-model-card .sale-model-features li::before{color:var(--model-accent)}
 .sale-model-card .sale-model-price-total dt,.sale-model-card .sale-model-price-total dd{color:var(--model-accent)}
+/* Subtle, theme-specific interactions inside the premade information panel. */
+.sale-model-card .sale-model-features li,
+.sale-model-card .sale-model-price-line,
+.sale-model-card .sale-model-price-total,
+.sale-model-card .sale-model-theme-emblem,
+.sale-model-card .sale-model-credits{
+  transition:background-color .24s var(--ease),border-color .24s var(--ease),
+    box-shadow .24s var(--ease),transform .24s var(--ease),color .24s var(--ease);
+}
+.sale-model-card .sale-model-price-line{border-radius:8px;padding:4px 8px;margin-inline:-8px}
+.sale-model-card .sale-model-price-total{border-radius:8px;padding:9px 8px 3px;margin-inline:-8px}
+@media(hover:hover) and (pointer:fine){
+  .sale-model-card .sale-model-features li:hover{
+    background:var(--model-soft);border-color:var(--model-accent);
+    box-shadow:0 7px 16px rgba(85,68,128,.09);transform:translateY(-2px);
+    color:var(--model-accent);
+  }
+  .sale-model-card .sale-model-price-line:hover,
+  .sale-model-card .sale-model-price-total:hover{
+    background:var(--model-soft);color:var(--model-accent);
+  }
+  .sale-model-card .sale-model-price-line:hover dd{color:var(--model-accent)}
+  .sale-model-card .sale-model-theme-emblem:hover{
+    background:var(--model-soft);border-color:var(--model-accent);transform:translateY(-2px);
+    box-shadow:0 7px 15px rgba(85,68,128,.08);
+  }
+  .sale-model-card .sale-model-credits:hover{color:var(--model-accent)}
+}
+@media(prefers-reduced-motion:reduce){
+  .sale-model-card .sale-model-features li,
+  .sale-model-card .sale-model-price-line,
+  .sale-model-card .sale-model-price-total,
+  .sale-model-card .sale-model-theme-emblem,
+  .sale-model-card .sale-model-credits{transition:none!important}
+  .sale-model-card .sale-model-features li:hover,
+  .sale-model-card .sale-model-theme-emblem:hover{transform:none!important}
+}
 /* A real connected timeline, following the number of steps in content.json. */
 .process-story{position:relative;margin-bottom:26px}
 .process-story .process-grid{margin-bottom:0}
@@ -640,13 +676,13 @@ body.sale-image-lightbox-open{overflow:hidden}
   padding:7px 0 0;position:relative}
 .process-milestone{position:relative;display:flex;align-items:center;flex-direction:column;gap:7px;min-width:0;color:#a396bd;text-align:center}
 .process-milestone-number{display:grid;place-items:center;width:41px;height:41px;border-radius:50%;font:700 12px Outfit,sans-serif;
-  color:#826db7;background:#f1ecfd;border:2px solid #d7c9f1;box-shadow:0 0 0 5px #faf9ff,inset 0 2px 0 rgba(255,255,255,.95);
-  position:relative;z-index:1;transition:background .28s var(--ease),color .28s,border-color .28s,box-shadow .28s}
+  color:#816db8;background:#faf9ff;border:1.5px solid #cbbde9;box-shadow:none;
+  position:relative;z-index:1;transition:background .24s var(--ease),color .24s,border-color .24s}
 .process-milestone:not(:last-child)::after{content:'';position:absolute;top:20px;left:calc(50% + 22px);width:calc(100% - 44px + 15px);height:2px;
   background:linear-gradient(90deg,#b9a7e3,#d2c6ec);pointer-events:none}
 .process-milestone-label{font-size:11px;font-weight:700;line-height:1.45;color:#998bb3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.process-milestone.is-highlighted .process-milestone-number{background:linear-gradient(135deg,#9d8cdb,#7562bd);color:#fff;border-color:#9a84d5;
-  box-shadow:0 0 0 5px #faf9ff,0 6px 18px rgba(129,107,199,.23)}
+.process-milestone.is-highlighted .process-milestone-number{background:#8975cc;color:#fff;border-color:#8975cc;
+  box-shadow:none}
 .process-milestone.is-highlighted .process-milestone-label{color:#6b57a3}
 /* Disable the older tiny between-card connectors: the rail above now carries the sequence. */
 .process-card:not(:last-child)::after{display:none!important}
@@ -1109,6 +1145,18 @@ function renderHero() {
 
   const player = $('hero-video');
   const loading = $('hero-loading');
+  const frame = player.closest('.hero-video-frame');
+  // Use the video's intrinsic aspect ratio without cropping. The initial 6:5
+  // ratio already matches the current showreel, so it never flashes as a square.
+  if (!player.dataset.aspectListener) {
+    player.dataset.aspectListener = 'true';
+    player.addEventListener('loadedmetadata', () => {
+      if (player.videoWidth > 0 && player.videoHeight > 0)
+        frame.style.setProperty('--hero-video-ratio', `${player.videoWidth} / ${player.videoHeight}`);
+    });
+  }
+  if (player.videoWidth > 0 && player.videoHeight > 0)
+    frame.style.setProperty('--hero-video-ratio', `${player.videoWidth} / ${player.videoHeight}`);
   const videoUrl = assetUrl(hero.video);
   if (!videoUrl) {
     loading.innerHTML = `<span class="loading-symbol">✧</span><span>${escapeHtml(t('heroVideoUnset'))}</span>`;

@@ -702,7 +702,54 @@ body.sale-image-lightbox-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.hero-frame-corner,.process-milestone-number{transition:none!important}}
 /* === End Lavender Starlight / Editorial === */
 
-  </style>
+  
+/* === Model-colored CTAs / stable first-render sample frames (2026-10-21) === */
+.sale-model-card{
+  --model-button:#8977cc;
+  --model-button-deep:#6c55b2;
+  --model-button-shadow:rgba(99,75,170,.20);
+}
+.sale-model-card.model-theme-mint{
+  --model-button:#4d9683;
+  --model-button-deep:#347363;
+  --model-button-shadow:rgba(52,115,99,.21);
+}
+.sale-model-card.model-theme-rose{
+  --model-button:#a26682;
+  --model-button-deep:#80465f;
+  --model-button-shadow:rgba(128,70,95,.23);
+}
+.sale-model-card .sale-model-actions .button-primary{
+  color:#fff;
+  background:linear-gradient(115deg,var(--model-button),var(--model-button-deep));
+  border-color:transparent;
+  box-shadow:0 9px 20px var(--model-button-shadow);
+}
+.sale-model-card .sale-model-actions .button-outline{
+  color:var(--model-button-deep);
+  background:var(--model-soft);
+  border-color:var(--model-line);
+  box-shadow:0 4px 12px rgba(65,47,104,.035);
+}
+@media(hover:hover) and (pointer:fine){
+  .sale-model-card .sale-model-actions .button-primary:hover{
+    background:linear-gradient(115deg,var(--model-button-deep),var(--model-button));
+    box-shadow:0 14px 27px var(--model-button-shadow);
+  }
+  .sale-model-card .sale-model-actions .button-outline:hover{
+    background:color-mix(in srgb,var(--model-soft) 72%,white);
+    border-color:var(--model-button);
+    box-shadow:0 8px 20px var(--model-button-shadow);
+  }
+}
+.sample-ratio-loading{min-height:190px;display:flex;align-items:center;justify-content:center;gap:11px;color:#9888bc;font-size:12px;letter-spacing:.02em}
+.sample-ratio-loading-star{font:700 25px/1 Outfit,sans-serif;color:#ac9adc;animation:sampleRatioWait 2s ease-in-out infinite}
+@keyframes sampleRatioWait{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.09)}}
+/* If metadata cannot be reached, fill the estimated frame rather than showing
+   the old side bars; normal videos always use intrinsic aspect ratio + contain. */
+.sample-video-wrap.is-ratio-estimate video{object-fit:cover}
+@media(prefers-reduced-motion:reduce){.sample-ratio-loading-star{animation:none}}
+</style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="home-active">
@@ -901,6 +948,7 @@ let activeLanguage = 'ko';
 let activeMediaObserver = null;
 let currentSampleVideos = [];
 let sampleVisibilityBound = false;
+let sampleRenderVersion = 0; // Ignore stale metadata requests after category/language changes.
 const sampleRatioCache = new Map();
 let lastSampleTrigger = null;
 let expandedSampleSource = null; // Keep this thumbnail playing while its larger player opens.
@@ -1286,9 +1334,48 @@ function getSampleInitialRatio(item, categoryId) {
 
 function rememberSampleRatio(video) {
   if (video.videoWidth && video.videoHeight) {
-    // Metadata can refine FUTURE displays, but must not resize an already shown card.
     sampleRatioCache.set(video.dataset.src, video.videoWidth / video.videoHeight);
   }
+}
+
+// Read only video metadata BEFORE creating a visible sample card. On the first
+// visit the frame has the video's real aspect ratio, just as it does on return.
+// A bounded fallback prevents a missing video from blocking the whole gallery.
+function getSampleDisplayRatio(item, categoryId) {
+  const url = assetUrl(item.src);
+  const initial = getSampleInitialRatio(item, categoryId);
+  if (!url) return Promise.resolve({ratio: initial, measured: false});
+  const declared = item.aspectRatio;
+  if ((declared !== undefined && declared !== null && declared !== '') || sampleRatioCache.has(url))
+    return Promise.resolve({ratio: initial, measured: true});
+  return new Promise(resolve => {
+    const probe = document.createElement('video');
+    probe.preload = 'metadata';
+    probe.muted = true;
+    probe.playsInline = true;
+    let settled = false;
+    let timeout;
+    const finish = measured => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      let ratio = initial;
+      if (measured && probe.videoWidth > 0 && probe.videoHeight > 0) {
+        ratio = probe.videoWidth / probe.videoHeight;
+        if (Number.isFinite(ratio) && ratio >= .25 && ratio <= 3.5)
+          sampleRatioCache.set(url, ratio);
+        else { ratio = initial; measured = false; }
+      } else measured = false;
+      probe.removeAttribute('src');
+      probe.load();
+      resolve({ratio, measured});
+    };
+    probe.addEventListener('loadedmetadata', () => finish(true), {once:true});
+    probe.addEventListener('error', () => finish(false), {once:true});
+    timeout = setTimeout(() => finish(false), 6500);
+    probe.src = url;
+    probe.load();
+  });
 }
 
 function observeSampleVideos() {
@@ -1315,10 +1402,11 @@ function observeSampleVideos() {
   videos.forEach(video => activeMediaObserver.observe(video));
 }
 
-function selectSampleCategory(categoryId) {
+async function selectSampleCategory(categoryId) {
   const categories = asArray(CONTENT.samples?.categories);
   const category = categories.find(item => item.id === categoryId);
   if (!category) return;
+  const renderVersion = ++sampleRenderVersion;
   stopSampleVideos();
   const videos = asArray(category.videos);
   document.querySelectorAll('.sample-tab').forEach(button => {
@@ -1326,17 +1414,26 @@ function selectSampleCategory(categoryId) {
     button.setAttribute('aria-selected', String(selected));
     button.tabIndex = selected ? 0 : -1;
   });
+
+  // Keep the intro visible while intrinsic video ratios are requested. A short
+  // preview-preparing message looks cleaner than letterboxing and sudden resizes.
+  const intro = `<div class="sample-category-intro"><span>${escapeHtml(category.description || '')}</span><span class="sample-count">${videos.length} SAMPLE${videos.length === 1 ? '' : 'S'}</span></div>`;
+  const loadingLabels = {ko:'영상 미리보기를 준비하고 있어요…',en:'Preparing video previews…',ja:'動画プレビューを準備しています…'};
+  $('sample-panel').innerHTML = `${intro}<div class="sample-ratio-loading" role="status"><span class="sample-ratio-loading-star" aria-hidden="true">✧</span>${loadingLabels[activeLanguage] || loadingLabels.ko}</div>`;
+
+  const ratios = await Promise.all(videos.map(video => getSampleDisplayRatio(video, categoryId)));
+  if (renderVersion !== sampleRenderVersion) return;
   const mediaCards = videos.map((video, i) => {
     const src = assetUrl(video.src);
     if (!src) return '';
     const title = video.title || `${category.label} ${i + 1}`;
-    const ratio = getSampleInitialRatio(video, categoryId);
-    return `<article class="sample-card"><div class="sample-video-wrap" style="--sample-ratio:${ratio}"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
+    const {ratio, measured} = ratios[i];
+    return `<article class="sample-card"><div class="sample-video-wrap${measured ? '' : ' is-ratio-estimate'}" style="--sample-ratio:${ratio}"><span class="sample-video-placeholder" aria-hidden="true">✧</span>
       <video playsinline muted loop preload="none" data-src="${escapeHtml(src)}" aria-label="${escapeHtml(title)} ${escapeHtml(t('sampleItem'))}"></video>
       <button type="button" class="sample-video-open" data-title="${escapeHtml(title)}" aria-label="${escapeHtml(title)} ${escapeHtml(t('expandVideo'))}"><span class="sample-video-open-icon" aria-hidden="true">⤢</span></button></div>
       <div class="sample-label"><span>${escapeHtml(title)}</span><span>MOTION / ${String(i + 1).padStart(2, '0')}</span></div></article>`;
   }).filter(Boolean);
-  $('sample-panel').innerHTML = `<div class="sample-category-intro"><span>${escapeHtml(category.description || '')}</span><span class="sample-count">${mediaCards.length} SAMPLE${mediaCards.length === 1 ? '' : 'S'}</span></div><div class="sample-grid switch-enter">${mediaCards.join('') || `<div class="placeholder-card">${escapeHtml(t('emptyCategory'))}</div>`}</div>`;
+  $('sample-panel').innerHTML = `${intro}<div class="sample-grid switch-enter">${mediaCards.join('') || `<div class="placeholder-card">${escapeHtml(t('emptyCategory'))}</div>`}</div>`;
   $('sample-panel').querySelectorAll('.sample-video-open').forEach(button => {
     button.addEventListener('click', () => openSampleLightbox(button));
     button.closest('.sample-card').addEventListener('click', event => {

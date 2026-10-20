@@ -313,9 +313,10 @@ body.sale-image-lightbox-open{overflow:hidden}
 .sale-image-lightbox-image.ready{opacity:1}
 .sale-image-lightbox-loading{position:absolute;inset:0;display:grid;place-items:center;color:#9485bf;font-size:12px;font-weight:700;pointer-events:none}
 .sale-image-lightbox-loading[hidden]{display:none}
-.sale-image-lightbox-nav{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:41px;height:41px;border:1px solid #ded7ef;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.94);color:#7865b3;font:700 24px Outfit,sans-serif;box-shadow:0 7px 20px rgba(49,34,94,.10);transition:background .2s,box-shadow .2s}
+.sale-image-lightbox-nav{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:41px;height:41px;padding:0;border:1px solid #ded7ef;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.94);color:#7865b3;box-shadow:0 7px 20px rgba(49,34,94,.10);transition:background .2s,box-shadow .2s}
 .sale-image-lightbox-nav:hover{background:#fff;box-shadow:0 9px 25px rgba(49,34,94,.19)}
 .sale-image-lightbox-nav[hidden]{display:none}
+.sale-image-lightbox-prev .sale-model-arrow{transform:rotate(-135deg)}
 .sale-image-lightbox-prev{left:15px}.sale-image-lightbox-next{right:15px}
 .sale-image-lightbox-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#857998;font-size:11px}
 .sale-image-lightbox-count{font:700 11px Outfit,sans-serif;letter-spacing:1px;color:#9789ba;white-space:nowrap}
@@ -323,7 +324,7 @@ body.sale-image-lightbox-open{overflow:hidden}
 @media(max-width:940px){.sale-model-card{grid-template-columns:1fr}.sale-model-visual{min-height:0}.sale-model-media{aspect-ratio:16/10;flex:auto}}
 @media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price-total dd{font-size:20px}.sale-model-nav{width:32px;height:32px}}
 @media(max-width:580px){.sale-model-media{aspect-ratio:1/1}.sale-model-picker{gap:8px}.sale-model-pick{padding:9px 14px;font-size:10px;gap:7px}}
-@media(max-width:580px){.sale-image-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:9px}.sale-image-lightbox-image{max-height:calc(100dvh - 165px)}.sale-image-lightbox-nav{width:34px;height:34px;font-size:20px}.sale-image-lightbox-prev{left:6px}.sale-image-lightbox-next{right:6px}}
+@media(max-width:580px){.sale-image-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:9px}.sale-image-lightbox-image{max-height:calc(100dvh - 165px)}.sale-image-lightbox-nav{width:34px;height:34px}.sale-image-lightbox-prev{left:6px}.sale-image-lightbox-next{right:6px}}
 @media(prefers-reduced-motion:reduce){.sale-model-card.is-current,.sale-image-lightbox[open],.sale-image-lightbox::backdrop{animation:none!important}.sale-model-nav,.sale-model-pick,.sale-model-expand-icon,.sale-image-lightbox-image,.sale-image-lightbox-nav{transition:none!important}.sale-model-nav:hover{transform:translateY(-50%)}}
 
 /* Uniform pricing cards; a shared detail panel prevents stretched, empty columns. */
@@ -337,6 +338,12 @@ body.sale-image-lightbox-open{overflow:hidden}
 .price-card p{font-size:12px;line-height:1.8;color:#8c84a2;white-space:pre-line;margin:0;word-break:keep-all}
 .price-value{display:flex;align-items:baseline;gap:6px;margin:26px 0 21px;font:700 35px Outfit,Paperlogy,sans-serif;letter-spacing:-1.3px;color:#483b77}
 .price-value small{font-size:12px;color:#9d93b3;font-weight:500;letter-spacing:0}
+.price-breakdown{display:grid;grid-template-rows:minmax(22px,auto) auto 19px;align-content:end;gap:2px;min-height:88px;margin:15px 0 17px}
+.price-breakdown .price-value{margin:0}
+.price-event-header{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
+.price-event-badge{display:inline-flex;align-items:center;min-height:20px;padding:3px 8px;border:1px solid #ded5f5;border-radius:999px;background:#f5f1ff;color:#7860b8;font:700 10px Paperlogy,sans-serif;line-height:1.2}
+.price-original{font:500 12px Outfit,Paperlogy,sans-serif;color:#a29bb1;text-decoration:line-through;text-decoration-thickness:1px}
+.price-discount-detail{color:#8872b9;font-size:11px;font-weight:700;line-height:19px}
 .price-action{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:43px;margin-top:auto;padding:11px 14px;border:1px solid #e6e0f3;border-radius:10px;background:#faf9fe;color:#7160a8;font:700 12px Paperlogy,sans-serif;text-align:left;cursor:pointer;transition:background .25s,border-color .25s,color .25s}
 .price-action:hover,.price-action:focus-visible{background:#f3effd;border-color:#c8bde7;color:#554285}
 .price-action:focus-visible,.price-close:focus-visible{outline:2px solid #9786d5;outline-offset:3px}
@@ -666,8 +673,8 @@ body.sale-image-lightbox-open{overflow:hidden}
     <div class="sale-image-lightbox-media">
       <span class="sale-image-lightbox-loading" id="sale-image-lightbox-loading" role="status" data-i18n="imageLoading">이미지를 불러오는 중...</span>
       <img class="sale-image-lightbox-image" id="sale-image-lightbox-image" alt="" draggable="false">
-      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-prev" id="sale-image-lightbox-prev" aria-label="이전 이미지" data-i18n-aria="prevImage">‹</button>
-      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-next" id="sale-image-lightbox-next" aria-label="다음 이미지" data-i18n-aria="nextImage">›</button>
+      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-prev" id="sale-image-lightbox-prev" aria-label="이전 이미지" data-i18n-aria="prevImage"><span class="sale-model-arrow" aria-hidden="true"></span></button>
+      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-next" id="sale-image-lightbox-next" aria-label="다음 이미지" data-i18n-aria="nextImage"><span class="sale-model-arrow" aria-hidden="true"></span></button>
     </div>
     <div class="sale-image-lightbox-meta"><span id="sale-image-lightbox-caption"></span><span class="sale-image-lightbox-count" id="sale-image-lightbox-count"></span></div>
     <p class="sale-image-lightbox-hint" id="sale-image-lightbox-hint" data-i18n="imageLightboxHint">좌우 방향키로 이미지를 넘기고 ESC 키로 닫을 수 있어요.</p>
@@ -723,7 +730,7 @@ const UI_TEXT = {
     emptyShowcase:'등록된 쇼케이스가 없습니다.',emptySamples:'등록된 리깅 샘플이 없습니다.',emptyCategory:'등록된 샘플이 없습니다.',
     sold:'판매 완료된 모델입니다',soldOut:'판매 완료',onSale:'판매 중',priceInquiry:'가격 문의',saleInquiry:'판매 문의',buyInquiry:'구매 문의',saleInquiryPrefill:'안녕하세요! {model} 모델 구매에 대해 문의드립니다.',
     viewShowcase:'쇼케이스 보기',imageWaiting:'이미지를 준비하고 있어요',prevImage:'이전 이미지',nextImage:'다음 이미지',expandImage:'이미지 확대 보기',closeImage:'확대 이미지 닫기',imageLoading:'이미지를 불러오는 중...',imageError:'이미지를 불러올 수 없어요.',imageLightboxHint:'좌우 방향키로 이미지를 넘기고 ESC 키로 닫을 수 있어요.',salePrice:'판매 가격',illustrationPrice:'일러스트',riggingPrice:'리깅',totalPrice:'최종 금액',
-    included:'기본 포함 옵션 확인',includedClose:'기본 포함 옵션 닫기',includedHeading:'기본 포함 옵션',close:'닫기',
+    included:'기본 포함 옵션 확인',includedClose:'기본 포함 옵션 닫기',includedHeading:'기본 포함 옵션',close:'닫기',discountEvent:'할인 이벤트',discountAmount:'이벤트 할인',
     noBaseOptions:'기본 옵션 정보가 준비 중입니다.',noAddons:'등록된 추가 옵션이 없습니다.',addonNotice:'선택한 기능의 금액은 기본 리깅 가격에 추가됩니다.',
     videoError:'영상을 불러올 수 없어요. 파일 경로를 확인해 주세요.',videoLoadFailed:'영상 로드 실패',heroVideoError:'영상을 불러올 수 없습니다. 영상 경로를 확인해 주세요.',
     heroVideoUnset:'대표 영상이 지정되지 않았습니다',announcement:'화면',contentError:'content.json을 불러오지 못했습니다. GitHub Pages 또는 로컬 웹 서버에서 열어주세요.',
@@ -747,7 +754,7 @@ const UI_TEXT = {
     emptyShowcase:'No showcases are available yet.',emptySamples:'No rigging samples are available yet.',emptyCategory:'No samples in this category yet.',
     sold:'This model has been sold',soldOut:'SOLD OUT',onSale:'Available',priceInquiry:'Ask for price',saleInquiry:'Purchase inquiry',buyInquiry:'Purchase inquiry',saleInquiryPrefill:'Hello! I am interested in purchasing the {model} model.',
     viewShowcase:'Watch showcase',imageWaiting:'Images coming soon',prevImage:'Previous image',nextImage:'Next image',expandImage:'Enlarge image',closeImage:'Close enlarged image',imageLoading:'Loading image...',imageError:'Unable to load the image.',imageLightboxHint:'Use the arrow keys to change images, or press ESC to close.',salePrice:'Model price',illustrationPrice:'Illustration',riggingPrice:'Rigging',totalPrice:'Total',
-    included:'View included features',includedClose:'Hide included features',includedHeading:'Included Features',close:'Close',
+    included:'View included features',includedClose:'Hide included features',includedHeading:'Included Features',close:'Close',discountEvent:'SPECIAL OFFER',discountAmount:'Event discount',
     noBaseOptions:'Included features will be updated soon.',noAddons:'No extra options listed yet.',addonNotice:'Selected extras are added to the base rigging price.',
     videoError:'Unable to load video. Please check its file path.',videoLoadFailed:'Video unavailable',heroVideoError:'Unable to load video. Please check its file path.',
     heroVideoUnset:'NO FEATURED VIDEO SET',announcement:'page',contentError:'Could not load content.json. Open via GitHub Pages or a local web server.',
@@ -771,7 +778,7 @@ const UI_TEXT = {
     emptyShowcase:'公開中のショーケースはありません。',emptySamples:'公開中のリギングサンプルはありません。',emptyCategory:'このカテゴリーの動画はありません。',
     sold:'このモデルは販売終了しました',soldOut:'売り切れ',onSale:'販売中',priceInquiry:'価格を問い合わせる',saleInquiry:'購入のお問い合わせ',buyInquiry:'購入のお問い合わせ',saleInquiryPrefill:'こんにちは。{model}の購入についてお問い合わせします。',
     viewShowcase:'ショーケースを見る',imageWaiting:'画像を準備中です',prevImage:'前の画像',nextImage:'次の画像',expandImage:'画像を拡大表示',closeImage:'拡大画像を閉じる',imageLoading:'画像を読み込み中...',imageError:'画像を読み込めません。',imageLightboxHint:'左右の矢印キーで切り替え、ESCキーで閉じられます。',salePrice:'販売価格',illustrationPrice:'イラスト',riggingPrice:'モデリング',totalPrice:'合計金額',
-    included:'基本仕様を確認',includedClose:'基本仕様を閉じる',includedHeading:'基本仕様',close:'閉じる',
+    included:'基本仕様を確認',includedClose:'基本仕様を閉じる',includedHeading:'基本仕様',close:'閉じる',discountEvent:'割引キャンペーン',discountAmount:'キャンペーン割引',
     noBaseOptions:'基本仕様の情報を準備中です。',noAddons:'追加オプションはありません。',addonNotice:'追加機能の料金は基本リギング価格に加算されます。',
     videoError:'動画を読み込めません。ファイルのパスをご確認ください。',videoLoadFailed:'動画の読み込みに失敗',heroVideoError:'動画を読み込めません。ファイルのパスをご確認ください。',
     heroVideoUnset:'代表動画は未設定です',announcement:'ページ',contentError:'content.jsonを読み込めませんでした。GitHub Pagesまたはローカルサーバーで開いてください。',
@@ -1349,13 +1356,24 @@ function renderPricing() {
   panel.hidden = true;
   panel.replaceChildren();
   delete panel.dataset.activeIndex;
-  grid.innerHTML = plans.map((plan, i) => `
+  grid.innerHTML = plans.map((plan, i) => {
+    const regularPrice = Math.max(0, Math.trunc(Number(plan.price) || 0));
+    const discount = plan.discount?.enabled === true
+      ? Math.min(regularPrice, Math.max(0, Math.trunc(Number(plan.discount.amount) || 0)))
+      : 0;
+    const finalPrice = regularPrice - discount;
+    return `
     <article class="price-card reveal">
       <div class="price-card-type"><span>${escapeHtml(plan.english || `RIGGING / ${i + 1}`)}</span><span class="price-mark" aria-hidden="true">✧</span></div>
       <h3>${escapeHtml(englishPlanName(i, plan.name))}</h3><p>${escapeHtml(plan.description || '')}</p>
-      <div class="price-value">${escapeHtml(Number(plan.price || 0).toLocaleString('ko-KR'))}<small>KRW</small></div>
+      <div class="price-breakdown">
+        <div class="price-event-header">${discount ? `<span class="price-event-badge">${escapeHtml(t('discountEvent'))}</span><span class="price-original">${regularPrice.toLocaleString('ko-KR')} KRW</span>` : ''}</div>
+        <div class="price-value">${finalPrice.toLocaleString('ko-KR')}<small>KRW</small></div>
+        <div class="price-discount-detail">${discount ? `${escapeHtml(t('discountAmount'))} −${discount.toLocaleString('ko-KR')} KRW` : ''}</div>
+      </div>
       <button class="price-action" type="button" data-plan-index="${i}" aria-expanded="false" aria-controls="price-included-panel"><span>${escapeHtml(t('included'))}</span><span class="price-action-icon" aria-hidden="true">+</span></button>
-    </article>`).join('');
+    </article>`;
+  }).join('');
   const triggers = [...grid.querySelectorAll('.price-action')];
   const closePanel = (restoreFocus = false) => {
     const activeIndex = Number(panel.dataset.activeIndex);

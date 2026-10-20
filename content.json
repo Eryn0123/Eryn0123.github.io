@@ -19,7 +19,7 @@
     },
     "event": {
       "enabled": true,
-      "label": "LD 전신 10만 원 할인 중"
+      "label": "ArtMug · LD 전신 10만 원 할인 중"
     }
   },
   "portfolio": {
@@ -149,8 +149,8 @@
         "rigging": "Eryn",
         "features": ["VBridger 트래킹 대응", "표정 4종 + 추가 얼굴 파츠", "헤어스타일 2종 + 추가 팔 파츠", "몸 앞으로 내밀기"],
         "showcaseUrl": "https://youtu.be/34oHfdYHCvk",
-        "actionLabel": "BOOTH에서 판매 정보 보기",
-        "actionUrl": "https://eryn.booth.pm/items/8641805",
+        "actionLabel": "DM으로 구매 문의",
+        "actionUrl": "https://x.com/Eryn0123",
         "images": [
           {"src": "images/sale_models/velvet_rose_vampire/01_cover.png", "alt": "Velvet Rose Vampire 대표 이미지", "caption": "대표 이미지"},
           {"src": "images/sale_models/velvet_rose_vampire/02_expression_preview.png", "alt": "Velvet Rose Vampire 표정 미리보기", "caption": "표정 미리보기"},
@@ -246,7 +246,7 @@
     "en": {
       "hero": {
         "intro": "Hello! I'm Eryn, a Live2D rigger.\nI bring out each character's personality through soft, natural, expressive motion.",
-        "event": {"label": "₩100,000 off LD full-body rigging"}
+        "event": {"label": "ArtMug · ₩100,000 off LD full-body rigging"}
       },
       "portfolio": {
         "description": "A collection of Live2D showcases bringing each character's unique charm to life.",
@@ -290,7 +290,7 @@
           {
             "subtitle": "Noble vampire Live2D model", "status": "Available", "badge": "One-of-a-kind", "priceNote": "Art + Rigging SET",
             "features": ["VBridger tracking support", "4 expressions + extra facial parts", "2 hairstyles + extra arm parts", "Body lean-forward motion"],
-            "actionLabel": "View on BOOTH",
+            "actionLabel": "Inquire via DM",
             "images": [
               {"alt": "Velvet Rose Vampire cover art", "caption": "Cover art"},
               {"alt": "Velvet Rose Vampire expression preview", "caption": "Expression preview"},
@@ -350,7 +350,7 @@
     "ja": {
       "hero": {
         "intro": "はじめまして！Live2DモデラーのEryn（エリン）です。\nキャラクターの個性を大切に、自然で愛らしい動きを制作しています。",
-        "event": {"label": "LD全身リギング10万ウォン割引中"}
+        "event": {"label": "ArtMug · LD全身リギング10万ウォン割引中"}
       },
       "portfolio": {
         "description": "一人ひとりのキャラクターの個性を活かしたLive2Dショーケースです。",
@@ -394,7 +394,7 @@
           {
             "subtitle": "ヴァンパイア貴族風 Live2Dモデル", "status": "販売中", "badge": "一点限り", "priceNote": "イラスト＋モデリング SET",
             "features": ["VBridgerトラッキング対応", "表情4種＋追加の顔パーツ", "髪型2種＋追加の腕パーツ", "体を前に乗り出す動き"],
-            "actionLabel": "BOOTHで販売情報を見る",
+            "actionLabel": "DMで購入相談",
             "images": [
               {"alt": "Velvet Rose Vampire メイン画像", "caption": "メイン画像"},
               {"alt": "Velvet Rose Vampire 表情プレビュー", "caption": "表情プレビュー"},

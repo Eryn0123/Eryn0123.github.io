@@ -223,9 +223,9 @@ body.sample-lightbox-open{overflow:hidden}
 
 /* Premade model sales: preserve a generous portrait display, with slightly narrower width. */
 .site-panel[data-page="sale-models"] .section{padding-top:clamp(28px,4.8svh,55px)}
-.site-panel[data-page="sale-models"] .section-heading{width:min(100%,1080px);margin-inline:auto;margin-bottom:24px}
-.sale-models-grid{display:block;width:min(100%,1080px);margin-inline:auto}
-.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
+.site-panel[data-page="sale-models"] .section-heading{width:min(100%,1050px);margin-inline:auto;margin-bottom:20px}
+.sale-models-grid{display:block;width:min(100%,1050px);margin-inline:auto}
+.sale-model-card{display:none;min-width:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;background:#fff;border:1px solid #e7e1f4;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}
 .sale-model-card.is-current{display:grid;animation:saleModelEnter .68s var(--ease) both}
 .sale-model-visual{min-width:0;min-height:478px;display:flex;flex-direction:column;background:linear-gradient(135deg,#f2effb,#ebe8f8)}
 .sale-model-media{position:relative;flex:1;min-height:0;background:linear-gradient(135deg,#f2effb,#ebe8f8);overflow:hidden}
@@ -233,11 +233,14 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-image-fallback{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:10px;text-align:center;color:#9e91bd;font-size:12px;background:linear-gradient(135deg,#f1eefb,#e6e1f5)}
 .sale-model-image-fallback[hidden],.sale-model-image[hidden]{display:none}
 .sale-model-image-fallback span{font-size:31px}
-.sale-model-status{position:absolute;left:16px;top:16px;background:rgba(255,255,255,.94);border:1px solid #e4dcf3;border-radius:100px;padding:9px 13px;color:#7766b3;font-size:10px;font-weight:700;box-shadow:0 5px 20px rgba(73,59,133,.07)}
+.sale-model-status{position:absolute;z-index:2;left:16px;top:16px;background:rgba(255,255,255,.94);border:1px solid #e4dcf3;border-radius:100px;padding:9px 13px;color:#7766b3;font-size:10px;font-weight:700;box-shadow:0 5px 20px rgba(73,59,133,.07)}
 .sale-model-status.sold{color:#837c92;background:rgba(255,255,255,.95)}
-.sale-model-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;font:700 20px Outfit,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+.sale-model-nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:36px;height:36px;border:1px solid rgba(218,210,236,.95);border-radius:50%;background:rgba(255,255,255,.93);color:#7666af;box-shadow:0 6px 18px rgba(75,60,131,.09);display:grid;place-items:center;font:700 20px Outfit,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
 .sale-model-nav:hover{background:#fff;transform:translateY(-50%) scale(1.07)}
 .sale-model-prev{left:14px}.sale-model-next{right:14px}
+.sale-model-expand{position:absolute;z-index:1;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;border:0;background:transparent;cursor:zoom-in}
+.sale-model-expand-icon{display:grid;place-items:center;width:37px;height:37px;border:1px solid rgba(221,214,243,.9);border-radius:11px;background:rgba(255,255,255,.95);box-shadow:0 5px 15px rgba(71,56,124,.12);color:#7868b3;font-size:21px;line-height:1;transition:transform .25s var(--ease),box-shadow .25s}
+.sale-model-expand:hover .sale-model-expand-icon,.sale-model-expand:focus-visible .sale-model-expand-icon{transform:scale(1.09);box-shadow:0 9px 22px rgba(71,56,124,.19)}
 .sale-model-gallery-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 19px;background:#f9f8fd;border-bottom:1px solid #f0edf8;color:#9186aa;font-size:10px}
 .sale-model-gallery-meta .sale-model-count{white-space:nowrap;font:700 10px Outfit,sans-serif;letter-spacing:1px;color:#a094bf}
 .sale-model-content{min-width:0;padding:30px 32px;display:flex;flex-direction:column}
@@ -266,8 +269,7 @@ body.sample-lightbox-open{overflow:hidden}
 .sale-model-pick:hover{border-color:#b6a9e2;transform:translateY(-2px)}
 .sale-model-pick[aria-selected="true"]{background:#8878cd;border-color:#8878cd;color:#fff;box-shadow:0 9px 21px rgba(123,104,196,.18)}
 .sale-model-pick-index{font:700 10px Outfit,sans-serif;letter-spacing:1px;opacity:.7}
-/* Let the gallery occupy the available desktop height again; only its width is narrower.
-   Small viewports keep natural scrolling so details are never clipped. */
+/* A 50/50 gallery sits comfortably above its model picker and the footer. */
 @media(min-width:941px) and (min-height:760px){
   body.sale-active{height:100svh}
   body.sale-active .site-header,body.sale-active .footer{flex-shrink:0}
@@ -277,7 +279,7 @@ body.sample-lightbox-open{overflow:hidden}
   body.sale-active #sale-models .section-heading{flex-shrink:0;margin-bottom:clamp(8px,1.4svh,16px)}
   body.sale-active #sale-models .section-heading h2{font-size:clamp(38px,4.8svh,52px);margin:9px 0 4px}
   body.sale-active #sale-models .section-heading p{margin-top:6px;font-size:12px}
-  body.sale-active .sale-models-grid{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  body.sale-active .sale-models-grid{flex:0 0 auto;min-height:0;height:clamp(445px,57svh,550px);display:flex;flex-direction:column}
   body.sale-active .sale-model-card.is-current{flex:1 1 auto;min-height:0}
   body.sale-active .sale-model-visual{min-height:0}
   body.sale-active .sale-model-content{padding:clamp(17px,2.5svh,27px) clamp(22px,2.5vw,32px)}
@@ -291,10 +293,33 @@ body.sample-lightbox-open{overflow:hidden}
   body.sale-active .sale-model-picker{flex-shrink:0;margin-top:clamp(8px,1.2svh,12px)}
   body.sale-active .sale-model-pick{min-height:38px;padding:7px 16px}
 }
+/* Enlarged premade image: one image at a time, no cropping or duplicate downloads. */
+body.sale-image-lightbox-open{overflow:hidden}
+.sale-image-lightbox{width:min(1010px,calc(100vw - 36px));max-width:none;max-height:calc(100dvh - 32px);padding:18px;border:1px solid #e4ddf4;border-radius:23px;background:#fcfbff;color:var(--ink);box-shadow:0 35px 120px rgba(29,21,62,.27);overflow:hidden}
+.sale-image-lightbox[open]{display:flex;flex-direction:column;gap:12px;animation:lightboxEnter .38s var(--ease) both}
+.sale-image-lightbox::backdrop{background:rgba(28,22,49,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:lightboxBackdrop .3s ease both}
+.sale-image-lightbox-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-shrink:0}
+.sale-image-lightbox-kicker{margin:0 0 3px;color:#9887cb;font:700 10px Outfit,sans-serif;letter-spacing:1.5px}
+.sale-image-lightbox-title{font:700 18px/1.3 Outfit,Paperlogy,sans-serif;margin:0}
+.sale-image-lightbox-close{flex-shrink:0;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:1px solid #e0d9f0;background:#f4f1fc;color:#695aa5;font-size:26px;line-height:1;transition:background .2s,transform .2s}
+.sale-image-lightbox-close:hover{background:#e8e2f9;transform:rotate(90deg)}
+.sale-image-lightbox-media{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:14px;background:linear-gradient(135deg,#efecfa,#e2ddf3)}
+.sale-image-lightbox-image{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 190px);object-fit:contain;opacity:0;transition:opacity .24s ease}
+.sale-image-lightbox-image.ready{opacity:1}
+.sale-image-lightbox-loading{position:absolute;inset:0;display:grid;place-items:center;color:#9485bf;font-size:12px;font-weight:700;pointer-events:none}
+.sale-image-lightbox-loading[hidden]{display:none}
+.sale-image-lightbox-nav{position:absolute;z-index:2;top:50%;transform:translateY(-50%);width:41px;height:41px;border:1px solid #ded7ef;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.94);color:#7865b3;font:700 24px Outfit,sans-serif;box-shadow:0 7px 20px rgba(49,34,94,.10);transition:background .2s,box-shadow .2s}
+.sale-image-lightbox-nav:hover{background:#fff;box-shadow:0 9px 25px rgba(49,34,94,.19)}
+.sale-image-lightbox-nav[hidden]{display:none}
+.sale-image-lightbox-prev{left:15px}.sale-image-lightbox-next{right:15px}
+.sale-image-lightbox-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#857998;font-size:11px}
+.sale-image-lightbox-count{font:700 11px Outfit,sans-serif;letter-spacing:1px;color:#9789ba;white-space:nowrap}
+.sale-image-lightbox-hint{text-align:center;color:#a195b5;font-size:10px;margin:0}
 @media(max-width:940px){.sale-model-card{grid-template-columns:1fr}.sale-model-visual{min-height:0}.sale-model-media{aspect-ratio:16/10;flex:auto}}
 @media(max-width:580px){.sale-model-content{padding:20px 19px 22px}.sale-model-features{gap:7px}.sale-model-features li{font-size:10px;padding:9px}.sale-model-price-total dd{font-size:20px}.sale-model-nav{width:32px;height:32px}}
 @media(max-width:580px){.sale-model-media{aspect-ratio:1/1}.sale-model-picker{gap:8px}.sale-model-pick{padding:9px 14px;font-size:10px;gap:7px}}
-@media(prefers-reduced-motion:reduce){.sale-model-card.is-current{animation:none!important}.sale-model-nav,.sale-model-pick{transition:none!important}.sale-model-nav:hover{transform:translateY(-50%)}}
+@media(max-width:580px){.sale-image-lightbox{width:calc(100vw - 22px);max-height:calc(100dvh - 22px);padding:12px;border-radius:17px;gap:9px}.sale-image-lightbox-image{max-height:calc(100dvh - 165px)}.sale-image-lightbox-nav{width:34px;height:34px;font-size:20px}.sale-image-lightbox-prev{left:6px}.sale-image-lightbox-next{right:6px}}
+@media(prefers-reduced-motion:reduce){.sale-model-card.is-current,.sale-image-lightbox[open],.sale-image-lightbox::backdrop{animation:none!important}.sale-model-nav,.sale-model-pick,.sale-model-expand-icon,.sale-image-lightbox-image,.sale-image-lightbox-nav{transition:none!important}.sale-model-nav:hover{transform:translateY(-50%)}}
 
 /* Uniform pricing cards; a shared detail panel prevents stretched, empty columns. */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -573,6 +598,20 @@ body.sample-lightbox-open{overflow:hidden}
     </div>
     <p class="sample-lightbox-hint" id="sample-lightbox-hint" data-i18n="lightboxHint">ESC 키 또는 닫기 버튼으로 돌아갈 수 있어요.</p>
   </dialog>
+  <dialog class="sale-image-lightbox" id="sale-image-lightbox" aria-labelledby="sale-image-lightbox-title" aria-describedby="sale-image-lightbox-hint">
+    <div class="sale-image-lightbox-top">
+      <div><p class="sale-image-lightbox-kicker">ERYN · PREMADE GALLERY</p><h3 class="sale-image-lightbox-title" id="sale-image-lightbox-title">판매 모델</h3></div>
+      <button type="button" class="sale-image-lightbox-close" id="sale-image-lightbox-close" aria-label="확대 이미지 닫기" data-i18n-aria="closeImage" autofocus>×</button>
+    </div>
+    <div class="sale-image-lightbox-media">
+      <span class="sale-image-lightbox-loading" id="sale-image-lightbox-loading" role="status" data-i18n="imageLoading">이미지를 불러오는 중...</span>
+      <img class="sale-image-lightbox-image" id="sale-image-lightbox-image" alt="" draggable="false">
+      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-prev" id="sale-image-lightbox-prev" aria-label="이전 이미지" data-i18n-aria="prevImage">‹</button>
+      <button type="button" class="sale-image-lightbox-nav sale-image-lightbox-next" id="sale-image-lightbox-next" aria-label="다음 이미지" data-i18n-aria="nextImage">›</button>
+    </div>
+    <div class="sale-image-lightbox-meta"><span id="sale-image-lightbox-caption"></span><span class="sale-image-lightbox-count" id="sale-image-lightbox-count"></span></div>
+    <p class="sale-image-lightbox-hint" id="sale-image-lightbox-hint" data-i18n="imageLightboxHint">좌우 방향키로 이미지를 넘기고 ESC 키로 닫을 수 있어요.</p>
+  </dialog>
   <noscript><p class="noscript-notice">이 홈페이지의 콘텐츠를 보려면 JavaScript를 활성화해 주세요. / Please enable JavaScript to view this site. / このサイトを表示するにはJavaScriptを有効にしてください。</p></noscript>
   <script>
 'use strict';
@@ -586,6 +625,7 @@ let currentSampleVideos = [];
 let sampleVisibilityBound = false;
 const sampleRatioCache = new Map();
 let lastSampleTrigger = null;
+let saleImageLightboxState = null;
 let activePage = 'home';
 let activePortfolioView = 'works';
 
@@ -611,7 +651,7 @@ const UI_TEXT = {
     watchShowcase:'쇼케이스 YouTube에서 보기',thumbnail:'쇼케이스 썸네일',sampleItem:'리깅 샘플',expandVideo:'영상 확대 보기',
     emptyShowcase:'등록된 쇼케이스가 없습니다.',emptySamples:'등록된 리깅 샘플이 없습니다.',emptyCategory:'등록된 샘플이 없습니다.',
     sold:'판매 완료된 모델입니다',soldOut:'판매 완료',onSale:'판매 중',priceInquiry:'가격 문의',saleInquiry:'판매 문의',buyInquiry:'구매 문의',
-    viewShowcase:'쇼케이스 보기',imageWaiting:'이미지를 준비하고 있어요',prevImage:'이전 이미지',nextImage:'다음 이미지',salePrice:'판매 가격',illustrationPrice:'일러스트',riggingPrice:'리깅',totalPrice:'최종 금액',
+    viewShowcase:'쇼케이스 보기',imageWaiting:'이미지를 준비하고 있어요',prevImage:'이전 이미지',nextImage:'다음 이미지',expandImage:'이미지 확대 보기',closeImage:'확대 이미지 닫기',imageLoading:'이미지를 불러오는 중...',imageError:'이미지를 불러올 수 없어요.',imageLightboxHint:'좌우 방향키로 이미지를 넘기고 ESC 키로 닫을 수 있어요.',salePrice:'판매 가격',illustrationPrice:'일러스트',riggingPrice:'리깅',totalPrice:'최종 금액',
     included:'기본 포함 옵션 확인',includedClose:'기본 포함 옵션 닫기',includedHeading:'기본 포함 옵션',close:'닫기',
     noBaseOptions:'기본 옵션 정보가 준비 중입니다.',noAddons:'등록된 추가 옵션이 없습니다.',addonNotice:'선택한 기능의 금액은 기본 리깅 가격에 추가됩니다.',
     videoError:'영상을 불러올 수 없어요. 파일 경로를 확인해 주세요.',videoLoadFailed:'영상 로드 실패',heroVideoError:'영상을 불러올 수 없습니다. 영상 경로를 확인해 주세요.',
@@ -632,7 +672,7 @@ const UI_TEXT = {
     watchShowcase:'Watch showcase on YouTube',thumbnail:'showcase thumbnail',sampleItem:'rigging sample',expandVideo:'Enlarge video',
     emptyShowcase:'No showcases are available yet.',emptySamples:'No rigging samples are available yet.',emptyCategory:'No samples in this category yet.',
     sold:'This model has been sold',soldOut:'SOLD OUT',onSale:'Available',priceInquiry:'Ask for price',saleInquiry:'Purchase inquiry',buyInquiry:'Purchase inquiry',
-    viewShowcase:'Watch showcase',imageWaiting:'Images coming soon',prevImage:'Previous image',nextImage:'Next image',salePrice:'Model price',illustrationPrice:'Illustration',riggingPrice:'Rigging',totalPrice:'Total',
+    viewShowcase:'Watch showcase',imageWaiting:'Images coming soon',prevImage:'Previous image',nextImage:'Next image',expandImage:'Enlarge image',closeImage:'Close enlarged image',imageLoading:'Loading image...',imageError:'Unable to load the image.',imageLightboxHint:'Use the arrow keys to change images, or press ESC to close.',salePrice:'Model price',illustrationPrice:'Illustration',riggingPrice:'Rigging',totalPrice:'Total',
     included:'View included features',includedClose:'Hide included features',includedHeading:'Included Features',close:'Close',
     noBaseOptions:'Included features will be updated soon.',noAddons:'No extra options listed yet.',addonNotice:'Selected extras are added to the base rigging price.',
     videoError:'Unable to load video. Please check its file path.',videoLoadFailed:'Video unavailable',heroVideoError:'Unable to load video. Please check its file path.',
@@ -653,7 +693,7 @@ const UI_TEXT = {
     watchShowcase:'YouTubeでショーケースを見る',thumbnail:'ショーケースのサムネイル',sampleItem:'リギングサンプル',expandVideo:'動画を拡大',
     emptyShowcase:'公開中のショーケースはありません。',emptySamples:'公開中のリギングサンプルはありません。',emptyCategory:'このカテゴリーの動画はありません。',
     sold:'このモデルは販売終了しました',soldOut:'売り切れ',onSale:'販売中',priceInquiry:'価格を問い合わせる',saleInquiry:'購入のお問い合わせ',buyInquiry:'購入のお問い合わせ',
-    viewShowcase:'ショーケースを見る',imageWaiting:'画像を準備中です',prevImage:'前の画像',nextImage:'次の画像',salePrice:'販売価格',illustrationPrice:'イラスト',riggingPrice:'モデリング',totalPrice:'合計金額',
+    viewShowcase:'ショーケースを見る',imageWaiting:'画像を準備中です',prevImage:'前の画像',nextImage:'次の画像',expandImage:'画像を拡大表示',closeImage:'拡大画像を閉じる',imageLoading:'画像を読み込み中...',imageError:'画像を読み込めません。',imageLightboxHint:'左右の矢印キーで切り替え、ESCキーで閉じられます。',salePrice:'販売価格',illustrationPrice:'イラスト',riggingPrice:'モデリング',totalPrice:'合計金額',
     included:'基本仕様を確認',includedClose:'基本仕様を閉じる',includedHeading:'基本仕様',close:'閉じる',
     noBaseOptions:'基本仕様の情報を準備中です。',noAddons:'追加オプションはありません。',addonNotice:'追加機能の料金は基本リギング価格に加算されます。',
     videoError:'動画を読み込めません。ファイルのパスをご確認ください。',videoLoadFailed:'動画の読み込みに失敗',heroVideoError:'動画を読み込めません。ファイルのパスをご確認ください。',
@@ -991,6 +1031,72 @@ function renderSamples() {
   sampleVisibilityBound = true;
 }
 
+function updateSaleImageLightbox() {
+  const state = saleImageLightboxState;
+  if (!state) return;
+  const image = state.images[state.index];
+  const photo = $('sale-image-lightbox-image');
+  const loading = $('sale-image-lightbox-loading');
+  photo.classList.remove('ready');
+  loading.textContent = t('imageLoading');
+  loading.hidden = false;
+  photo.onload = () => { photo.classList.add('ready'); loading.hidden = true; };
+  photo.onerror = () => { loading.textContent = t('imageError'); loading.hidden = false; };
+  photo.alt = image.alt || state.title;
+  photo.src = assetUrl(image.src);
+  $('sale-image-lightbox-title').textContent = state.title;
+  $('sale-image-lightbox-caption').textContent = image.caption || 'MODEL GALLERY';
+  $('sale-image-lightbox-count').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(state.images.length).padStart(2, '0')}`;
+  $('sale-image-lightbox-prev').hidden = state.images.length < 2;
+  $('sale-image-lightbox-next').hidden = state.images.length < 2;
+}
+
+function changeSaleImageLightbox(direction) {
+  const state = saleImageLightboxState;
+  if (!state || state.images.length < 2) return;
+  state.index = (state.index + direction + state.images.length) % state.images.length;
+  state.onChange(state.index); // Keep the card gallery in sync when the dialog closes.
+  updateSaleImageLightbox();
+}
+
+function openSaleImageLightbox(trigger, model, images, index, onChange) {
+  const dialog = $('sale-image-lightbox');
+  if (!images.length || typeof dialog.showModal !== 'function') return;
+  saleImageLightboxState = {trigger, title:model.title, images, index, onChange};
+  dialog.showModal();
+  document.body.classList.add('sale-image-lightbox-open');
+  updateSaleImageLightbox();
+}
+
+function initSaleImageLightbox() {
+  const dialog = $('sale-image-lightbox');
+  const photo = $('sale-image-lightbox-image');
+  $('sale-image-lightbox-close').addEventListener('click', () => dialog.close());
+  $('sale-image-lightbox-prev').addEventListener('click', () => changeSaleImageLightbox(-1));
+  $('sale-image-lightbox-next').addEventListener('click', () => changeSaleImageLightbox(1));
+  dialog.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    changeSaleImageLightbox(event.key === 'ArrowLeft' ? -1 : 1);
+  });
+  dialog.addEventListener('click', event => {
+    const bounds = dialog.getBoundingClientRect();
+    if (event.target === dialog &&
+        (event.clientX < bounds.left || event.clientX > bounds.right ||
+         event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
+  });
+  dialog.addEventListener('close', () => {
+    const trigger = saleImageLightboxState?.trigger;
+    photo.onload = null;
+    photo.onerror = null;
+    photo.removeAttribute('src');
+    photo.classList.remove('ready');
+    saleImageLightboxState = null;
+    document.body.classList.remove('sale-image-lightbox-open');
+    if (trigger?.isConnected) trigger.focus({preventScroll:true});
+  });
+}
+
 function renderSaleModels() {
   const sale = CONTENT.saleModels || {};
   const section = $('sale-models');
@@ -1036,6 +1142,7 @@ function renderSaleModels() {
         ${imageHtml}
         <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>${escapeHtml(t('imageWaiting'))}</div>
         <span class="sale-model-status${model.sold ? ' sold' : ''}">${escapeHtml(status)} · ${escapeHtml(model.badge || 'PREMADE')}</span>
+        ${cover ? `<button type="button" class="sale-model-expand" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('expandImage'))}"><span class="sale-model-expand-icon" aria-hidden="true">⤢</span></button>` : ''}
         ${images.length > 1 ? `<button type="button" class="sale-model-nav sale-model-prev" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('prevImage'))}">‹</button><button type="button" class="sale-model-nav sale-model-next" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('nextImage'))}">›</button>` : ''}
       </div>
       <div class="sale-model-gallery-meta"><span class="sale-model-caption">${escapeHtml(cover?.caption || 'MODEL GALLERY')}</span><span class="sale-model-count">${images.length ? `01 / ${String(images.length).padStart(2, '0')}` : '00 / 00'}</span></div></div>
@@ -1068,8 +1175,8 @@ function renderSaleModels() {
       photo.hidden = true;
       fallback.hidden = false;
     });
-    const change = direction => {
-      current = (current + direction + images.length) % images.length;
+    const setImage = index => {
+      current = (index + images.length) % images.length;
       const item = images[current];
       fallback.hidden = true;
       photo.hidden = false;
@@ -1078,8 +1185,10 @@ function renderSaleModels() {
       card.querySelector('.sale-model-caption').textContent = item.caption || 'MODEL GALLERY';
       card.querySelector('.sale-model-count').textContent = `${String(current + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
     };
-    card.querySelector('.sale-model-prev')?.addEventListener('click', () => change(-1));
-    card.querySelector('.sale-model-next')?.addEventListener('click', () => change(1));
+    card.querySelector('.sale-model-prev')?.addEventListener('click', () => setImage(current - 1));
+    card.querySelector('.sale-model-next')?.addEventListener('click', () => setImage(current + 1));
+    const expand = card.querySelector('.sale-model-expand');
+    expand?.addEventListener('click', () => openSaleImageLightbox(expand, model, images, current, setImage));
   });
 
   const picker = $('sale-model-picker');
@@ -1398,6 +1507,7 @@ async function loadContent() {
   document.addEventListener('dragstart', event => event.preventDefault());
   $('current-year').textContent = String(new Date().getFullYear());
   initSampleLightbox();
+  initSaleImageLightbox();
   initNavigation();
   initLanguageSwitch();
   try {

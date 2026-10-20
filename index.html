@@ -515,6 +515,63 @@ body.sale-image-lightbox-open{overflow:hidden}
 @media(max-width:580px){.contact-panel{padding:25px 19px;border-radius:20px}.contact-panel h2{font-size:clamp(42px,10vw,54px);letter-spacing:-2.4px;margin:12px 0 13px}.contact-korean{font-size:12px}.contact-star-one{left:5%;top:5%;font-size:18px}.contact-star-two{right:5%;bottom:4%;font-size:27px}.contact-form-card{padding:20px 16px}.contact-field-row{grid-template-columns:1fr}.contact-field textarea{min-height:120px}.contact-mini-links{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ambient,.hero-sparkle{animation:none!important;will-change:auto}.ambient{transform:none!important}.hero-sparkle{opacity:.72}.reveal,.reveal.is-visible{opacity:1;transform:none;filter:none;transition:none}.hero-media-card,.button,.work-card,.sample-card,.price-card,.price-action,.price-action-icon,.addon-tab,.addon-tab-arrow,.footer-socials a,.footer-link-arrow,.process-card,.sample-tab,.work-cover img,.work-play,.sample-video-open-icon,.sample-lightbox-video{transition:none!important;transform:none!important}.price-included-panel,.price-included-list,.addon-detail-list,.sample-grid.switch-enter .sample-card,.sample-lightbox[open],.sample-lightbox::backdrop,.loading-symbol,html.js .site-panel.is-active,html.js .portfolio-view.is-active{animation:none!important}}
 
+
+/* === Eryn visual polish · 2026-10-21: appearance only === */
+:root { --eryn-polish-shadow:0 10px 28px rgba(73,58,124,.055),0 22px 56px rgba(82,66,138,.035); }
+/* Consistent white-glass finish. No overlays that blur the text or videos. */
+.work-card,.sample-card,.price-card,.process-card,.notice-card,
+.sale-model-card,.addons-wrap,.price-included-panel,.contact-form-card {
+  box-shadow:var(--eryn-polish-shadow);
+}
+.work-card,.sample-card,.price-card,.process-card,.notice-card,
+.sale-model-card,.contact-form-card {
+  border-color:rgba(207,196,234,.72);
+}
+/* A tiny inset gleam rather than a moving border or mouse-following glow. */
+.price-card,.process-card,.notice-card,.contact-form-card {
+  background-image:linear-gradient(150deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.97) 68%,rgba(248,245,255,.60) 100%);
+}
+.work-card,.sample-card,.price-card,.process-card,.notice-card,.sale-model-card,
+.price-included-group,.addons-panel,.addon-tab,.sale-model-features li {
+  transition:transform .28s var(--ease),box-shadow .28s ease,border-color .28s ease,background-color .28s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  .work-card:hover,.sample-card:hover,.price-card:hover,.process-card:hover,.notice-card:hover{
+    transform:translateY(-3px);
+    border-color:#c6b9e9;
+    box-shadow:0 16px 34px rgba(80,63,140,.09),0 25px 62px rgba(80,63,140,.04);
+  }
+  .sale-model-features li:hover,.price-included-group:hover,.addon-row:hover {
+    background-color:#f6f2ff;border-color:#d9cbf3;
+  }
+  .button:not(:disabled):hover{transform:translateY(-2px)}
+  .sample-tab:hover,.addon-tab:hover,.sale-model-pick:hover {box-shadow:0 7px 19px rgba(100,78,163,.09)}
+}
+.sample-tab[aria-selected="true"],.addon-tab[aria-selected="true"],.sale-model-pick[aria-selected="true"] {
+  transition:background-color .36s var(--ease),border-color .36s var(--ease),color .3s ease,box-shadow .36s var(--ease),transform .3s var(--ease);
+}
+/* Delicate model-specific colors: mint first, burgundy second. */
+.sale-model-card:nth-child(1).is-current{border-color:rgba(123,200,182,.46)}
+.sale-model-card:nth-child(2).is-current{border-color:rgba(178,114,153,.38)}
+.sale-model-card:nth-child(1) .sale-model-kicker{color:#639d92}
+.sale-model-card:nth-child(2) .sale-model-kicker{color:#a56d90}
+.sale-model-pick:nth-child(1)[aria-selected="true"]{background:#769d9b;border-color:#769d9b;box-shadow:0 9px 21px rgba(91,153,142,.15)}
+.sale-model-pick:nth-child(2)[aria-selected="true"]{background:#9d6a87;border-color:#9d6a87;box-shadow:0 9px 21px rgba(153,82,122,.15)}
+/* A slim flow connector for the four-step process on wide screens. */
+@media(min-width:761px){
+ .process-card:not(:last-child)::after{
+   content:'';position:absolute;left:calc(100% + 2px);top:50%;width:11px;height:1px;
+   background:linear-gradient(90deg,#c3b4e7,#e6ddf8);pointer-events:none;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .work-card,.sample-card,.price-card,.process-card,.notice-card,.sale-model-card,
+ .contact-form-card,.addon-tab,.sale-model-pick,.sample-tab,.sale-model-features li,
+ .price-included-group,.addon-row{transition:none!important}
+ .work-card:hover,.sample-card:hover,.price-card:hover,.process-card:hover,.notice-card:hover{transform:none!important}
+}
+/* === End visual polish === */
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>

@@ -19,7 +19,7 @@
     },
     "event": {
       "enabled": true,
-      "label": "ArtMug · LD 전신 10만 원 할인 중"
+      "label": "LD 전신 10만 원 할인 중"
     }
   },
   "portfolio": {
@@ -114,8 +114,8 @@
         "status": "판매 중",
         "badge": "1인 한정 판매",
         "sold": false,
-        "illustrationPrice": null,
-        "riggingPrice": null,
+        "illustrationPrice": 900000,
+        "riggingPrice": 900000,
         "price": 1800000,
         "priceNote": "일러스트 + 리깅 SET",
         "illustrator": "Nae",
@@ -141,8 +141,8 @@
         "status": "판매 중",
         "badge": "1인 한정 판매",
         "sold": false,
-        "illustrationPrice": null,
-        "riggingPrice": null,
+        "illustrationPrice": 1500000,
+        "riggingPrice": 1000000,
         "price": 2500000,
         "priceNote": "일러스트 + 리깅 SET",
         "illustrator": "RioBH",
@@ -238,7 +238,7 @@
       {
         "title": "결제 및 작업",
         "items": [
-          "결제는 은행 이체 또는 **PayPal**을 통해 이루어집니다.",
+          "결제는 **은행 이체** 또는 **PayPal**을 통해 이루어집니다.",
           "**작업 시작 후부터 머리 리깅 완료 전까지** 취소하시면, 진행도에 따라 **결제 금액의 20~50%만 환불**됩니다. **머리 리깅 완료 이후에는 환불이 불가능합니다.**",
           "작업 과정에서 **최대 2회 수정**이 가능합니다. 추가 수정은 별도 요금이 부과됩니다.",
           "최종 Live2D 모델 파일(**.moc3, .json, .png**)은 이메일 또는 원하시는 다른 방법으로 전달됩니다.",
@@ -250,7 +250,7 @@
         "items": [
           "완성된 작품은 홍보 목적으로 제 소셜 미디어(유튜브, 트위터)에 게시됩니다.",
           "소셜 미디어에서 제 리깅 모델을 사용하신다면 **@Eryn0123**를 표시해주세요.",
-          "작업자의 사전 동의 없이 모델 파일을 역복원하거나 추출, 무단 판매, 2차 수정 및 유포하는 행위는 일절 허용하지 않습니다.",
+          "**작업자의 사전 동의 없이 모델 파일을 역복원하거나 추출, 무단 판매, 2차 수정 및 유포하는 행위는 일절 허용하지 않습니다.**",
           "리깅 파일을 다른 사람에게 공유하거나 판매하려면 먼저 **제 허락을 받아주세요.**"
         ]
       }
@@ -279,7 +279,7 @@
     "en": {
       "hero": {
         "intro": "Hello! I'm Eryn, a Live2D rigger.\nI bring out each character's personality through soft, natural, expressive motion.",
-        "event": {"label": "ArtMug · ₩100,000 off LD full-body rigging"}
+        "event": {"label": "₩100,000 off LD full-body rigging"}
       },
       "portfolio": {
         "description": "A collection of Live2D showcases bringing each character's unique charm to life.",
@@ -385,7 +385,7 @@
           {
             "title": "Payment / Production",
             "items": [
-              "Payments are accepted by bank transfer or **PayPal**.",
+              "Payments are accepted by **bank transfer** or **PayPal**.",
               "If you cancel **after work starts but before head rigging is completed**, **20–50% of the payment is refunded depending on progress**. **No refunds are available once head rigging is completed.**",
               "Up to **2 rounds of revisions** are included. Additional revisions incur extra fees.",
               "The final Live2D model files (**.moc3, .json, .png**) will be delivered by email or another method you prefer.",
@@ -397,7 +397,7 @@
             "items": [
               "Completed work will be posted on my social media (YouTube and X/Twitter) for promotional purposes.",
               "When using my rigged model on social media, please credit **@Eryn0123**.",
-              "Reverse engineering, extracting, unauthorized resale, modification, or redistribution of model files without prior consent is prohibited.",
+              "**Reverse engineering, extracting, unauthorized resale, modification, or redistribution of model files without prior consent is prohibited.**",
               "Please obtain **my permission first** before sharing or selling the rigging files to anyone else."
             ]
           }

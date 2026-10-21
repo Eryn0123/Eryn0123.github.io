@@ -976,6 +976,8 @@ let contactStatusState = 'info';
 let lastSaleInquiryPrefill = '';
 let pendingLanguage = null;
 let languageChangeToken = 0;
+let saleCoverWarmupScheduled = false;
+let saleCoverWarmImage = null; // Keep a low-priority cover request alive while other pages are viewed.
 
 const $ = id => document.getElementById(id);
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -1169,6 +1171,35 @@ function assetUrl(path) {
     const url = new URL(path, base);
     return url.origin === base.origin && url.pathname.startsWith(base.pathname) ? url.href : '';
   } catch { return ''; }
+}
+
+// Warm just the FIRST premade cover after the browser has time to render the home page.
+// Never fetch the entire gallery, and avoid background downloads for data-saver users.
+function scheduleSaleCoverWarmup() {
+  if (saleCoverWarmupScheduled || activePage === 'sale-models' ||
+      CONTENT?.saleModels?.enabled === false || navigator.connection?.saveData) return;
+  const cover = asArray(asArray(CONTENT?.saleModels?.items)[0]?.images)[0];
+  const url = assetUrl(cover?.src);
+  if (!url) return;
+  saleCoverWarmupScheduled = true;
+  const warm = () => {
+    if (activePage === 'sale-models') return; // The visible cover gets high priority instead.
+    const image = new Image();
+    image.decoding = 'async';
+    image.fetchPriority = 'low';
+    image.src = url;
+    saleCoverWarmImage = image;
+  };
+  if ('requestIdleCallback' in window) window.requestIdleCallback(warm, {timeout: 1800});
+  else window.setTimeout(warm, 900);
+}
+
+// Lazy-loading is useful on hidden pages, but delays the first cover AFTER navigation.
+function prioritizeVisibleSaleCover() {
+  const image = $('sale-models-grid')?.querySelector('.sale-model-card.is-current .sale-model-image');
+  if (!image) return;
+  image.fetchPriority = 'high';
+  image.loading = 'eager';
 }
 
 function getYoutubeId(value) {
@@ -1596,7 +1627,7 @@ function renderSaleModels() {
     const combinedPrice = illustrationPrice !== null && riggingPrice !== null ? illustrationPrice + riggingPrice : Number(model.price);
     const price = Number.isFinite(combinedPrice) && combinedPrice > 0 ? won(combinedPrice) : t('priceInquiry');
     const imageHtml = cover
-      ? `<img class="sale-model-image" draggable="false" src="${escapeHtml(assetUrl(cover.src))}" alt="${escapeHtml(cover.alt || model.title)}" loading="lazy" decoding="async">`
+      ? `<img class="sale-model-image" draggable="false" src="${escapeHtml(assetUrl(cover.src))}" alt="${escapeHtml(cover.alt || model.title)}" loading="${index === preservedModel && activePage === 'sale-models' ? 'eager' : 'lazy'}" fetchpriority="${index === preservedModel && activePage === 'sale-models' ? 'high' : 'low'}" decoding="async">`
       : '';
     const features = asArray(model.features).slice(0, 6)
       .map(feature => `<li>${escapeHtml(feature)}</li>`).join('');
@@ -1679,6 +1710,7 @@ function renderSaleModels() {
     if (!Number.isInteger(index) || index < 0 || index >= models.length || selectedModel === index) return;
     selectedModel = index;
     cards.forEach((card, i) => card.classList.toggle('is-current', i === index));
+    prioritizeVisibleSaleCover();
     tabs.forEach((tab, i) => {
       const selected = i === index;
       tab.setAttribute('aria-selected', String(selected));
@@ -1986,6 +2018,7 @@ function showRoute(target) {
     else link.removeAttribute('aria-current');
   });
   $('page-announcer').textContent = `${t(route.labelKey)} ${t('announcement')}`;
+  if (activePage === 'sale-models') prioritizeVisibleSaleCover();
   window.scrollTo(0, 0);
   syncMediaPlayback();
 }
@@ -2092,6 +2125,7 @@ async function loadContent() {
     if (!ORIGINAL_CONTENT || typeof ORIGINAL_CONTENT !== 'object') throw new Error('Invalid content.json');
     document.title = ORIGINAL_CONTENT.site?.title || document.title;
     renderAllContent();
+    scheduleSaleCoverWarmup();
   } catch (error) {
     console.error('Failed to load the portfolio content:', error);
     $('works-grid').innerHTML = `<div class="placeholder-card">${escapeHtml(t('contentError'))}</div>`;

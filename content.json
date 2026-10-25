@@ -137,7 +137,7 @@
         "id": "mint-cat-girl",
         "title": "Mint Cat Girl",
         "subtitle": "민트 고양이 소녀 Live2D 모델",
-        "status": "판매 중",
+        "status": "판매 완료",
         "badge": "1인 한정 판매",
         "sold": true,
         "illustrationPrice": 900000,
@@ -307,7 +307,7 @@
         "description": "Exclusive one-of-a-kind premade models with finished artwork and Live2D rigging. Explore their features and previews.",
         "items": [
           {
-            "subtitle": "Mint cat girl Live2D model", "status": "Available", "badge": "One-of-a-kind", "priceNote": "Art + Rigging SET",
+            "id": "mint-cat-girl", "subtitle": "Mint cat girl Live2D model", "status": "Sold out", "badge": "One-of-a-kind", "priceNote": "Art + Rigging SET",
             "features": ["VBridger tracking support", "5 expressions + 3 eye expressions", "Outfit ON / OFF + hand switch", "Tail features + chibi transformation"],
             "actionLabel": "Inquire via DM",
             "images": [
@@ -321,7 +321,7 @@
             ]
           },
           {
-            "subtitle": "Noble vampire Live2D model", "status": "Available", "badge": "One-of-a-kind", "priceNote": "Art + Rigging SET",
+            "id": "velvet-rose-vampire", "subtitle": "Noble vampire Live2D model", "status": "Available", "badge": "One-of-a-kind", "priceNote": "Art + Rigging SET",
             "features": ["VBridger tracking support", "4 expressions + extra facial parts", "2 hairstyles + extra arm parts", "Body lean-forward motion"],
             "actionLabel": "Inquire via DM",
             "images": [
@@ -440,7 +440,7 @@
         "description": "イラストとLive2Dモデリングが完成した、一点限りの販売モデルです。画像や機能をご覧ください。",
         "items": [
           {
-            "subtitle": "ミント猫の女の子 Live2Dモデル", "status": "販売中", "badge": "一点限り", "priceNote": "イラスト＋モデリング SET",
+            "id": "mint-cat-girl", "subtitle": "ミント猫の女の子 Live2Dモデル", "status": "販売終了", "badge": "一点限り", "priceNote": "イラスト＋モデリング SET",
             "features": ["VBridgerトラッキング対応", "表情5種＋目の表情3種", "衣装ON / OFF＋手の切り替え", "しっぽ機能＋ちびキャラ変身"],
             "actionLabel": "DMで購入相談",
             "images": [
@@ -454,7 +454,7 @@
             ]
           },
           {
-            "subtitle": "ヴァンパイア貴族風 Live2Dモデル", "status": "販売中", "badge": "一点限り", "priceNote": "イラスト＋モデリング SET",
+            "id": "velvet-rose-vampire", "subtitle": "ヴァンパイア貴族風 Live2Dモデル", "status": "販売中", "badge": "一点限り", "priceNote": "イラスト＋モデリング SET",
             "features": ["VBridgerトラッキング対応", "表情4種＋追加の顔パーツ", "髪型2種＋追加の腕パーツ", "体を前に乗り出す動き"],
             "actionLabel": "DMで購入相談",
             "images": [

@@ -564,13 +564,8 @@ body.sale-image-lightbox-open{overflow:hidden}
 .sample-tab[aria-selected="true"],.addon-tab[aria-selected="true"],.sale-model-pick[aria-selected="true"] {
   transition:background-color .36s var(--ease),border-color .36s var(--ease),color .3s ease,box-shadow .36s var(--ease),transform .3s var(--ease);
 }
-/* Delicate model-specific colors: mint first, burgundy second. */
-.sale-model-card:nth-child(1).is-current{border-color:rgba(123,200,182,.46)}
-.sale-model-card:nth-child(2).is-current{border-color:rgba(178,114,153,.38)}
-.sale-model-card:nth-child(1) .sale-model-kicker{color:#639d92}
-.sale-model-card:nth-child(2) .sale-model-kicker{color:#a56d90}
-.sale-model-pick:nth-child(1)[aria-selected="true"]{background:#769d9b;border-color:#769d9b;box-shadow:0 9px 21px rgba(91,153,142,.15)}
-.sale-model-pick:nth-child(2)[aria-selected="true"]{background:#9d6a87;border-color:#9d6a87;box-shadow:0 9px 21px rgba(153,82,122,.15)}
+/* Premade accents now come from the model ID, never the model's position.
+   Shared --model-* variables below keep the artwork, metadata and actions in sync. */
 /* A slim flow connector for the four-step process on wide screens. */
 @media(min-width:761px){
  .process-card:not(:last-child)::after{
@@ -762,6 +757,100 @@ body.sale-image-lightbox-open{overflow:hidden}
    the old side bars; normal videos always use intrinsic aspect ratio + contain. */
 .sample-video-wrap.is-ratio-estimate video{object-fit:cover}
 @media(prefers-reduced-motion:reduce){.sample-ratio-loading-star{animation:none}}
+
+/* === Premade model order + sold state (2026-10-25) ===
+   Selectors use model-theme-* and is-sold from each model's JSON ID/sold fields. */
+.sale-model-pick{
+  --pick-accent:#8878cd;
+  --pick-border:#c3b6eb;
+  --pick-shadow:rgba(123,104,196,.18);
+}
+.sale-model-pick.model-theme-mint{
+  --pick-accent:#679a90;
+  --pick-border:#91c7b8;
+  --pick-shadow:rgba(76,145,126,.20);
+}
+.sale-model-pick.model-theme-rose{
+  --pick-accent:#9e6984;
+  --pick-border:#d3a6b9;
+  --pick-shadow:rgba(153,82,122,.20);
+}
+.sale-model-pick:hover{border-color:var(--pick-border)}
+.sale-model-pick[aria-selected="true"]{
+  background:var(--pick-accent);
+  border-color:var(--pick-accent);
+  color:#fff;
+  box-shadow:0 9px 21px var(--pick-shadow);
+}
+/* A sold premade is subdued but all gallery controls and model tabs still work. */
+.sale-model-card.is-sold{
+  --model-accent:#777184;
+  --model-soft:#f0eef4;
+  --model-line:#d4cfdd;
+}
+.sale-model-card.is-sold .sale-model-image{filter:grayscale(.72) saturate(.6) brightness(.84)}
+.sale-model-card.is-sold .sale-model-media::after{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:rgba(49,46,61,.23);
+}
+.sale-model-sold-stamp{
+  position:absolute;top:50%;left:50%;z-index:2;transform:translate(-50%,-50%);
+  width:min(75%,275px);padding:22px 18px 18px;border-radius:18px;
+  border:1px solid rgba(255,255,255,.64);
+  background:rgba(48,44,63,.94);box-shadow:0 13px 40px rgba(28,24,42,.24);
+  color:#fff;text-align:center;display:flex;align-items:center;flex-direction:column;gap:9px;
+  pointer-events:none;
+}
+.sale-model-sold-stamp strong{
+  font:800 clamp(26px,3.3vw,40px)/1 Outfit,Paperlogy,sans-serif;
+  letter-spacing:1.7px;
+}
+.sale-model-sold-stamp span{
+  width:100%;padding-top:9px;border-top:1px solid rgba(255,255,255,.24);
+  font-size:11px;font-weight:700;letter-spacing:.1px;
+}
+/* Stay interactive above the purely visual dimming layer. */
+.sale-model-card.is-sold .sale-model-expand{z-index:3}
+.sale-model-card.is-sold .sale-model-nav{z-index:4}
+.sale-model-card.is-sold .sale-model-status{
+  z-index:3;background:#625c70;border-color:#625c70;color:#fff;
+  box-shadow:0 6px 18px rgba(31,27,42,.15);
+}
+.sale-model-card.is-sold .sale-model-content{
+  background:linear-gradient(155deg,#f8f7fa 0%,#fff 55%);
+}
+.sale-model-card.is-sold .sale-model-price-total dd{
+  color:#898393;text-decoration:line-through;text-decoration-thickness:1.5px;
+}
+.sale-model-card.is-sold .sale-model-sold-label{
+  background:#e8e5ed;border-color:#ccc6d5;color:#514c60;
+  font-weight:800;
+}
+.sale-model-pick.is-sold{
+  background:#f2f0f5;border-color:#d4cfdd;color:#827d8d;
+  --pick-accent:#746e7f;
+  --pick-border:#aba4b6;
+  --pick-shadow:rgba(84,77,96,.19);
+}
+.sale-model-pick.is-sold[aria-selected="true"]{
+  background:var(--pick-accent);border-color:var(--pick-accent);color:#fff;
+  box-shadow:0 9px 21px var(--pick-shadow);
+}
+.sale-model-pick-sold-mark{
+  display:inline-flex;align-items:center;font:800 8px/1 Outfit,sans-serif;
+  letter-spacing:.55px;padding:4px 6px;border-radius:99px;
+  background:rgba(97,88,112,.11);color:#777080;
+}
+.sale-model-pick.is-sold[aria-selected="true"] .sale-model-pick-sold-mark{
+  background:rgba(255,255,255,.19);color:#fff;
+}
+@media(max-width:580px){
+  .sale-model-sold-stamp{width:min(77%,265px);padding:18px 14px 15px;border-radius:14px}
+  .sale-model-sold-stamp strong{font-size:29px}
+  .sale-model-picker{gap:7px}
+  .sale-model-pick{gap:6px;padding-inline:12px}
+}
+/* === End premade model sold state === */
 </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -1073,7 +1162,13 @@ const englishPlanName = (index, fallback) => ORIGINAL_CONTENT?.translations?.en?
 // A translation overrides only text fields. IDs, links, media paths and prices remain in the Korean source.
 function mergeLocalized(base, translated) {
   if (translated === undefined) return base;
-  if (Array.isArray(base)) return base.map((item, i) => mergeLocalized(item, Array.isArray(translated) ? translated[i] : undefined));
+  if (Array.isArray(base)) {
+    const keyed = Array.isArray(translated) && translated.length > 0 &&
+      base.every(item => item && typeof item === 'object' && typeof item.id === 'string') &&
+      translated.every(item => item && typeof item === 'object' && typeof item.id === 'string');
+    const byId = keyed ? new Map(translated.map(item => [item.id, item])) : null;
+    return base.map((item, i) => mergeLocalized(item, keyed ? byId.get(item.id) : (Array.isArray(translated) ? translated[i] : undefined)));
+  }
   if (base && typeof base === 'object' && !Array.isArray(base)) {
     const result = {...base};
     if (translated && typeof translated === 'object' && !Array.isArray(translated))
@@ -1593,6 +1688,12 @@ function initSaleImageLightbox() {
   });
 }
 
+function saleModelTheme(model) {
+  if (model?.id === 'mint-cat-girl') return 'mint';
+  if (model?.id === 'velvet-rose-vampire') return 'rose';
+  return 'lavender';
+}
+
 function renderSaleModels() {
   const sale = CONTENT.saleModels || {};
   const section = $('sale-models');
@@ -1610,7 +1711,7 @@ function renderSaleModels() {
     const images = asArray(model.images).filter(item => assetUrl(item.src));
     const cover = images[0];
     // Known premade themes change decoration only, never artwork or content.
-    const modelTheme = model.id === 'mint-cat-girl' ? 'mint' : model.id === 'velvet-rose-vampire' ? 'rose' : 'lavender';
+    const modelTheme = saleModelTheme(model);
     const modelEmblem = modelTheme === 'mint'
       ? `<svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="21" rx="8" ry="6" fill="currentColor"/><circle cx="8" cy="12" r="3" fill="currentColor"/><circle cx="15" cy="9" r="3" fill="currentColor"/><circle cx="23" cy="11" r="3" fill="currentColor"/><circle cx="28" cy="17" r="2.5" fill="currentColor"/></svg>`
       : modelTheme === 'rose'
@@ -1637,9 +1738,10 @@ function renderSaleModels() {
           ${videoUrl ? `<a class="button button-outline" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t('viewShowcase'))} ↗</a>` : ''}
         </div>`;
 
-    return `<article class="sale-model-card model-theme-${modelTheme}${index === preservedModel ? ' is-current' : ''}" data-model-index="${index}">
+    return `<article class="sale-model-card model-theme-${modelTheme}${model.sold ? ' is-sold' : ''}${index === preservedModel ? ' is-current' : ''}" data-model-index="${index}" data-model-id="${escapeHtml(model.id || '')}">
       <div class="sale-model-visual"><div class="sale-model-media">
         ${imageHtml}
+        ${model.sold ? `<div class="sale-model-sold-stamp" aria-hidden="true"><strong>SOLD OUT</strong><span>${escapeHtml(t('soldOut'))}</span></div>` : ''}
         <div class="sale-model-image-fallback" ${cover ? 'hidden' : ''}><span aria-hidden="true">✧</span>${escapeHtml(t('imageWaiting'))}</div>
         <span class="sale-model-status${model.sold ? ' sold' : ''}">${escapeHtml(status)} · ${escapeHtml(model.badge || 'PREMADE')}</span>
         ${cover ? `<button type="button" class="sale-model-expand" aria-label="${escapeHtml(model.title)} ${escapeHtml(t('expandImage'))}"><span class="sale-model-expand-icon" aria-hidden="true">⤢</span></button>` : ''}
@@ -1694,8 +1796,8 @@ function renderSaleModels() {
   const picker = $('sale-model-picker');
   picker.hidden = models.length < 2;
   picker.innerHTML = models.map((model, index) =>
-    `<button type="button" class="sale-model-pick" id="sale-model-tab-${index}" role="tab" aria-controls="sale-models-grid" aria-selected="${index === preservedModel}" tabindex="${index === preservedModel ? '0' : '-1'}" data-model-index="${index}">
-      <span class="sale-model-pick-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>${escapeHtml(model.title)}</button>`
+    `<button type="button" class="sale-model-pick model-theme-${saleModelTheme(model)}${model.sold ? ' is-sold' : ''}" id="sale-model-tab-${index}" role="tab" aria-controls="sale-models-grid" aria-selected="${index === preservedModel}" tabindex="${index === preservedModel ? '0' : '-1'}" data-model-index="${index}" data-model-id="${escapeHtml(model.id || '')}" aria-label="${escapeHtml(model.title)}${model.sold ? ' · ' + escapeHtml(t('soldOut')) : ''}">
+      <span class="sale-model-pick-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span>${escapeHtml(model.title)}</span>${model.sold ? `<span class="sale-model-pick-sold-mark">SOLD</span>` : ''}</button>`
   ).join('');
 
   const stage = $('sale-models-grid');
